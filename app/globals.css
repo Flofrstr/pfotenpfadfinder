@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Lazydog";
+  src: url("/fonts/lazydog.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: 24 33% 94%;
+  --foreground: 32 67% 16%;
+  --card: 24 33% 94%;
+  --card-foreground: 32 67% 16%;
+  --popover: 24 33% 94%;
+  --popover-foreground: 32 67% 16%;
+  --primary: 32 67% 16%;
+  --primary-foreground: 24 33% 94%;
+  --secondary: 24 33% 90%;
+  --secondary-foreground: 32 67% 16%;
+  --muted: 24 33% 90%;
+  --muted-foreground: 32 67% 40%;
+  --accent: 329 27% 60%;
+  --accent-foreground: 24 33% 94%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 24 33% 94%;
+  --border: 32 67% 85%;
+  --input: 32 67% 85%;
+  --ring: 329 27% 60%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 32 67% 10%;
+  --foreground: 24 33% 94%;
+  --card: 32 67% 10%;
+  --card-foreground: 24 33% 94%;
+  --popover: 32 67% 10%;
+  --popover-foreground: 24 33% 94%;
+  --primary: 24 33% 94%;
+  --primary-foreground: 32 67% 10%;
+  --secondary: 32 67% 15%;
+  --secondary-foreground: 24 33% 94%;
+  --muted: 32 67% 15%;
+  --muted-foreground: 24 33% 70%;
+  --accent: 329 27% 60%;
+  --accent-foreground: 24 33% 94%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 24 33% 94%;
+  --border: 32 67% 20%;
+  --input: 32 67% 20%;
+  --ring: 329 27% 60%;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.font-lazydog {
+  font-family: "Lazydog", var(--font-montserrat), sans-serif;
+}
+
+/* Add a new utility to automatically apply the font to all headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Lazydog", var(--font-montserrat), sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
