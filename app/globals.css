@@ -55,14 +55,10 @@ body {
 
 
 
-/* Add a new utility to automatically apply Poppins to all headings */
+/* Add a new utility to automatically apply Gluten to all headings */
 h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: var(--font-poppins), sans-serif;
+h2 {
+  font-family: var(--font-gluten), sans-serif;
 }
 
 @layer base {

@@ -1,6 +1,6 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Montserrat, Poppins } from "next/font/google"
+import { Montserrat, Gluten } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Footer } from "@/components/footer"
@@ -10,10 +10,10 @@ const montserrat = Montserrat({
   variable: "--font-montserrat",
 })
 
-const poppins = Poppins({
+const gluten = Gluten({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  variable: "--font-poppins",
+  variable: "--font-gluten",
 })
 
 export const metadata: Metadata = {
@@ -30,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <body className={`${montserrat.variable} ${poppins.variable} font-sans bg-background text-foreground`}>
+      <body className={`${montserrat.variable} ${gluten.variable} font-sans bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
           <Footer />
