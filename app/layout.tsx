@@ -3,7 +3,7 @@ import type { Metadata } from "next"
 import { Montserrat } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
-
+import { Footer } from "@/components/footer"
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
@@ -26,6 +26,7 @@ export default function RootLayout({
       <body className={`${montserrat.variable} font-sans bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>
