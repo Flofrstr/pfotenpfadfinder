@@ -7,8 +7,8 @@ export function ServicesSection() {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="font-lazydog text-3xl md:text-4xl font-bold tracking-tight">
-              Unsere Dienstleistungen & Preise
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+              Unsere Services
             </h2>
             <p className="max-w-[700px] text-foreground/80 md:text-xl">
               Wir bieten flexible Betreuungsmöglichkeiten für jeden Bedarf - von kurzen Spaziergängen bis zur
@@ -22,7 +22,7 @@ export function ServicesSection() {
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2 mb-2">
                 <Home className="h-6 w-6 text-accent" />
-                <CardTitle className="font-lazydog text-2xl">Hundebetreuung</CardTitle>
+                <CardTitle className="text-2xl">Hundebetreuung</CardTitle>
               </div>
               <CardDescription>Liebevolle Betreuung für Ihren Hund in vertrauter Umgebung</CardDescription>
             </CardHeader>
@@ -51,7 +51,7 @@ export function ServicesSection() {
             <CardHeader className="pb-2">
               <div className="flex items-center gap-2 mb-2">
                 <Paw className="h-6 w-6 text-accent" />
-                <CardTitle className="font-lazydog text-2xl">Gassi gehen</CardTitle>
+                <CardTitle className="text-2xl">Gassi gehen</CardTitle>
               </div>
               <CardDescription>Regelmäßige Bewegung und Auslauf für Ihren Vierbeiner</CardDescription>
             </CardHeader>

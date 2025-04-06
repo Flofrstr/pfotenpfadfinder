@@ -10,7 +10,7 @@ export function ContactSection() {
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="font-lazydog text-3xl md:text-4xl font-bold tracking-tight">Kontaktieren Sie uns</h2>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Kontaktieren Sie uns</h2>
             <p className="max-w-[700px] text-foreground/80 md:text-xl">
               Haben Sie Fragen oder möchten Sie einen Termin vereinbaren? Wir freuen uns auf Ihre Nachricht!
             </p>
@@ -20,7 +20,7 @@ export function ContactSection() {
         <div className="grid md:grid-cols-2 gap-10 mt-12">
           <div className="space-y-8">
             <div className="flex flex-col items-center md:items-start gap-2">
-              <h3 className="font-lazydog text-2xl font-semibold">Kontaktdaten</h3>
+              <h3 className="text-2xl font-semibold">Kontaktdaten</h3>
               <div className="flex items-center gap-2 mt-4">
                 <Mail className="h-5 w-5 text-accent" />
                 <Link href="mailto:pfotenpfadfinder@gmail.com" className="text-lg hover:text-accent transition-colors">
@@ -41,7 +41,7 @@ export function ContactSection() {
             </div>
 
             <div className="bg-accent/5 p-6 rounded-lg">
-              <h3 className="font-lazydog text-xl font-semibold mb-4">Unsere Betreuungszeiten</h3>
+              <h3 className="text-xl font-semibold mb-4">Unsere Betreuungszeiten</h3>
               <ul className="space-y-2">
                 <li className="flex justify-between">
                   <span>Montag - Freitag:</span>
@@ -60,7 +60,7 @@ export function ContactSection() {
           </div>
 
           <div className="space-y-6">
-            <h3 className="font-lazydog text-2xl font-semibold text-center md:text-left">Nachricht senden</h3>
+            <h3 className="text-2xl font-semibold text-center md:text-left">Nachricht senden</h3>
             <form className="space-y-4">
               <div className="grid grid-cols-1 gap-4">
                 <div className="space-y-2">

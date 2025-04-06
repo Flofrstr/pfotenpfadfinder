@@ -18,7 +18,7 @@ export function HeroSection() {
 
       <div className="container relative z-10 px-4 md:px-6 py-12 md:py-24 lg:py-32">
         <div className="max-w-3xl space-y-6">
-          <h1 className="font-lazydog text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
             Pfotenpfadfinder: Liebevolle & professionelle Betreuung für Ihren Vierbeiner
           </h1>
           <p className="text-lg md:text-xl text-foreground/90 max-w-2xl">

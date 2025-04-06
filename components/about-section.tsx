@@ -8,7 +8,7 @@ export function AboutSection() {
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_500px]">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h2 className="font-lazydog text-3xl md:text-4xl font-bold tracking-tight">Warum Pfotenpfadfinder?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Warum Pfotenpfadfinder?</h2>
               <p className="text-foreground/80 md:text-lg">
                 Bei uns steht das Wohlbefinden Ihres Hundes an erster Stelle. Mit Erfahrung, Leidenschaft und
                 Verantwortungsbewusstsein sorgen wir dafür, dass Ihr Vierbeiner die bestmögliche Betreuung erhält.
@@ -21,7 +21,7 @@ export function AboutSection() {
                   <Heart className="h-6 w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-lazydog text-xl font-semibold">Liebevolle Betreuung</h3>
+                  <h3 className="text-xl font-semibold">Liebevolle Betreuung</h3>
                   <p className="text-foreground/70">
                     Wir behandeln jeden Hund mit Liebe und Respekt, als wäre er unser eigener.
                   </p>
@@ -33,7 +33,7 @@ export function AboutSection() {
                   <Shield className="h-6 w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-lazydog text-xl font-semibold">Zuverlässigkeit</h3>
+                  <h3 className="text-xl font-semibold">Zuverlässigkeit</h3>
                   <p className="text-foreground/70">
                     Auf uns können Sie sich verlassen - pünktlich, verantwortungsbewusst und transparent.
                   </p>
@@ -45,7 +45,7 @@ export function AboutSection() {
                   <Clock className="h-6 w-6 text-accent" />
                 </div>
                 <div>
-                  <h3 className="font-lazydog text-xl font-semibold">Flexible Betreuungszeiten</h3>
+                  <h3 className="text-xl font-semibold">Flexible Betreuungszeiten</h3>
                   <p className="text-foreground/70">
                     Wir passen uns Ihrem Zeitplan an, damit Sie sich keine Sorgen machen müssen.
                   </p>

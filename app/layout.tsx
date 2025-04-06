@@ -1,12 +1,19 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Montserrat } from "next/font/google"
+import { Montserrat, Poppins } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Footer } from "@/components/footer"
+
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
+})
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-poppins",
 })
 
 export const metadata: Metadata = {
@@ -23,7 +30,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <body className={`${montserrat.variable} font-sans bg-background text-foreground`}>
+      <body className={`${montserrat.variable} ${poppins.variable} font-sans bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
           {children}
           <Footer />

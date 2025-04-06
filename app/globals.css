@@ -2,13 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Lazydog";
-  src: url("/fonts/lazydog.woff2") format("woff2");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
 
 :root {
   --background: 24 33% 94%;
@@ -60,18 +53,16 @@ body {
   color: hsl(var(--foreground));
 }
 
-.font-lazydog {
-  font-family: "Lazydog", var(--font-montserrat), sans-serif;
-}
 
-/* Add a new utility to automatically apply the font to all headings */
+
+/* Add a new utility to automatically apply Poppins to all headings */
 h1,
 h2,
 h3,
 h4,
 h5,
 h6 {
-  font-family: "Lazydog", var(--font-montserrat), sans-serif;
+  font-family: var(--font-poppins), sans-serif;
 }
 
 @layer base {
