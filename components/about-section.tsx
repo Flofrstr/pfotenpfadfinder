@@ -3,12 +3,12 @@ import { Heart, Shield, Clock } from "lucide-react"
 
 export function AboutSection() {
   return (
-    <section className="w-full py-12 md:py-24 lg:py-32 bg-accent/5">
+    <section id="about" className="w-full py-12 md:py-24 lg:py-32 bg-accent/5">
       <div className="container px-4 md:px-6">
         <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_500px]">
           <div className="flex flex-col justify-center space-y-4">
             <div className="space-y-2">
-              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Warum Pfotenpfadfinder?</h2>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Warum PFOTENPFADFINDER?</h2>
               <p className="text-foreground/80 md:text-lg">
                 Bei uns steht das Wohlbefinden Ihres Hundes an erster Stelle. Mit Erfahrung, Leidenschaft und
                 Verantwortungsbewusstsein sorgen wir dafür, dass Ihr Vierbeiner die bestmögliche Betreuung erhält.
@@ -54,12 +54,13 @@ export function AboutSection() {
             </div>
           </div>
 
-          <div className="relative h-[400px] lg:h-full rounded-xl overflow-hidden">
+          <div className="relative w-full aspect-square max-w-[600px] mx-auto">
             <Image
-              src="/sit_dogs.jpg?height=800&width=600"
+              src="/logo.svg"
               alt="Hundebetreuerin mit glücklichem Hund"
               fill
-              className="object-cover"
+              className="object-contain"
+              priority
             />
           </div>
         </div>

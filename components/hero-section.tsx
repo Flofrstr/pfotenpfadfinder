@@ -19,11 +19,11 @@ export function HeroSection() {
       <div className="container relative z-10 px-4 md:px-6 py-12 md:py-24 lg:py-32">
         <div className="max-w-3xl space-y-6">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-            Pfotenpfadfinder – Mit Herz und Pfote an der Seite deines Lieblings
+            PFOTENPFADFINDER - Mit Herz und Pfote an der Seite deines Lieblings
           </h1>
           <p className="text-lg md:text-xl text-foreground/90 max-w-2xl">
-            Ihr Hund verdient die beste Betreuung, auch wenn Sie keine Zeit haben. Wir bieten liebevolle und
-            zuverlässige Hundebetreuung und Gassi-Service, damit Ihr Vierbeiner glücklich bleibt.
+            Glückliche Pfoten, sorglose Stunden - Hundebetreuung und <br />
+            Gassi-Service für zufriedene und ausgelastete Hunde.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button asChild size="lg" className="bg-accent text-background hover:bg-accent/90">

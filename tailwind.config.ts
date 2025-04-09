@@ -61,6 +61,7 @@ const config = {
       },
       fontFamily: {
         sans: ["var(--font-montserrat)"],
+        gluten: ["var(--font-gluten)"],
       },
     },
   },
