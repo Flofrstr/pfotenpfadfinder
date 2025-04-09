@@ -7,7 +7,7 @@ export function HeroSection() {
     <section className="relative w-full min-h-[90vh] flex items-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/placeholder.svg?height=1080&width=1920"
+          src="/pfotenpfadfinder.jpg?height=1080&width=1920"
           alt="Glücklicher Hund mit Besitzer"
           fill
           className="object-cover"
@@ -19,7 +19,7 @@ export function HeroSection() {
       <div className="container relative z-10 px-4 md:px-6 py-12 md:py-24 lg:py-32">
         <div className="max-w-3xl space-y-6">
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight">
-            Pfotenpfadfinder: Liebevolle & professionelle Betreuung für Ihren Vierbeiner
+            Pfotenpfadfinder – Mit Herz und Pfote an der Seite deines Lieblings
           </h1>
           <p className="text-lg md:text-xl text-foreground/90 max-w-2xl">
             Ihr Hund verdient die beste Betreuung, auch wenn Sie keine Zeit haben. Wir bieten liebevolle und

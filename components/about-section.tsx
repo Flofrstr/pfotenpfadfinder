@@ -56,7 +56,7 @@ export function AboutSection() {
 
           <div className="relative h-[400px] lg:h-full rounded-xl overflow-hidden">
             <Image
-              src="/placeholder.svg?height=800&width=600"
+              src="/sit_dogs.jpg?height=800&width=600"
               alt="Hundebetreuerin mit glücklichem Hund"
               fill
               className="object-cover"
