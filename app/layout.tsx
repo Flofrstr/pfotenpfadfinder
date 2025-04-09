@@ -4,6 +4,7 @@ import { Montserrat, Gluten } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Footer } from "@/components/footer"
+import { Header } from "@/components/header"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -32,6 +33,7 @@ export default function RootLayout({
     <html lang="de" suppressHydrationWarning>
       <body className={`${montserrat.variable} ${gluten.variable} font-sans bg-background text-foreground`}>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <Header />
           {children}
           <Footer />
         </ThemeProvider>
