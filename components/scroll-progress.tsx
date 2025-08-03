@@ -23,7 +23,7 @@ export function ScrollProgress() {
     const handleScroll = () => {
       const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight
       const progress = (window.scrollY / totalHeight) * 100
-      setScrollProgress(progress)
+      setScrollProgress(Math.min(progress, 100))
     }
 
     window.addEventListener("scroll", handleScroll)
@@ -31,35 +31,31 @@ export function ScrollProgress() {
   }, [])
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 h-2 bg-background/80 backdrop-blur-sm z-50">
-      <div className="h-full bg-accent/20 relative overflow-hidden" style={{ width: `${scrollProgress}%` }}>
-        {/* Paw prints inside the progress bar */}
-        <div className="absolute inset-0 flex items-center">
-          {Array.from({ length: 20 }).map((_, index) => {
-            // Only show paws that are within the current progress
-            const pawPosition = (index / 20) * 100
-            if (pawPosition > scrollProgress) return null
+    <div className="fixed top-0 right-4 h-full w-8 flex flex-col items-center justify-between py-8 z-50 pointer-events-none">
+      {/* Vertical paw prints distributed across full height */}
+      {Array.from({ length: 20 }).map((_, index) => {
+        // Calculate which paws should be visible based on scroll progress
+        const pawProgress = (index / 20) * 100
+        const isVisible = pawProgress <= scrollProgress
 
-            // Alternate left and right paws
-            const isLeft = index % 2 === 0
+        // Alternate left and right paws
+        const isLeft = index % 2 === 0
 
-            // Calculate opacity - darker as you go right
-            const opacity = 0.3 + (index / 20) * 0.7
+        // Calculate opacity - darker as you go down
+        const opacity = isVisible ? 0.4 + (index / 20) * 0.6 : 0.1
 
-            return (
-              <PawPrint
-                key={index}
-                className="h-4 w-4 absolute text-accent"
-                style={{
-                  left: `${(index / 20) * 100}%`,
-                  opacity: opacity,
-                  transform: `translateY(${isLeft ? -1 : 1}px) rotate(${isLeft ? -30 : 30}deg)`,
-                }}
-              />
-            )
-          })}
-        </div>
-      </div>
+        return (
+          <PawPrint
+            key={index}
+            className="h-5 w-5 text-accent transition-all duration-300"
+            style={{
+              opacity: opacity,
+              transform: `rotate(${isLeft ? -15 : 15}deg) rotate(180deg)`,
+              filter: isVisible ? 'none' : 'grayscale(100%)',
+            }}
+          />
+        )
+      })}
     </div>
   )
 }

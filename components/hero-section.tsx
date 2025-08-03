@@ -11,6 +11,7 @@ export function HeroSection() {
           alt="Glücklicher Hund mit Besitzer"
           fill
           className="object-cover"
+          style={{ objectPosition: 'center 30%' }}
           priority
         />
         <div className="absolute inset-0 bg-background/70"></div>

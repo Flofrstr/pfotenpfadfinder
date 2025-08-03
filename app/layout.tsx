@@ -20,8 +20,7 @@ const gluten = Gluten({
 export const metadata: Metadata = {
   title: "Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung",
   description:
-    "Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe. Wir kümmern uns um Ihren Vierbeiner, wenn Sie keine Zeit haben.",
-    generator: 'v0.dev'
+    "Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe. Wir kümmern uns um Ihren Vierbeiner, wenn Sie keine Zeit haben."
 }
 
 export default function RootLayout({
