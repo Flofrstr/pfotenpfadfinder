@@ -8,10 +8,10 @@ export function ServicesSection() {
         <div className="flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-              Unsere Services
+              Meine Services
             </h2>
             <p className="max-w-[700px] text-foreground/80 md:text-xl">
-              Wir bieten flexible Betreuungsmöglichkeiten für jeden Bedarf - von kurzen Spaziergängen bis zur
+              Ich biete flexible Betreuungsmöglichkeiten für jeden Bedarf - von kurzen Spaziergängen bis zur
               Urlaubsbetreuung.
             </p>
           </div>
@@ -25,7 +25,7 @@ export function ServicesSection() {
                 <Home className="h-6 w-6 text-accent" />
                 <CardTitle className="text-2xl">Hundebetreuung</CardTitle>
               </div>
-              <CardDescription>Liebevolle Betreuung für Ihren Hund in vertrauter Umgebung</CardDescription>
+              <CardDescription>Liebevolle Betreuung für deinen Hund in vertrauter Umgebung</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-4">
@@ -63,7 +63,7 @@ export function ServicesSection() {
                 <Paw className="h-6 w-6 text-accent" />
                 <CardTitle className="text-2xl">Gassi gehen</CardTitle>
               </div>
-              <CardDescription>Regelmäßige Bewegung und Auslauf für Ihren Vierbeiner</CardDescription>
+              <CardDescription>Regelmäßige Bewegung und Auslauf für deinen Vierbeiner</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-4">
@@ -93,7 +93,7 @@ export function ServicesSection() {
                 <Heart className="h-6 w-6 text-accent" />
                 <CardTitle className="text-2xl">Kennenlernen & Probetage</CardTitle>
               </div>
-              <CardDescription>Lernen Sie uns kennen und testen Sie unseren Service</CardDescription>
+              <CardDescription>Lerne mich kennen und teste meinen Service</CardDescription>
             </CardHeader>
             <CardContent>
               <ul className="space-y-4">

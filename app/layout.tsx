@@ -5,6 +5,7 @@ import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Footer } from "@/components/footer"
 import { Header } from "@/components/header"
+import { Toaster } from "@/components/ui/sonner"
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -35,12 +36,9 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster richColors position="top-right" />
         </ThemeProvider>
       </body>
     </html>
   )
 }
-
-
-
-import './globals.css'
