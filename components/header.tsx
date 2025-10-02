@@ -33,7 +33,7 @@ export function Header() {
               Leistungen
             </Link>
             <Link href="#about" className="text-sm font-medium transition-colors hover:text-primary">
-              Über uns
+              Über mich
             </Link>
             <Link href="#kontakt" className="text-sm font-medium transition-colors hover:text-primary">
               Kontakt
@@ -72,7 +72,7 @@ export function Header() {
                 className="text-sm font-medium transition-colors hover:text-primary py-2"
                 onClick={() => setIsMenuOpen(false)}
               >
-                Über uns
+                Über mich
               </Link>
               <Link
                 href="#kontakt"

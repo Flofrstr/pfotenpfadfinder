@@ -11,8 +11,8 @@ export default function Home() {
     <main className="relative pb-8">
       <ScrollProgress />
       <HeroSection />
-      <ServicesSection />
       <AboutSection />
+      <ServicesSection />
       <TestimonialsSection />
       <ContactSection />
     </main>
