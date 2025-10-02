@@ -26,32 +26,42 @@ export function AboutSection() {
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">Über mich</h2>
               
-              <div className="space-y-4 text-foreground/80 leading-relaxed">
-                <p className="text-lg font-medium">Hello🤍</p>
+              <div className="space-y-6 text-foreground/80 leading-relaxed">
+                <div>
+                  <p className="text-lg font-medium">Hallo liebe Hundemami's und Hundepapi's🤍</p>
+                  <p className="mt-2">
+                    Ich bin Michelle, 24 Jahre alt und Gründerin von Pfotenpfadfinder.
+                  </p>
+                </div>
                 
-                <p>
-                  Ich bin Michelle, 24 Jahre alt, Hundepsychologin und Hundetrainerin in Ausbildung.
-                </p>
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-foreground">Meine Geschichte mit Hunden</h3>
+                  <p>
+                    Schon seit meiner Kindheit begleiten mich Hunde durchs Leben. In meiner Kindheit war es ein Border Collie/Australian Shepherd-Mix, der mich geprägt hat. Später zog eine Bracke-Mischlingsdame aus dem russischen Tierschutz bei meinen Eltern ein, die bis heute Teil unserer Familie ist. Sie hat in mir den Wunsch geweckt, Hunde besser zu verstehen, ihr Verhalten zu ergründen und Wege zu finden, wie wir Menschen ihnen den Alltag erleichtern können.
+                  </p>
+                  
+                  <p>
+                    Während meiner Ausbildung zur Medizinisch-Technischen Laboratoriumsassistentin (2019–2022) durfte ich gemeinsam mit meinem Freund regelmäßig auf den Border Collie seiner Schwester aufpassen. Diese Erfahrung hat mir so viel Freude und Lebensenergie geschenkt, dass ich beschloss, meine Leidenschaft auch anderen Hunden und ihren Besitzern zur Verfügung zu stellen – sei es beim Gassigehen oder beim Hundesitting.
+                  </p>
+                </div>
                 
-                <p>
-                  Schon seit meiner Kindheit begleiten mich Hunde durchs Leben. In meinen frühen Jahren war es ein Border Collie/Australian Shepherd-Mix, der mich geprägt hat. Später zog ein Bracke-Mischling aus dem russischen Tierschutz bei meinen Eltern ein, der bis heute Teil unserer Familie ist. Sie hat in mir den Wunsch geweckt, Hunde besser zu verstehen, ihr Verhalten zu ergründen und Wege zu finden, wie wir Menschen ihnen den Alltag erleichtern können.
-                </p>
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-foreground">Der Weg zur Selbstständigkeit</h3>
+                  <p>
+                    Beruflich arbeite ich als Medizinisch-Technische Laboratoriumsassistentin. Seit Januar 2025 bin ich in Teilzeit, um mehr Raum für mein Herzensprojekt zu schaffen. Im Februar 2025 habe ich den Schritt in die Selbstständigkeit gewagt und Pfotenpfadfinder gegründet – mit dem Ziel, Hunde und ihre Menschen zuverlässig, liebevoll und individuell zu unterstützen. Ab Januar 2026 starte ich zudem meine Ausbildung zur Hundepsychologin und Hundetrainerin, um mein Wissen zu vertiefen und meine Arbeit noch professioneller gestalten zu können.
+                  </p>
+                </div>
                 
-                <p>
-                  Während meiner Ausbildung zur Medizinisch-Technischen Laboratoriumsassistentin (2019–2022) durfte ich gemeinsam mit meinem Freund regelmäßig auf den Border Collie seiner Schwester aufpassen. Diese Erfahrung hat mir so viel Freude und Lebensenergie geschenkt, dass ich beschloss, meine Leidenschaft auch anderen Hunden und ihren Besitzern zur Verfügung zu stellen – sei es beim Gassigehen oder beim Hundesitting.
-                </p>
-                
-                <p>
-                  Beruflich arbeite ich als Medizinisch-Technische Laboratoriumsassistentin. Seit Januar 2025 in Teilzeit, um mehr Raum für mein Herzensprojekt zu schaffen. Im Februar 2025 habe ich schließlich den Schritt in meine Selbstständigkeit gewagt und „Pfotenpfadfinder" gegründet – mit dem Ziel, Hunde und ihre Menschen zuverlässig, liebevoll und individuell zu unterstützen.
-                </p>
-                
-                <p>
-                  Mein großer Traum ist es, eines Tages eine eigene Hundetagestätte zu eröffnen – einen Ort, an dem jeder Hund sicher betreut wird und sich rundum wohlfühlen kann.
-                </p>
-                
-                <p className="font-medium">
-                  Bis dahin begleite ich Dich und Deinen Vierbeiner gerne mit Herz, Geduld und Spaß beim Gassigehen und Hundesitting.
-                </p>
+                <div className="space-y-3">
+                  <h3 className="text-xl font-semibold text-foreground">Meine Vision</h3>
+                  <p>
+                    Mein großer Traum ist es, eines Tages eine eigene Hundetagesstätte zu eröffnen – einen Ort, an dem jeder Hund sicher betreut wird und sich rundum wohlfühlen kann.
+                  </p>
+                  
+                  <p className="font-medium">
+                    Bis dahin begleite ich Dich und Deinen Vierbeiner gerne mit Herz, Geduld und Spaß beim Gassigehen und Hundesitting.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -62,7 +72,7 @@ export function AboutSection() {
                   <GraduationCap className="h-5 w-5 text-accent" />
                 </div>
                 <div>
-                  <p className="font-semibold">Hundepsychologin & Hundetrainerin in Ausbildung</p>
+                  <p className="font-semibold">Ausbildung zur Hundepsychologin & Hundetrainerin ab Januar 2026</p>
                 </div>
               </div>
 
