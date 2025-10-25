@@ -3,7 +3,7 @@ export default function Datenschutz() {
     <div className="bg-background min-h-screen">
       <main className="container mx-auto max-w-4xl px-4 py-16 md:px-8">
         <div>
-          <h1 className="text-foreground mb-8 text-4xl font-bold md:text-5xl">
+          <h1 className="text-foreground mb-8 text-2xl font-bold break-words sm:text-3xl md:text-4xl lg:text-5xl">
             Datenschutzerklärung
           </h1>
 
