@@ -40,7 +40,7 @@ export function TestimonialsSection() {
       name: 'Fiebi',
       quote:
         'Fiebi ist wirklich nicht leicht zu knacken, aber dich hat sie sofort ins Herz geschlossen. Man merkt sofort, wie liebevoll und kompetent du mit ihr umgehst – du machst einen ganz wunderbaren Job! Ich werde dich auf jeden Fall weiterempfehlen. ❤️',
-      designation: '',
+      designation: 'Coco',
       src: '/Fiebi.jpeg',
     },
   ]
