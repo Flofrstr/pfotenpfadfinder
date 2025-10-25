@@ -19,11 +19,18 @@ export function ContactSection() {
     const form = e.currentTarget
     const formData = new FormData(form)
 
+    const params = new URLSearchParams()
+    for (const [key, value] of formData.entries()) {
+      if (typeof value === 'string') {
+        params.append(key, value)
+      }
+    }
+
     try {
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formData as any).toString(),
+        body: params.toString(),
       })
 
       if (response.ok) {
