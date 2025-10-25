@@ -203,9 +203,10 @@ export default function Datenschutz() {
 
             <div className="bg-accent/5 mb-12 rounded-lg p-6">
               <p className="text-foreground mb-2 font-semibold">Pfotenpfadfinder</p>
-              <p className="text-foreground/70">Michelle</p>
-              <p className="text-foreground/70">Deutschland</p>
-              <p className="text-foreground/70 mt-3">Tel.: 0157 72199639</p>
+              <p className="text-foreground/70">Michelle Wattenberg</p>
+              <p className="text-foreground/70">Geerstraße 34</p>
+              <p className="text-foreground/70 mb-3">58285 Gevelsberg</p>
+              <p className="text-foreground/70">Tel.: 0157 72199639</p>
               <p className="text-foreground/70">
                 E-Mail:{' '}
                 <a

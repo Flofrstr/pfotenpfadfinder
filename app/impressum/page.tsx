@@ -12,8 +12,9 @@ export default function Impressum() {
 
             <div className="bg-accent/5 mb-12 rounded-lg p-6">
               <p className="text-foreground mb-2 font-semibold">Pfotenpfadfinder</p>
-              <p className="text-foreground/70">Michelle</p>
-              <p className="text-foreground/70 mb-4">Deutschland</p>
+              <p className="text-foreground/70">Michelle Wattenberg</p>
+              <p className="text-foreground/70">Geerstraße 34</p>
+              <p className="text-foreground/70 mb-4">58285 Gevelsberg</p>
             </div>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">Kontakt</h2>
@@ -31,22 +32,6 @@ export default function Impressum() {
                   pfotenpfadfinder@gmail.com
                 </a>
               </p>
-            </div>
-
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">Inhaberin</h2>
-
-            <div className="bg-accent/5 mb-12 rounded-lg p-6">
-              <p className="text-foreground font-semibold">Michelle</p>
-            </div>
-
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV
-            </h2>
-
-            <div className="bg-accent/5 mb-12 rounded-lg p-6">
-              <p className="text-foreground mb-2 font-semibold">Pfotenpfadfinder</p>
-              <p className="text-foreground/70">Michelle</p>
-              <p className="text-foreground/70">Deutschland</p>
             </div>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
