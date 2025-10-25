@@ -3,24 +3,24 @@ import { AnimatedTestimonials } from '@/components/ui/animated-testimonials'
 export function TestimonialsSection() {
   const testimonials = [
     {
-      name: 'Pinoesel',
+      name: 'Pino',
       quote: 'Klappt alles super! Pino und ich sind super zufrieden - sehr zu empfehlen! ❤️',
       designation: 'Alexandra',
-      src: '/Pinoesel.jpeg',
+      src: '/Pino.jpeg',
     },
     {
-      name: 'Flou',
+      name: 'Filou',
       quote:
         'Liebevolle Betreuung. Vom ersten Moment haben wir gemerkt Hundis bei Michelle in guten Händen sind. Die Betreuung war herzlich, zuverlässig und professionell - man merkt sofort, dass hier echte Tierliebe dahintersteckt. Es ist ein gutes Gefühl, seine Vierbeiner in vertrauensvolle Hände zu geben. Absolut empfehlenswert!',
       designation: 'Franziska u. Riccardo',
-      src: '/Flou.jpeg',
+      src: '/Filou.jpeg',
     },
     {
-      name: 'Wimsel',
+      name: 'Wilma',
       quote:
         'Liebe Michelle, vielen Dank für deine tolle Betreuung über das letzte Wochenende! Besser kann es gar nicht laufen – vom lockeren und gleichzeitig professionellen Kennenlernen über die Checkliste vorab bis hin zum Wochenende selbst: Es war alles maximal toll! Kleine Updates zwischendurch per WhatsApp, dazu eine total flexible Bringzeit und obendrauf noch eine spontane Verlängerung um eine Nacht. Du hast alles möglich gemacht und mir meine freie Hunde-Zeit maximal sorglos gestaltet. Vielen Dank für deine tolle Art, deine super Betreuung und einfach für den entspannten und fröhlichen Umgang miteinander 🥰 Ich selbst war sehr beruhigt und hatte vollkommenes Vertrauen, dir meine Wilma zu überlassen. Alles war rundum perfekt. Wilma und ich vergeben 5/5 Knochen: 🦴🦴🦴🦴🦴 Liebe Grüße 😇',
       designation: 'Fabian',
-      src: '/Wimsel.jpeg',
+      src: '/Wilma.jpeg',
     },
     {
       name: 'Bea & Günni',
@@ -30,11 +30,11 @@ export function TestimonialsSection() {
       src: '/Bea_u._Günni.jpeg',
     },
     {
-      name: 'Orci',
+      name: 'Orca',
       quote:
         'Michelle ist eine hochmotivierte Dogsitterin, die aber vielmehr mit ihrer ausgeglichenen, freundlichen und warmherzigen Art überzeugt. Neben der Betreuung war das Vertrauensverhältnis ein wichtiger Punkt für uns, der uns nach dem ersten Treffen für Michelle entscheiden ließ. Wir hoffen auf viele schöne Stunden für unseren Hund Orca und Michelle!',
       designation: 'Tina',
-      src: '/Orci.jpeg',
+      src: '/Orca.jpeg',
     },
   ]
 
