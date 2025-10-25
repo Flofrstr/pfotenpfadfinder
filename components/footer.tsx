@@ -5,24 +5,24 @@ export function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="w-full border-t border-foreground/10 py-6">
+    <footer className="border-foreground/10 w-full border-t py-6">
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <div className="flex items-center gap-2">
-            <Paw className="h-5 w-5 text-accent" />
-            <p className="text-sm text-foreground/70">
+            <Paw className="text-accent h-5 w-5" />
+            <p className="text-foreground/70 text-sm">
               © {currentYear} Pfotenpfadfinder. Alle Rechte vorbehalten.
             </p>
           </div>
 
           <nav className="flex gap-4 sm:gap-6">
-            <Link href="#" className="text-sm transition-colors hover:text-accent">
+            <Link href="/impressum" className="hover:text-accent text-sm transition-colors">
               Impressum
             </Link>
-            <Link href="#" className="text-sm transition-colors hover:text-accent">
+            <Link href="/datenschutz" className="hover:text-accent text-sm transition-colors">
               Datenschutz
             </Link>
-            <Link href="#kontakt" className="text-sm transition-colors hover:text-accent">
+            <Link href="#kontakt" className="hover:text-accent text-sm transition-colors">
               Kontakt
             </Link>
           </nav>
