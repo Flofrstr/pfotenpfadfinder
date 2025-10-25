@@ -18,31 +18,22 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
+      - uses: actions/setup-node@v4
         with:
-          bun-version: latest
-
-      - name: Cache dependencies
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.bun/install/cache
-            node_modules
-          key: ${{ runner.os }}-bun-${{ hashFiles('bun.lockb') }}
-          restore-keys: |
-            ${{ runner.os }}-bun-
+          node-version: '20'
+          cache: 'npm'
 
       - name: Install
-        run: bun install --frozen-lockfile --no-save
+        run: npm ci
 
       - name: Build
-        run: bun run build
+        run: npm run build
 
       - name: Lint
-        run: bun run lint
+        run: npm run lint
 
       - name: Type check
-        run: bun run typecheck
+        run: npm run typecheck
 
       - name: Check unused code
-        run: bun run knip
+        run: npm run knip

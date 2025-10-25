@@ -10,13 +10,13 @@
     "typecheck": "tsgo --noEmit",
     "format": "prettier --write .",
     "knip": "knip",
-    "check": "bun run lint && bun run typecheck && bun run knip",
+    "check": "npm run lint && npm run typecheck && npm run knip",
     "upgrade": "taze",
     "prepare": "simple-git-hooks"
   },
   "simple-git-hooks": {
-    "pre-commit": "bunx lint-staged",
-    "pre-push": "bun run check"
+    "pre-commit": "npx lint-staged",
+    "pre-push": "npm run check"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json,css,md,mdx}": "prettier --write"
