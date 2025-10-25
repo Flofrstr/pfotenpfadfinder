@@ -1,64 +1,131 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin 'tailwindcss-animate';
 
+@source '../*.{js,ts,jsx,tsx,mdx}';
 
-:root {
-  --background: 24 33% 94%;
-  --foreground: 32 67% 16%;
-  --card: 24 33% 94%;
-  --card-foreground: 32 67% 16%;
-  --popover: 24 33% 94%;
-  --popover-foreground: 32 67% 16%;
-  --primary: 32 67% 16%;
-  --primary-foreground: 24 33% 94%;
-  --secondary: 24 33% 90%;
-  --secondary-foreground: 32 67% 16%;
-  --muted: 24 33% 90%;
-  --muted-foreground: 32 67% 40%;
-  --accent: 329 27% 60%;
-  --accent-foreground: 24 33% 94%;
-  --destructive: 0 84.2% 60.2%;
-  --destructive-foreground: 24 33% 94%;
-  --border: 32 67% 85%;
-  --input: 32 67% 85%;
-  --ring: 329 27% 60%;
-  --radius: 0.5rem;
+@custom-variant dark (&:is(.dark *));
+
+@utility container {
+  margin-inline: auto;
+  padding-inline: 2rem;
+  @media (width >= --theme(--breakpoint-sm)) {
+    max-width: none;
+  }
+  @media (width >= 1400px) {
+    max-width: 1400px;
+  }
 }
 
-.dark {
-  --background: 32 67% 10%;
-  --foreground: 24 33% 94%;
-  --card: 32 67% 10%;
-  --card-foreground: 24 33% 94%;
-  --popover: 32 67% 10%;
-  --popover-foreground: 24 33% 94%;
-  --primary: 24 33% 94%;
-  --primary-foreground: 32 67% 10%;
-  --secondary: 32 67% 15%;
-  --secondary-foreground: 24 33% 94%;
-  --muted: 32 67% 15%;
-  --muted-foreground: 24 33% 70%;
-  --accent: 329 27% 60%;
-  --accent-foreground: 24 33% 94%;
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 24 33% 94%;
-  --border: 32 67% 20%;
-  --input: 32 67% 20%;
-  --ring: 329 27% 60%;
+@theme {
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-sans: var(--font-montserrat);
+  --font-gluten: var(--font-gluten);
 }
 
-body {
-  background-color: hsl(var(--background));
-  color: hsl(var(--foreground));
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
 }
 
+@layer utilities {
+  :root {
+    --background: 24 33% 94%;
+    --foreground: 32 67% 16%;
+    --card: 24 33% 94%;
+    --card-foreground: 32 67% 16%;
+    --popover: 24 33% 94%;
+    --popover-foreground: 32 67% 16%;
+    --primary: 32 67% 16%;
+    --primary-foreground: 24 33% 94%;
+    --secondary: 24 33% 90%;
+    --secondary-foreground: 32 67% 16%;
+    --muted: 24 33% 90%;
+    --muted-foreground: 32 67% 40%;
+    --accent: 329 27% 60%;
+    --accent-foreground: 24 33% 94%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 24 33% 94%;
+    --border: 32 67% 85%;
+    --input: 32 67% 85%;
+    --ring: 329 27% 60%;
+    --radius: 0.5rem;
+  }
 
+  .dark {
+    --background: 32 67% 10%;
+    --foreground: 24 33% 94%;
+    --card: 32 67% 10%;
+    --card-foreground: 24 33% 94%;
+    --popover: 32 67% 10%;
+    --popover-foreground: 24 33% 94%;
+    --primary: 24 33% 94%;
+    --primary-foreground: 32 67% 10%;
+    --secondary: 32 67% 15%;
+    --secondary-foreground: 24 33% 94%;
+    --muted: 32 67% 15%;
+    --muted-foreground: 24 33% 70%;
+    --accent: 329 27% 60%;
+    --accent-foreground: 24 33% 94%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 24 33% 94%;
+    --border: 32 67% 20%;
+    --input: 32 67% 20%;
+    --ring: 329 27% 60%;
+  }
 
-/* Add a new utility to automatically apply Gluten to all headings */
-h1,
-h2 {
-  font-family: var(--font-gluten), sans-serif;
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+
+  /* Add a new utility to automatically apply Gluten to all headings */
+  h1,
+  h2 {
+    font-family: var(--font-gluten), sans-serif;
+  }
 }
 
 @layer base {
@@ -69,4 +136,3 @@ h2 {
     @apply bg-background text-foreground;
   }
 }
-
