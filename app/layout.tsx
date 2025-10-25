@@ -30,10 +30,10 @@ export const metadata: Metadata = {
     locale: 'de_DE',
     images: [
       {
-        url: '/logo.svg',
+        url: '/pfotenpfadfinder.jpg',
         width: 1200,
         height: 630,
-        alt: 'Pfotenpfadfinder Logo',
+        alt: 'Pfotenpfadfinder - Hundebetreuung',
       },
     ],
   },
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
     title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
     description:
       'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe. Wir kümmern uns um Ihren Vierbeiner, wenn Sie keine Zeit haben.',
-    images: ['/logo.svg'],
+    images: ['/pfotenpfadfinder.jpg'],
   },
 }
 
