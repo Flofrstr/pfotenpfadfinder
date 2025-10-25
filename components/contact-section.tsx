@@ -4,10 +4,40 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Card, CardContent } from '@/components/ui/card'
-import { Mail, Instagram, Phone, Send } from 'lucide-react'
+import { Mail, Instagram, Phone, Send, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
+import { useState } from 'react'
 
 export function ContactSection() {
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSuccess, setIsSuccess] = useState(false)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setIsSubmitting(true)
+
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData as any).toString(),
+      })
+
+      if (response.ok) {
+        setIsSuccess(true)
+        form.reset()
+        setTimeout(() => setIsSuccess(false), 5000)
+      }
+    } catch (error) {
+      console.error('Form submission error:', error)
+    } finally {
+      setIsSubmitting(false)
+    }
+  }
+
   return (
     <section id="kontakt" className="w-full bg-accent/5 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto max-w-6xl px-4 md:px-6">
@@ -90,8 +120,25 @@ export function ContactSection() {
               Fülle das Formular aus und ich melde mich schnellstmöglich bei dir.
             </p>
 
-            <form name="contact" method="POST" data-netlify="true" className="space-y-5">
+            {isSuccess && (
+              <div className="mb-6 flex items-center gap-3 rounded-lg border-2 border-green-500/20 bg-green-500/10 p-4 text-green-700 dark:text-green-400">
+                <CheckCircle2 className="h-5 w-5 shrink-0" />
+                <p className="text-sm font-medium">
+                  Vielen Dank! Deine Nachricht wurde erfolgreich gesendet.
+                </p>
+              </div>
+            )}
+
+            <form
+              name="contact"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field"
+              onSubmit={handleSubmit}
+              className="space-y-5"
+            >
               <input type="hidden" name="form-name" value="contact" />
+              <input type="hidden" name="bot-field" />
 
               <div className="space-y-2">
                 <label htmlFor="name" className="text-sm font-medium">
@@ -136,10 +183,11 @@ export function ContactSection() {
 
               <Button
                 type="submit"
-                className="h-12 w-full bg-accent text-base font-semibold text-background shadow-md transition-all hover:bg-accent/90 hover:shadow-lg"
+                disabled={isSubmitting}
+                className="h-12 w-full bg-accent text-base font-semibold text-background shadow-md transition-all hover:bg-accent/90 hover:shadow-lg disabled:opacity-50"
               >
                 <Send className="mr-2 h-4 w-4" />
-                Nachricht senden
+                {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
               </Button>
             </form>
           </CardContent>
