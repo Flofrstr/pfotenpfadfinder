@@ -1,0 +1,4 @@
+#!/bin/sh
+# Pre-commit hook: Run lint-staged
+
+npx lint-staged

@@ -1,0 +1,4 @@
+#!/bin/sh
+# Pre-push hook: Run full check suite
+
+npm run check
