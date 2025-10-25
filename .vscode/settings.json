@@ -1,0 +1,26 @@
+{
+  // Formatting
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // OxLint
+  "editor.codeActionsOnSave": {
+    "source.fixAll.oxc": "explicit"
+  },
+  "oxc.enable": true,
+  "oxc.lint.run": "onSave",
+
+  // TypeScript - use tsgo
+  "typescript.experimental.useTsgo": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+
+  // Tailwind CSS IntelliSense
+  "tailwindCSS.classFunctions": ["cn", "clsx", "cva"],
+
+  // Disable conflicting tools
+  "eslint.enable": false,
+  "biome.enabled": false,
+  "deno.enable": false,
+  "javascript.validate.enable": false,
+  "typescript.validate.enable": false
+}

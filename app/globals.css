@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 :root {
   --background: 24 33% 94%;
   --foreground: 32 67% 16%;
@@ -53,8 +52,6 @@ body {
   color: hsl(var(--foreground));
 }
 
-
-
 /* Add a new utility to automatically apply Gluten to all headings */
 h1,
 h2 {
@@ -69,4 +66,3 @@ h2 {
     @apply bg-background text-foreground;
   }
 }
-
