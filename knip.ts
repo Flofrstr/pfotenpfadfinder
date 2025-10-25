@@ -9,6 +9,8 @@ const config: KnipConfig = {
     // PostCSS plugins loaded dynamically
     'postcss-load-config',
     'autoprefixer',
+    // Tailwind plugin loaded via @plugin directive in CSS
+    'tailwindcss-animate',
   ],
   ignore: [
     // Config files for tools that Knip doesn't recognize

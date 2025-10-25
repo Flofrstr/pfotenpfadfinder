@@ -12,7 +12,7 @@ export function ContactSection() {
     <section id="kontakt" className="w-full bg-accent/5 py-12 md:py-24 lg:py-32">
       <div className="container mx-auto max-w-6xl px-4 md:px-6">
         <div className="mb-16 flex flex-col items-center justify-center space-y-3 text-center">
-          <h2 className="bg-gradient-to-r from-foreground to-foreground/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
+          <h2 className="bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
             Kontaktiere mich
           </h2>
           <p className="max-w-[600px] text-lg text-foreground/70">

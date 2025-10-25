@@ -22,7 +22,4 @@ export default defineConfig({
 
   // Install dependencies after updating
   install: true,
-
-  // Show all packages, even up-to-date ones
-  all: false,
 })

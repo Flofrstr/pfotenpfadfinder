@@ -9,7 +9,7 @@ export function AboutSection() {
           {/* Bild */}
           <div className="relative mx-auto w-full max-w-[700px] lg:order-2">
             <div className="rotate-1 transform bg-white p-4 pb-16 pt-4 shadow-xl transition-transform duration-300 hover:rotate-0">
-              <div className="relative aspect-[4/5] overflow-hidden">
+              <div className="relative aspect-4/5 overflow-hidden">
                 <Image
                   src="/ueber_mich_michelle-plus-hunde.jpeg"
                   alt="Michelle - Hundepsychologin und Hundetrainerin"
@@ -91,7 +91,7 @@ export function AboutSection() {
             {/* Highlights */}
             <div className="mt-6 grid gap-4 border-t border-border/50 pt-6">
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 rounded-full bg-accent/10 p-2">
+                <div className="shrink-0 rounded-full bg-accent/10 p-2">
                   <GraduationCap className="h-5 w-5 text-accent" />
                 </div>
                 <div>
@@ -102,7 +102,7 @@ export function AboutSection() {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 rounded-full bg-accent/10 p-2">
+                <div className="shrink-0 rounded-full bg-accent/10 p-2">
                   <Heart className="h-5 w-5 text-accent" />
                 </div>
                 <div>
@@ -111,7 +111,7 @@ export function AboutSection() {
               </div>
 
               <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 rounded-full bg-accent/10 p-2">
+                <div className="shrink-0 rounded-full bg-accent/10 p-2">
                   <Sparkles className="h-5 w-5 text-accent" />
                 </div>
                 <div>
