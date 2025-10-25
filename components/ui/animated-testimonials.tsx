@@ -83,6 +83,12 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                         className="h-full w-full object-cover object-center"
                       />
                     </div>
+                    {/* Dog name on polaroid white space */}
+                    <div className="absolute right-4 bottom-4 left-4 text-center">
+                      <p className="font-gluten text-lg font-bold text-amber-900">
+                        {testimonial.name}
+                      </p>
+                    </div>
                   </div>
                 </motion.div>
               ))}
@@ -154,11 +160,8 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
               >
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-black dark:text-white">
-                    {testimonials[active].name}
-                  </h3>
-                  <p className="text-sm text-gray-500 dark:text-neutral-500">
                     {testimonials[active].designation}
-                  </p>
+                  </h3>
                 </div>
                 <motion.p className="text-base leading-relaxed text-gray-500 md:text-lg dark:text-neutral-300">
                   {(() => {

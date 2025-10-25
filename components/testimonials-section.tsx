@@ -12,7 +12,7 @@ export function TestimonialsSection() {
       name: 'Filou',
       quote:
         'Liebevolle Betreuung. Vom ersten Moment haben wir gemerkt Hundis bei Michelle in guten Händen sind. Die Betreuung war herzlich, zuverlässig und professionell - man merkt sofort, dass hier echte Tierliebe dahintersteckt. Es ist ein gutes Gefühl, seine Vierbeiner in vertrauensvolle Hände zu geben. Absolut empfehlenswert!',
-      designation: 'Franziska u. Riccardo',
+      designation: 'Franziska & Riccardo',
       src: '/Filou.jpeg',
     },
     {
@@ -23,7 +23,7 @@ export function TestimonialsSection() {
       src: '/Wilma.jpeg',
     },
     {
-      name: 'Bea & Günni',
+      name: 'Bea u. Günni',
       quote:
         "Wir sind total glücklich, unsere Hunde nun vertrauensvoll in Michelle's Hände geben zu können, wenn hier mal zeittechnisch Not am Mann ist. Unsere Hunde fühlen sich sichtlich wohl, Michelle ist zuverlässig; es klappt super! 5 von 5 Sternen 😄",
       designation: 'Sandra',
