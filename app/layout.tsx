@@ -19,6 +19,7 @@ const gluten = Gluten({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://pfotenpfadfinder-hundebetreuung.de'),
   title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
   description:
     'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe. Wir kümmern uns um Ihren Vierbeiner, wenn Sie keine Zeit haben.',
