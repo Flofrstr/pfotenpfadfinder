@@ -32,11 +32,11 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body
-        className={`${montserrat.variable} ${gluten.variable} bg-background font-sans text-foreground`}
+        className={`${montserrat.variable} ${gluten.variable} bg-background text-foreground font-sans`}
       >
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
+          defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
