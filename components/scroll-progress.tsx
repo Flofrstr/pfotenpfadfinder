@@ -39,7 +39,7 @@ export function ScrollProgress() {
   }, [])
 
   return (
-    <div className="pointer-events-none fixed right-4 top-0 z-50 hidden h-full w-8 flex-col items-center justify-between py-8 md:flex">
+    <div className="pointer-events-none fixed top-0 right-4 z-0 hidden h-full w-8 flex-col items-center justify-between py-8 md:flex">
       {/* Vertical paw prints distributed across full height */}
       {Array.from({ length: 20 }).map((_, index) => {
         // Calculate which paws should be visible based on scroll progress
@@ -55,7 +55,7 @@ export function ScrollProgress() {
         return (
           <PawPrint
             key={index}
-            className="h-5 w-5 text-accent transition-all duration-300"
+            className="text-accent h-5 w-5 transition-all duration-300"
             style={{
               opacity: opacity,
               transform: `rotate(${isLeft ? -15 : 15}deg) rotate(180deg)`,
