@@ -39,7 +39,7 @@ export function ScrollProgress() {
   }, [])
 
   return (
-    <div className="pointer-events-none fixed right-4 top-0 z-50 flex h-full w-8 flex-col items-center justify-between py-8">
+    <div className="pointer-events-none fixed right-4 top-0 z-50 hidden h-full w-8 flex-col items-center justify-between py-8 md:flex">
       {/* Vertical paw prints distributed across full height */}
       {Array.from({ length: 20 }).map((_, index) => {
         // Calculate which paws should be visible based on scroll progress
