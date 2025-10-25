@@ -14,8 +14,9 @@ type Testimonial = {
   src: string
 }
 
-const randomRotateY = () => {
-  return Math.floor(Math.random() * 21) - 10
+const getRotation = (index: number) => {
+  const rotations = [-8, 5, -3, 7, -5, 4, -6, 3]
+  return rotations[index % rotations.length]
 }
 
 export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimonial[] }) => {
@@ -48,13 +49,13 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     opacity: 0,
                     scale: 0.9,
                     z: -100,
-                    rotate: randomRotateY(),
+                    rotate: getRotation(index),
                   }}
                   animate={{
                     opacity: isActive(index) ? 1 : 0.7,
                     scale: isActive(index) ? 1 : 0.95,
                     z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : randomRotateY(),
+                    rotate: isActive(index) ? 0 : getRotation(index),
                     zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
                     y: isActive(index) ? [0, -80, 0] : 0,
                   }}
@@ -62,7 +63,7 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     opacity: 0,
                     scale: 0.9,
                     z: 100,
-                    rotate: randomRotateY(),
+                    rotate: getRotation(index),
                   }}
                   transition={{
                     duration: 0.4,
