@@ -20,6 +20,7 @@ export function ContactSection() {
     const formData = new FormData(form)
 
     const params = new URLSearchParams()
+    params.append('form-name', 'contact')
     for (const [key, value] of formData.entries()) {
       if (typeof value === 'string') {
         params.append(key, value)
@@ -46,13 +47,13 @@ export function ContactSection() {
   }
 
   return (
-    <section id="kontakt" className="w-full bg-accent/5 py-12 md:py-24 lg:py-32">
+    <section id="kontakt" className="bg-accent/5 w-full py-12 md:py-24 lg:py-32">
       <div className="container mx-auto max-w-6xl px-4 md:px-6">
         <div className="mb-16 flex flex-col items-center justify-center space-y-3 text-center">
-          <h2 className="bg-linear-to-r from-foreground to-foreground/70 bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
+          <h2 className="from-foreground to-foreground/70 bg-linear-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
             Kontaktiere mich
           </h2>
-          <p className="max-w-[600px] text-lg text-foreground/70">
+          <p className="text-foreground/70 max-w-[600px] text-lg">
             Hast du Fragen oder möchtest du einen Termin vereinbaren? Ich freue mich auf deine
             Nachricht!
           </p>
@@ -61,14 +62,14 @@ export function ContactSection() {
         {/* Kontakt-Karten */}
         <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-3">
           <Link href="tel:+4915772199639" className="group">
-            <Card className="h-full border-2 border-accent/20 transition-all duration-300 hover:border-accent hover:shadow-lg">
+            <Card className="border-accent/20 hover:border-accent h-full border-2 transition-all duration-300 hover:shadow-lg">
               <CardContent className="flex flex-col items-center justify-center space-y-3 p-8 text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 transition-colors group-hover:bg-accent/20">
-                  <Phone className="h-8 w-8 text-accent" />
+                <div className="bg-accent/10 group-hover:bg-accent/20 flex h-16 w-16 items-center justify-center rounded-full transition-colors">
+                  <Phone className="text-accent h-8 w-8" />
                 </div>
                 <div>
                   <h3 className="mb-1 text-lg font-semibold">Telefon</h3>
-                  <p className="text-foreground/80 transition-colors group-hover:text-accent">
+                  <p className="text-foreground/80 group-hover:text-accent transition-colors">
                     0157 72199639
                   </p>
                 </div>
@@ -77,14 +78,14 @@ export function ContactSection() {
           </Link>
 
           <Link href="mailto:pfotenpfadfinder@gmail.com" className="group">
-            <Card className="h-full border-2 border-accent/20 transition-all duration-300 hover:border-accent hover:shadow-lg">
+            <Card className="border-accent/20 hover:border-accent h-full border-2 transition-all duration-300 hover:shadow-lg">
               <CardContent className="flex flex-col items-center justify-center space-y-3 p-8 text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 transition-colors group-hover:bg-accent/20">
-                  <Mail className="h-8 w-8 text-accent" />
+                <div className="bg-accent/10 group-hover:bg-accent/20 flex h-16 w-16 items-center justify-center rounded-full transition-colors">
+                  <Mail className="text-accent h-8 w-8" />
                 </div>
                 <div>
                   <h3 className="mb-1 text-lg font-semibold">E-Mail</h3>
-                  <p className="text-sm text-foreground/80 transition-colors group-hover:text-accent">
+                  <p className="text-foreground/80 group-hover:text-accent text-sm transition-colors">
                     pfotenpfadfinder@gmail.com
                   </p>
                 </div>
@@ -98,14 +99,14 @@ export function ContactSection() {
             rel="noopener noreferrer"
             className="group"
           >
-            <Card className="h-full border-2 border-accent/20 transition-all duration-300 hover:border-accent hover:shadow-lg">
+            <Card className="border-accent/20 hover:border-accent h-full border-2 transition-all duration-300 hover:shadow-lg">
               <CardContent className="flex flex-col items-center justify-center space-y-3 p-8 text-center">
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent/10 transition-colors group-hover:bg-accent/20">
-                  <Instagram className="h-8 w-8 text-accent" />
+                <div className="bg-accent/10 group-hover:bg-accent/20 flex h-16 w-16 items-center justify-center rounded-full transition-colors">
+                  <Instagram className="text-accent h-8 w-8" />
                 </div>
                 <div>
                   <h3 className="mb-1 text-lg font-semibold">Instagram</h3>
-                  <p className="text-foreground/80 transition-colors group-hover:text-accent">
+                  <p className="text-foreground/80 group-hover:text-accent transition-colors">
                     @Pfotenpfadfinder
                   </p>
                 </div>
@@ -115,15 +116,15 @@ export function ContactSection() {
         </div>
 
         {/* Kontaktformular - Netlify Forms */}
-        <Card className="mx-auto max-w-2xl border-2 border-accent/20 shadow-lg">
+        <Card className="border-accent/20 mx-auto max-w-2xl border-2 shadow-lg">
           <CardContent className="p-8 md:p-10">
             <div className="mb-6 flex items-center justify-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-accent/10">
-                <Send className="h-6 w-6 text-accent" />
+              <div className="bg-accent/10 flex h-12 w-12 items-center justify-center rounded-full">
+                <Send className="text-accent h-6 w-6" />
               </div>
             </div>
             <h3 className="mb-2 text-center text-2xl font-bold md:text-3xl">Nachricht senden</h3>
-            <p className="mb-8 text-center text-foreground/70">
+            <p className="text-foreground/70 mb-8 text-center">
               Fülle das Formular aus und ich melde mich schnellstmöglich bei dir.
             </p>
 
@@ -157,7 +158,7 @@ export function ContactSection() {
                   type="text"
                   placeholder="Vor- und Nachname"
                   required
-                  className="h-12 border-accent/20 focus:border-accent"
+                  className="border-accent/20 focus:border-accent h-12"
                 />
               </div>
 
@@ -171,7 +172,7 @@ export function ContactSection() {
                   type="email"
                   placeholder="deine@email.de"
                   required
-                  className="h-12 border-accent/20 focus:border-accent"
+                  className="border-accent/20 focus:border-accent h-12"
                 />
               </div>
 
@@ -184,14 +185,14 @@ export function ContactSection() {
                   name="message"
                   placeholder="Deine Nachricht an mich..."
                   required
-                  className="min-h-[160px] resize-none border-accent/20 focus:border-accent"
+                  className="border-accent/20 focus:border-accent min-h-[160px] resize-none"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="h-12 w-full bg-accent text-base font-semibold text-background shadow-md transition-all hover:bg-accent/90 hover:shadow-lg disabled:opacity-50"
+                className="bg-accent text-background hover:bg-accent/90 h-12 w-full text-base font-semibold shadow-md transition-all hover:shadow-lg disabled:opacity-50"
               >
                 <Send className="mr-2 h-4 w-4" />
                 {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
