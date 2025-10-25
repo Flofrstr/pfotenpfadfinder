@@ -1,27 +1,20 @@
 import Image from "next/image"
-import { Star } from "lucide-react"
 
 interface TestimonialProps {
   quote: string
   author: string
-  rating: number
+  dogName: string
+  image: string
   imageAlt: string
 }
 
-function Testimonial({ quote, author, rating, imageAlt, imageIndex }: TestimonialProps & { imageIndex: number }) {
-  // Use specific dog images that are guaranteed to work
-  const dogImages = ["/dog1.jpg", "/dog2.jpg"]
-
+function Testimonial({ quote, author, dogName, image, imageAlt }: TestimonialProps) {
   return (
     <div className="grid md:grid-cols-2 gap-8 items-center">
       <div className="space-y-4">
-        <div className="flex">
-          {Array.from({ length: 5 }).map((_, i) => (
-            <Star key={i} className={`h-5 w-5 ${i < rating ? "text-accent fill-accent" : "text-foreground/20"}`} />
-          ))}
-        </div>
-        <blockquote className="text-lg italic">"{quote}"</blockquote>
-        <p className="font-medium">- {author}</p>
+        <h3 className="text-xl font-semibold">{dogName}</h3>
+        <blockquote className="text-lg italic leading-relaxed">"{quote}"</blockquote>
+        <p className="font-medium text-foreground/80">- {author}</p>
       </div>
 
       <div className="mx-auto max-w-[300px]">
@@ -30,7 +23,7 @@ function Testimonial({ quote, author, rating, imageAlt, imageIndex }: Testimonia
           <div className="bg-white p-3 pt-3 pb-14 shadow-lg rotate-2 transform transition-transform hover:rotate-0 duration-300">
             <div className="relative aspect-square overflow-hidden">
               <Image
-                src={dogImages[imageIndex] || "/placeholder.svg"}
+                src={image}
                 alt={imageAlt}
                 width={600}
                 height={600}
@@ -47,18 +40,39 @@ function Testimonial({ quote, author, rating, imageAlt, imageIndex }: Testimonia
 export function TestimonialsSection() {
   const testimonials = [
     {
-      quote:
-        "Pfotenpfadfinder ist ein absoluter Glücksfall für uns und unseren Labrador Max! Die liebevolle Betreuung und Flexibilität haben uns komplett überzeugt. Max freut sich jedes Mal, wenn er abgeholt wird!",
-      author: "Familie Müller",
-      rating: 5,
-      imageAlt: "Glücklicher Labrador",
+      dogName: "Pinoesel",
+      quote: "Klappt alles super! Pino und ich sind super zufrieden - sehr zu empfehlen! ❤️",
+      author: "Alexandra",
+      image: "/Pinoesel.jpeg",
+      imageAlt: "Pinoesel - ein glücklicher Hund",
     },
     {
-      quote:
-        "Seit wir Pfotenpfadfinder gefunden haben, können wir endlich wieder beruhigt zur Arbeit gehen. Unsere Hündin Luna wird bestens betreut und kommt immer glücklich und ausgepowert zurück.",
-      author: "Sarah K.",
-      rating: 5,
-      imageAlt: "Glücklicher Hund mit Spielzeug",
+      dogName: "Flou",
+      quote: "Liebevolle Betreuung. Vom ersten Moment haben wir gemerkt Hundis bei Michelle in guten Händen sind. Die Betreuung war herzlich, zuverlässig und professionell - man merkt sofort, dass hier echte Tierliebe dahintersteckt. Es ist ein gutes Gefühl, seine Vierbeiner in vertrauensvolle Hände zu geben. Absolut empfehlenswert!",
+      author: "Franziska u. Riccardo",
+      image: "/Flou.jpeg",
+      imageAlt: "Flou - ein zufriedener Hund",
+    },
+    {
+      dogName: "Wimsel",
+      quote: "Liebe Michelle, vielen Dank für deine tolle Betreuung über das letzte Wochenende! Besser kann es gar nicht laufen – vom lockeren und gleichzeitig professionellen Kennenlernen über die Checkliste vorab bis hin zum Wochenende selbst: Es war alles maximal toll! Kleine Updates zwischendurch per WhatsApp, dazu eine total flexible Bringzeit und obendrauf noch eine spontane Verlängerung um eine Nacht. Du hast alles möglich gemacht und mir meine freie Hunde-Zeit maximal sorglos gestaltet. Vielen Dank für deine tolle Art, deine super Betreuung und einfach für den entspannten und fröhlichen Umgang miteinander 🥰 Ich selbst war sehr beruhigt und hatte vollkommenes Vertrauen, dir meine Wilma zu überlassen. Alles war rundum perfekt. Wilma und ich vergeben 5/5 Knochen: 🦴🦴🦴🦴🦴 Liebe Grüße 😇",
+      author: "Fabian",
+      image: "/Wimsel.jpeg",
+      imageAlt: "Wimsel - ein glücklicher Hund",
+    },
+    {
+      dogName: "Bea & Günni",
+      quote: "Wir sind total glücklich, unsere Hunde nun vertrauensvoll in Michelle's Hände geben zu können, wenn hier mal zeittechnisch Not am Mann ist. Unsere Hunde fühlen sich sichtlich wohl, Michelle ist zuverlässig; es klappt super! 5 von 5 Sternen 😄",
+      author: "Sandra",
+      image: "/Bea_u._Günni.jpeg",
+      imageAlt: "Bea und Günni - zwei glückliche Hunde",
+    },
+    {
+      dogName: "Orci",
+      quote: "Michelle ist eine hochmotivierte Dogsitterin, die aber vielmehr mit ihrer ausgeglichenen, freundlichen und warmherzigen Art überzeugt. Neben der Betreuung war das Vertrauensverhältnis ein wichtiger Punkt für uns, der uns nach dem ersten Treffen für Michelle entscheiden ließ. Wir hoffen auf viele schöne Stunden für unseren Hund Orca und Michelle!",
+      author: "Tina",
+      image: "/Orci.jpeg",
+      imageAlt: "Orci - ein zufriedener Hund",
     },
   ]
 
@@ -76,11 +90,10 @@ export function TestimonialsSection() {
 
         <div className="space-y-16">
           {testimonials.map((testimonial, index) => (
-            <Testimonial key={index} {...testimonial} imageIndex={index} />
+            <Testimonial key={index} {...testimonial} />
           ))}
         </div>
       </div>
     </section>
   )
 }
-
