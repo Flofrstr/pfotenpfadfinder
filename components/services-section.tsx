@@ -1,7 +1,7 @@
 'use client'
 
 import { PawPrintIcon as Paw, Home, MapPin, Heart } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
+import { CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { useState } from 'react'
 import { AnimateNumber } from 'motion-plus/react'
 import { motion } from 'motion/react'
@@ -239,8 +239,8 @@ function PricingCard({
   isHoliday,
   children,
   className = '',
-  showToggle = false,
-  onToggle,
+  showToggle: _showToggle = false,
+  onToggle: _onToggle,
 }: PricingCardProps) {
   return (
     <motion.div
