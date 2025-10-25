@@ -183,6 +183,9 @@ export function ServicesSection() {
                     Anfahrt
                   </p>
                   <p className="text-foreground/80 mt-0.5 text-sm">Innerhalb des Servicegebiets</p>
+                  <p className="text-foreground/60 mt-1.5 text-xs leading-relaxed">
+                    Gevelsberg, Schwelm, Ennepetal, Hasslinghausen
+                  </p>
                 </div>
               </div>
               <div className="bg-background/80 flex items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm">
