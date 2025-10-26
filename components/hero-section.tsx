@@ -14,20 +14,23 @@ export function HeroSection() {
           style={{ objectPosition: 'center 30%' }}
           priority
         />
-        <div className="bg-background/70 absolute inset-0"></div>
+        <div className="absolute inset-0 bg-white/70 dark:bg-black/40"></div>
       </div>
 
       <div className="relative z-10 container px-6 py-16 md:px-6 md:py-24 lg:py-32">
-        <div className="mx-auto max-w-3xl space-y-8 text-center md:text-left">
-          <h1 className="text-3xl leading-tight font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
-            <span className="hidden sm:inline">PFOTENPFADFINDER - </span>Mit Herz und Pfote an der
-            Seite deines Lieblings
+        <div className="mx-auto max-w-3xl space-y-6 text-center">
+          <div className="inline-block">
+            <span className="bg-accent text-background inline-block rounded-full px-4 py-2 text-xs font-semibold tracking-wider uppercase shadow-lg sm:text-sm">
+              Glückliche Pfoten, sorglose Stunden
+            </span>
+          </div>
+          <h1 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+            Mit Herz und Pfote an der Seite deines Lieblings
           </h1>
-          <p className="text-foreground/90 mx-auto max-w-2xl text-base leading-relaxed sm:text-lg md:mx-0 md:text-xl">
-            Glückliche Pfoten, sorglose Stunden - Hundebetreuung und Gassi-Service für zufriedene
-            und ausgelastete Hunde.
+          <p className="text-foreground mx-auto max-w-2xl text-base sm:text-lg md:text-xl">
+            Hundebetreuung und Gassi-Service für zufriedene und ausgelastete Hunde
           </p>
-          <div className="flex flex-col gap-4 sm:flex-row sm:justify-center md:justify-start">
+          <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:justify-center">
             <Button
               asChild
               size="lg"
@@ -36,7 +39,7 @@ export function HeroSection() {
               <Link href="#kontakt">Jetzt Kontakt aufnehmen</Link>
             </Button>
             <Button asChild variant="outline" size="lg" className="w-full sm:w-auto">
-              <Link href="#services">Mehr erfahren</Link>
+              <Link href="#services">Unsere Services</Link>
             </Button>
           </div>
         </div>

@@ -88,7 +88,7 @@ const structuredData = {
 
 export default function Home() {
   return (
-    <main className="relative pb-8">
+    <main className="relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}

@@ -48,158 +48,157 @@ export function ContactSection() {
 
   return (
     <section id="kontakt" className="bg-accent/5 w-full py-12 md:py-24 lg:py-32">
-      <div className="container mx-auto max-w-6xl px-4 md:px-6">
-        <div className="mb-16 flex flex-col items-center justify-center space-y-3 text-center">
-          <h2 className="from-foreground to-foreground/70 bg-linear-to-r bg-clip-text text-4xl font-bold tracking-tight text-transparent md:text-5xl">
-            Kontaktiere mich
-          </h2>
-          <p className="text-foreground/70 max-w-[600px] text-lg">
-            Hast du Fragen oder möchtest du einen Termin vereinbaren? Ich freue mich auf deine
-            Nachricht!
-          </p>
-        </div>
-
-        {/* Kontakt-Karten */}
-        <div className="mb-16 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <Link href="tel:+4915772199639" className="group">
-            <Card className="border-accent/20 hover:border-accent h-full border-2 transition-all duration-300 hover:shadow-lg">
-              <CardContent className="flex flex-col items-center justify-center space-y-3 p-8 text-center">
-                <div className="bg-accent/10 group-hover:bg-accent/20 flex h-16 w-16 items-center justify-center rounded-full transition-colors">
-                  <Phone className="text-accent h-8 w-8" />
-                </div>
-                <div>
-                  <h3 className="mb-1 text-lg font-semibold">Telefon</h3>
-                  <p className="text-foreground/80 group-hover:text-accent transition-colors">
-                    0157 72199639
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          <Link href="mailto:pfotenpfadfinder@gmail.com" className="group">
-            <Card className="border-accent/20 hover:border-accent h-full border-2 transition-all duration-300 hover:shadow-lg">
-              <CardContent className="flex flex-col items-center justify-center space-y-3 p-8 text-center">
-                <div className="bg-accent/10 group-hover:bg-accent/20 flex h-16 w-16 items-center justify-center rounded-full transition-colors">
-                  <Mail className="text-accent h-8 w-8" />
-                </div>
-                <div>
-                  <h3 className="mb-1 text-lg font-semibold">E-Mail</h3>
-                  <p className="text-foreground/80 group-hover:text-accent text-sm transition-colors">
-                    pfotenpfadfinder@gmail.com
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-
-          <Link
-            href="https://instagram.com/Pfotenpfadfinder"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group"
-          >
-            <Card className="border-accent/20 hover:border-accent h-full border-2 transition-all duration-300 hover:shadow-lg">
-              <CardContent className="flex flex-col items-center justify-center space-y-3 p-8 text-center">
-                <div className="bg-accent/10 group-hover:bg-accent/20 flex h-16 w-16 items-center justify-center rounded-full transition-colors">
-                  <Instagram className="text-accent h-8 w-8" />
-                </div>
-                <div>
-                  <h3 className="mb-1 text-lg font-semibold">Instagram</h3>
-                  <p className="text-foreground/80 group-hover:text-accent transition-colors">
-                    @Pfotenpfadfinder
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
-          </Link>
-        </div>
-
-        {/* Kontaktformular - Netlify Forms */}
-        <Card className="border-accent/20 mx-auto max-w-2xl border-2 shadow-lg">
-          <CardContent className="p-8 md:p-10">
-            <div className="mb-6 flex items-center justify-center">
-              <div className="bg-accent/10 flex h-12 w-12 items-center justify-center rounded-full">
-                <Send className="text-accent h-6 w-6" />
-              </div>
-            </div>
-            <h3 className="mb-2 text-center text-2xl font-bold md:text-3xl">Nachricht senden</h3>
-            <p className="text-foreground/70 mb-8 text-center">
-              Fülle das Formular aus und ich melde mich schnellstmöglich bei dir.
+      <div className="container px-4 md:px-6">
+        <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
+          <div className="space-y-2">
+            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Lass uns sprechen
+            </h2>
+            <p className="text-foreground/70 max-w-[700px] md:text-lg">
+              Hast du Fragen oder möchtest du einen Termin vereinbaren? Ich freue mich auf deine
+              Nachricht!
             </p>
+          </div>
+        </div>
 
-            {isSuccess && (
-              <div className="mb-6 flex items-center gap-3 rounded-lg border-2 border-green-500/20 bg-green-500/10 p-4 text-green-700 dark:text-green-400">
-                <CheckCircle2 className="h-5 w-5 shrink-0" />
-                <p className="text-sm font-medium">
-                  Vielen Dank! Deine Nachricht wurde erfolgreich gesendet.
-                </p>
-              </div>
-            )}
+        <div className="mx-auto grid max-w-5xl gap-8 lg:grid-cols-[1fr_320px]">
+          {/* Main Form */}
+          <Card className="border-accent/20 shadow-sm">
+            <CardContent className="p-6 md:p-8">
+              {isSuccess && (
+                <div className="mb-6 flex items-start gap-3 rounded-lg bg-green-500/10 p-4 text-green-700 dark:text-green-400">
+                  <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0" />
+                  <p className="text-sm font-medium">
+                    Vielen Dank! Deine Nachricht wurde erfolgreich gesendet.
+                  </p>
+                </div>
+              )}
 
-            <form
-              name="contact"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field"
-              onSubmit={handleSubmit}
-              className="space-y-5"
-            >
-              <input type="hidden" name="form-name" value="contact" />
-              <input type="hidden" name="bot-field" />
-
-              <div className="space-y-2">
-                <label htmlFor="name" className="text-sm font-medium">
-                  Dein Name
-                </label>
-                <Input
-                  id="name"
-                  name="name"
-                  type="text"
-                  placeholder="Vor- und Nachname"
-                  required
-                  className="border-accent/20 focus:border-accent h-12"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="email" className="text-sm font-medium">
-                  Deine E-Mail
-                </label>
-                <Input
-                  id="email"
-                  name="email"
-                  type="email"
-                  placeholder="deine@email.de"
-                  required
-                  className="border-accent/20 focus:border-accent h-12"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
-                  Deine Nachricht
-                </label>
-                <Textarea
-                  id="message"
-                  name="message"
-                  placeholder="Deine Nachricht an mich..."
-                  required
-                  className="border-accent/20 focus:border-accent min-h-[160px] resize-none"
-                />
-              </div>
-
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="bg-accent text-background hover:bg-accent/90 h-12 w-full text-base font-semibold shadow-md transition-all hover:shadow-lg disabled:opacity-50"
+              <form
+                name="contact"
+                method="POST"
+                data-netlify="true"
+                netlify-honeypot="bot-field"
+                onSubmit={handleSubmit}
+                className="space-y-5"
               >
-                <Send className="mr-2 h-4 w-4" />
-                {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
-              </Button>
-            </form>
-          </CardContent>
-        </Card>
+                <input type="hidden" name="form-name" value="contact" />
+                <input type="hidden" name="bot-field" />
+
+                <div className="space-y-2">
+                  <label htmlFor="name" className="text-sm font-semibold">
+                    Name
+                  </label>
+                  <Input
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Dein Name"
+                    required
+                    className="border-accent/20 focus:border-accent placeholder:text-foreground/40 h-12"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="email" className="text-sm font-semibold">
+                    E-Mail
+                  </label>
+                  <Input
+                    id="email"
+                    name="email"
+                    type="email"
+                    placeholder="deine@email.de"
+                    required
+                    className="border-accent/20 focus:border-accent placeholder:text-foreground/40 h-12"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="message" className="text-sm font-semibold">
+                    Nachricht
+                  </label>
+                  <Textarea
+                    id="message"
+                    name="message"
+                    placeholder="Schreib mir deine Nachricht..."
+                    required
+                    className="border-accent/20 focus:border-accent placeholder:text-foreground/40 min-h-[150px] resize-none"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="bg-accent text-background hover:bg-accent/90 h-12 w-full font-semibold transition-all disabled:opacity-50"
+                >
+                  <Send className="mr-2 h-4 w-4" />
+                  {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
+                </Button>
+              </form>
+            </CardContent>
+          </Card>
+
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <div className="mb-6">
+              <h3 className="mb-2 text-xl font-bold">Direkter Kontakt</h3>
+              <p className="text-foreground/70 text-sm">Du kannst mich auch direkt erreichen</p>
+            </div>
+
+            <Link href="tel:+4915772199639" className="group block">
+              <div className="hover:bg-accent/5 flex items-start gap-4 rounded-lg p-4 transition-colors">
+                <div className="bg-accent/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
+                  <Phone className="text-accent h-5 w-5" />
+                </div>
+                <div className="pt-1">
+                  <div className="text-foreground/50 mb-1 text-xs font-medium tracking-wider uppercase">
+                    Telefon
+                  </div>
+                  <div className="group-hover:text-accent font-medium transition-colors">
+                    0157 72199639
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="mailto:pfotenpfadfinder@gmail.com" className="group block">
+              <div className="hover:bg-accent/5 flex items-start gap-4 rounded-lg p-4 transition-colors">
+                <div className="bg-accent/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
+                  <Mail className="text-accent h-5 w-5" />
+                </div>
+                <div className="min-w-0 pt-1">
+                  <div className="text-foreground/50 mb-1 text-xs font-medium tracking-wider uppercase">
+                    E-Mail
+                  </div>
+                  <div className="group-hover:text-accent font-medium break-all transition-colors">
+                    pfotenpfadfinder@gmail.com
+                  </div>
+                </div>
+              </div>
+            </Link>
+
+            <Link
+              href="https://instagram.com/Pfotenpfadfinder"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
+            >
+              <div className="hover:bg-accent/5 flex items-start gap-4 rounded-lg p-4 transition-colors">
+                <div className="bg-accent/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
+                  <Instagram className="text-accent h-5 w-5" />
+                </div>
+                <div className="pt-1">
+                  <div className="text-foreground/50 mb-1 text-xs font-medium tracking-wider uppercase">
+                    Instagram
+                  </div>
+                  <div className="group-hover:text-accent font-medium transition-colors">
+                    @Pfotenpfadfinder
+                  </div>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
       </div>
     </section>
   )
