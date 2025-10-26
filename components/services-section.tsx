@@ -34,7 +34,7 @@ export function ServicesSection() {
                 className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${showHolidayPricing ? 'translate-x-4' : 'translate-x-0.5'}`}
               />
             </div>
-            <span>Feiertage Preise {showHolidayPricing ? 'anzeigen' : 'ausblenden'}</span>
+            <span>Feiertagspreise</span>
           </button>
         </div>
 
@@ -218,7 +218,7 @@ function MobileToggle({ isActive, onToggle }: MobileToggleProps) {
     <button
       onClick={onToggle}
       className="border-accent/20 bg-background hover:border-accent/40 flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all md:hidden"
-      aria-label={isActive ? 'Normale Preise anzeigen' : 'Feiertage Preise anzeigen'}
+      aria-label={isActive ? 'Normale Preise anzeigen' : 'Feiertagspreise anzeigen'}
     >
       <div
         className={`relative h-3.5 w-6 rounded-full transition-colors ${isActive ? 'bg-accent' : 'bg-foreground/20'}`}
