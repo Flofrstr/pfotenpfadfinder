@@ -111,14 +111,14 @@ export function ServicesSection() {
               <div className="space-y-5">
                 <PriceItem
                   normalPrice={30 + (numberOfDogs - 1) * 20}
-                  holidayPrice={45 + (numberOfDogs - 1) * 35}
+                  holidayPrice={(30 + (numberOfDogs - 1) * 20) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="Tagesbetreuung"
                   subtitle="Max. 12 Stunden"
                 />
                 <PriceItem
                   normalPrice={35 + (numberOfDogs - 1) * 25}
-                  holidayPrice={52.5 + (numberOfDogs - 1) * 42.5}
+                  holidayPrice={(35 + (numberOfDogs - 1) * 25) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="Urlaubsbetreuung"
                   subtitle="Mit Übernachtung"
@@ -158,7 +158,7 @@ export function ServicesSection() {
               <div className="space-y-5">
                 <PriceItem
                   normalPrice={12 + (numberOfDogs - 1) * 5}
-                  holidayPrice={18 + (numberOfDogs - 1) * 5}
+                  holidayPrice={(12 + (numberOfDogs - 1) * 5) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="30 Minuten"
                   subtitle="Einfache Gassirunde"
@@ -166,7 +166,7 @@ export function ServicesSection() {
                 />
                 <PriceItem
                   normalPrice={20 + (numberOfDogs - 1) * 5}
-                  holidayPrice={30 + (numberOfDogs - 1) * 5}
+                  holidayPrice={(20 + (numberOfDogs - 1) * 5) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="60 Minuten"
                   subtitle="Ausführliche Gassirunde"
