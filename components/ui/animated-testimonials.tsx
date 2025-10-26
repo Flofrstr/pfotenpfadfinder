@@ -163,7 +163,7 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     {testimonials[active].designation}
                   </h3>
                 </div>
-                <motion.p className="text-base leading-relaxed text-gray-500 md:text-lg dark:text-neutral-300">
+                <motion.p className="text-foreground text-base leading-relaxed md:text-lg">
                   {(() => {
                     const words = testimonials[active].quote.split(' ')
                     const wordCount = words.length
