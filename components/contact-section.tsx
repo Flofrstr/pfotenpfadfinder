@@ -52,7 +52,7 @@ export function ContactSection() {
         <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
             <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Lass uns sprechen
+              Lass uns quatschen
             </h2>
             <p className="text-foreground/70 max-w-[700px] md:text-lg">
               Hast du Fragen oder möchtest du einen Termin vereinbaren? Ich freue mich auf deine
