@@ -1,43 +1,89 @@
 import Image from 'next/image'
-import { GraduationCap, Heart, Sparkles } from 'lucide-react'
 
 export function AboutSection() {
   return (
-    <section id="about" className="w-full py-12 md:py-24 lg:py-32">
-      <div className="container px-4 md:px-6">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-          {/* Bild */}
-          <div className="relative mx-auto w-full max-w-[700px] lg:order-2">
-            <div className="rotate-1 transform bg-white p-4 pb-16 pt-4 shadow-xl transition-transform duration-300 hover:rotate-0">
-              <div className="relative aspect-4/5 overflow-hidden">
-                <Image
-                  src="/ueber_mich_michelle-plus-hunde.jpeg"
-                  alt="Michelle - Hundepsychologin und Hundetrainerin"
-                  fill
-                  className="object-cover"
-                  priority
-                />
-              </div>
-            </div>
+    <section id="about" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+      {/* Decorative background elements */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="bg-accent/5 absolute top-20 right-0 h-[600px] w-[600px] translate-x-1/3 rounded-full blur-3xl" />
+        <div className="bg-accent/5 absolute bottom-40 left-0 h-[400px] w-[400px] -translate-x-1/3 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative container px-4 md:px-6">
+        <div className="mx-auto max-w-7xl">
+          {/* Intro */}
+          <div className="mb-20 text-center">
+            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Über mich
+            </h2>
+            <p className="mb-3 inline-flex items-center gap-2 text-2xl font-medium md:text-3xl">
+              Hallo liebe Hundemami's und Hundepapi's
+              <svg
+                className="fill-accent h-7 w-7 md:h-8 md:w-8"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+              </svg>
+            </p>
+            <p className="text-foreground/70 text-xl md:text-2xl">
+              Ich bin Michelle, 24 Jahre alt und Gründerin von Pfotenpfadfinder.
+            </p>
           </div>
 
-          {/* Text */}
-          <div className="flex flex-col justify-center space-y-6 lg:order-1">
-            <div className="space-y-4">
-              <h2 className="text-3xl font-bold tracking-tight md:text-4xl">Über mich</h2>
-
-              <div className="space-y-6 leading-relaxed text-foreground/80">
-                <div>
-                  <p className="text-lg font-medium">Hallo liebe Hundemami's und Hundepapi's🤍</p>
-                  <p className="mt-2">
-                    Ich bin Michelle, 24 Jahre alt und Gründerin von Pfotenpfadfinder.
-                  </p>
+          {/* Main content - Bento grid style */}
+          <div className="grid gap-6 md:grid-cols-12 lg:gap-8">
+            {/* Large image - takes up significant space */}
+            <div className="md:col-span-5 lg:col-span-6">
+              <div className="sticky top-8">
+                <div className="group relative">
+                  <div className="from-accent/20 to-accent/5 absolute -inset-4 rounded-3xl bg-gradient-to-br opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="relative rotate-2 transform bg-white p-6 pb-20 shadow-2xl transition-transform duration-500 group-hover:rotate-0">
+                    <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
+                      <Image
+                        src="/ueber_mich_michelle-plus-hunde.jpeg"
+                        alt="Michelle - Hundepsychologin und Hundetrainerin"
+                        fill
+                        className="object-cover"
+                        priority
+                      />
+                    </div>
+                    <div className="font-handwriting text-foreground/60 mt-4 text-center text-lg">
+                      Mit Herz & Pfote
+                    </div>
+                  </div>
                 </div>
 
-                <div className="space-y-3">
-                  <h3 className="text-xl font-semibold text-foreground">
-                    Meine Geschichte mit Hunden
-                  </h3>
+                {/* Stats integrated with image */}
+                <div className="mt-8 grid grid-cols-3 gap-4">
+                  <div className="text-center">
+                    <div className="text-accent mb-1 text-3xl font-bold">2025</div>
+                    <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
+                      Gegründet
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-accent mb-1 text-3xl font-bold">24</div>
+                    <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
+                      Jahre alt
+                    </div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-accent mb-1 text-3xl font-bold">2026</div>
+                    <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
+                      Ausbildung
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Story content */}
+            <div className="space-y-8 md:col-span-7 lg:col-span-6">
+              {/* Geschichte */}
+              <div>
+                <h3 className="mb-4 text-3xl font-bold">Meine Geschichte mit Hunden</h3>
+                <div className="text-foreground/80 space-y-4 text-lg leading-relaxed">
                   <p>
                     Schon seit meiner Kindheit begleiten mich Hunde durchs Leben. In meiner Kindheit
                     war es ein Border Collie/Australian Shepherd-Mix, der mich geprägt hat. Später
@@ -46,7 +92,6 @@ export function AboutSection() {
                     Hunde besser zu verstehen, ihr Verhalten zu ergründen und Wege zu finden, wie
                     wir Menschen ihnen den Alltag erleichtern können.
                   </p>
-
                   <p>
                     Während meiner Ausbildung zur Medizinisch-Technischen Laboratoriumsassistentin
                     (2019–2022) durfte ich gemeinsam mit meinem Freund regelmäßig auf den Border
@@ -56,11 +101,12 @@ export function AboutSection() {
                     oder beim Hundesitting.
                   </p>
                 </div>
+              </div>
 
-                <div className="space-y-3">
-                  <h3 className="text-xl font-semibold text-foreground">
-                    Der Weg zur Selbstständigkeit
-                  </h3>
+              {/* Selbstständigkeit */}
+              <div>
+                <h3 className="mb-4 text-3xl font-bold">Der Weg zur Selbstständigkeit</h3>
+                <div className="text-foreground/80 space-y-4 text-lg leading-relaxed">
                   <p>
                     Beruflich arbeite ich als Medizinisch-Technische Laboratoriumsassistentin. Seit
                     Januar 2025 bin ich in Teilzeit, um mehr Raum für mein Herzensprojekt zu
@@ -71,52 +117,26 @@ export function AboutSection() {
                     Wissen zu vertiefen und meine Arbeit noch professioneller gestalten zu können.
                   </p>
                 </div>
+              </div>
 
-                <div className="space-y-3">
-                  <h3 className="text-xl font-semibold text-foreground">Meine Vision</h3>
+              {/* Vision */}
+              <div>
+                <h3 className="mb-4 text-3xl font-bold">Meine Vision</h3>
+                <div className="text-foreground/80 space-y-4 text-lg leading-relaxed">
                   <p>
                     Mein großer Traum ist es, eines Tages eine eigene Hundetagesstätte zu eröffnen –
                     einen Ort, an dem jeder Hund sicher betreut wird und sich rundum wohlfühlen
                     kann.
                   </p>
-
-                  <p className="font-medium">
-                    Bis dahin begleite ich Dich und Deinen Vierbeiner gerne mit Herz, Geduld und
-                    Spaß beim Gassigehen und Hundesitting.
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Highlights */}
-            <div className="mt-6 grid gap-4 border-t border-border/50 pt-6">
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 rounded-full bg-accent/10 p-2">
-                  <GraduationCap className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <p className="font-semibold">
-                    Ausbildung zur Hundepsychologin & Hundetrainerin ab Januar 2026
-                  </p>
                 </div>
               </div>
 
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 rounded-full bg-accent/10 p-2">
-                  <Heart className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <p className="font-semibold">Lebenslange Leidenschaft für Hunde</p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <div className="shrink-0 rounded-full bg-accent/10 p-2">
-                  <Sparkles className="h-5 w-5 text-accent" />
-                </div>
-                <div>
-                  <p className="font-semibold">Gegründet Februar 2025</p>
-                </div>
+              {/* Closing statement */}
+              <div className="from-accent/10 to-accent/5 mt-12 rounded-2xl bg-gradient-to-br p-8">
+                <p className="text-2xl leading-relaxed font-medium">
+                  Bis dahin begleite ich Dich und Deinen Vierbeiner gerne mit Herz, Geduld und Spaß
+                  beim Gassigehen und Hundesitting.
+                </p>
               </div>
             </div>
           </div>
