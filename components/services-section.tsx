@@ -176,9 +176,9 @@ export function ServicesSection() {
           <div className="border-accent/20 from-accent/5 to-accent/10 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-sm">
             <div className="bg-accent/10 absolute top-0 right-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full blur-2xl" />
             <div className="relative flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-              <div className="flex items-center gap-4">
-                <div className="bg-accent/20 rounded-xl p-3">
-                  <MapPin className="text-accent h-6 w-6" />
+              <div className="flex flex-col items-center gap-4 sm:flex-row">
+                <div className="bg-accent/20 flex items-center rounded-xl p-3 sm:p-3">
+                  <MapPin className="text-accent h-8 w-8 sm:h-6 sm:w-6" />
                 </div>
                 <div className="text-center sm:text-left">
                   <p className="text-foreground/60 text-xs font-semibold tracking-wider uppercase">
@@ -188,9 +188,13 @@ export function ServicesSection() {
                   <p className="text-foreground/60 mt-1.5 text-xs leading-relaxed">
                     Gevelsberg, Schwelm, Ennepetal, Hasslinghausen
                   </p>
+                  <div className="mt-3 sm:hidden">
+                    <p className="text-2xl font-bold tabular-nums">0,40€</p>
+                    <p className="text-foreground/60 text-xs">pro Kilometer</p>
+                  </div>
                 </div>
               </div>
-              <div className="bg-background/80 flex items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm">
+              <div className="bg-background/80 hidden items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm sm:flex">
                 <div className="text-right">
                   <p className="text-3xl font-bold tabular-nums">0,40€</p>
                   <p className="text-foreground/60 text-xs">pro Kilometer</p>
