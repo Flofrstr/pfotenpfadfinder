@@ -1,6 +1,6 @@
 'use client'
 
-import { PawPrintIcon as Paw, Home, MapPin, Heart } from 'lucide-react'
+import { PawPrintIcon as Paw, Home, MapPin, Heart, Dog } from 'lucide-react'
 import { CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/card'
 import { useState } from 'react'
 import { AnimateNumber } from 'motion-plus/react'
@@ -8,6 +8,7 @@ import { motion } from 'motion/react'
 
 export function ServicesSection() {
   const [showHolidayPricing, setShowHolidayPricing] = useState(false)
+  const [numberOfDogs, setNumberOfDogs] = useState(1)
 
   return (
     <section id="services" className="bg-accent/5 w-full py-12 md:py-24 lg:py-32">
@@ -22,10 +23,10 @@ export function ServicesSection() {
             </p>
           </div>
 
-          {/* Feiertage Toggle - Desktop only */}
+          {/* Feiertage Toggle - Desktop */}
           <button
             onClick={() => setShowHolidayPricing(!showHolidayPricing)}
-            className="border-accent/20 bg-background hover:border-accent/40 hover:bg-accent/5 hidden items-center gap-2 rounded-full border-2 px-6 py-2.5 text-sm font-semibold transition-all md:inline-flex"
+            className="border-accent/20 bg-background hover:border-accent/40 hover:bg-accent/5 hidden items-center gap-2 rounded-full border-2 px-6 py-2.5 text-sm font-semibold transition-all md:flex"
           >
             <div
               className={`relative h-5 w-9 rounded-full transition-colors ${showHolidayPricing ? 'bg-accent' : 'bg-foreground/20'}`}
@@ -36,6 +37,52 @@ export function ServicesSection() {
             </div>
             <span>Feiertagspreise</span>
           </button>
+
+          {/* Hunde-Anzahl Auswahl */}
+          <div className="flex flex-col items-center gap-3">
+            <p className="text-foreground/70 text-sm font-medium">
+              Anzahl Hunde aus einem Haushalt
+            </p>
+            <div className="flex items-center gap-3">
+              {[1, 2, 3].map(count => (
+                <button
+                  key={count}
+                  onClick={() => setNumberOfDogs(count)}
+                  className={`group relative flex h-16 w-24 items-center justify-center rounded-xl border-2 transition-all ${
+                    numberOfDogs === count
+                      ? 'border-accent bg-accent/10 scale-110'
+                      : 'border-accent/20 bg-background hover:border-accent/40 hover:bg-accent/5'
+                  }`}
+                  aria-label={`${count} ${count === 1 ? 'Hund' : 'Hunde'} auswählen`}
+                >
+                  <div className="flex gap-0.5">
+                    {Array.from({ length: count }).map((_, idx) => (
+                      <Dog
+                        key={idx}
+                        className={`h-5 w-5 transition-colors ${
+                          numberOfDogs === count
+                            ? 'text-accent'
+                            : 'text-foreground/40 group-hover:text-accent/70'
+                        }`}
+                      />
+                    ))}
+                  </div>
+                  <span
+                    className={`absolute -right-1 -bottom-1 flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold transition-all ${
+                      numberOfDogs === count
+                        ? 'bg-accent text-accent-foreground'
+                        : 'bg-foreground/20 text-foreground/70'
+                    }`}
+                  >
+                    {count}
+                  </span>
+                </button>
+              ))}
+            </div>
+            <p className="text-foreground/50 text-xs">
+              {numberOfDogs === 1 ? 'Preis für 1 Hund' : `Gesamtpreis für ${numberOfDogs} Hunde`}
+            </p>
+          </div>
         </div>
 
         <div className="mx-auto mt-12 grid max-w-5xl grid-cols-1 gap-6 lg:grid-cols-3">
@@ -56,21 +103,22 @@ export function ServicesSection() {
                 <MobileToggle
                   isActive={showHolidayPricing}
                   onToggle={() => setShowHolidayPricing(!showHolidayPricing)}
+                  label="Feiertag"
                 />
               </div>
             </CardHeader>
             <CardContent className="flex-1 pt-6">
               <div className="space-y-5">
                 <PriceItem
-                  normalPrice={30}
-                  holidayPrice={45}
+                  normalPrice={30 + (numberOfDogs - 1) * 20}
+                  holidayPrice={45 + (numberOfDogs - 1) * 35}
                   isHoliday={showHolidayPricing}
                   title="Tagesbetreuung"
                   subtitle="Max. 12 Stunden"
                 />
                 <PriceItem
-                  normalPrice={35}
-                  holidayPrice={52.5}
+                  normalPrice={35 + (numberOfDogs - 1) * 25}
+                  holidayPrice={52.5 + (numberOfDogs - 1) * 42.5}
                   isHoliday={showHolidayPricing}
                   title="Urlaubsbetreuung"
                   subtitle="Mit Übernachtung"
@@ -102,22 +150,23 @@ export function ServicesSection() {
                 <MobileToggle
                   isActive={showHolidayPricing}
                   onToggle={() => setShowHolidayPricing(!showHolidayPricing)}
+                  label="Feiertag"
                 />
               </div>
             </CardHeader>
             <CardContent className="flex-1 pt-6">
               <div className="space-y-5">
                 <PriceItem
-                  normalPrice={12}
-                  holidayPrice={18}
+                  normalPrice={12 + (numberOfDogs - 1) * 5}
+                  holidayPrice={18 + (numberOfDogs - 1) * 5}
                   isHoliday={showHolidayPricing}
                   title="30 Minuten"
                   subtitle="Einfache Gassirunde"
                   perUnit="pro Spaziergang"
                 />
                 <PriceItem
-                  normalPrice={20}
-                  holidayPrice={30}
+                  normalPrice={20 + (numberOfDogs - 1) * 5}
+                  holidayPrice={30 + (numberOfDogs - 1) * 5}
                   isHoliday={showHolidayPricing}
                   title="60 Minuten"
                   subtitle="Ausführliche Gassirunde"
@@ -125,12 +174,6 @@ export function ServicesSection() {
                 />
               </div>
             </CardContent>
-            <CardFooter className="border-accent/5 bg-accent/5 border-t pt-4">
-              <div className="flex w-full items-center justify-between">
-                <span className="text-foreground/70 text-sm font-medium">Jeder weitere Hund</span>
-                <span className="text-accent text-lg font-bold">+5€</span>
-              </div>
-            </CardFooter>
           </PricingCard>
 
           {/* Kennenlernen & Probetage */}
@@ -153,14 +196,14 @@ export function ServicesSection() {
                   perUnit="einmalig"
                 />
                 <PriceItem
-                  normalPrice={20}
+                  normalPrice={20 + (numberOfDogs - 1) * 10}
                   isHoliday={false}
                   title="Probetag"
                   subtitle="Max. 12 Stunden"
                   perUnit="einmalig"
                 />
                 <PriceItem
-                  normalPrice={25}
+                  normalPrice={25 + (numberOfDogs - 1) * 10}
                   isHoliday={false}
                   title="Probeübernachtung"
                   subtitle="Mit Übernachtung"
@@ -173,7 +216,7 @@ export function ServicesSection() {
 
         {/* Additional Info */}
         <div className="mx-auto mt-10 max-w-4xl space-y-6">
-          <div className="border-accent/20 from-accent/5 to-accent/10 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-sm">
+          <div className="border-accent/20 from-accent/5 to-accent/10 relative overflow-hidden rounded-2xl border bg-linear-to-br p-6 shadow-sm">
             <div className="bg-accent/10 absolute top-0 right-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full blur-2xl" />
             <div className="relative flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
               <div className="flex flex-col items-center gap-4 sm:flex-row">
@@ -215,14 +258,15 @@ export function ServicesSection() {
 interface MobileToggleProps {
   isActive: boolean
   onToggle: () => void
+  label?: string
 }
 
-function MobileToggle({ isActive, onToggle }: MobileToggleProps) {
+function MobileToggle({ isActive, onToggle, label = 'Feiertag' }: MobileToggleProps) {
   return (
     <button
       onClick={onToggle}
       className="border-accent/20 bg-background hover:border-accent/40 flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all md:hidden"
-      aria-label={isActive ? 'Normale Preise anzeigen' : 'Feiertagspreise anzeigen'}
+      aria-label={`${label} ${isActive ? 'deaktivieren' : 'aktivieren'}`}
     >
       <div
         className={`relative h-3.5 w-6 rounded-full transition-colors ${isActive ? 'bg-accent' : 'bg-foreground/20'}`}
@@ -231,7 +275,7 @@ function MobileToggle({ isActive, onToggle }: MobileToggleProps) {
           className={`absolute top-0.5 h-2.5 w-2.5 rounded-full bg-white shadow-sm transition-transform ${isActive ? 'translate-x-2.5' : 'translate-x-0.5'}`}
         />
       </div>
-      <span className="text-foreground/70 text-[10px] tracking-wide uppercase">Feiertag</span>
+      <span className="text-foreground/70 text-[10px] tracking-wide uppercase">{label}</span>
     </button>
   )
 }
@@ -252,13 +296,10 @@ function PricingCard({
   onToggle: _onToggle,
 }: PricingCardProps) {
   return (
-    <motion.div
-      animate={{
-        borderColor: isHoliday ? 'hsl(var(--accent) / 0.5)' : 'hsl(var(--accent) / 0.2)',
-        backgroundColor: isHoliday ? 'hsl(var(--accent) / 0.03)' : 'hsl(var(--card))',
-      }}
-      transition={{ duration: 0.3, ease: 'easeInOut' }}
-      className={`relative flex flex-col overflow-hidden rounded-lg border shadow-sm transition-shadow hover:shadow-md ${className}`}
+    <div
+      className={`relative flex flex-col overflow-hidden rounded-lg border shadow-sm transition-all duration-300 ease-in-out hover:shadow-md ${
+        isHoliday ? 'border-accent/50 bg-accent/3' : 'border-accent/20 bg-card'
+      } ${className}`}
     >
       {isHoliday && (
         <motion.div
@@ -268,13 +309,13 @@ function PricingCard({
           transition={{ duration: 0.3 }}
           className="absolute top-0 right-0 z-10"
         >
-          <div className="bg-accent text-accent-foreground origin-top-right translate-x-[1px] -translate-y-[1px] rotate-45 px-8 py-1 text-[10px] font-bold tracking-wider uppercase shadow-md">
+          <div className="bg-accent text-accent-foreground origin-top-right translate-x-px -translate-y-px rotate-45 px-8 py-1 text-[10px] font-bold tracking-wider uppercase shadow-md">
             Feiertag
           </div>
         </motion.div>
       )}
       {children}
-    </motion.div>
+    </div>
   )
 }
 

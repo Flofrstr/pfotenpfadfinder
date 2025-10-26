@@ -81,6 +81,7 @@ export function ContactSection() {
                 netlify-honeypot="bot-field"
                 onSubmit={handleSubmit}
                 className="space-y-5"
+                suppressHydrationWarning
               >
                 <input type="hidden" name="form-name" value="contact" />
                 <input type="hidden" name="bot-field" />
@@ -96,6 +97,7 @@ export function ContactSection() {
                     placeholder="Dein Name"
                     required
                     className="border-accent/20 focus:border-accent placeholder:text-foreground/40 h-12"
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -110,6 +112,7 @@ export function ContactSection() {
                     placeholder="deine@email.de"
                     required
                     className="border-accent/20 focus:border-accent placeholder:text-foreground/40 h-12"
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -123,6 +126,7 @@ export function ContactSection() {
                     placeholder="Schreib mir deine Nachricht..."
                     required
                     className="border-accent/20 focus:border-accent placeholder:text-foreground/40 min-h-[150px] resize-none"
+                    suppressHydrationWarning
                   />
                 </div>
 
@@ -130,6 +134,7 @@ export function ContactSection() {
                   type="submit"
                   disabled={isSubmitting}
                   className="bg-accent text-background hover:bg-accent/90 h-12 w-full font-semibold transition-all disabled:opacity-50"
+                  suppressHydrationWarning
                 >
                   <Send className="mr-2 h-4 w-4" />
                   {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}
