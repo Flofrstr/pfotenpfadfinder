@@ -1,3 +1,11 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Datenschutzerklärung - Pfotenpfadfinder',
+  description:
+    'Datenschutzerklärung von Pfotenpfadfinder. Informationen zum Umgang mit personenbezogenen Daten gemäß DSGVO.',
+}
+
 export default function Datenschutz() {
   return (
     <div className="bg-background min-h-screen">
