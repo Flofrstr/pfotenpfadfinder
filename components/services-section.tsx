@@ -34,7 +34,7 @@ export function ServicesSection() {
                 className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow-sm transition-transform ${showHolidayPricing ? 'translate-x-4' : 'translate-x-0.5'}`}
               />
             </div>
-            <span>Feiertage Preise {showHolidayPricing ? 'anzeigen' : 'ausblenden'}</span>
+            <span>Feiertagspreise</span>
           </button>
         </div>
 
@@ -176,9 +176,9 @@ export function ServicesSection() {
           <div className="border-accent/20 from-accent/5 to-accent/10 relative overflow-hidden rounded-2xl border bg-gradient-to-br p-6 shadow-sm">
             <div className="bg-accent/10 absolute top-0 right-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full blur-2xl" />
             <div className="relative flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-              <div className="flex items-center gap-4">
-                <div className="bg-accent/20 rounded-xl p-3">
-                  <MapPin className="text-accent h-6 w-6" />
+              <div className="flex flex-col items-center gap-4 sm:flex-row">
+                <div className="bg-accent/20 flex items-center rounded-xl p-3 sm:p-3">
+                  <MapPin className="text-accent h-8 w-8 sm:h-6 sm:w-6" />
                 </div>
                 <div className="text-center sm:text-left">
                   <p className="text-foreground/60 text-xs font-semibold tracking-wider uppercase">
@@ -188,9 +188,13 @@ export function ServicesSection() {
                   <p className="text-foreground/60 mt-1.5 text-xs leading-relaxed">
                     Gevelsberg, Schwelm, Ennepetal, Hasslinghausen
                   </p>
+                  <div className="mt-3 sm:hidden">
+                    <p className="text-2xl font-bold tabular-nums">0,40€</p>
+                    <p className="text-foreground/60 text-xs">pro Kilometer</p>
+                  </div>
                 </div>
               </div>
-              <div className="bg-background/80 flex items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm">
+              <div className="bg-background/80 hidden items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm sm:flex">
                 <div className="text-right">
                   <p className="text-3xl font-bold tabular-nums">0,40€</p>
                   <p className="text-foreground/60 text-xs">pro Kilometer</p>
@@ -218,7 +222,7 @@ function MobileToggle({ isActive, onToggle }: MobileToggleProps) {
     <button
       onClick={onToggle}
       className="border-accent/20 bg-background hover:border-accent/40 flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all md:hidden"
-      aria-label={isActive ? 'Normale Preise anzeigen' : 'Feiertage Preise anzeigen'}
+      aria-label={isActive ? 'Normale Preise anzeigen' : 'Feiertagspreise anzeigen'}
     >
       <div
         className={`relative h-3.5 w-6 rounded-full transition-colors ${isActive ? 'bg-accent' : 'bg-foreground/20'}`}
