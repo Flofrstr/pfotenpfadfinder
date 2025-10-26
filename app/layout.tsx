@@ -23,12 +23,59 @@ export const metadata: Metadata = {
   title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
   description:
     'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe. Wir kümmern uns um Ihren Vierbeiner, wenn Sie keine Zeit haben.',
+  keywords: [
+    'Hundebetreuung',
+    'Gassi-Service',
+    'Hundesitting',
+    'Gevelsberg',
+    'Schwelm',
+    'Ennepetal',
+    'Hasslinghausen',
+    'Hundepsychologin',
+    'Hundetrainerin',
+    'professionelle Hundebetreuung',
+    'Tagesbetreuung Hund',
+    'Urlaubsbetreuung Hund',
+  ],
+  authors: [{ name: 'Michelle Wattenberg - Pfotenpfadfinder' }],
+  creator: 'Pfotenpfadfinder',
+  publisher: 'Pfotenpfadfinder',
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://pfotenpfadfinder-hundebetreuung.de',
+  },
   openGraph: {
     type: 'website',
     locale: 'de_DE',
+    url: 'https://pfotenpfadfinder-hundebetreuung.de',
+    siteName: 'Pfotenpfadfinder',
+    title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
+    description:
+      'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Gevelsberg, Schwelm, Ennepetal und Umgebung.',
+    images: [
+      {
+        url: '/pfotenpfadfinder.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Pfotenpfadfinder - Hundebetreuung',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
+    title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
+    description: 'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe.',
+    images: ['/pfotenpfadfinder.jpg'],
   },
 }
 

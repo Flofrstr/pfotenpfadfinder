@@ -4,6 +4,13 @@ export const metadata: Metadata = {
   title: 'Impressum - Pfotenpfadfinder',
   description:
     'Impressum und rechtliche Informationen von Pfotenpfadfinder, Ihrer professionellen Hundebetreuung in Gevelsberg.',
+  alternates: {
+    canonical: 'https://pfotenpfadfinder-hundebetreuung.de/impressum',
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export default function Impressum() {
