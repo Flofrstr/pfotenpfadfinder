@@ -7,7 +7,7 @@ import { ScrollProgress } from '@/components/scroll-progress'
 
 export default function Home() {
   return (
-    <main className="relative pb-8">
+    <main className="relative">
       <ScrollProgress />
       <HeroSection />
       <AboutSection />
