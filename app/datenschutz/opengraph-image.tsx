@@ -1,6 +1,6 @@
 import { ImageResponse } from 'next/og'
-
-export const runtime = 'edge'
+import { readFile } from 'node:fs/promises'
+import { join } from 'node:path'
 
 export const alt = 'Datenschutzerklärung - Pfotenpfadfinder'
 export const size = {
@@ -10,6 +10,10 @@ export const size = {
 export const contentType = 'image/png'
 
 export default async function Image() {
+  const glutenFont = await readFile(join(process.cwd(), 'public/fonts/Gluten-Bold.ttf'))
+  const interFont = await readFile(join(process.cwd(), 'public/fonts/Inter_18pt-Regular.ttf'))
+  const interBoldFont = await readFile(join(process.cwd(), 'public/fonts/Inter_18pt-Bold.ttf'))
+
   return new ImageResponse(
     (
       <div
@@ -58,6 +62,7 @@ export default async function Image() {
               marginBottom: '30px',
               textTransform: 'uppercase',
               letterSpacing: '-0.02em',
+              fontFamily: 'Gluten',
             }}
           >
             Datenschutz
@@ -68,6 +73,7 @@ export default async function Image() {
               color: 'hsl(32, 67%, 25%)',
               lineHeight: 1.4,
               margin: 0,
+              fontFamily: 'Inter',
             }}
           >
             Pfotenpfadfinder · Hundebetreuung
@@ -86,18 +92,56 @@ export default async function Image() {
             gap: '40px',
             fontSize: '22px',
             color: 'hsl(32, 67%, 28%)',
+            fontFamily: 'Inter',
+            fontWeight: 700,
           }}
         >
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>📞</span>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="hsl(32, 67%, 28%)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384" />
+            </svg>
             <span>0157 72199639</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>📧</span>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="hsl(32, 67%, 28%)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7" />
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+            </svg>
             <span>pfotenpfadfinder@gmail.com</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <span>📷</span>
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="hsl(32, 67%, 28%)"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+            </svg>
             <span>@Pfotenpfadfinder</span>
           </div>
         </div>
@@ -117,6 +161,26 @@ export default async function Image() {
     ),
     {
       ...size,
+      fonts: [
+        {
+          name: 'Gluten',
+          data: glutenFont,
+          style: 'normal',
+          weight: 700,
+        },
+        {
+          name: 'Inter',
+          data: interFont,
+          style: 'normal',
+          weight: 400,
+        },
+        {
+          name: 'Inter',
+          data: interBoldFont,
+          style: 'normal',
+          weight: 700,
+        },
+      ],
     },
   )
 }
