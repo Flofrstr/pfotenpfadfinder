@@ -48,8 +48,10 @@ export function AboutSection() {
                         priority
                       />
                     </div>
-                    <div className="font-handwriting text-foreground/60 mt-4 text-center text-lg">
-                      Mit Herz & Pfote
+                    <div className="absolute right-6 bottom-6 left-6 flex items-center justify-center">
+                      <p className="font-gluten text-xl font-bold text-amber-900 md:text-2xl">
+                        Mit Herz & Pfote
+                      </p>
                     </div>
                   </div>
                 </div>
