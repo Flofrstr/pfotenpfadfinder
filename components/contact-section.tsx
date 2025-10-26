@@ -146,7 +146,7 @@ export function ContactSection() {
             </div>
 
             <Link href="tel:+4915772199639" className="group block">
-              <div className="hover:bg-accent/5 flex items-start gap-4 rounded-lg p-4 transition-colors">
+              <div className="border-accent/20 hover:border-accent/40 hover:bg-accent/5 flex items-start gap-4 rounded-lg border p-4 transition-all">
                 <div className="bg-accent/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
                   <Phone className="text-accent h-5 w-5" />
                 </div>
@@ -162,7 +162,7 @@ export function ContactSection() {
             </Link>
 
             <Link href="mailto:pfotenpfadfinder@gmail.com" className="group block">
-              <div className="hover:bg-accent/5 flex items-start gap-4 rounded-lg p-4 transition-colors">
+              <div className="border-accent/20 hover:border-accent/40 hover:bg-accent/5 flex items-start gap-4 rounded-lg border p-4 transition-all">
                 <div className="bg-accent/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
                   <Mail className="text-accent h-5 w-5" />
                 </div>
@@ -183,7 +183,7 @@ export function ContactSection() {
               rel="noopener noreferrer"
               className="group block"
             >
-              <div className="hover:bg-accent/5 flex items-start gap-4 rounded-lg p-4 transition-colors">
+              <div className="border-accent/20 hover:border-accent/40 hover:bg-accent/5 flex items-start gap-4 rounded-lg border p-4 transition-all">
                 <div className="bg-accent/10 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg">
                   <Instagram className="text-accent h-5 w-5" />
                 </div>
