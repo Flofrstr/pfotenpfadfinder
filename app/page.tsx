@@ -5,9 +5,94 @@ import { TestimonialsSection } from '@/components/testimonials-section'
 import { ContactSection } from '@/components/contact-section'
 import { ScrollProgress } from '@/components/scroll-progress'
 
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  name: 'Pfotenpfadfinder',
+  description: 'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Gevelsberg',
+  image: 'https://pfotenpfadfinder-hundebetreuung.de/logo.svg',
+  logo: 'https://pfotenpfadfinder-hundebetreuung.de/logo.svg',
+  url: 'https://pfotenpfadfinder-hundebetreuung.de',
+  telephone: '+4915772199639',
+  email: 'pfotenpfadfinder@gmail.com',
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: 'Geerstraße 34',
+    addressLocality: 'Gevelsberg',
+    postalCode: '58285',
+    addressCountry: 'DE',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 51.32885471546612,
+    longitude: 7.342110033006871,
+  },
+  areaServed: [
+    {
+      '@type': 'City',
+      name: 'Gevelsberg',
+    },
+    {
+      '@type': 'City',
+      name: 'Schwelm',
+    },
+    {
+      '@type': 'City',
+      name: 'Ennepetal',
+    },
+    {
+      '@type': 'City',
+      name: 'Hasslinghausen',
+    },
+  ],
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Hundebetreuung Services',
+    itemListElement: [
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Hundebetreuung',
+          description: 'Tagesbetreuung für Hunde bis zu 12 Stunden',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Gassi gehen',
+          description: 'Professioneller Gassi-Service für 30 oder 60 Minuten',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Urlaubsbetreuung',
+          description: 'Hundebetreuung mit Übernachtung während Ihres Urlaubs',
+        },
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Kennenlernen',
+          description: 'Erstes Kennenlernen mit Gassirunde',
+        },
+      },
+    ],
+  },
+}
+
 export default function Home() {
   return (
     <main className="relative pb-8">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
       <ScrollProgress />
       <HeroSection />
       <AboutSection />

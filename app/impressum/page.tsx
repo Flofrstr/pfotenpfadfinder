@@ -1,3 +1,11 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Impressum - Pfotenpfadfinder',
+  description:
+    'Impressum und rechtliche Informationen von Pfotenpfadfinder, Ihrer professionellen Hundebetreuung in Gevelsberg.',
+}
+
 export default function Impressum() {
   return (
     <div className="bg-background min-h-screen">
