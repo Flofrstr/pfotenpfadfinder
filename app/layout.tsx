@@ -70,6 +70,28 @@ export const metadata: Metadata = {
   },
 }
 
+// JSON-LD Structured Data für Google Search Logo
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: 'Pfotenpfadfinder',
+  url: 'https://pfotenpfadfinder-hundebetreuung.de',
+  logo: 'https://pfotenpfadfinder-hundebetreuung.de/logo.png',
+  description:
+    'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Gevelsberg, Schwelm, Ennepetal und Umgebung.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Gevelsberg',
+    addressCountry: 'DE',
+  },
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'Customer Service',
+    availableLanguage: 'German',
+  },
+  sameAs: [],
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -77,6 +99,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body
         className={`${montserrat.variable} ${gluten.variable} bg-background text-foreground font-sans`}
       >
