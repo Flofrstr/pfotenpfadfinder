@@ -62,20 +62,11 @@ export const metadata: Metadata = {
     title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
     description:
       'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Gevelsberg, Schwelm, Ennepetal und Umgebung.',
-    images: [
-      {
-        url: '/pfotenpfadfinder.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Pfotenpfadfinder - Hundebetreuung',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
     description: 'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe.',
-    images: ['/pfotenpfadfinder.jpg'],
   },
 }
 
