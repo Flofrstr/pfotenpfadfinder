@@ -76,7 +76,7 @@ const jsonLd = {
   '@type': 'Organization',
   name: 'Pfotenpfadfinder',
   url: 'https://pfotenpfadfinder-hundebetreuung.de',
-  logo: 'https://pfotenpfadfinder-hundebetreuung.de/logo.png',
+  logo: 'https://pfotenpfadfinder-hundebetreuung.de/pfotenpfadfinder-vorschau.png',
   description:
     'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Gevelsberg, Schwelm, Ennepetal und Umgebung.',
   address: {
@@ -89,7 +89,7 @@ const jsonLd = {
     contactType: 'Customer Service',
     availableLanguage: 'German',
   },
-  sameAs: [],
+  sameAs: ['https://www.instagram.com/pfotenpfadfinder'],
 }
 
 export default function RootLayout({
@@ -99,15 +99,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <head>
+      <body
+        className={`${montserrat.variable} ${gluten.variable} bg-background text-foreground font-sans`}
+      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-      </head>
-      <body
-        className={`${montserrat.variable} ${gluten.variable} bg-background text-foreground font-sans`}
-      >
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
