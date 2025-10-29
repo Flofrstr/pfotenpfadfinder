@@ -234,53 +234,20 @@ export default function Datenschutz() {
             </div>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              3. Cookies
+              3. Cookies und lokale Speicherung
             </h2>
             <p className="text-foreground/70 mb-6 leading-relaxed">
-              Die Internetseiten der Pfotenpfadfinder verwenden Cookies. Cookies sind Textdateien,
-              welche über einen Internetbrowser auf einem Computersystem abgelegt und gespeichert
-              werden.
-            </p>
-
-            <p className="text-foreground/70 mb-6 leading-relaxed">
-              Zahlreiche Internetseiten und Server verwenden Cookies. Viele Cookies enthalten eine
-              sogenannte Cookie-ID. Eine Cookie-ID ist eine eindeutige Kennung des Cookies. Sie
-              besteht aus einer Zeichenfolge, durch welche Internetseiten und Server dem konkreten
-              Internetbrowser zugeordnet werden können, in dem das Cookie gespeichert wurde. Dies
-              ermöglicht es den besuchten Internetseiten und Servern, den individuellen Browser der
-              betroffenen Person von anderen Internetbrowsern, die andere Cookies enthalten, zu
-              unterscheiden. Ein bestimmter Internetbrowser kann über die eindeutige Cookie-ID
-              wiedererkannt und identifiziert werden.
-            </p>
-
-            <p className="text-foreground/70 mb-6 leading-relaxed">
-              Durch den Einsatz von Cookies kann die Pfotenpfadfinder den Nutzern dieser
-              Internetseite nutzerfreundlichere Services bereitstellen, die ohne die Cookie-Setzung
-              nicht möglich wären.
-            </p>
-
-            <p className="text-foreground/70 mb-6 leading-relaxed">
-              Mittels eines Cookies können die Informationen und Angebote auf unserer Internetseite
-              im Sinne des Benutzers optimiert werden. Cookies ermöglichen uns, wie bereits erwähnt,
-              die Benutzer unserer Internetseite wiederzuerkennen. Zweck dieser Wiedererkennung ist
-              es, den Nutzern die Verwendung unserer Internetseite zu erleichtern. Der Benutzer
-              einer Internetseite, die Cookies verwendet, muss beispielsweise nicht bei jedem Besuch
-              der Internetseite erneut seine Zugangsdaten eingeben, weil dies von der Internetseite
-              und dem auf dem Computersystem des Benutzers abgelegten Cookie übernommen wird. Ein
-              weiteres Beispiel ist das Cookie eines Warenkorbes im Online-Shop. Der Online-Shop
-              merkt sich die Artikel, die ein Kunde in den virtuellen Warenkorb gelegt hat, über ein
-              Cookie.
+              Diese Website verwendet keine Cookies. Für die Speicherung Ihrer Theme-Präferenz
+              (Hell-/Dunkelmodus) nutzen wir ausschließlich den lokalen Speicher (localStorage)
+              Ihres Browsers. Diese Daten verbleiben lokal auf Ihrem Gerät und werden nicht an
+              unsere Server oder Dritte übertragen.
             </p>
 
             <p className="text-foreground/70 mb-12 leading-relaxed">
-              Die betroffene Person kann die Setzung von Cookies durch unsere Internetseite
-              jederzeit mittels einer entsprechenden Einstellung des genutzten Internetbrowsers
-              verhindern und damit der Setzung von Cookies dauerhaft widersprechen. Ferner können
-              bereits gesetzte Cookies jederzeit über einen Internetbrowser oder andere
-              Softwareprogramme gelöscht werden. Dies ist in allen gängigen Internetbrowsern
-              möglich. Deaktiviert die betroffene Person die Setzung von Cookies in dem genutzten
-              Internetbrowser, sind unter Umständen nicht alle Funktionen unserer Internetseite
-              vollumfänglich nutzbar.
+              Der localStorage speichert lediglich Ihre Wahl bezüglich des Farbschemas (Hell, Dunkel
+              oder System), um Ihnen bei zukünftigen Besuchen ein konsistentes Erscheinungsbild zu
+              bieten. Sie können diese Einstellung jederzeit über den Theme-Toggle in der Navigation
+              ändern oder durch Löschen der Browser-Daten entfernen.
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
@@ -709,6 +676,12 @@ export default function Datenschutz() {
               sicherer und zuverlässiger Bereitstellung unserer Website).
             </p>
 
+            <p className="text-foreground/70 mb-4 leading-relaxed">
+              Für die Übermittlung von Daten in die USA hat Netlify Standardvertragsklauseln
+              (Standard Contractual Clauses) der Europäischen Kommission implementiert, die ein
+              angemessenes Datenschutzniveau gewährleisten.
+            </p>
+
             <h3 className="text-foreground mb-3 text-xl font-bold">
               Kontaktformular über Netlify Forms
             </h3>
@@ -732,7 +705,23 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              9. Datenschutzbestimmungen zu Einsatz und Verwendung von Instagram
+              9. Webfonts (Google Fonts)
+            </h2>
+            <p className="text-foreground/70 mb-6 leading-relaxed">
+              Diese Website nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Web
+              Fonts, die von Google bereitgestellt werden. Die Google Fonts sind lokal installiert.
+              Eine Verbindung zu Servern von Google findet dabei nicht statt.
+            </p>
+
+            <p className="text-foreground/70 mb-12 leading-relaxed">
+              Wir verwenden die Next.js Font-Optimierung, die die Schriftarten zur Build-Zeit
+              herunterlädt und von unseren eigenen Servern ausliefert. Dadurch werden keine
+              Verbindungen zu Google-Servern hergestellt und keine Daten (wie IP-Adressen) an Google
+              übermittelt. Dies gewährleistet eine DSGVO-konforme Nutzung der Schriftarten.
+            </p>
+
+            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+              10. Datenschutzbestimmungen zu Einsatz und Verwendung von Instagram
             </h2>
             <p className="text-foreground/70 mb-6 leading-relaxed">
               Der für die Verarbeitung Verantwortliche hat auf dieser Internetseite Komponenten des
@@ -787,7 +776,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              10. Rechtsgrundlage der Verarbeitung
+              11. Rechtsgrundlage der Verarbeitung
             </h2>
             <p className="text-foreground/70 mb-12 leading-relaxed">
               Art. 6 I lit. a DS-GVO dient unserem Unternehmen als Rechtsgrundlage für
@@ -821,7 +810,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              11. Berechtigte Interessen an der Verarbeitung, die von dem Verantwortlichen oder
+              12. Berechtigte Interessen an der Verarbeitung, die von dem Verantwortlichen oder
               einem Dritten verfolgt werden
             </h2>
             <p className="text-foreground/70 mb-12 leading-relaxed">
@@ -831,7 +820,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              12. Dauer, für die die personenbezogenen Daten gespeichert werden
+              13. Dauer, für die die personenbezogenen Daten gespeichert werden
             </h2>
             <p className="text-foreground/70 mb-12 leading-relaxed">
               Das Kriterium für die Dauer der Speicherung von personenbezogenen Daten ist die
@@ -841,7 +830,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              13. Gesetzliche oder vertragliche Vorschriften zur Bereitstellung der
+              14. Gesetzliche oder vertragliche Vorschriften zur Bereitstellung der
               personenbezogenen Daten; Erforderlichkeit für den Vertragsabschluss; Verpflichtung der
               betroffenen Person, die personenbezogenen Daten bereitzustellen; mögliche Folgen der
               Nichtbereitstellung
@@ -865,7 +854,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              14. Bestehen einer automatisierten Entscheidungsfindung
+              15. Bestehen einer automatisierten Entscheidungsfindung
             </h2>
             <p className="text-foreground/70 mb-12 leading-relaxed">
               Als verantwortungsbewusstes Unternehmen verzichten wir auf eine automatische
