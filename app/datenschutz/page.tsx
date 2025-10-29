@@ -234,20 +234,16 @@ export default function Datenschutz() {
             </div>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              3. Cookies und lokale Speicherung
+              3. Cookies
             </h2>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
-              Diese Website verwendet keine Cookies. Für die Speicherung Ihrer Theme-Präferenz
-              (Hell-/Dunkelmodus) nutzen wir ausschließlich den lokalen Speicher (localStorage)
-              Ihres Browsers. Diese Daten verbleiben lokal auf Ihrem Gerät und werden nicht an
-              unsere Server oder Dritte übertragen.
-            </p>
-
             <p className="text-foreground/70 mb-12 leading-relaxed">
-              Der localStorage speichert lediglich Ihre Wahl bezüglich des Farbschemas (Hell, Dunkel
-              oder System), um Ihnen bei zukünftigen Besuchen ein konsistentes Erscheinungsbild zu
-              bieten. Sie können diese Einstellung jederzeit über den Theme-Toggle in der Navigation
-              ändern oder durch Löschen der Browser-Daten entfernen.
+              Die Internetseiten der Pfotenpfadfinder verwenden keine Cookies. Cookies sind
+              Textdateien, welche über einen Internetbrowser auf einem Computersystem abgelegt und
+              gespeichert werden. Unsere Website funktioniert vollständig ohne den Einsatz von
+              Cookies, sodass keine solchen Dateien auf Ihrem Gerät gespeichert werden. Dies
+              bedeutet, dass wir Sie über unsere Website nicht mittels Cookies identifizieren oder
+              Ihr Nutzungsverhalten nachverfolgen. Die Nutzung unserer Internetseite ist somit
+              komplett cookie-frei möglich.
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
@@ -671,15 +667,16 @@ export default function Datenschutz() {
 
             <p className="text-foreground/70 mb-4 leading-relaxed">
               Netlify verarbeitet im Rahmen des Hostings u.a. IP-Adressen, Meta- und
-              Kommunikationsdaten sowie Websitezugriffe. Die Daten werden auf Servern in den USA
-              gespeichert. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an
-              sicherer und zuverlässiger Bereitstellung unserer Website).
+              Kommunikationsdaten sowie Websitezugriffe in den Server-Logfiles. Die Daten werden auf
+              Servern in den USA gespeichert. Diese Datenverarbeitung erfolgt serverseitig und ohne
+              den Einsatz von Cookies. Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO (berechtigtes
+              Interesse an sicherer und zuverlässiger Bereitstellung unserer Website).
             </p>
 
             <p className="text-foreground/70 mb-4 leading-relaxed">
-              Für die Übermittlung von Daten in die USA hat Netlify Standardvertragsklauseln
-              (Standard Contractual Clauses) der Europäischen Kommission implementiert, die ein
-              angemessenes Datenschutzniveau gewährleisten.
+              Für statistische Auswertungen nutzen wir Netlify Analytics, welches ausschließlich
+              serverseitig arbeitet und keine Cookies oder clientseitiges Tracking verwendet. Die
+              Analyse erfolgt anonym auf Basis der Server-Logfiles.
             </p>
 
             <h3 className="text-foreground mb-3 text-xl font-bold">
@@ -705,23 +702,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              9. Webfonts (Google Fonts)
-            </h2>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
-              Diese Website nutzt zur einheitlichen Darstellung von Schriftarten sogenannte Web
-              Fonts, die von Google bereitgestellt werden. Die Google Fonts sind lokal installiert.
-              Eine Verbindung zu Servern von Google findet dabei nicht statt.
-            </p>
-
-            <p className="text-foreground/70 mb-12 leading-relaxed">
-              Wir verwenden die Next.js Font-Optimierung, die die Schriftarten zur Build-Zeit
-              herunterlädt und von unseren eigenen Servern ausliefert. Dadurch werden keine
-              Verbindungen zu Google-Servern hergestellt und keine Daten (wie IP-Adressen) an Google
-              übermittelt. Dies gewährleistet eine DSGVO-konforme Nutzung der Schriftarten.
-            </p>
-
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              10. Datenschutzbestimmungen zu Einsatz und Verwendung von Instagram
+              9. Datenschutzbestimmungen zu Einsatz und Verwendung von Instagram
             </h2>
             <p className="text-foreground/70 mb-6 leading-relaxed">
               Der für die Verarbeitung Verantwortliche hat auf dieser Internetseite Komponenten des
@@ -776,7 +757,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              11. Rechtsgrundlage der Verarbeitung
+              10. Rechtsgrundlage der Verarbeitung
             </h2>
             <p className="text-foreground/70 mb-12 leading-relaxed">
               Art. 6 I lit. a DS-GVO dient unserem Unternehmen als Rechtsgrundlage für
@@ -810,7 +791,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              12. Berechtigte Interessen an der Verarbeitung, die von dem Verantwortlichen oder
+              11. Berechtigte Interessen an der Verarbeitung, die von dem Verantwortlichen oder
               einem Dritten verfolgt werden
             </h2>
             <p className="text-foreground/70 mb-12 leading-relaxed">
@@ -820,7 +801,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              13. Dauer, für die die personenbezogenen Daten gespeichert werden
+              12. Dauer, für die die personenbezogenen Daten gespeichert werden
             </h2>
             <p className="text-foreground/70 mb-12 leading-relaxed">
               Das Kriterium für die Dauer der Speicherung von personenbezogenen Daten ist die
@@ -830,7 +811,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              14. Gesetzliche oder vertragliche Vorschriften zur Bereitstellung der
+              13. Gesetzliche oder vertragliche Vorschriften zur Bereitstellung der
               personenbezogenen Daten; Erforderlichkeit für den Vertragsabschluss; Verpflichtung der
               betroffenen Person, die personenbezogenen Daten bereitzustellen; mögliche Folgen der
               Nichtbereitstellung
@@ -854,7 +835,7 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              15. Bestehen einer automatisierten Entscheidungsfindung
+              14. Bestehen einer automatisierten Entscheidungsfindung
             </h2>
             <p className="text-foreground/70 mb-12 leading-relaxed">
               Als verantwortungsbewusstes Unternehmen verzichten wir auf eine automatische
