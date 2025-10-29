@@ -712,8 +712,8 @@ export default function Datenschutz() {
             </p>
 
             <p className="text-foreground/70 mb-6 leading-relaxed">
-              Betreibergesellschaft der Dienste von Instagram ist die Facebook Ireland Ltd., 4 Grand
-              Canal Square, Grand Canal Harbour, Dublin 2 Ireland.
+              Betreibergesellschaft der Dienste von Instagram ist die Meta Platforms Ireland
+              Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2 Ireland.
             </p>
 
             <p className="text-foreground/70 mb-6 leading-relaxed">
