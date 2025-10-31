@@ -82,9 +82,6 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                         height={500}
                         draggable={false}
                         className="h-full w-full object-cover object-center"
-                        loading="lazy"
-                        sizes="(max-width: 768px) 100vw, 350px"
-                        quality={85}
                       />
                     </div>
                     {/* Dog name on polaroid white space */}

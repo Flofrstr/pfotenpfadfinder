@@ -7,15 +7,12 @@ export function HeroSection() {
     <section className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
-          src="/pfotenpfadfinder.jpg"
+          src="/pfotenpfadfinder.jpg?height=1080&width=1920"
           alt="Frau mit Brille kniet auf Waldweg zwischen zwei Hunden"
           fill
           className="object-cover"
           style={{ objectPosition: 'center 30%' }}
           priority
-          fetchPriority="high"
-          sizes="100vw"
-          quality={85}
         />
         <div className="absolute inset-0 bg-white/70 dark:bg-black/40"></div>
       </div>

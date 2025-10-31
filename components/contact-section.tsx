@@ -156,7 +156,7 @@ export function ContactSection() {
                   <Phone className="text-accent h-5 w-5" />
                 </div>
                 <div className="pt-1">
-                  <div className="text-foreground/60 mb-1 text-xs font-medium tracking-wider uppercase">
+                  <div className="text-foreground/50 mb-1 text-xs font-medium tracking-wider uppercase">
                     Telefon
                   </div>
                   <div className="group-hover:text-accent font-medium transition-colors">
@@ -172,7 +172,7 @@ export function ContactSection() {
                   <Mail className="text-accent h-5 w-5" />
                 </div>
                 <div className="min-w-0 pt-1">
-                  <div className="text-foreground/60 mb-1 text-xs font-medium tracking-wider uppercase">
+                  <div className="text-foreground/50 mb-1 text-xs font-medium tracking-wider uppercase">
                     E-Mail
                   </div>
                   <div className="group-hover:text-accent font-medium break-all transition-colors">
@@ -193,7 +193,7 @@ export function ContactSection() {
                   <Instagram className="text-accent h-5 w-5" />
                 </div>
                 <div className="pt-1">
-                  <div className="text-foreground/60 mb-1 text-xs font-medium tracking-wider uppercase">
+                  <div className="text-foreground/50 mb-1 text-xs font-medium tracking-wider uppercase">
                     Instagram
                   </div>
                   <div className="group-hover:text-accent font-medium transition-colors">

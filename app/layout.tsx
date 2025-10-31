@@ -111,10 +111,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de" suppressHydrationWarning>
-      <head>
-        {/* Preload kritisches LCP-Bild */}
-        <link rel="preload" href="/pfotenpfadfinder.jpg" as="image" fetchPriority="high" />
-      </head>
       <body
         className={`${montserrat.variable} ${gluten.variable} bg-background text-foreground font-sans`}
       >

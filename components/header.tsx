@@ -135,7 +135,6 @@ export function Header() {
                             ? 'border-primary bg-primary/10 text-primary'
                             : 'border-border hover:border-primary hover:bg-primary/10'
                         }`}
-                        aria-label="Helles Design"
                       >
                         <Sun className="h-5 w-5" />
                         <span className="text-sm font-medium">Hell</span>
@@ -149,7 +148,6 @@ export function Header() {
                             ? 'border-primary bg-primary/10 text-primary'
                             : 'border-border hover:border-primary hover:bg-primary/10'
                         }`}
-                        aria-label="Dunkles Design"
                       >
                         <Moon className="h-5 w-5" />
                         <span className="text-sm font-medium">Dunkel</span>
@@ -163,7 +161,6 @@ export function Header() {
                             ? 'border-primary bg-primary/10 text-primary'
                             : 'border-border hover:border-primary hover:bg-primary/10'
                         }`}
-                        aria-label="System Design"
                       >
                         <Monitor className="h-5 w-5" />
                         <span className="text-sm font-medium">Auto</span>
