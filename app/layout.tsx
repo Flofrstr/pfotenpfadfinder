@@ -1,11 +1,16 @@
 import type React from 'react'
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { Montserrat, Gluten } from 'next/font/google'
 import './globals.css'
 import { ThemeProvider } from '@/components/theme-provider'
 import { Footer } from '@/components/footer'
 import { Header } from '@/components/header'
-import { Toaster } from '@/components/ui/sonner'
+
+// Dynamically import Toaster as it's not needed immediately
+const Toaster = dynamic(() =>
+  import('@/components/ui/sonner').then(mod => ({ default: mod.Toaster })),
+)
 
 const montserrat = Montserrat({
   subsets: ['latin'],
