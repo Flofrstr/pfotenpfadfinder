@@ -20,22 +20,28 @@ const gluten = Gluten({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pfotenpfadfinder-hundebetreuung.de'),
-  title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
+  title: 'Hundebetreuung Gevelsberg | Pfotenpfadfinder - Gassi-Service & Hundesitting',
   description:
-    'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe. Wir kümmern uns um Ihren Vierbeiner, wenn Sie keine Zeit haben.',
+    'Hundebetreuung in Gevelsberg und Umgebung. Gassi-Service, Tagesbetreuung & Urlaubsbetreuung für Ihren Hund. Liebevoll und zuverlässig.',
   keywords: [
+    'Hundebetreuung Gevelsberg',
     'Hundebetreuung',
     'Gassi-Service',
+    'Gassi-Service Gevelsberg',
     'Hundesitting',
+    'Hundesitting Gevelsberg',
     'Gevelsberg',
     'Schwelm',
     'Ennepetal',
     'Hasslinghausen',
-    'Hundepsychologin',
-    'Hundetrainerin',
-    'professionelle Hundebetreuung',
+    'Wetter Ruhr',
+    'Sprockhövel',
+    'Wuppertal',
+    'Hagen',
     'Tagesbetreuung Hund',
     'Urlaubsbetreuung Hund',
+    'Hund Gassi gehen',
+    'Hundebetreuung Ennepe-Ruhr-Kreis',
   ],
   authors: [{ name: 'Michelle Wattenberg - Pfotenpfadfinder' }],
   creator: 'Pfotenpfadfinder',
@@ -59,14 +65,15 @@ export const metadata: Metadata = {
     locale: 'de_DE',
     url: 'https://pfotenpfadfinder-hundebetreuung.de',
     siteName: 'Pfotenpfadfinder',
-    title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
+    title: 'Hundebetreuung Gevelsberg | Pfotenpfadfinder - Gassi-Service & Hundesitting',
     description:
-      'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Gevelsberg, Schwelm, Ennepetal und Umgebung.',
+      'Hundebetreuung in Gevelsberg und Umgebung. Gassi-Service, Tagesbetreuung & Urlaubsbetreuung für Ihren Hund. Liebevoll und zuverlässig.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Pfotenpfadfinder - Liebevolle & professionelle Hundebetreuung',
-    description: 'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Ihrer Nähe.',
+    title: 'Hundebetreuung Gevelsberg | Pfotenpfadfinder - Gassi-Service & Hundesitting',
+    description:
+      'Hundebetreuung in Gevelsberg und Umgebung. Gassi-Service, Tagesbetreuung & Urlaubsbetreuung für Ihren Hund.',
   },
 }
 
@@ -74,20 +81,24 @@ export const metadata: Metadata = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'Pfotenpfadfinder',
+  name: 'Pfotenpfadfinder - Hundebetreuung Gevelsberg',
   url: 'https://pfotenpfadfinder-hundebetreuung.de',
   logo: 'https://pfotenpfadfinder-hundebetreuung.de/pfotenpfadfinder-vorschau.png',
   description:
-    'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Gevelsberg, Schwelm, Ennepetal und Umgebung.',
+    'Hundebetreuung in Gevelsberg und Umgebung. Gassi-Service, Tagesbetreuung und Urlaubsbetreuung für Ihren Hund. Liebevoll und zuverlässig.',
   address: {
     '@type': 'PostalAddress',
+    streetAddress: 'Geerstraße 34',
     addressLocality: 'Gevelsberg',
+    postalCode: '58285',
     addressCountry: 'DE',
   },
   contactPoint: {
     '@type': 'ContactPoint',
-    contactType: 'Customer Service',
-    availableLanguage: 'German',
+    telephone: '+4915772199639',
+    contactType: 'customer service',
+    availableLanguage: ['German', 'de'],
+    email: 'pfotenpfadfinder@gmail.com',
   },
   sameAs: ['https://www.instagram.com/pfotenpfadfinder'],
 }

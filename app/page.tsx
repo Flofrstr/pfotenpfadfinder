@@ -16,8 +16,9 @@ const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': 'https://pfotenpfadfinder-hundebetreuung.de/#organization',
-  name: 'Pfotenpfadfinder',
-  description: 'Professionelle und liebevolle Hundebetreuung und Gassi-Service in Gevelsberg',
+  name: 'Pfotenpfadfinder - Hundebetreuung Gevelsberg',
+  description:
+    'Hundebetreuung in Gevelsberg und Umgebung. Gassi-Service, Tagesbetreuung und Urlaubsbetreuung für Ihren Hund',
   image: 'https://pfotenpfadfinder-hundebetreuung.de/pfotenpfadfinder.jpg',
   logo: 'https://pfotenpfadfinder-hundebetreuung.de/logo.svg',
   url: 'https://pfotenpfadfinder-hundebetreuung.de',
@@ -57,6 +58,22 @@ const structuredData = {
     {
       '@type': 'City',
       name: 'Hasslinghausen',
+    },
+    {
+      '@type': 'City',
+      name: 'Sprockhövel',
+    },
+    {
+      '@type': 'City',
+      name: 'Wetter (Ruhr)',
+    },
+    {
+      '@type': 'City',
+      name: 'Wuppertal',
+    },
+    {
+      '@type': 'City',
+      name: 'Hagen',
     },
   ],
   openingHoursSpecification: [
