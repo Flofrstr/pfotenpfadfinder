@@ -73,7 +73,7 @@ export function AboutSection() {
                   <div className="text-center">
                     <div className="text-accent mb-1 text-3xl font-bold">2026</div>
                     <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
-                      Ausbildung
+                      Start Weiterbildung
                     </div>
                   </div>
                 </div>
