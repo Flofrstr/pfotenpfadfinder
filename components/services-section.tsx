@@ -79,7 +79,7 @@ export function ServicesSection() {
                 </button>
               ))}
             </div>
-            <p className="text-foreground/50 text-xs">
+            <p className="text-foreground/60 text-xs">
               {numberOfDogs === 1 ? 'Preis für 1 Hund' : `Gesamtpreis für ${numberOfDogs} Hunde`}
             </p>
           </div>
@@ -246,7 +246,7 @@ export function ServicesSection() {
             </div>
           </div>
 
-          <p className="text-foreground/50 text-center text-xs">
+          <p className="text-foreground/60 text-center text-xs">
             * Gemäß §19 UStG wird keine Umsatzsteuer berechnet
           </p>
         </div>
@@ -349,7 +349,7 @@ function PriceItem({
           <AnimateNumber className="text-2xl font-bold tabular-nums">{currentPrice}</AnimateNumber>
           <span className="text-2xl font-bold">€</span>
         </div>
-        <p className="text-foreground/50 text-xs">{perUnit}</p>
+        <p className="text-foreground/60 text-xs">{perUnit}</p>
       </div>
     </div>
   )

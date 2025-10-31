@@ -45,7 +45,9 @@ export function AboutSection() {
                         alt="Frau mit Brille sitzt auf Baumstamm im Wald mit drei Hunden"
                         fill
                         className="object-cover"
-                        priority
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1024px) 42vw, 50vw"
+                        quality={85}
                       />
                     </div>
                     <div className="absolute right-6 bottom-6 left-6 flex items-center justify-center">

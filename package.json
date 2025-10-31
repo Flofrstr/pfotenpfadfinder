@@ -12,7 +12,8 @@
     "knip": "knip",
     "check": "npm run lint && npm run typecheck && npm run knip",
     "upgrade": "taze",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "optimize:images": "node scripts/optimize-images.mjs"
   },
   "simple-git-hooks": {
     "pre-commit": "npx lint-staged",
