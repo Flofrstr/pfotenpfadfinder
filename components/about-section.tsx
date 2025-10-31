@@ -42,7 +42,7 @@ export function AboutSection() {
                     <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
                       <Image
                         src="/ueber_mich_michelle-plus-hunde.jpeg"
-                        alt="Michelle - Hundepsychologin und Hundetrainerin"
+                        alt="Frau mit Brille sitzt auf Baumstamm im Wald mit drei Hunden"
                         fill
                         className="object-cover"
                         priority

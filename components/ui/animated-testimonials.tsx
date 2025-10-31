@@ -12,6 +12,7 @@ type Testimonial = {
   name: string
   designation: string
   src: string
+  alt?: string
 }
 
 const getRotation = (index: number) => {
@@ -76,7 +77,7 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     <div className="relative h-full w-full overflow-hidden">
                       <Image
                         src={testimonial.src}
-                        alt={testimonial.name}
+                        alt={testimonial.alt || testimonial.name}
                         width={500}
                         height={500}
                         draggable={false}

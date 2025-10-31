@@ -7,6 +7,7 @@ export function TestimonialsSection() {
       quote: 'Klappt alles super! Pino und ich sind super zufrieden - sehr zu empfehlen! ❤️',
       designation: 'Alexandra',
       src: '/Pino.jpeg',
+      alt: 'Gelber Labrador mit geöffnetem Maul schaut nach oben',
     },
     {
       name: 'Filou',
@@ -14,6 +15,7 @@ export function TestimonialsSection() {
         'Liebevolle Betreuung. Vom ersten Moment haben wir gemerkt, dass die Hundis bei Michelle in guten Händen sind. Die Betreuung war herzlich, zuverlässig und professionell - man merkt sofort, dass hier echte Tierliebe dahintersteckt. Es ist ein gutes Gefühl, seine Vierbeiner in vertrauensvolle Hände zu geben. Absolut empfehlenswert!',
       designation: 'Franziska & Riccardo',
       src: '/Filou.jpeg',
+      alt: 'Schwarz-weißer Hund mit Stehohren blickt auf Waldweg nach oben',
     },
     {
       name: 'Wilma',
@@ -21,6 +23,7 @@ export function TestimonialsSection() {
         'Liebe Michelle, vielen Dank für deine tolle Betreuung über das letzte Wochenende! Besser kann es gar nicht laufen – vom lockeren und gleichzeitig professionellen Kennenlernen über die Checkliste vorab bis hin zum Wochenende selbst: Es war alles maximal toll! Kleine Updates zwischendurch per WhatsApp, dazu eine total flexible Bringzeit und obendrauf noch eine spontane Verlängerung um eine Nacht. Du hast alles möglich gemacht und mir meine freie Hunde-Zeit maximal sorglos gestaltet. Vielen Dank für deine tolle Art, deine super Betreuung und einfach für den entspannten und fröhlichen Umgang miteinander 🥰 Ich selbst war sehr beruhigt und hatte vollkommenes Vertrauen, dir meine Wilma zu überlassen. Alles war rundum perfekt. Wilma und ich vergeben 5/5 Knochen: 🦴🦴🦴🦴🦴 Liebe Grüße 😇',
       designation: 'Fabian',
       src: '/Wilma.jpeg',
+      alt: 'Heller Retriever sitzt im grünen Gras mit pinker Leine',
     },
     {
       name: 'Bea u. Günni',
@@ -28,6 +31,7 @@ export function TestimonialsSection() {
         "Wir sind total glücklich, unsere Hunde nun vertrauensvoll in Michelle's Hände geben zu können, wenn hier mal zeittechnisch Not am Mann ist. Unsere Hunde fühlen sich sichtlich wohl, Michelle ist zuverlässig; es klappt super! 5 von 5 Sternen 😄",
       designation: 'Sandra',
       src: '/Bea_u._Günni.jpeg',
+      alt: 'Zwei Hunde auf Waldweg - schwarzer Hund vorne, brauner Hund dahinter',
     },
     {
       name: 'Orca',
@@ -35,6 +39,7 @@ export function TestimonialsSection() {
         'Michelle ist eine hochmotivierte Dogsitterin, die aber vielmehr mit ihrer ausgeglichenen, freundlichen und warmherzigen Art überzeugt. Neben der Betreuung war das Vertrauensverhältnis ein wichtiger Punkt für uns, der uns nach dem ersten Treffen für Michelle entscheiden ließ. Wir hoffen auf viele schöne Stunden für unseren Hund Orca und Michelle!',
       designation: 'Tina',
       src: '/Orca.jpeg',
+      alt: 'Braun-beiger Hund mit weißer Brust sitzt zwischen grünen Pflanzen',
     },
     {
       name: 'Fiebi',
@@ -42,6 +47,7 @@ export function TestimonialsSection() {
         'Fiebi ist wirklich nicht leicht zu knacken, aber dich hat sie sofort ins Herz geschlossen. Man merkt sofort, wie liebevoll und kompetent du mit ihr umgehst – du machst einen ganz wunderbaren Job! Ich werde dich auf jeden Fall weiterempfehlen. ❤️',
       designation: 'Coco',
       src: '/Fiebi.jpeg',
+      alt: 'Kleiner schwarz-weißer Hund liegt auf heller Decke mit Plüschtier',
     },
   ]
 

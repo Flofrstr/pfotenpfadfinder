@@ -8,7 +8,7 @@ export function HeroSection() {
       <div className="absolute inset-0 z-0">
         <Image
           src="/pfotenpfadfinder.jpg?height=1080&width=1920"
-          alt="Glücklicher Hund mit Besitzer"
+          alt="Frau mit Brille kniet auf Waldweg zwischen zwei Hunden"
           fill
           className="object-cover"
           style={{ objectPosition: 'center 30%' }}
