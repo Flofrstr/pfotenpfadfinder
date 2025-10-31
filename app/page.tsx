@@ -1,21 +1,10 @@
 import type { Metadata } from 'next'
-import dynamic from 'next/dynamic'
 import { HeroSection } from '@/components/hero-section'
+import { ServicesSection } from '@/components/services-section'
 import { AboutSection } from '@/components/about-section'
-
-// Dynamically import below-the-fold components to reduce initial bundle size
-const ScrollProgress = dynamic(() =>
-  import('@/components/scroll-progress').then(mod => ({ default: mod.ScrollProgress })),
-)
-const ServicesSection = dynamic(() =>
-  import('@/components/services-section').then(mod => ({ default: mod.ServicesSection })),
-)
-const TestimonialsSection = dynamic(() =>
-  import('@/components/testimonials-section').then(mod => ({ default: mod.TestimonialsSection })),
-)
-const ContactSection = dynamic(() =>
-  import('@/components/contact-section').then(mod => ({ default: mod.ContactSection })),
-)
+import { TestimonialsSection } from '@/components/testimonials-section'
+import { ContactSection } from '@/components/contact-section'
+import { ScrollProgress } from '@/components/scroll-progress'
 
 export const metadata: Metadata = {
   alternates: {

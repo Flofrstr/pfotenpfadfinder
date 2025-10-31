@@ -46,7 +46,6 @@ export function AboutSection() {
                         fill
                         className="object-cover"
                         priority
-                        fetchPriority="high"
                       />
                     </div>
                     <div className="absolute right-6 bottom-6 left-6 flex items-center justify-center">
