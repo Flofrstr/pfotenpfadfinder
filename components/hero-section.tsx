@@ -13,6 +13,7 @@ export function HeroSection() {
           className="object-cover"
           style={{ objectPosition: 'center 30%' }}
           priority
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-white/70 dark:bg-black/40"></div>
       </div>
