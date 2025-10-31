@@ -33,6 +33,7 @@ export const metadata: Metadata = {
     'Gevelsberg',
     'Schwelm',
     'Ennepetal',
+    'Witten',
     'Hasslinghausen',
     'Wetter Ruhr',
     'Sprockhövel',

@@ -57,6 +57,10 @@ const structuredData = {
     },
     {
       '@type': 'City',
+      name: 'Witten',
+    },
+    {
+      '@type': 'City',
       name: 'Hasslinghausen',
     },
     {
