@@ -48,12 +48,12 @@ export function HeroSection() {
               Glückliche Pfoten, sorglose Stunden
             </span>
           </div>
-          <h1 className="text-foreground text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <p className="text-foreground font-gluten text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Mit Herz und Pfote an der Seite deines Lieblings
-          </h1>
-          <p className="text-foreground mx-auto max-w-2xl text-base sm:text-lg md:text-xl">
-            Hundebetreuung und Gassi-Service für zufriedene und ausgelastete Hunde
           </p>
+          <h1 className="text-foreground mx-auto max-w-2xl font-sans text-base sm:text-lg md:text-xl">
+            Professionelle Hundebetreuung und Gassi-Service in Gevelsberg
+          </h1>
           <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:justify-center">
             <Button
               asChild
