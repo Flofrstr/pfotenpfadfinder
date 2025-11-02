@@ -1,10 +1,34 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export function HeroSection() {
+  const [viewportHeight, setViewportHeight] = useState('100svh')
+
+  useEffect(() => {
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    const initialHeight = window.innerHeight
+
+    setViewportHeight(`${initialHeight}px`)
+
+    const handleResize = () => {
+      if (!isMobile) {
+        setViewportHeight(`${window.innerHeight}px`)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
-    <section className="relative flex h-screen w-full items-center justify-center overflow-hidden">
+    <section
+      className="relative flex w-full items-center justify-center overflow-hidden"
+      style={{ height: viewportHeight }}
+    >
       <div className="absolute inset-0 z-0">
         <Image
           src="/pfotenpfadfinder.jpg?height=1080&width=1920"

@@ -35,7 +35,7 @@ export function AboutSection() {
           <div className="grid gap-6 md:grid-cols-12 lg:gap-8">
             {/* Large image - takes up significant space */}
             <div className="md:col-span-5 lg:col-span-6">
-              <div className="sticky top-8">
+              <div className="md:sticky md:top-8">
                 <div className="group relative">
                   <div className="from-accent/20 to-accent/5 absolute -inset-4 rounded-3xl bg-gradient-to-br opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative rotate-2 transform bg-white p-6 pb-20 shadow-2xl transition-transform duration-500 group-hover:rotate-0">
