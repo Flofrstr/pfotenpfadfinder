@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export function HeroSection() {
   return (
-    <section className="relative flex min-h-[calc(100vh-4rem)] w-full items-center justify-center overflow-hidden">
+    <section className="relative flex min-h-[calc(100svh-4rem)] w-full items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
           src="/pfotenpfadfinder.jpg?height=1080&width=1920"
