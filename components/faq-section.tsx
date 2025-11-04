@@ -15,8 +15,8 @@ interface FAQCategory {
 }
 
 export function FAQSection() {
-  const [openCategory, setOpenCategory] = useState<number | null>(0)
-  const [openQuestion, setOpenQuestion] = useState<string | null>(null)
+  const [openCategories, setOpenCategories] = useState<Set<number>>(new Set([0]))
+  const [openQuestions, setOpenQuestions] = useState<Set<string>>(new Set())
   const questionRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
 
   const faqCategories: FAQCategory[] = [
@@ -138,14 +138,29 @@ export function FAQSection() {
   ]
 
   const toggleCategory = (index: number) => {
-    setOpenCategory(openCategory === index ? null : index)
-    setOpenQuestion(null)
+    setOpenCategories(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(index)) {
+        newSet.delete(index)
+      } else {
+        newSet.add(index)
+      }
+      return newSet
+    })
   }
 
   const toggleQuestion = useCallback(
     (question: string) => {
-      const isOpening = openQuestion !== question
-      setOpenQuestion(openQuestion === question ? null : question)
+      const isOpening = !openQuestions.has(question)
+      setOpenQuestions(prev => {
+        const newSet = new Set(prev)
+        if (newSet.has(question)) {
+          newSet.delete(question)
+        } else {
+          newSet.add(question)
+        }
+        return newSet
+      })
 
       // Scroll the question into view after opening with a delay for animation
       if (isOpening && questionRefs.current[question]) {
@@ -167,7 +182,7 @@ export function FAQSection() {
         }, 100)
       }
     },
-    [openQuestion],
+    [openQuestions],
   )
 
   return (
@@ -215,7 +230,9 @@ export function FAQSection() {
                   <div
                     className="shrink-0 transition-transform duration-200"
                     style={{
-                      transform: openCategory === categoryIndex ? 'rotate(180deg)' : 'rotate(0deg)',
+                      transform: openCategories.has(categoryIndex)
+                        ? 'rotate(180deg)'
+                        : 'rotate(0deg)',
                     }}
                   >
                     <ChevronDown className="text-accent h-6 w-6" />
@@ -223,7 +240,7 @@ export function FAQSection() {
                 </button>
 
                 {/* Category Questions */}
-                {openCategory === categoryIndex && (
+                {openCategories.has(categoryIndex) && (
                   <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
                     {category.items.map((item, itemIndex) => (
                       <div
@@ -243,16 +260,15 @@ export function FAQSection() {
                           <div
                             className="shrink-0 transition-transform duration-200"
                             style={{
-                              transform:
-                                openQuestion === `${categoryIndex}-${itemIndex}`
-                                  ? 'rotate(180deg)'
-                                  : 'rotate(0deg)',
+                              transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
+                                ? 'rotate(180deg)'
+                                : 'rotate(0deg)',
                             }}
                           >
                             <ChevronDown className="text-accent h-5 w-5" />
                           </div>
                         </button>
-                        {openQuestion === `${categoryIndex}-${itemIndex}` && (
+                        {openQuestions.has(`${categoryIndex}-${itemIndex}`) && (
                           <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
                             <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
                               {item.answer}
