@@ -149,41 +149,17 @@ export function FAQSection() {
     })
   }
 
-  const toggleQuestion = useCallback(
-    (question: string) => {
-      const isOpening = !openQuestions.has(question)
-      setOpenQuestions(prev => {
-        const newSet = new Set(prev)
-        if (newSet.has(question)) {
-          newSet.delete(question)
-        } else {
-          newSet.add(question)
-        }
-        return newSet
-      })
-
-      // Scroll the question into view after opening with a delay for animation
-      if (isOpening && questionRefs.current[question]) {
-        setTimeout(() => {
-          const element = questionRefs.current[question]
-          if (element) {
-            const elementRect = element.getBoundingClientRect()
-            const offset = 80 // Abstand vom oberen Bildschirmrand in Pixeln
-
-            // Nur scrollen, wenn das Element zu nah am oberen Rand ist oder darüber
-            if (elementRect.top < offset) {
-              const scrollTop = window.pageYOffset + elementRect.top - offset
-              window.scrollTo({
-                top: scrollTop,
-                behavior: 'smooth',
-              })
-            }
-          }
-        }, 100)
+  const toggleQuestion = useCallback((question: string) => {
+    setOpenQuestions(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(question)) {
+        newSet.delete(question)
+      } else {
+        newSet.add(question)
       }
-    },
-    [openQuestions],
-  )
+      return newSet
+    })
+  }, [])
 
   return (
     <section
@@ -227,30 +203,20 @@ export function FAQSection() {
                     </div>
                     <h3 className="text-xl font-bold md:text-2xl">{category.title}</h3>
                   </div>
-                  <div
-                    className="shrink-0 transition-transform"
-                    style={{
-                      transform: openCategories.has(categoryIndex)
-                        ? 'rotate(180deg)'
-                        : 'rotate(0deg)',
-                      transitionDuration: openCategories.has(categoryIndex) ? '600ms' : '350ms',
-                      transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-                    }}
-                  >
-                    <ChevronDown className="text-accent h-6 w-6" />
-                  </div>
+                  <ChevronDown
+                    className={`text-accent h-6 w-6 shrink-0 transition-transform duration-200 ease-out ${
+                      openCategories.has(categoryIndex) ? 'rotate-180' : ''
+                    }`}
+                  />
                 </button>
 
                 {/* Category Questions */}
                 <div
-                  className={`overflow-hidden ${
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
                     openCategories.has(categoryIndex)
                       ? 'max-h-[3000px] opacity-100'
                       : 'max-h-0 opacity-0'
                   }`}
-                  style={{
-                    transition: `max-height ${openCategories.has(categoryIndex) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1), opacity ${openCategories.has(categoryIndex) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1)`,
-                  }}
                 >
                   <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
                     {category.items.map((item, itemIndex) => (
@@ -268,30 +234,18 @@ export function FAQSection() {
                           <p className="flex-1 leading-snug font-semibold wrap-break-word">
                             {item.question}
                           </p>
-                          <div
-                            className="shrink-0 transition-transform"
-                            style={{
-                              transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                                ? 'rotate(180deg)'
-                                : 'rotate(0deg)',
-                              transitionDuration: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                                ? '600ms'
-                                : '350ms',
-                              transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-                            }}
-                          >
-                            <ChevronDown className="text-accent h-5 w-5" />
-                          </div>
+                          <ChevronDown
+                            className={`text-accent h-5 w-5 shrink-0 transition-transform duration-200 ease-out ${
+                              openQuestions.has(`${categoryIndex}-${itemIndex}`) ? 'rotate-180' : ''
+                            }`}
+                          />
                         </button>
                         <div
-                          className={`overflow-hidden ${
+                          className={`overflow-hidden transition-all duration-300 ease-in-out ${
                             openQuestions.has(`${categoryIndex}-${itemIndex}`)
                               ? 'max-h-[800px] opacity-100'
                               : 'max-h-0 opacity-0'
                           }`}
-                          style={{
-                            transition: `max-height ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1), opacity ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1)`,
-                          }}
                         >
                           <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
                             <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">

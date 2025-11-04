@@ -3,7 +3,6 @@
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
-import { useMeasure } from 'react-use'
 
 import { useState } from 'react'
 
@@ -22,7 +21,6 @@ const getRotation = (index: number) => {
 
 export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimonial[] }) => {
   const [active, setActive] = useState(0)
-  const [ref, { height }] = useMeasure<HTMLDivElement>()
 
   const handleNext = () => {
     setActive(prev => (prev + 1) % testimonials.length)
@@ -58,7 +56,6 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     z: isActive(index) ? 0 : -100,
                     rotate: isActive(index) ? 0 : getRotation(index),
                     zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
                   }}
                   exit={{
                     opacity: 0,
@@ -67,8 +64,8 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     rotate: getRotation(index),
                   }}
                   transition={{
-                    duration: 0.4,
-                    ease: 'easeInOut',
+                    duration: 0.3,
+                    ease: 'easeOut',
                   }}
                   className="absolute inset-0 origin-bottom"
                 >
@@ -133,30 +130,23 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
         </div>
 
         {/* Text Section */}
-        <motion.div
-          animate={{ height }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
-          className="order-3 flex flex-col py-4 md:order-2"
-        >
-          <div ref={ref}>
+        <div className="order-3 flex flex-col py-4 md:order-2">
+          <div>
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
                 initial={{
-                  y: 20,
                   opacity: 0,
                 }}
                 animate={{
-                  y: 0,
                   opacity: 1,
                 }}
                 exit={{
-                  y: -20,
                   opacity: 0,
                 }}
                 transition={{
                   duration: 0.2,
-                  ease: 'easeInOut',
+                  ease: 'easeOut',
                 }}
               >
                 <div className="mb-6">
@@ -164,42 +154,13 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     {testimonials[active].designation}
                   </h3>
                 </div>
-                <motion.p className="text-foreground text-base leading-relaxed md:text-lg">
-                  {(() => {
-                    const words = testimonials[active].quote.split(' ')
-                    const wordCount = words.length
-                    const baseDelay = Math.max(0.002, 0.015 - wordCount * 0.0001)
-                    const duration = 0.12
-
-                    return words.map((word, index) => (
-                      <motion.span
-                        key={index}
-                        initial={{
-                          filter: 'blur(10px)',
-                          opacity: 0,
-                          y: 5,
-                        }}
-                        animate={{
-                          filter: 'blur(0px)',
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        transition={{
-                          duration,
-                          ease: 'easeInOut',
-                          delay: baseDelay * index,
-                        }}
-                        className="inline-block"
-                      >
-                        {word}&nbsp;
-                      </motion.span>
-                    ))
-                  })()}
-                </motion.p>
+                <p className="text-foreground text-base leading-relaxed md:text-lg">
+                  {testimonials[active].quote}
+                </p>
               </motion.div>
             </AnimatePresence>
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   )
