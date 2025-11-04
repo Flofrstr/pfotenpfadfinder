@@ -228,7 +228,7 @@ export function FAQSection() {
                     <h3 className="text-xl font-bold md:text-2xl">{category.title}</h3>
                   </div>
                   <div
-                    className="shrink-0 transition-transform duration-200"
+                    className="shrink-0 transition-transform duration-300 ease-in-out"
                     style={{
                       transform: openCategories.has(categoryIndex)
                         ? 'rotate(180deg)'
@@ -240,45 +240,61 @@ export function FAQSection() {
                 </button>
 
                 {/* Category Questions */}
-                {openCategories.has(categoryIndex) && (
-                  <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
-                    {category.items.map((item, itemIndex) => (
-                      <div
-                        key={itemIndex}
-                        className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
-                      >
-                        <button
-                          ref={el => {
-                            questionRefs.current[`${categoryIndex}-${itemIndex}`] = el
-                          }}
-                          onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
-                          className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left transition-colors md:p-4"
+                <div
+                  className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+                  style={{
+                    gridTemplateRows: openCategories.has(categoryIndex) ? '1fr' : '0fr',
+                  }}
+                >
+                  <div className="overflow-hidden">
+                    <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
+                      {category.items.map((item, itemIndex) => (
+                        <div
+                          key={itemIndex}
+                          className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
                         >
-                          <p className="flex-1 leading-snug font-semibold wrap-break-word">
-                            {item.question}
-                          </p>
+                          <button
+                            ref={el => {
+                              questionRefs.current[`${categoryIndex}-${itemIndex}`] = el
+                            }}
+                            onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
+                            className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left transition-colors md:p-4"
+                          >
+                            <p className="flex-1 leading-snug font-semibold wrap-break-word">
+                              {item.question}
+                            </p>
+                            <div
+                              className="shrink-0 transition-transform duration-300 ease-in-out"
+                              style={{
+                                transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
+                                  ? 'rotate(180deg)'
+                                  : 'rotate(0deg)',
+                              }}
+                            >
+                              <ChevronDown className="text-accent h-5 w-5" />
+                            </div>
+                          </button>
                           <div
-                            className="shrink-0 transition-transform duration-200"
+                            className="grid transition-[grid-template-rows] duration-300 ease-in-out"
                             style={{
-                              transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                                ? 'rotate(180deg)'
-                                : 'rotate(0deg)',
+                              gridTemplateRows: openQuestions.has(`${categoryIndex}-${itemIndex}`)
+                                ? '1fr'
+                                : '0fr',
                             }}
                           >
-                            <ChevronDown className="text-accent h-5 w-5" />
+                            <div className="overflow-hidden">
+                              <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
+                                <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
+                                  {item.answer}
+                                </p>
+                              </div>
+                            </div>
                           </div>
-                        </button>
-                        {openQuestions.has(`${categoryIndex}-${itemIndex}`) && (
-                          <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
-                            <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
-                              {item.answer}
-                            </p>
-                          </div>
-                        )}
-                      </div>
-                    ))}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
