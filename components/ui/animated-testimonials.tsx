@@ -67,8 +67,8 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     rotate: getRotation(index),
                   }}
                   transition={{
-                    duration: 0.4,
-                    ease: 'easeInOut',
+                    duration: 0.3,
+                    ease: 'easeOut',
                   }}
                   className="absolute inset-0 origin-bottom"
                 >
@@ -135,7 +135,7 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
         {/* Text Section */}
         <motion.div
           animate={{ height }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
           className="order-3 flex flex-col py-4 md:order-2"
         >
           <div ref={ref}>
@@ -155,8 +155,8 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                   opacity: 0,
                 }}
                 transition={{
-                  duration: 0.2,
-                  ease: 'easeInOut',
+                  duration: 0.15,
+                  ease: 'easeOut',
                 }}
               >
                 <div className="mb-6">
@@ -164,37 +164,22 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     {testimonials[active].designation}
                   </h3>
                 </div>
-                <motion.p className="text-foreground text-base leading-relaxed md:text-lg">
-                  {(() => {
-                    const words = testimonials[active].quote.split(' ')
-                    const wordCount = words.length
-                    const baseDelay = Math.max(0.002, 0.015 - wordCount * 0.0001)
-                    const duration = 0.12
-
-                    return words.map((word, index) => (
-                      <motion.span
-                        key={index}
-                        initial={{
-                          filter: 'blur(10px)',
-                          opacity: 0,
-                          y: 5,
-                        }}
-                        animate={{
-                          filter: 'blur(0px)',
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        transition={{
-                          duration,
-                          ease: 'easeInOut',
-                          delay: baseDelay * index,
-                        }}
-                        className="inline-block"
-                      >
-                        {word}&nbsp;
-                      </motion.span>
-                    ))
-                  })()}
+                <motion.p
+                  className="text-foreground text-base leading-relaxed md:text-lg"
+                  initial={{
+                    opacity: 0,
+                    y: 10,
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                  }}
+                  transition={{
+                    duration: 0.3,
+                    ease: 'easeOut',
+                  }}
+                >
+                  {testimonials[active].quote}
                 </motion.p>
               </motion.div>
             </AnimatePresence>

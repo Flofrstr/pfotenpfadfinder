@@ -2,7 +2,7 @@
 
 import type React from 'react'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 // Using the provided Font Awesome paw SVG
 function PawPrint({ className, style }: { className?: string; style?: React.CSSProperties }) {
@@ -23,18 +23,36 @@ function PawPrint({ className, style }: { className?: string; style?: React.CSSP
 
 export function ScrollProgress() {
   const [scrollProgress, setScrollProgress] = useState(0)
+  const rafRef = useRef<number | null>(null)
+  const lastUpdateRef = useRef<number>(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      const totalHeight =
-        document.documentElement.scrollHeight - document.documentElement.clientHeight
-      const progress = (window.scrollY / totalHeight) * 100
-      setScrollProgress(Math.min(progress, 100))
+      // Cancel any pending animation frame
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current)
+      }
+
+      // Throttle updates to max 60fps (16ms)
+      rafRef.current = requestAnimationFrame(() => {
+        const now = Date.now()
+        if (now - lastUpdateRef.current >= 16) {
+          const totalHeight =
+            document.documentElement.scrollHeight - document.documentElement.clientHeight
+          const progress = (window.scrollY / totalHeight) * 100
+          setScrollProgress(Math.min(progress, 100))
+          lastUpdateRef.current = now
+        }
+      })
     }
 
-    window.addEventListener('scroll', handleScroll)
+    // Add passive event listener for better scroll performance
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      if (rafRef.current !== null) {
+        cancelAnimationFrame(rafRef.current)
+      }
     }
   }, [])
 
