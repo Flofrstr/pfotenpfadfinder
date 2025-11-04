@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState } from 'react'
 import { ChevronDown, Shield, Euro, GraduationCap, Clock, CheckCircle2 } from 'lucide-react'
 
 interface FAQItem {
@@ -17,7 +17,6 @@ interface FAQCategory {
 export function FAQSection() {
   const [openCategories, setOpenCategories] = useState<Set<number>>(new Set([0]))
   const [openQuestions, setOpenQuestions] = useState<Set<string>>(new Set())
-  const questionRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({})
 
   const faqCategories: FAQCategory[] = [
     {
@@ -149,41 +148,17 @@ export function FAQSection() {
     })
   }
 
-  const toggleQuestion = useCallback(
-    (question: string) => {
-      const isOpening = !openQuestions.has(question)
-      setOpenQuestions(prev => {
-        const newSet = new Set(prev)
-        if (newSet.has(question)) {
-          newSet.delete(question)
-        } else {
-          newSet.add(question)
-        }
-        return newSet
-      })
-
-      // Scroll the question into view after opening with a delay for animation
-      if (isOpening && questionRefs.current[question]) {
-        setTimeout(() => {
-          const element = questionRefs.current[question]
-          if (element) {
-            const elementRect = element.getBoundingClientRect()
-            const offset = 80 // Abstand vom oberen Bildschirmrand in Pixeln
-
-            // Nur scrollen, wenn das Element zu nah am oberen Rand ist oder darüber
-            if (elementRect.top < offset) {
-              const scrollTop = window.pageYOffset + elementRect.top - offset
-              window.scrollTo({
-                top: scrollTop,
-                behavior: 'auto', // Changed from 'smooth' to 'auto' for better mobile performance
-              })
-            }
-          }
-        }, 50) // Reduced delay from 100ms to 50ms
+  const toggleQuestion = (question: string) => {
+    setOpenQuestions(prev => {
+      const newSet = new Set(prev)
+      if (newSet.has(question)) {
+        newSet.delete(question)
+      } else {
+        newSet.add(question)
       }
-    },
-    [openQuestions],
-  )
+      return newSet
+    })
+  }
 
   return (
     <section
@@ -214,12 +189,12 @@ export function FAQSection() {
             {faqCategories.map((category, categoryIndex) => (
               <div
                 key={categoryIndex}
-                className="border-accent/20 bg-card overflow-hidden rounded-xl border shadow-sm transition-all hover:shadow-md"
+                className="border-accent/20 bg-card overflow-hidden rounded-xl border shadow-sm"
               >
                 {/* Category Header */}
                 <button
                   onClick={() => toggleCategory(categoryIndex)}
-                  className="hover:bg-accent/5 flex w-full items-center justify-between gap-3 p-4 text-left transition-colors md:gap-4 md:p-6"
+                  className="hover:bg-accent/5 flex w-full items-center justify-between gap-3 p-4 text-left md:gap-4 md:p-6"
                 >
                   <div className="flex items-center gap-2 md:gap-3">
                     <div className="bg-accent/10 text-accent flex shrink-0 items-center justify-center rounded-lg p-2.5">
@@ -227,30 +202,15 @@ export function FAQSection() {
                     </div>
                     <h3 className="text-xl font-bold md:text-2xl">{category.title}</h3>
                   </div>
-                  <div
-                    className="shrink-0 transition-transform duration-300"
-                    style={{
-                      transform: openCategories.has(categoryIndex)
-                        ? 'rotate(180deg)'
-                        : 'rotate(0deg)',
-                    }}
-                  >
-                    <ChevronDown className="text-accent h-6 w-6" />
+                  <div className="shrink-0">
+                    <ChevronDown
+                      className={`text-accent h-6 w-6 ${openCategories.has(categoryIndex) ? 'rotate-180' : ''}`}
+                    />
                   </div>
                 </button>
 
                 {/* Category Questions */}
-                <div
-                  className={`overflow-hidden transition-all ${
-                    openCategories.has(categoryIndex)
-                      ? 'max-h-[3000px] opacity-100'
-                      : 'max-h-0 opacity-0'
-                  }`}
-                  style={{
-                    transitionDuration: openCategories.has(categoryIndex) ? '400ms' : '250ms',
-                    transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-                  }}
-                >
+                {openCategories.has(categoryIndex) && (
                   <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
                     {category.items.map((item, itemIndex) => (
                       <div
@@ -258,49 +218,29 @@ export function FAQSection() {
                         className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
                       >
                         <button
-                          ref={el => {
-                            questionRefs.current[`${categoryIndex}-${itemIndex}`] = el
-                          }}
                           onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
-                          className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left transition-colors md:p-4"
+                          className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left md:p-4"
                         >
                           <p className="flex-1 leading-snug font-semibold wrap-break-word">
                             {item.question}
                           </p>
-                          <div
-                            className="shrink-0 transition-transform duration-300"
-                            style={{
-                              transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                                ? 'rotate(180deg)'
-                                : 'rotate(0deg)',
-                            }}
-                          >
-                            <ChevronDown className="text-accent h-5 w-5" />
+                          <div className="shrink-0">
+                            <ChevronDown
+                              className={`text-accent h-5 w-5 ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? 'rotate-180' : ''}`}
+                            />
                           </div>
                         </button>
-                        <div
-                          className={`overflow-hidden transition-all ${
-                            openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                              ? 'max-h-[800px] opacity-100'
-                              : 'max-h-0 opacity-0'
-                          }`}
-                          style={{
-                            transitionDuration: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                              ? '350ms'
-                              : '200ms',
-                            transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
-                          }}
-                        >
+                        {openQuestions.has(`${categoryIndex}-${itemIndex}`) && (
                           <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
                             <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
                               {item.answer}
                             </p>
                           </div>
-                        </div>
+                        )}
                       </div>
                     ))}
                   </div>
-                </div>
+                )}
               </div>
             ))}
           </div>

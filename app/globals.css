@@ -133,33 +133,9 @@
     @apply border-border;
   }
   html {
-    /* Only enable smooth scroll on non-mobile devices for better performance */
-    @media (hover: hover) and (pointer: fine) {
-      @apply scroll-smooth;
-    }
+    @apply scroll-smooth;
   }
   body {
     @apply bg-background text-foreground;
-  }
-
-  /* Performance optimizations for animations */
-  [class*='transition-'],
-  [class*='animate-'] {
-    /* Use GPU acceleration for transforms */
-    transform: translateZ(0);
-    backface-visibility: hidden;
-    perspective: 1000px;
-  }
-
-  /* Reduce motion for users who prefer it */
-  @media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-      animation-duration: 0.01ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
-      scroll-behavior: auto !important;
-    }
   }
 }

@@ -20,18 +20,8 @@ export function HeroSection() {
       }
     }
 
-    // Add passive event listener and debounce for better performance
-    let timeoutId: number | undefined
-    const debouncedResize = () => {
-      clearTimeout(timeoutId)
-      timeoutId = window.setTimeout(handleResize, 150)
-    }
-
-    window.addEventListener('resize', debouncedResize, { passive: true })
-    return () => {
-      window.removeEventListener('resize', debouncedResize)
-      clearTimeout(timeoutId)
-    }
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
   }, [])
 
   return (
