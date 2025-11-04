@@ -228,11 +228,13 @@ export function FAQSection() {
                     <h3 className="text-xl font-bold md:text-2xl">{category.title}</h3>
                   </div>
                   <div
-                    className="shrink-0 transition-transform duration-200 ease-out"
+                    className="shrink-0 transition-transform"
                     style={{
                       transform: openCategories.has(categoryIndex)
                         ? 'rotate(180deg)'
                         : 'rotate(0deg)',
+                      transitionDuration: openCategories.has(categoryIndex) ? '600ms' : '350ms',
+                      transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
                     }}
                   >
                     <ChevronDown className="text-accent h-6 w-6" />
@@ -241,13 +243,16 @@ export function FAQSection() {
 
                 {/* Category Questions */}
                 <div
-                  className={`grid transition-all duration-300 ease-out ${
+                  className={`overflow-hidden ${
                     openCategories.has(categoryIndex)
-                      ? 'grid-rows-[1fr] opacity-100'
-                      : 'grid-rows-[0fr] opacity-0'
+                      ? 'max-h-[3000px] opacity-100'
+                      : 'max-h-0 opacity-0'
                   }`}
+                  style={{
+                    transition: `max-height ${openCategories.has(categoryIndex) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1), opacity ${openCategories.has(categoryIndex) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1)`,
+                  }}
                 >
-                  <div className="border-accent/10 space-y-3 overflow-hidden border-t p-3 md:p-6">
+                  <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
                     {category.items.map((item, itemIndex) => (
                       <div
                         key={itemIndex}
@@ -264,24 +269,31 @@ export function FAQSection() {
                             {item.question}
                           </p>
                           <div
-                            className="shrink-0 transition-transform duration-200 ease-out"
+                            className="shrink-0 transition-transform"
                             style={{
                               transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
                                 ? 'rotate(180deg)'
                                 : 'rotate(0deg)',
+                              transitionDuration: openQuestions.has(`${categoryIndex}-${itemIndex}`)
+                                ? '600ms'
+                                : '350ms',
+                              transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
                             }}
                           >
                             <ChevronDown className="text-accent h-5 w-5" />
                           </div>
                         </button>
                         <div
-                          className={`grid transition-all duration-300 ease-out ${
+                          className={`overflow-hidden ${
                             openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                              ? 'grid-rows-[1fr] opacity-100'
-                              : 'grid-rows-[0fr] opacity-0'
+                              ? 'max-h-[800px] opacity-100'
+                              : 'max-h-0 opacity-0'
                           }`}
+                          style={{
+                            transition: `max-height ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1), opacity ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1)`,
+                          }}
                         >
-                          <div className="border-accent/10 overflow-hidden border-t px-3 pt-3 pb-4 md:px-4">
+                          <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
                             <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
                               {item.answer}
                             </p>
