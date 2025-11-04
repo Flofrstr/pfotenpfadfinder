@@ -34,16 +34,22 @@ export function Header() {
           <nav className="hidden flex-1 items-center justify-center lg:flex">
             <div className="flex items-center gap-6">
               <Link
+                href="/#about"
+                className="hover:text-primary text-sm font-medium transition-colors"
+              >
+                Über mich
+              </Link>
+              <Link
                 href="/#services"
                 className="hover:text-primary text-sm font-medium transition-colors"
               >
                 Leistungen
               </Link>
               <Link
-                href="/#about"
+                href="/#faq"
                 className="hover:text-primary text-sm font-medium transition-colors"
               >
-                Über mich
+                FAQ
               </Link>
               <Link
                 href="/#kontakt"
@@ -174,6 +180,15 @@ export function Header() {
                   {/* Nav Links at Bottom */}
                   <nav className="mb-16 flex flex-col gap-6">
                     <Link
+                      href="/#about"
+                      className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
+                      onClick={() => {
+                        setIsMenuOpen(false)
+                      }}
+                    >
+                      Über mich
+                    </Link>
+                    <Link
                       href="/#services"
                       className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
                       onClick={() => {
@@ -183,13 +198,13 @@ export function Header() {
                       Leistungen
                     </Link>
                     <Link
-                      href="/#about"
+                      href="/#faq"
                       className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
                       onClick={() => {
                         setIsMenuOpen(false)
                       }}
                     >
-                      Über mich
+                      FAQ
                     </Link>
                     <Link
                       href="/#kontakt"

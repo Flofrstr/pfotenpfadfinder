@@ -20,7 +20,7 @@ const gluten = Gluten({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://pfotenpfadfinder-hundebetreuung.de'),
-  title: 'Hundebetreuung Gevelsberg | Pfotenpfadfinder - Gassi-Service & Hundesitting',
+  title: 'Pfotenpfadfinder | Hundebetreuung Gevelsberg & Gassi-Service',
   description:
     'Hundebetreuung in Gevelsberg und Umgebung. Gassi-Service, Tagesbetreuung & Urlaubsbetreuung für Ihren Hund. Liebevoll und zuverlässig.',
   keywords: [
@@ -66,13 +66,13 @@ export const metadata: Metadata = {
     locale: 'de_DE',
     url: 'https://pfotenpfadfinder-hundebetreuung.de',
     siteName: 'Pfotenpfadfinder',
-    title: 'Hundebetreuung Gevelsberg | Pfotenpfadfinder - Gassi-Service & Hundesitting',
+    title: 'Pfotenpfadfinder | Hundebetreuung Gevelsberg & Gassi-Service',
     description:
       'Hundebetreuung in Gevelsberg und Umgebung. Gassi-Service, Tagesbetreuung & Urlaubsbetreuung für Ihren Hund. Liebevoll und zuverlässig.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Hundebetreuung Gevelsberg | Pfotenpfadfinder - Gassi-Service & Hundesitting',
+    title: 'Pfotenpfadfinder | Hundebetreuung Gevelsberg & Gassi-Service',
     description:
       'Hundebetreuung in Gevelsberg und Umgebung. Gassi-Service, Tagesbetreuung & Urlaubsbetreuung für Ihren Hund.',
   },

@@ -3,6 +3,14 @@ import { AnimatedTestimonials } from '@/components/ui/animated-testimonials'
 export function TestimonialsSection() {
   const testimonials = [
     {
+      name: 'Wilma',
+      quote:
+        'Liebe Michelle, vielen Dank für deine tolle Betreuung über das letzte Wochenende! Besser kann es gar nicht laufen – vom lockeren und gleichzeitig professionellen Kennenlernen über die Checkliste vorab bis hin zum Wochenende selbst: Es war alles maximal toll! Kleine Updates zwischendurch per WhatsApp, dazu eine total flexible Bringzeit und obendrauf noch eine spontane Verlängerung um eine Nacht. Du hast alles möglich gemacht und mir meine freie Hunde-Zeit maximal sorglos gestaltet. Vielen Dank für deine tolle Art, deine super Betreuung und einfach für den entspannten und fröhlichen Umgang miteinander 🥰 Ich selbst war sehr beruhigt und hatte vollkommenes Vertrauen, dir meine Wilma zu überlassen. Alles war rundum perfekt. Wilma und ich vergeben 5/5 Knochen: 🦴🦴🦴🦴🦴 Liebe Grüße 😇',
+      designation: 'Fabian',
+      src: '/Wilma.jpeg',
+      alt: 'Heller Retriever sitzt im grünen Gras mit pinker Leine',
+    },
+    {
       name: 'Pino',
       quote: 'Klappt alles super! Pino und ich sind super zufrieden - sehr zu empfehlen! ❤️',
       designation: 'Alexandra',
@@ -16,14 +24,6 @@ export function TestimonialsSection() {
       designation: 'Franziska & Riccardo',
       src: '/Filou.jpeg',
       alt: 'Schwarz-weißer Hund mit Stehohren blickt auf Waldweg nach oben',
-    },
-    {
-      name: 'Wilma',
-      quote:
-        'Liebe Michelle, vielen Dank für deine tolle Betreuung über das letzte Wochenende! Besser kann es gar nicht laufen – vom lockeren und gleichzeitig professionellen Kennenlernen über die Checkliste vorab bis hin zum Wochenende selbst: Es war alles maximal toll! Kleine Updates zwischendurch per WhatsApp, dazu eine total flexible Bringzeit und obendrauf noch eine spontane Verlängerung um eine Nacht. Du hast alles möglich gemacht und mir meine freie Hunde-Zeit maximal sorglos gestaltet. Vielen Dank für deine tolle Art, deine super Betreuung und einfach für den entspannten und fröhlichen Umgang miteinander 🥰 Ich selbst war sehr beruhigt und hatte vollkommenes Vertrauen, dir meine Wilma zu überlassen. Alles war rundum perfekt. Wilma und ich vergeben 5/5 Knochen: 🦴🦴🦴🦴🦴 Liebe Grüße 😇',
-      designation: 'Fabian',
-      src: '/Wilma.jpeg',
-      alt: 'Heller Retriever sitzt im grünen Gras mit pinker Leine',
     },
     {
       name: 'Bea u. Günni',
@@ -56,10 +56,10 @@ export function TestimonialsSection() {
       <div className="container px-4 md:px-6">
         <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
+            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
               Das sagen meine Kunden
             </h2>
-            <p className="text-foreground/80 max-w-[700px] md:text-xl">
+            <p className="text-foreground/70 max-w-[700px] md:text-lg">
               Erfahre, was Hundebesitzer über meinen Service denken
             </p>
           </div>
