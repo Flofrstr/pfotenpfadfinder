@@ -228,12 +228,13 @@ export function FAQSection() {
                     <h3 className="text-xl font-bold md:text-2xl">{category.title}</h3>
                   </div>
                   <div
-                    className="shrink-0 transition-transform ease-in-out"
+                    className="shrink-0 transition-transform"
                     style={{
                       transform: openCategories.has(categoryIndex)
-                        ? 'rotate(180deg) translateZ(0)'
-                        : 'rotate(0deg) translateZ(0)',
-                      transitionDuration: openCategories.has(categoryIndex) ? '700ms' : '400ms',
+                        ? 'rotate(180deg)'
+                        : 'rotate(0deg)',
+                      transitionDuration: openCategories.has(categoryIndex) ? '600ms' : '350ms',
+                      transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
                     }}
                   >
                     <ChevronDown className="text-accent h-6 w-6" />
@@ -242,14 +243,13 @@ export function FAQSection() {
 
                 {/* Category Questions */}
                 <div
-                  className={`overflow-hidden transition-all ease-in-out ${
+                  className={`overflow-hidden ${
                     openCategories.has(categoryIndex)
                       ? 'max-h-[3000px] opacity-100'
                       : 'max-h-0 opacity-0'
                   }`}
                   style={{
-                    transform: 'translateZ(0)',
-                    transitionDuration: openCategories.has(categoryIndex) ? '700ms' : '400ms',
+                    transition: `max-height ${openCategories.has(categoryIndex) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1), opacity ${openCategories.has(categoryIndex) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1)`,
                   }}
                 >
                   <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
@@ -269,30 +269,28 @@ export function FAQSection() {
                             {item.question}
                           </p>
                           <div
-                            className="shrink-0 transition-transform ease-in-out"
+                            className="shrink-0 transition-transform"
                             style={{
                               transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                                ? 'rotate(180deg) translateZ(0)'
-                                : 'rotate(0deg) translateZ(0)',
+                                ? 'rotate(180deg)'
+                                : 'rotate(0deg)',
                               transitionDuration: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                                ? '700ms'
-                                : '400ms',
+                                ? '600ms'
+                                : '350ms',
+                              transitionTimingFunction: 'cubic-bezier(0.4, 0.0, 0.2, 1)',
                             }}
                           >
                             <ChevronDown className="text-accent h-5 w-5" />
                           </div>
                         </button>
                         <div
-                          className={`overflow-hidden transition-all ease-in-out ${
+                          className={`overflow-hidden ${
                             openQuestions.has(`${categoryIndex}-${itemIndex}`)
                               ? 'max-h-[800px] opacity-100'
                               : 'max-h-0 opacity-0'
                           }`}
                           style={{
-                            transform: 'translateZ(0)',
-                            transitionDuration: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                              ? '700ms'
-                              : '400ms',
+                            transition: `max-height ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1), opacity ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? '600ms' : '350ms'} cubic-bezier(0.4, 0.0, 0.2, 1)`,
                           }}
                         >
                           <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
