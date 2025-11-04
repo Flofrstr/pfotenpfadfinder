@@ -154,7 +154,7 @@ export function FAQSection() {
           const element = questionRefs.current[question]
           if (element) {
             const elementRect = element.getBoundingClientRect()
-            const offset = 100 // Abstand vom oberen Bildschirmrand in Pixeln
+            const offset = 80 // Abstand vom oberen Bildschirmrand in Pixeln
 
             // Nur scrollen, wenn das Element zu nah am oberen Rand ist oder darüber
             if (elementRect.top < offset) {
@@ -165,7 +165,7 @@ export function FAQSection() {
               })
             }
           }
-        }, 150)
+        }, 100)
       }
     },
     [openQuestion],
@@ -215,7 +215,7 @@ export function FAQSection() {
                   </div>
                   <motion.div
                     animate={{ rotate: openCategory === categoryIndex ? 180 : 0 }}
-                    transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                    transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
                     className="shrink-0"
                   >
                     <ChevronDown className="text-accent h-6 w-6" />
@@ -226,28 +226,19 @@ export function FAQSection() {
                 <AnimatePresence>
                   {openCategory === categoryIndex && (
                     <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
+                      initial={{ height: 0 }}
+                      animate={{ height: 'auto' }}
+                      exit={{ height: 0 }}
                       transition={{
-                        height: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
-                        opacity: { duration: 0.3, ease: 'easeInOut' },
+                        duration: 0.2,
+                        ease: [0.4, 0, 0.2, 1],
                       }}
                       className="overflow-hidden"
                     >
-                      <motion.div
-                        initial={{ y: -15, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -15, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: 'easeOut' }}
-                        className="border-accent/10 space-y-3 border-t p-3 md:p-6"
-                      >
+                      <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
                         {category.items.map((item, itemIndex) => (
-                          <motion.div
+                          <div
                             key={itemIndex}
-                            initial={{ opacity: 0, scale: 0.95 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 0.2, delay: itemIndex * 0.05 }}
                             className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
                           >
                             <button
@@ -265,7 +256,7 @@ export function FAQSection() {
                                   rotate:
                                     openQuestion === `${categoryIndex}-${itemIndex}` ? 180 : 0,
                                 }}
-                                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                                transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
                                 className="shrink-0"
                               >
                                 <ChevronDown className="text-accent h-5 w-5" />
@@ -274,32 +265,26 @@ export function FAQSection() {
                             <AnimatePresence>
                               {openQuestion === `${categoryIndex}-${itemIndex}` && (
                                 <motion.div
-                                  initial={{ height: 0, opacity: 0 }}
-                                  animate={{ height: 'auto', opacity: 1 }}
-                                  exit={{ height: 0, opacity: 0 }}
+                                  initial={{ height: 0 }}
+                                  animate={{ height: 'auto' }}
+                                  exit={{ height: 0 }}
                                   transition={{
-                                    height: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
-                                    opacity: { duration: 0.25, ease: 'easeInOut' },
+                                    duration: 0.15,
+                                    ease: [0.4, 0, 0.2, 1],
                                   }}
                                   className="overflow-hidden"
                                 >
-                                  <motion.div
-                                    initial={{ y: -10, opacity: 0 }}
-                                    animate={{ y: 0, opacity: 1 }}
-                                    exit={{ y: -10, opacity: 0 }}
-                                    transition={{ duration: 0.25, ease: 'easeOut' }}
-                                    className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4"
-                                  >
+                                  <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
                                     <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
                                       {item.answer}
                                     </p>
-                                  </motion.div>
+                                  </div>
                                 </motion.div>
                               )}
                             </AnimatePresence>
-                          </motion.div>
+                          </div>
                         ))}
-                      </motion.div>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
