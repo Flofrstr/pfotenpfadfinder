@@ -3,6 +3,7 @@
 import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
+import { useMeasure } from 'react-use'
 
 import { useState } from 'react'
 
@@ -21,6 +22,7 @@ const getRotation = (index: number) => {
 
 export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimonial[] }) => {
   const [active, setActive] = useState(0)
+  const [ref, { height }] = useMeasure<HTMLDivElement>()
 
   const handleNext = () => {
     setActive(prev => (prev + 1) % testimonials.length)
@@ -56,6 +58,7 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     z: isActive(index) ? 0 : -100,
                     rotate: isActive(index) ? 0 : getRotation(index),
                     zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
+                    y: isActive(index) ? [0, -80, 0] : 0,
                   }}
                   exit={{
                     opacity: 0,
@@ -130,18 +133,25 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
         </div>
 
         {/* Text Section */}
-        <div className="order-3 flex flex-col py-4 md:order-2">
-          <div>
+        <motion.div
+          animate={{ height }}
+          transition={{ duration: 0.3, ease: 'easeOut' }}
+          className="order-3 flex flex-col py-4 md:order-2"
+        >
+          <div ref={ref}>
             <AnimatePresence mode="wait">
               <motion.div
                 key={active}
                 initial={{
+                  y: 20,
                   opacity: 0,
                 }}
                 animate={{
+                  y: 0,
                   opacity: 1,
                 }}
                 exit={{
+                  y: -20,
                   opacity: 0,
                 }}
                 transition={{
@@ -154,13 +164,18 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     {testimonials[active].designation}
                   </h3>
                 </div>
-                <p className="text-foreground text-base leading-relaxed md:text-lg">
+                <motion.p
+                  className="text-foreground text-base leading-relaxed md:text-lg"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                >
                   {testimonials[active].quote}
-                </p>
+                </motion.p>
               </motion.div>
             </AnimatePresence>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   )
