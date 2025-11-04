@@ -228,11 +228,12 @@ export function FAQSection() {
                     <h3 className="text-xl font-bold md:text-2xl">{category.title}</h3>
                   </div>
                   <div
-                    className="shrink-0 transition-transform duration-300 ease-in-out"
+                    className="shrink-0 transition-transform ease-in-out"
                     style={{
                       transform: openCategories.has(categoryIndex)
-                        ? 'rotate(180deg)'
-                        : 'rotate(0deg)',
+                        ? 'rotate(180deg) translateZ(0)'
+                        : 'rotate(0deg) translateZ(0)',
+                      transitionDuration: openCategories.has(categoryIndex) ? '700ms' : '400ms',
                     }}
                   >
                     <ChevronDown className="text-accent h-6 w-6" />
@@ -241,58 +242,67 @@ export function FAQSection() {
 
                 {/* Category Questions */}
                 <div
-                  className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+                  className={`overflow-hidden transition-all ease-in-out ${
+                    openCategories.has(categoryIndex)
+                      ? 'max-h-[3000px] opacity-100'
+                      : 'max-h-0 opacity-0'
+                  }`}
                   style={{
-                    gridTemplateRows: openCategories.has(categoryIndex) ? '1fr' : '0fr',
+                    transform: 'translateZ(0)',
+                    transitionDuration: openCategories.has(categoryIndex) ? '700ms' : '400ms',
                   }}
                 >
-                  <div className="overflow-hidden">
-                    <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
-                      {category.items.map((item, itemIndex) => (
-                        <div
-                          key={itemIndex}
-                          className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
+                  <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
+                    {category.items.map((item, itemIndex) => (
+                      <div
+                        key={itemIndex}
+                        className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
+                      >
+                        <button
+                          ref={el => {
+                            questionRefs.current[`${categoryIndex}-${itemIndex}`] = el
+                          }}
+                          onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
+                          className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left transition-colors md:p-4"
                         >
-                          <button
-                            ref={el => {
-                              questionRefs.current[`${categoryIndex}-${itemIndex}`] = el
-                            }}
-                            onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
-                            className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left transition-colors md:p-4"
-                          >
-                            <p className="flex-1 leading-snug font-semibold wrap-break-word">
-                              {item.question}
-                            </p>
-                            <div
-                              className="shrink-0 transition-transform duration-300 ease-in-out"
-                              style={{
-                                transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                                  ? 'rotate(180deg)'
-                                  : 'rotate(0deg)',
-                              }}
-                            >
-                              <ChevronDown className="text-accent h-5 w-5" />
-                            </div>
-                          </button>
+                          <p className="flex-1 leading-snug font-semibold wrap-break-word">
+                            {item.question}
+                          </p>
                           <div
-                            className="grid transition-[grid-template-rows] duration-300 ease-in-out"
+                            className="shrink-0 transition-transform ease-in-out"
                             style={{
-                              gridTemplateRows: openQuestions.has(`${categoryIndex}-${itemIndex}`)
-                                ? '1fr'
-                                : '0fr',
+                              transform: openQuestions.has(`${categoryIndex}-${itemIndex}`)
+                                ? 'rotate(180deg) translateZ(0)'
+                                : 'rotate(0deg) translateZ(0)',
+                              transitionDuration: openQuestions.has(`${categoryIndex}-${itemIndex}`)
+                                ? '700ms'
+                                : '400ms',
                             }}
                           >
-                            <div className="overflow-hidden">
-                              <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
-                                <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
-                                  {item.answer}
-                                </p>
-                              </div>
-                            </div>
+                            <ChevronDown className="text-accent h-5 w-5" />
+                          </div>
+                        </button>
+                        <div
+                          className={`overflow-hidden transition-all ease-in-out ${
+                            openQuestions.has(`${categoryIndex}-${itemIndex}`)
+                              ? 'max-h-[800px] opacity-100'
+                              : 'max-h-0 opacity-0'
+                          }`}
+                          style={{
+                            transform: 'translateZ(0)',
+                            transitionDuration: openQuestions.has(`${categoryIndex}-${itemIndex}`)
+                              ? '700ms'
+                              : '400ms',
+                          }}
+                        >
+                          <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
+                            <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
+                              {item.answer}
+                            </p>
                           </div>
                         </div>
-                      ))}
-                    </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
