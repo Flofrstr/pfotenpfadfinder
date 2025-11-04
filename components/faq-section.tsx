@@ -2,7 +2,6 @@
 
 import { useState, useRef, useCallback } from 'react'
 import { ChevronDown, Shield, Euro, GraduationCap, Clock, CheckCircle2 } from 'lucide-react'
-import { motion, AnimatePresence } from 'motion/react'
 
 interface FAQItem {
   question: string
@@ -213,81 +212,57 @@ export function FAQSection() {
                     </div>
                     <h3 className="text-xl font-bold md:text-2xl">{category.title}</h3>
                   </div>
-                  <motion.div
-                    animate={{ rotate: openCategory === categoryIndex ? 180 : 0 }}
-                    transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                    className="shrink-0"
+                  <div
+                    className="shrink-0 transition-transform duration-200"
+                    style={{
+                      transform: openCategory === categoryIndex ? 'rotate(180deg)' : 'rotate(0deg)',
+                    }}
                   >
                     <ChevronDown className="text-accent h-6 w-6" />
-                  </motion.div>
+                  </div>
                 </button>
 
                 {/* Category Questions */}
-                <AnimatePresence>
-                  {openCategory === categoryIndex && (
-                    <motion.div
-                      initial={{ height: 0 }}
-                      animate={{ height: 'auto' }}
-                      exit={{ height: 0 }}
-                      transition={{
-                        duration: 0.2,
-                        ease: [0.4, 0, 0.2, 1],
-                      }}
-                      className="overflow-hidden"
-                    >
-                      <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
-                        {category.items.map((item, itemIndex) => (
+                {openCategory === categoryIndex && (
+                  <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
+                    {category.items.map((item, itemIndex) => (
+                      <div
+                        key={itemIndex}
+                        className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
+                      >
+                        <button
+                          ref={el => {
+                            questionRefs.current[`${categoryIndex}-${itemIndex}`] = el
+                          }}
+                          onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
+                          className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left transition-colors md:p-4"
+                        >
+                          <p className="flex-1 leading-snug font-semibold wrap-break-word">
+                            {item.question}
+                          </p>
                           <div
-                            key={itemIndex}
-                            className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
+                            className="shrink-0 transition-transform duration-200"
+                            style={{
+                              transform:
+                                openQuestion === `${categoryIndex}-${itemIndex}`
+                                  ? 'rotate(180deg)'
+                                  : 'rotate(0deg)',
+                            }}
                           >
-                            <button
-                              ref={el => {
-                                questionRefs.current[`${categoryIndex}-${itemIndex}`] = el
-                              }}
-                              onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
-                              className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left transition-colors md:p-4"
-                            >
-                              <p className="flex-1 leading-snug font-semibold wrap-break-word">
-                                {item.question}
-                              </p>
-                              <motion.div
-                                animate={{
-                                  rotate:
-                                    openQuestion === `${categoryIndex}-${itemIndex}` ? 180 : 0,
-                                }}
-                                transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
-                                className="shrink-0"
-                              >
-                                <ChevronDown className="text-accent h-5 w-5" />
-                              </motion.div>
-                            </button>
-                            <AnimatePresence>
-                              {openQuestion === `${categoryIndex}-${itemIndex}` && (
-                                <motion.div
-                                  initial={{ height: 0 }}
-                                  animate={{ height: 'auto' }}
-                                  exit={{ height: 0 }}
-                                  transition={{
-                                    duration: 0.15,
-                                    ease: [0.4, 0, 0.2, 1],
-                                  }}
-                                  className="overflow-hidden"
-                                >
-                                  <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
-                                    <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
-                                      {item.answer}
-                                    </p>
-                                  </div>
-                                </motion.div>
-                              )}
-                            </AnimatePresence>
+                            <ChevronDown className="text-accent h-5 w-5" />
                           </div>
-                        ))}
+                        </button>
+                        {openQuestion === `${categoryIndex}-${itemIndex}` && (
+                          <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
+                            <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
+                              {item.answer}
+                            </p>
+                          </div>
+                        )}
                       </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
