@@ -3,32 +3,10 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
 
 export function HeroSection() {
-  const [viewportHeight, setViewportHeight] = useState('100svh')
-
-  useEffect(() => {
-    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-    const initialHeight = window.innerHeight
-
-    setViewportHeight(`${initialHeight}px`)
-
-    const handleResize = () => {
-      if (!isMobile) {
-        setViewportHeight(`${window.innerHeight}px`)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   return (
-    <section
-      className="relative flex w-full items-center justify-center overflow-hidden"
-      style={{ height: viewportHeight }}
-    >
+    <section className="relative flex h-[100svh] w-full items-center justify-center overflow-hidden">
       <div className="absolute inset-0 z-0">
         <Image
           src="/pfotenpfadfinder.jpg"
@@ -37,6 +15,7 @@ export function HeroSection() {
           className="object-cover"
           style={{ objectPosition: 'center 30%' }}
           priority
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-white/70 dark:bg-black/40"></div>
       </div>
