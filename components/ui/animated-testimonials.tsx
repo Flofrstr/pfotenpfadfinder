@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import Image from 'next/image'
 import { useMeasure } from 'react-use'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 type Testimonial = {
   quote: string
@@ -23,6 +23,17 @@ const getRotation = (index: number) => {
 export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimonial[] }) => {
   const [active, setActive] = useState(0)
   const [ref, { height }] = useMeasure<HTMLDivElement>()
+  const [isMobile, setIsMobile] = useState(false)
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
 
   const handleNext = () => {
     setActive(prev => (prev + 1) % testimonials.length)
@@ -43,56 +54,69 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
         <div className="order-1">
           <div className="relative mx-auto h-[400px] w-full max-w-[350px] md:h-[450px]">
             <AnimatePresence>
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.src}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: getRotation(index),
-                  }}
-                  animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : getRotation(index),
-                    zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: getRotation(index),
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: 'easeInOut',
-                  }}
-                  className="absolute inset-0 origin-bottom"
-                >
-                  {/* Polaroid frame */}
-                  <div className="h-full w-full bg-white p-4 pb-16 shadow-xl dark:bg-gray-100">
-                    <div className="relative h-full w-full overflow-hidden">
-                      <Image
-                        src={testimonial.src}
-                        alt={testimonial.alt || testimonial.name}
-                        width={500}
-                        height={500}
-                        draggable={false}
-                        className="h-full w-full object-cover object-center"
-                      />
+              {testimonials.map((testimonial, index) => {
+                // Nur aktuelle und benachbarte Bilder rendern für bessere Performance
+                const shouldRender = isMobile
+                  ? Math.abs(index - active) <= 1 ||
+                    (active === 0 && index === testimonials.length - 1) ||
+                    (active === testimonials.length - 1 && index === 0)
+                  : true
+
+                if (!shouldRender) return null
+
+                return (
+                  <motion.div
+                    key={testimonial.src}
+                    initial={{
+                      opacity: 0,
+                      scale: 0.9,
+                      z: -100,
+                      rotate: getRotation(index),
+                    }}
+                    animate={{
+                      opacity: isActive(index) ? 1 : 0.7,
+                      scale: isActive(index) ? 1 : 0.95,
+                      z: isActive(index) ? 0 : -100,
+                      rotate: isActive(index) ? 0 : getRotation(index),
+                      zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
+                      y: isActive(index) ? [0, -80, 0] : 0,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scale: 0.9,
+                      z: 100,
+                      rotate: getRotation(index),
+                    }}
+                    transition={{
+                      duration: isMobile ? 0.5 : 0.6,
+                      ease: 'easeInOut',
+                    }}
+                    className="absolute inset-0 origin-bottom"
+                    style={{ willChange: isActive(index) ? 'transform, opacity' : 'auto' }}
+                  >
+                    {/* Polaroid frame */}
+                    <div className="h-full w-full bg-white p-4 pb-16 shadow-xl dark:bg-gray-100">
+                      <div className="relative h-full w-full overflow-hidden">
+                        <Image
+                          src={testimonial.src}
+                          alt={testimonial.alt || testimonial.name}
+                          width={500}
+                          height={500}
+                          draggable={false}
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                          className="h-full w-full object-cover object-center"
+                        />
+                      </div>
+                      {/* Dog name on polaroid white space */}
+                      <div className="absolute right-4 bottom-4 left-4 text-center">
+                        <p className="font-gluten text-lg font-bold text-amber-900">
+                          {testimonial.name}
+                        </p>
+                      </div>
                     </div>
-                    {/* Dog name on polaroid white space */}
-                    <div className="absolute right-4 bottom-4 left-4 text-center">
-                      <p className="font-gluten text-lg font-bold text-amber-900">
-                        {testimonial.name}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
+                  </motion.div>
+                )
+              })}
             </AnimatePresence>
           </div>
           {/* Navigation arrows on desktop - below image */}
@@ -135,7 +159,7 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
         {/* Text Section */}
         <motion.div
           animate={{ height }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
+          transition={{ duration: 0.5, ease: 'easeInOut' }}
           className="order-3 flex flex-col py-4 md:order-2"
         >
           <div ref={ref}>
@@ -169,15 +193,15 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                     const words = testimonials[active].quote.split(' ')
                     const wordCount = words.length
                     const baseDelay = Math.max(0.002, 0.015 - wordCount * 0.0001)
-                    const duration = 0.12
+                    const duration = isMobile ? 0.08 : 0.12
 
                     return words.map((word, index) => (
                       <motion.span
                         key={index}
                         initial={{
-                          filter: 'blur(10px)',
+                          filter: isMobile ? 'blur(0px)' : 'blur(10px)',
                           opacity: 0,
-                          y: 5,
+                          y: isMobile ? 2 : 5,
                         }}
                         animate={{
                           filter: 'blur(0px)',

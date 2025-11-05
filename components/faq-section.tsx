@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ChevronDown, Shield, Euro, GraduationCap, Clock, CheckCircle2 } from 'lucide-react'
+import { motion, AnimatePresence } from 'motion/react'
 
 interface FAQItem {
   question: string
@@ -15,7 +16,7 @@ interface FAQCategory {
 }
 
 export function FAQSection() {
-  const [openCategories, setOpenCategories] = useState<Set<number>>(new Set([0]))
+  const [openCategories, setOpenCategories] = useState<Set<number>>(new Set())
   const [openQuestions, setOpenQuestions] = useState<Set<string>>(new Set())
 
   const faqCategories: FAQCategory[] = [
@@ -194,53 +195,75 @@ export function FAQSection() {
                 {/* Category Header */}
                 <button
                   onClick={() => toggleCategory(categoryIndex)}
-                  className="hover:bg-accent/5 flex w-full items-center justify-between gap-3 p-4 text-left md:gap-4 md:p-6"
+                  className="hover:bg-accent/5 flex w-full items-center justify-between gap-4 p-5 text-left transition-colors md:gap-5 md:p-6"
                 >
-                  <div className="flex items-center gap-2 md:gap-3">
-                    <div className="bg-accent/10 text-accent flex shrink-0 items-center justify-center rounded-lg p-2.5">
-                      {category.icon}
+                  <div className="flex items-center gap-3 md:gap-5">
+                    <div className="bg-accent/10 text-accent flex shrink-0 items-center justify-center rounded-lg p-2 md:p-2.5">
+                      <div className="h-4 w-4 md:h-5 md:w-5">{category.icon}</div>
                     </div>
-                    <h3 className="text-xl font-bold md:text-2xl">{category.title}</h3>
+                    <h3 className="text-lg font-semibold md:text-2xl md:font-bold">
+                      {category.title}
+                    </h3>
                   </div>
                   <div className="shrink-0">
                     <ChevronDown
-                      className={`text-accent h-6 w-6 ${openCategories.has(categoryIndex) ? 'rotate-180' : ''}`}
+                      className={`text-accent h-5 w-5 transition-transform duration-300 md:h-6 md:w-6 ${openCategories.has(categoryIndex) ? 'rotate-180' : ''}`}
                     />
                   </div>
                 </button>
 
                 {/* Category Questions */}
-                {openCategories.has(categoryIndex) && (
-                  <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
-                    {category.items.map((item, itemIndex) => (
-                      <div
-                        key={itemIndex}
-                        className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
-                      >
-                        <button
-                          onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
-                          className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left md:p-4"
-                        >
-                          <p className="flex-1 leading-snug font-semibold wrap-break-word">
-                            {item.question}
-                          </p>
-                          <div className="shrink-0">
-                            <ChevronDown
-                              className={`text-accent h-5 w-5 ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? 'rotate-180' : ''}`}
-                            />
+                <AnimatePresence initial={false}>
+                  {openCategories.has(categoryIndex) && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="border-accent/10 space-y-3 border-t p-3 md:p-6">
+                        {category.items.map((item, itemIndex) => (
+                          <div
+                            key={itemIndex}
+                            className="border-accent/10 bg-background/50 overflow-hidden rounded-lg border"
+                          >
+                            <button
+                              onClick={() => toggleQuestion(`${categoryIndex}-${itemIndex}`)}
+                              className="hover:bg-accent/5 flex w-full items-start justify-between gap-3 p-3 text-left md:p-4"
+                            >
+                              <p className="flex-1 leading-snug font-semibold wrap-break-word">
+                                {item.question}
+                              </p>
+                              <div className="shrink-0">
+                                <ChevronDown
+                                  className={`text-accent h-5 w-5 transition-transform duration-300 ${openQuestions.has(`${categoryIndex}-${itemIndex}`) ? 'rotate-180' : ''}`}
+                                />
+                              </div>
+                            </button>
+                            <AnimatePresence initial={false}>
+                              {openQuestions.has(`${categoryIndex}-${itemIndex}`) && (
+                                <motion.div
+                                  initial={{ height: 0, opacity: 0 }}
+                                  animate={{ height: 'auto', opacity: 1 }}
+                                  exit={{ height: 0, opacity: 0 }}
+                                  transition={{ duration: 0.3, ease: 'easeInOut' }}
+                                  className="overflow-hidden"
+                                >
+                                  <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
+                                    <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
+                                      {item.answer}
+                                    </p>
+                                  </div>
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
                           </div>
-                        </button>
-                        {openQuestions.has(`${categoryIndex}-${itemIndex}`) && (
-                          <div className="border-accent/10 border-t px-3 pt-3 pb-4 md:px-4">
-                            <p className="text-foreground/80 leading-relaxed wrap-break-word whitespace-pre-line">
-                              {item.answer}
-                            </p>
-                          </div>
-                        )}
+                        ))}
                       </div>
-                    ))}
-                  </div>
-                )}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
             ))}
           </div>
