@@ -88,7 +88,7 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
                       rotate: getRotation(index),
                     }}
                     transition={{
-                      duration: isMobile ? 0.5 : 0.6,
+                      duration: isMobile ? 0.3 : 0.4,
                       ease: 'easeInOut',
                     }}
                     className="absolute inset-0 origin-bottom"
@@ -159,7 +159,7 @@ export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimoni
         {/* Text Section */}
         <motion.div
           animate={{ height }}
-          transition={{ duration: 0.5, ease: 'easeInOut' }}
+          transition={{ duration: 0.4, ease: 'easeInOut' }}
           className="order-3 flex flex-col py-4 md:order-2"
         >
           <div ref={ref}>
