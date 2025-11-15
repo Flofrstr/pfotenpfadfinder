@@ -15,7 +15,7 @@ interface FAQCategory {
 }
 
 export function FAQSection() {
-  const [openCategories, setOpenCategories] = useState<Set<number>>(new Set([0]))
+  const [openCategories, setOpenCategories] = useState<Set<number>>(new Set())
   const [openQuestions, setOpenQuestions] = useState<Set<string>>(new Set())
 
   const faqCategories: FAQCategory[] = [
