@@ -5,13 +5,19 @@ import { CardContent, CardHeader, CardTitle, CardFooter } from '@/components/ui/
 import { useState } from 'react'
 import { AnimateNumber } from 'motion-plus/react'
 import { motion } from 'motion/react'
+import { PawBackground } from '@/components/paw-background'
 
 export function ServicesSection() {
   const [showHolidayPricing, setShowHolidayPricing] = useState(false)
   const [numberOfDogs, setNumberOfDogs] = useState(1)
 
   return (
-    <section id="services" className="bg-accent/5 w-full py-12 md:py-24 lg:py-32">
+    <section
+      id="services"
+      className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32"
+    >
+      <PawBackground variant="b" />
+
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-6 text-center">
           <div className="space-y-2">

@@ -1,8 +1,11 @@
 import Image from 'next/image'
+import { PawBackground } from '@/components/paw-background'
 
 export function AboutSection() {
   return (
     <section id="about" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+      <PawBackground variant="a" />
+
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0">
         <div className="bg-accent/5 absolute top-20 right-0 h-[600px] w-[600px] translate-x-1/3 rounded-full blur-3xl" />

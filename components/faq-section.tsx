@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { ChevronDown, Shield, Euro, GraduationCap, Clock, CheckCircle2 } from 'lucide-react'
+import { PawBackground } from '@/components/paw-background'
 
 interface FAQItem {
   question: string
@@ -165,6 +166,8 @@ export function FAQSection() {
       id="faq"
       className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32"
     >
+      <PawBackground variant="d" />
+
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0">
         <div className="bg-primary/5 absolute top-20 left-0 h-[500px] w-[500px] -translate-x-1/3 rounded-full blur-3xl" />

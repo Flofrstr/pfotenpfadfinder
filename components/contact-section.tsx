@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card'
 import { Mail, Instagram, Phone, Send, CheckCircle2 } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
+import { PawBackground } from '@/components/paw-background'
 
 export function ContactSection() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -47,7 +48,9 @@ export function ContactSection() {
   }
 
   return (
-    <section id="kontakt" className="w-full py-12 md:py-24 lg:py-32">
+    <section id="kontakt" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+      <PawBackground variant="e" />
+
       <div className="container px-4 md:px-6">
         <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
           <div className="space-y-2">
