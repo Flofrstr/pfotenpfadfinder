@@ -1,15 +1,6 @@
 'use client'
 
-import {
-  Sparkles,
-  Heart,
-  Home,
-  ShieldCheck,
-  Heart as FirstAid,
-  Settings,
-  Handshake,
-  Bell,
-} from 'lucide-react'
+import { Sparkles, Heart, Home, ShieldCheck, Cross, Settings, Handshake, Bell } from 'lucide-react'
 import { PawBackground } from '@/components/paw-background'
 
 export function FeaturesHighlightSection() {
@@ -39,7 +30,7 @@ export function FeaturesHighlightSection() {
         'Zertifiziert nach §11 Abs.1 Nr. 3, 5, 8a Tierschutzgesetz und vollumfänglich versichert durch eine Betriebshaftpflichtversicherung.',
     },
     {
-      icon: FirstAid,
+      icon: Cross,
       title: 'Erste Hilfe geschult',
       description:
         'Im Notfall weiß ich, was zu tun ist. Ich bin in Erster Hilfe für Hunde geschult und habe alle Kontaktdaten griffbereit – inklusive eurer Tierarzt-Nummer und Notfallkontakt.',
