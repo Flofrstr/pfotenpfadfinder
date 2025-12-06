@@ -56,7 +56,7 @@ export function FeaturesHighlightSection() {
   ]
 
   return (
-    <section className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+    <section id="warum-ich" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
       <PawBackground variant="d" />
 
       {/* Decorative background elements */}
@@ -73,7 +73,7 @@ export function FeaturesHighlightSection() {
               Was meinen Service ausmacht
             </h2>
             <p className="text-foreground/70 mx-auto max-w-[700px] md:text-lg">
-              Darauf lege ich bei meiner Arbeit besonderen Wert
+              Darauf lege ich bei der Hundebetreuung besonders viel Wert
             </p>
           </div>
 

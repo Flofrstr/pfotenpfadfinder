@@ -12,7 +12,10 @@ export function ServicesSection() {
   const [numberOfDogs, setNumberOfDogs] = useState(1)
 
   return (
-    <section id="services" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+    <section
+      id="preise"
+      className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32"
+    >
       <PawBackground variant="b" />
 
       <div className="container px-4 md:px-6">

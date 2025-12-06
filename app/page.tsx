@@ -228,8 +228,8 @@ export default function Home() {
       <ScrollProgress />
       <HeroSection />
       <AboutSection />
-      <FeaturesHighlightSection />
       <ServicesSection />
+      <FeaturesHighlightSection />
       <TestimonialsSection />
       <FAQSection />
       <ContactSection />

@@ -40,10 +40,16 @@ export function Header() {
                 Über mich
               </Link>
               <Link
-                href="/#services"
+                href="/#preise"
                 className="hover:text-primary text-sm font-medium transition-colors"
               >
-                Leistungen
+                Preise
+              </Link>
+              <Link
+                href="/#warum-ich"
+                className="hover:text-primary text-sm font-medium transition-colors"
+              >
+                Warum ich?
               </Link>
               <Link
                 href="/#faq"
@@ -189,13 +195,22 @@ export function Header() {
                       Über mich
                     </Link>
                     <Link
-                      href="/#services"
+                      href="/#preise"
                       className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
                       onClick={() => {
                         setIsMenuOpen(false)
                       }}
                     >
-                      Leistungen
+                      Preise
+                    </Link>
+                    <Link
+                      href="/#warum-ich"
+                      className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
+                      onClick={() => {
+                        setIsMenuOpen(false)
+                      }}
+                    >
+                      Warum ich?
                     </Link>
                     <Link
                       href="/#faq"
