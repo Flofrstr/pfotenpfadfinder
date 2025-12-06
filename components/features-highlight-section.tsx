@@ -81,31 +81,31 @@ export function FeaturesHighlightSection() {
           <div className="mx-auto grid max-w-6xl gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {features.map((feature, index) => {
               const Icon = feature.icon
-              // Verschiedene Verschiebungen für jede Karte
+              // Verschiedene Verschiebungen für jede Karte - nur auf Desktop
               const offsets = [
-                'translate-y-0',
-                'translate-y-4',
-                '-translate-y-2',
-                'translate-y-2',
-                '-translate-y-3',
-                'translate-y-3',
-                'translate-y-1',
-                '-translate-y-1',
+                'md:translate-y-0',
+                'md:translate-y-4',
+                'md:-translate-y-2',
+                'md:translate-y-2',
+                'md:-translate-y-3',
+                'md:translate-y-3',
+                'md:translate-y-1',
+                'md:-translate-y-1',
               ]
               const rotations = [
-                'rotate-0',
-                'rotate-1',
-                '-rotate-1',
-                'rotate-0',
-                'rotate-1',
-                '-rotate-1',
-                'rotate-0',
-                'rotate-1',
+                'md:rotate-0',
+                'md:rotate-1',
+                'md:-rotate-1',
+                'md:rotate-0',
+                'md:rotate-1',
+                'md:-rotate-1',
+                'md:rotate-0',
+                'md:rotate-1',
               ]
               return (
                 <div
                   key={index}
-                  className={`group relative transition-transform duration-300 hover:-translate-y-1 hover:rotate-0 ${offsets[index]} ${rotations[index]}`}
+                  className={`group relative transition-transform duration-300 hover:-translate-y-1 md:hover:rotate-0 ${offsets[index]} ${rotations[index]}`}
                 >
                   {/* Card */}
                   <div className="bg-card border-accent/20 hover:border-accent/40 relative h-full overflow-hidden rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md">
