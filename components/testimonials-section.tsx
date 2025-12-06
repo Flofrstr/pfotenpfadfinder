@@ -53,7 +53,7 @@ export function TestimonialsSection() {
   ]
 
   return (
-    <section className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+    <section className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
       <PawBackground variant="c" />
 
       <div className="container px-4 md:px-6">

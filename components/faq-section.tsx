@@ -162,10 +162,7 @@ export function FAQSection() {
   }
 
   return (
-    <section
-      id="faq"
-      className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32"
-    >
+    <section id="faq" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
       <PawBackground variant="d" />
 
       {/* Decorative background elements */}

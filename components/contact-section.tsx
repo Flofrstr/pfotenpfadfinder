@@ -48,7 +48,10 @@ export function ContactSection() {
   }
 
   return (
-    <section id="kontakt" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+    <section
+      id="kontakt"
+      className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32"
+    >
       <PawBackground variant="e" />
 
       <div className="container px-4 md:px-6">

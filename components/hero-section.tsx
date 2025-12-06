@@ -50,7 +50,7 @@ export function HeroSection() {
                 Veterinäramt geprüft
               </p>
               <p className="dark:text-muted-foreground text-xs text-white/80 md:text-sm">
-                §11 TierSchG · Versichert
+                §11 Abs.1 Nr. 3, 5, 8a · Versichert
               </p>
             </div>
           </div>
