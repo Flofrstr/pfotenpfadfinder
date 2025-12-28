@@ -43,12 +43,12 @@ export function FAQSection() {
         {
           question: 'Was kostet die Hundebetreuung?',
           answer:
-            'Meine Preise für einen Hund:\n\n• Tagesbetreuung (max. 12 Std): 30 € pro Tag\n• Urlaubsbetreuung mit Übernachtung: 35 € pro Tag\n• Kennenlernen (ca. 60 Min inkl. Gassirunde): 15 €\n\nBei mehreren Hunden aus einem Haushalt reduziert sich der Preis pro weiteren Hund. Alle Details und die interaktive Preisübersicht findest du in der Services-Sektion.',
+            'Meine Preise für einen Hund:\n\n• Tagesbetreuung (max. 12 Std): 35 € pro Tag\n• Urlaubsbetreuung mit Übernachtung: 40 € pro Tag\n• Kennenlernen (ca. 60 Min inkl. Gassirunde): 15 €\n\nBei mehreren Hunden aus einem Haushalt reduziert sich der Preis pro weiteren Hund. Alle Details und die interaktive Preisübersicht findest du in der Services-Sektion.',
         },
         {
           question: 'Was kostet der Gassi-Service?',
           answer:
-            'Meine Preise für einen Hund:\n\n• Gassi-Service 30 Min: ab 12 €\n• Gassi-Service 60 Min: ab 20 €\n• Kennenlernen (ca. 60 Min inkl. Gassirunde): 15 €\n\nBei mehreren Hunden aus einem Haushalt reduziert sich der Preis pro weiteren Hund. Alle Details und die interaktive Preisübersicht findest du in der Services-Sektion.',
+            'Meine Preise für einen Hund:\n\n• Gassi-Service 30 Min: ab 15 €\n• Gassi-Service 60 Min: ab 25 €\n• Kennenlernen (ca. 60 Min inkl. Gassirunde): 15 €\n\nBei mehreren Hunden aus einem Haushalt reduziert sich der Preis pro weiteren Hund. Alle Details und die interaktive Preisübersicht findest du in der Services-Sektion.',
         },
         {
           question: 'Wie läuft die Buchung für Neukunden ab?',

@@ -49,7 +49,7 @@ export function Header() {
                 href="/#warum-ich"
                 className="hover:text-primary text-sm font-medium transition-colors"
               >
-                Warum ich?
+                Mein Service
               </Link>
               <Link
                 href="/#faq"
@@ -210,7 +210,7 @@ export function Header() {
                         setIsMenuOpen(false)
                       }}
                     >
-                      Warum ich?
+                      Mein Service
                     </Link>
                     <Link
                       href="/#faq"

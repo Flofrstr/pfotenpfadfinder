@@ -116,15 +116,23 @@ export function ServicesSection() {
             <CardContent className="flex-1 pt-6">
               <div className="space-y-5">
                 <PriceItem
-                  normalPrice={30 + (numberOfDogs - 1) * 20}
-                  holidayPrice={(30 + (numberOfDogs - 1) * 20) * 1.5}
+                  normalPrice={
+                    numberOfDogs === 1 ? 35 : numberOfDogs === 2 ? 35 + 25 : 35 + 25 + 20
+                  }
+                  holidayPrice={
+                    (numberOfDogs === 1 ? 35 : numberOfDogs === 2 ? 35 + 25 : 35 + 25 + 20) * 1.5
+                  }
                   isHoliday={showHolidayPricing}
                   title="Tagesbetreuung"
                   subtitle="Max. 12 Stunden"
                 />
                 <PriceItem
-                  normalPrice={35 + (numberOfDogs - 1) * 25}
-                  holidayPrice={(35 + (numberOfDogs - 1) * 25) * 1.5}
+                  normalPrice={
+                    numberOfDogs === 1 ? 40 : numberOfDogs === 2 ? 40 + 30 : 40 + 30 + 25
+                  }
+                  holidayPrice={
+                    (numberOfDogs === 1 ? 40 : numberOfDogs === 2 ? 40 + 30 : 40 + 30 + 25) * 1.5
+                  }
                   isHoliday={showHolidayPricing}
                   title="Urlaubsbetreuung"
                   subtitle="Mit Übernachtung"
@@ -163,16 +171,16 @@ export function ServicesSection() {
             <CardContent className="flex-1 pt-6">
               <div className="space-y-5">
                 <PriceItem
-                  normalPrice={12 + (numberOfDogs - 1) * 5}
-                  holidayPrice={(12 + (numberOfDogs - 1) * 5) * 1.5}
+                  normalPrice={15 + (numberOfDogs - 1) * 5}
+                  holidayPrice={(15 + (numberOfDogs - 1) * 5) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="30 Minuten"
                   subtitle="Einfache Gassirunde"
                   perUnit="pro Spaziergang"
                 />
                 <PriceItem
-                  normalPrice={20 + (numberOfDogs - 1) * 5}
-                  holidayPrice={(20 + (numberOfDogs - 1) * 5) * 1.5}
+                  normalPrice={25 + (numberOfDogs - 1) * 5}
+                  holidayPrice={(25 + (numberOfDogs - 1) * 5) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="60 Minuten"
                   subtitle="Ausführliche Gassirunde"
@@ -202,14 +210,16 @@ export function ServicesSection() {
                   perUnit="einmalig"
                 />
                 <PriceItem
-                  normalPrice={20 + (numberOfDogs - 1) * 10}
+                  normalPrice={numberOfDogs === 1 ? 20 : numberOfDogs === 2 ? 20 + 10 : 20 + 10 + 5}
                   isHoliday={false}
                   title="Probetag"
                   subtitle="Max. 12 Stunden"
                   perUnit="einmalig"
                 />
                 <PriceItem
-                  normalPrice={25 + (numberOfDogs - 1) * 10}
+                  normalPrice={
+                    numberOfDogs === 1 ? 25 : numberOfDogs === 2 ? 25 + 15 : 25 + 15 + 10
+                  }
                   isHoliday={false}
                   title="Probeübernachtung"
                   subtitle="Mit Übernachtung"
@@ -238,14 +248,14 @@ export function ServicesSection() {
                     Gevelsberg, Schwelm, Ennepetal, Hasslinghausen
                   </p>
                   <div className="mt-3 sm:hidden">
-                    <p className="text-2xl font-bold tabular-nums">0,40€</p>
+                    <p className="text-2xl font-bold tabular-nums">0,60€</p>
                     <p className="text-foreground/60 text-xs">pro Kilometer</p>
                   </div>
                 </div>
               </div>
               <div className="bg-background/80 hidden items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm sm:flex">
                 <div className="text-right">
-                  <p className="text-3xl font-bold tabular-nums">0,40€</p>
+                  <p className="text-3xl font-bold tabular-nums">0,60€</p>
                   <p className="text-foreground/60 text-xs">pro Kilometer</p>
                 </div>
               </div>
