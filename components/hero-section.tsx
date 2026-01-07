@@ -3,10 +3,37 @@
 import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 export function HeroSection() {
+  const [viewportHeight, setViewportHeight] = useState('100svh')
+
+  useEffect(() => {
+    // Mobile browsers (Chrome, Firefox, Safari) have broken implementations of svh/lvh/dvh
+    // viewport units - they behave dynamically when they should stay static, causing the
+    // hero section to resize when the address bar shows/hides during scroll.
+    // Solution: Lock viewport height on initial load for mobile devices.
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0
+    const initialHeight = window.innerHeight
+
+    setViewportHeight(`${initialHeight}px`)
+
+    const handleResize = () => {
+      // Only update height on desktop - mobile stays locked to prevent jumps
+      if (!isMobile) {
+        setViewportHeight(`${window.innerHeight}px`)
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
-    <section className="relative flex h-svh w-full items-center justify-center overflow-hidden">
+    <section
+      className="relative flex w-full items-center justify-center overflow-hidden"
+      style={{ height: viewportHeight }}
+    >
       <div className="absolute inset-0 z-0">
         <Image
           src="/pfotenpfadfinder.jpg"
