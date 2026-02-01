@@ -1,16 +1,6 @@
 'use client'
 
-import {
-  Sparkles,
-  Heart,
-  Home,
-  ShieldCheck,
-  Cross,
-  Settings,
-  Handshake,
-  Bell,
-  HeartHandshake,
-} from 'lucide-react'
+import { Sparkles, Heart, Home, ShieldCheck, Cross, Settings, Handshake, Bell } from 'lucide-react'
 import { PawBackground } from '@/components/paw-background'
 
 export function FeaturesHighlightSection() {
@@ -66,8 +56,11 @@ export function FeaturesHighlightSection() {
   ]
 
   return (
-    <section id="warum-ich" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
-      <PawBackground variant="d" />
+    <section
+      id="warum-ich"
+      className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32"
+    >
+      <PawBackground variant="b" />
 
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0">
@@ -85,53 +78,6 @@ export function FeaturesHighlightSection() {
             <p className="text-foreground/70 mx-auto max-w-[700px] md:text-lg">
               Darauf lege ich bei der Hundebetreuung besonders viel Wert
             </p>
-          </div>
-
-          {/* Hero Feature - Die Beziehung */}
-          <div className="mx-auto mb-12 max-w-3xl">
-            <div className="group relative">
-              {/* Glow effect */}
-              <div className="from-accent/30 via-accent/20 to-accent/10 absolute -inset-1 rounded-3xl bg-linear-to-r opacity-75 blur-lg transition-all duration-500 group-hover:opacity-100 group-hover:blur-xl" />
-
-              {/* Card */}
-              <div className="from-accent/15 via-accent/10 to-accent/5 border-accent/30 hover:border-accent/50 relative overflow-hidden rounded-3xl border-2 bg-linear-to-br p-8 shadow-lg transition-all duration-300 md:p-10">
-                {/* Decorative paw pattern */}
-                <div className="pointer-events-none absolute top-0 right-0 h-32 w-32 translate-x-8 -translate-y-8 opacity-10">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 512 512"
-                    className="fill-accent"
-                  >
-                    <path d="M256 224c-79.4 0-192 122.8-192 200.3 0 34.9 26.8 55.8 71.7 55.8 48.8 0 81.1-25.1 120.3-25.1 39.5 0 71.9 25.1 120.3 25.1 44.9 0 71.7-20.9 71.7-55.8C448 346.8 335.4 224 256 224zm-147.3-12.6c-10.4-34.7-42.4-57.1-71.6-50.1-29.1 7-44.3 40.7-33.9 75.3 10.4 34.7 42.4 57.1 71.6 50.1 29.1-7 44.3-40.7 33.9-75.3zm84.7-20.8c30.9-8.1 46.4-49.9 34.6-93.4s-46.5-72-77.5-63.9-46.4 49.9-34.6 93.4c11.8 43.4 46.5 72 77.5 63.9zm281.4-29.3c-29.1-7-61.2 15.5-71.6 50.1-10.4 34.7 4.8 68.4 33.9 75.3 29.1 7 61.2-15.5 71.6-50.1 10.4-34.7-4.8-68.4-33.9-75.3zm-156.3 29.3c30.9 8.1 65.6-20.5 77.5-63.9 11.8-43.4-3.6-85.2-34.6-93.4s-65.6 20.5-77.5 63.9c-11.8 43.4 3.6 85.2 34.6 93.4z" />
-                  </svg>
-                </div>
-
-                <div className="flex flex-col items-center gap-6 text-center md:flex-row md:text-left">
-                  {/* Icon */}
-                  <div className="bg-accent/20 group-hover:bg-accent/30 flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl transition-colors duration-300 md:h-24 md:w-24">
-                    <HeartHandshake
-                      className="text-accent h-10 w-10 md:h-12 md:w-12"
-                      strokeWidth={1.5}
-                    />
-                  </div>
-
-                  {/* Content */}
-                  <div className="space-y-3">
-                    <h3 className="text-2xl font-bold md:text-3xl">
-                      Die Beziehung steht im Mittelpunkt
-                    </h3>
-                    <p className="text-foreground/80 text-base leading-relaxed md:text-lg">
-                      Für mich zählt nicht nur die Betreuung – sondern vor allem die echte
-                      Verbindung zu jedem einzelnen Tier. Ich nehme mir die Zeit, deinen Hund
-                      wirklich kennenzulernen: seine Persönlichkeit, seine Vorlieben, seine Ängste
-                      und was ihn glücklich macht. Denn nur wenn Vertrauen und eine liebevolle
-                      Beziehung entstehen, fühlt sich dein Vierbeiner bei mir rundum wohl und
-                      geborgen.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
 
           {/* Features Grid */}

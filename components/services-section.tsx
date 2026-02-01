@@ -12,11 +12,8 @@ export function ServicesSection() {
   const [numberOfDogs, setNumberOfDogs] = useState(1)
 
   return (
-    <section
-      id="preise"
-      className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32"
-    >
-      <PawBackground variant="b" />
+    <section id="preise" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+      <PawBackground variant="d" />
 
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-6 text-center">
@@ -116,23 +113,15 @@ export function ServicesSection() {
             <CardContent className="flex-1 pt-6">
               <div className="space-y-5">
                 <PriceItem
-                  normalPrice={
-                    numberOfDogs === 1 ? 35 : numberOfDogs === 2 ? 35 + 25 : 35 + 25 + 20
-                  }
-                  holidayPrice={
-                    (numberOfDogs === 1 ? 35 : numberOfDogs === 2 ? 35 + 25 : 35 + 25 + 20) * 1.5
-                  }
+                  normalPrice={35 + (numberOfDogs - 1) * 25}
+                  holidayPrice={(35 + (numberOfDogs - 1) * 25) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="Tagesbetreuung"
                   subtitle="Max. 12 Stunden"
                 />
                 <PriceItem
-                  normalPrice={
-                    numberOfDogs === 1 ? 40 : numberOfDogs === 2 ? 40 + 30 : 40 + 30 + 25
-                  }
-                  holidayPrice={
-                    (numberOfDogs === 1 ? 40 : numberOfDogs === 2 ? 40 + 30 : 40 + 30 + 25) * 1.5
-                  }
+                  normalPrice={40 + (numberOfDogs - 1) * 25}
+                  holidayPrice={(40 + (numberOfDogs - 1) * 25) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="Urlaubsbetreuung"
                   subtitle="Mit Übernachtung"
@@ -210,7 +199,9 @@ export function ServicesSection() {
                   perUnit="einmalig"
                 />
                 <PriceItem
-                  normalPrice={numberOfDogs === 1 ? 20 : numberOfDogs === 2 ? 20 + 10 : 20 + 10 + 5}
+                  normalPrice={
+                    numberOfDogs === 1 ? 20 : numberOfDogs === 2 ? 20 + 10 : 20 + 10 + 10
+                  }
                   isHoliday={false}
                   title="Probetag"
                   subtitle="Max. 12 Stunden"

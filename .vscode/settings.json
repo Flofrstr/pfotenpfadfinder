@@ -1,4 +1,9 @@
 {
+  // Layout
+  "workbench.sideBar.location": "right",
+  "workbench.panel.defaultLocation": "bottom",
+  "workbench.activityBar.location": "top",
+
   // Formatting
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,

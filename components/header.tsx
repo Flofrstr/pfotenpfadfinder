@@ -40,16 +40,16 @@ export function Header() {
                 Über mich
               </Link>
               <Link
-                href="/#preise"
-                className="hover:text-primary text-sm font-medium transition-colors"
-              >
-                Preise
-              </Link>
-              <Link
                 href="/#warum-ich"
                 className="hover:text-primary text-sm font-medium transition-colors"
               >
                 Mein Service
+              </Link>
+              <Link
+                href="/#preise"
+                className="hover:text-primary text-sm font-medium transition-colors"
+              >
+                Preise
               </Link>
               <Link
                 href="/#faq"
@@ -195,15 +195,6 @@ export function Header() {
                       Über mich
                     </Link>
                     <Link
-                      href="/#preise"
-                      className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
-                      onClick={() => {
-                        setIsMenuOpen(false)
-                      }}
-                    >
-                      Preise
-                    </Link>
-                    <Link
                       href="/#warum-ich"
                       className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
                       onClick={() => {
@@ -211,6 +202,15 @@ export function Header() {
                       }}
                     >
                       Mein Service
+                    </Link>
+                    <Link
+                      href="/#preise"
+                      className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
+                      onClick={() => {
+                        setIsMenuOpen(false)
+                      }}
+                    >
+                      Preise
                     </Link>
                     <Link
                       href="/#faq"
