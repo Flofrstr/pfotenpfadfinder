@@ -85,6 +85,12 @@ export function ServicesSection() {
             <p className="text-foreground/50 text-xs">
               {numberOfDogs === 1 ? 'Preis für 1 Hund' : `Gesamtpreis für ${numberOfDogs} Hunde`}
             </p>
+            <div className="border-accent/30 bg-accent/5 mt-4 flex items-center gap-3 rounded-full border px-5 py-3">
+              <Dog className="text-accent h-5 w-5 shrink-0" />
+              <p className="text-foreground/70 text-sm">
+                Einzelbetreuung (auf Wunsch oder bei Unverträglichkeit) = Preis für 2 Hunde
+              </p>
+            </div>
           </div>
         </div>
 
