@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ModeToggle } from '@/components/mode-toggle'
-import { Menu, X, Sun, Moon, Monitor, CalendarClock } from 'lucide-react'
+import { Menu, X, Sun, Moon, Monitor } from 'lucide-react'
 import { useState } from 'react'
 import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'motion/react'
