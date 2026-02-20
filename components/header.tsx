@@ -3,18 +3,45 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ModeToggle } from '@/components/mode-toggle'
-import { Menu, X, Sun, Moon, Monitor } from 'lucide-react'
+import { Menu, X, Sun, Moon, Monitor, CalendarClock } from 'lucide-react'
 import { useState } from 'react'
 import { useTheme } from 'next-themes'
 import { motion, AnimatePresence } from 'motion/react'
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isBannerVisible, setIsBannerVisible] = useState(true)
   const { setTheme, theme } = useTheme()
 
   return (
     <>
       <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
+        {/* Announcement Banner */}
+        {isBannerVisible && (
+          <div className="border-b border-rose-800/40 bg-rose-950/50 text-rose-100 dark:bg-rose-950/50 dark:text-rose-100">
+            <div className="container flex items-center justify-between gap-3 py-3">
+              <div className="flex flex-1 items-center justify-center gap-2.5">
+                <span className="relative flex h-2.5 w-2.5 shrink-0">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-rose-400 opacity-75" />
+                  <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-rose-400" />
+                </span>
+                <p className="text-center text-xs font-medium sm:text-sm">
+                  <span className="font-bold">Bis September ausgebucht</span>
+                  <span className="mx-1.5 hidden sm:inline">|</span>
+                  <br className="sm:hidden" />
+                  Termine ab Oktober können bereits angefragt werden.
+                </p>
+              </div>
+              <button
+                onClick={() => setIsBannerVisible(false)}
+                className="shrink-0 rounded p-1 text-rose-400/60 transition-colors hover:text-rose-200"
+                aria-label="Banner schließen"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+          </div>
+        )}
         <div className="container flex h-16 items-center">
           {/* Logo and Brand Name */}
           <div className="flex flex-1 items-center gap-2">
