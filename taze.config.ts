@@ -12,9 +12,6 @@ export default defineConfig({
 
     // tsgo itself - update independently when ready
     '@typescript/native-preview': 'ignore',
-
-    // tsgo wrapper - update with care
-    'oxlint-tsgolint': 'ignore',
   },
 
   // Write changes to package.json
