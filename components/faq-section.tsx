@@ -27,7 +27,7 @@ export function FAQSection() {
         {
           question: 'Ist mein Hund während der Betreuung versichert?',
           answer:
-            'Ja, ich verfüge über eine Hundebetreuer-Betriebshaftpflichtversicherung. Diese deckt Schäden ab, die während meiner Betreuung entstehen könnten. Zusätzlich sollte dein Hund eine eigene Hundehaftpflichtversicherung haben, damit im Schadensfall auch alles rund um dein Tier vollständig abgesichert ist',
+            'Ja, ich verfüge über eine Hundebetreuer-Betriebshaftpflichtversicherung. Diese deckt Schäden ab, die während meiner Betreuung entstehen könnten. Zusätzlich sollte dein Hund eine eigene Hundehaftpflichtversicherung haben – bitte prüfe dabei, ob deine Versicherung auch bei Betreuung durch Dritte greift, da nicht alle Policen dies automatisch abdecken. So ist im Schadensfall alles rund um dein Tier vollständig abgesichert.',
         },
         {
           question: 'Was passiert im Notfall?',
