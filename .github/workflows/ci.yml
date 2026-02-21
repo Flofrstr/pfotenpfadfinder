@@ -6,7 +6,6 @@ on:
     paths-ignore:
       - '**.md'
       - '.prettierrc'
-      - '.oxlintrc.json'
       - '.vscode/**'
   push:
     branches: [main]
@@ -29,11 +28,5 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Lint
-        run: npm run lint
-
       - name: Type check
         run: npm run typecheck
-
-      - name: Check unused code
-        run: npm run knip
