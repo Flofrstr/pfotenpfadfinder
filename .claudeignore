@@ -1,0 +1,14 @@
+# Build-Artefakte
+.next/
+node_modules/
+
+# Umgebungsvariablen
+.env*
+
+# Statische Assets (Bilder, nicht relevant für Code-Kontext)
+public/images/
+public/icons/
+
+# IDE / Editor
+.vscode/
+.idea/
