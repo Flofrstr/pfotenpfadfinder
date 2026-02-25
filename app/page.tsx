@@ -192,7 +192,7 @@ const faqStructuredData = {
       name: 'Welche Qualifikationen hast du als Hundesitter?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Ich bringe langjährige Erfahrung mit Hunden mit und starte im Januar 2026 meine Ausbildung zur Hundepsychologin und Hundetrainerin. Ich verfüge über die erforderliche §11-Erlaubnis nach dem Tierschutzgesetz und bin in Erster Hilfe für Hunde geschult. Außerdem arbeite ich hauptberuflich im medizinischen Bereich (MTLA), was mir im Umgang mit Notfällen hilft.',
+        text: 'Ich bringe langjährige Erfahrung mit Hunden mit und bin seit Januar 2026 in Ausbildung zur Hundepsychologin und Hundetrainerin. Ich verfüge über die erforderliche §11-Erlaubnis nach dem Tierschutzgesetz und bin in Erster Hilfe für Hunde geschult. Außerdem arbeite ich hauptberuflich im medizinischen Bereich (MTLA), was mir im Umgang mit Notfällen hilft.',
       },
     },
     {
@@ -200,7 +200,7 @@ const faqStructuredData = {
       name: 'Kannst du auch mit ängstlichen oder schwierigen Hunden umgehen?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Ja, ich habe Erfahrung mit ängstlichen und unsicheren Hunden, besonders aus dem Tierschutz. Durch meine geplante Ausbildung zur Hundepsychologin vertiefe ich dieses Wissen weiter. Bei verhaltensauffälligen Hunden plane ich mehr Zeit für das Kennenlernen ein und passe die Betreuung individuell an.',
+        text: 'Ja, ich habe Erfahrung mit ängstlichen und unsicheren Hunden, besonders aus dem Tierschutz. Durch meine laufende Ausbildung zur Hundepsychologin vertiefe ich dieses Wissen weiter. Bei verhaltensauffälligen Hunden plane ich mehr Zeit für das Kennenlernen ein und passe die Betreuung individuell an.',
       },
     },
     {

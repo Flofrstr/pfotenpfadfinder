@@ -69,12 +69,12 @@ export function FAQSection() {
         {
           question: 'Welche Qualifikationen hast du als Hundesitter?',
           answer:
-            'Ich bin mit Hunden aufgewachsen und habe dadurch viel Erfahrung im Umgang mit ihnen gesammelt. Ich verfüge über die erforderliche §11-Erlaubnis nach dem Tierschutzgesetz und bin in Erster Hilfe für Hunde geschult. Zudem bilde ich mich regelmäßig durch Seminare weiter und sammle bereits praktische Erfahrung durch Praktika. Ab Januar 2026 werde ich meine Ausbildung zur Hundepsychologin und Hundetrainerin beginnen.',
+            'Ich bin mit Hunden aufgewachsen und habe dadurch viel Erfahrung im Umgang mit ihnen gesammelt. Ich verfüge über die erforderliche §11-Erlaubnis nach dem Tierschutzgesetz und bin in Erster Hilfe für Hunde geschult. Zudem bilde ich mich regelmäßig durch Seminare weiter und sammle bereits praktische Erfahrung durch Praktika. Seit Januar 2026 bin ich in Ausbildung zur Hundepsychologin und Hundetrainerin.',
         },
         {
           question: 'Kannst du auch mit ängstlichen oder schwierigen Hunden umgehen?',
           answer:
-            'Ich habe bereits mehrfach positive Erfahrungen mit ängstlichen und unsicheren Hunden gesammelt und konnte dabei eine gute Bindung zu ihnen aufbauen. Auch wenn ich hierzu keine spezielle Ausbildung habe, gehe ich sehr einfühlsam und geduldig vor. Durch meine bevorstehende Ausbildung zur Hundepsychologin werde ich dieses Wissen vertiefen und professionalisieren. Bei verhaltensauffälligen Hunden plane ich grundsätzlich mehr Zeit für das Kennenlernen ein und passe die Betreuung individuell an die Bedürfnisse des Hundes an.',
+            'Ich habe bereits mehrfach positive Erfahrungen mit ängstlichen und unsicheren Hunden gesammelt und konnte dabei eine gute Bindung zu ihnen aufbauen. Auch wenn ich hierzu keine spezielle Ausbildung habe, gehe ich sehr einfühlsam und geduldig vor. Durch meine laufende Ausbildung zur Hundepsychologin vertiefe und professionalisiere ich dieses Wissen. Bei verhaltensauffälligen Hunden plane ich grundsätzlich mehr Zeit für das Kennenlernen ein und passe die Betreuung individuell an die Bedürfnisse des Hundes an.',
         },
       ],
     },

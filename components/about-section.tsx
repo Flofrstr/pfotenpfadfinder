@@ -30,7 +30,7 @@ export function AboutSection() {
               </svg>
             </p>
             <p className="text-foreground/70 text-xl md:text-2xl">
-              Ich bin Michelle, 24 Jahre alt und Gründerin von Pfotenpfadfinder.
+              Ich bin Michelle, 25 Jahre alt und Gründerin von Pfotenpfadfinder.
             </p>
           </div>
 
@@ -68,7 +68,7 @@ export function AboutSection() {
                     </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-accent mb-1 text-3xl font-bold">24</div>
+                    <div className="text-accent mb-1 text-3xl font-bold">25</div>
                     <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
                       Jahre alt
                     </div>
@@ -76,7 +76,7 @@ export function AboutSection() {
                   <div className="text-center">
                     <div className="text-accent mb-1 text-3xl font-bold">2026</div>
                     <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
-                      Start Weiterbildung
+                      In Weiterbildung
                     </div>
                   </div>
                 </div>
@@ -117,9 +117,9 @@ export function AboutSection() {
                     Januar 2025 bin ich in Teilzeit, um mehr Raum für mein Herzensprojekt zu
                     schaffen. Im Februar 2025 habe ich den Schritt in die Selbstständigkeit gewagt
                     und Pfotenpfadfinder gegründet – mit dem Ziel, Hunde und ihre Menschen
-                    zuverlässig, liebevoll und individuell zu unterstützen. Ab Januar 2026 starte
-                    ich zudem meine Ausbildung zur Hundepsychologin und Hundetrainerin, um mein
-                    Wissen zu vertiefen und meine Arbeit noch professioneller gestalten zu können.
+                    zuverlässig, liebevoll und individuell zu unterstützen. Seit Januar 2026 bin ich
+                    zudem in Ausbildung zur Hundepsychologin und Hundetrainerin, um mein Wissen zu
+                    vertiefen und meine Arbeit noch professioneller gestalten zu können.
                   </p>
                 </div>
               </div>
