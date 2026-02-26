@@ -126,8 +126,8 @@ export function ServicesSection() {
                   subtitle="Max. 12 Stunden"
                 />
                 <PriceItem
-                  normalPrice={40 + (numberOfDogs - 1) * 25}
-                  holidayPrice={(40 + (numberOfDogs - 1) * 25) * 1.5}
+                  normalPrice={40 + (numberOfDogs - 1) * 30}
+                  holidayPrice={(40 + (numberOfDogs - 1) * 30) * 1.5}
                   isHoliday={showHolidayPricing}
                   title="Urlaubsbetreuung"
                   subtitle="Mit Übernachtung"
