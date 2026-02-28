@@ -7,7 +7,6 @@ import { motion, AnimatePresence } from 'motion/react'
 import { cn } from '@/lib/utils'
 import { isNrwHoliday, getHolidayName } from '@/lib/nrw-holidays'
 
-type ArrivalTime = 'vor18' | 'ab18'
 type DepartureTime = 'vor12' | 'ab12'
 
 interface CalculationResult {
@@ -59,7 +58,6 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
   const [startDate, setStartDate] = useState<Date | null>(null)
   const [endDate, setEndDate] = useState<Date | null>(null)
   const [hoverDate, setHoverDate] = useState<Date | null>(null)
-  const [arrivalTime, setArrivalTime] = useState<ArrivalTime>('vor18')
   const [departureTime, setDepartureTime] = useState<DepartureTime>('vor12')
   const [includeNieAllein, setIncludeNieAllein] = useState(false)
   const [viewMonth, setViewMonth] = useState<Date>(() => {
@@ -143,14 +141,6 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
     let normalDaycare = 0
     let holidayDaycare = 0
 
-    if (arrivalTime === 'vor18') {
-      if (isNrwHoliday(startDate)) {
-        holidayDaycare++
-      } else {
-        normalDaycare++
-      }
-    }
-
     if (departureTime === 'ab12') {
       const lastDay = new Date(end)
       if (isNrwHoliday(lastDay)) {
@@ -186,7 +176,6 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
   }, [
     startDate,
     endDate,
-    arrivalTime,
     departureTime,
     numberOfDogs,
     includeNieAllein,
@@ -269,40 +258,21 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
         </div>
 
         {/* Time options */}
-        <div className="border-accent/20 bg-card space-y-4 rounded-2xl border p-4 shadow-sm transition-all duration-300 hover:shadow-md">
-          <div className="space-y-3">
-            <p className="text-sm font-semibold">Ankunft</p>
-            <div className="flex gap-2">
-              <TimeButton
-                active={arrivalTime === 'vor18'}
-                onClick={() => setArrivalTime('vor18')}
-                label="Vor 18 Uhr"
-                sublabel="+Tagesbetreuung"
-              />
-              <TimeButton
-                active={arrivalTime === 'ab18'}
-                onClick={() => setArrivalTime('ab18')}
-                label="Ab 18 Uhr"
-                sublabel="Nur Übernachtung"
-              />
-            </div>
-          </div>
-          <div className="space-y-3">
-            <p className="text-sm font-semibold">Abreise</p>
-            <div className="flex gap-2">
-              <TimeButton
-                active={departureTime === 'vor12'}
-                onClick={() => setDepartureTime('vor12')}
-                label="Vor 12 Uhr"
-                sublabel="Keine Berechnung"
-              />
-              <TimeButton
-                active={departureTime === 'ab12'}
-                onClick={() => setDepartureTime('ab12')}
-                label="Ab 12 Uhr"
-                sublabel="+Tagesbetreuung"
-              />
-            </div>
+        <div className="border-accent/20 bg-card space-y-3 rounded-2xl border p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+          <p className="text-sm font-semibold">Abreise am letzten Tag</p>
+          <div className="flex gap-2">
+            <TimeButton
+              active={departureTime === 'vor12'}
+              onClick={() => setDepartureTime('vor12')}
+              label="Vor 12 Uhr"
+              sublabel="Keine Berechnung"
+            />
+            <TimeButton
+              active={departureTime === 'ab12'}
+              onClick={() => setDepartureTime('ab12')}
+              label="Ab 12 Uhr"
+              sublabel="+Tagesbetreuung"
+            />
           </div>
         </div>
       </div>
@@ -337,10 +307,13 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
-                className="space-y-5"
+                className="flex flex-col gap-5"
               >
                 {/* Date range display */}
-                <div className="bg-accent/5 border-accent/20 rounded-lg border px-4 py-3 text-center">
+                <motion.div
+                  layout
+                  className="bg-accent/5 border-accent/20 rounded-lg border px-4 py-3 text-center"
+                >
                   <p className="text-sm font-semibold">
                     {startDate && formatDate(startDate)}
                     {endDate && !isSameDay(startDate!, endDate) && <> – {formatDate(endDate)}</>}
@@ -348,66 +321,95 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                   <p className="text-foreground/60 mt-0.5 text-xs">
                     {numberOfDogs === 1 ? '1 Hund' : `${numberOfDogs} Hunde`}
                   </p>
-                </div>
+                </motion.div>
 
-                {/* Overnight breakdown */}
-                {calculation.overnightNights > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-foreground/70 text-xs font-semibold tracking-wider uppercase">
-                      Übernachtungen
-                    </p>
-                    {calculation.normalOvernights > 0 && (
-                      <LineItem
-                        label={`${calculation.normalOvernights}× Übernachtung`}
-                        price={calculation.normalOvernights * overnightPrice}
-                      />
-                    )}
-                    {calculation.holidayOvernights > 0 && (
-                      <LineItem
-                        label={`${calculation.holidayOvernights}× Übernachtung (Feiertag)`}
-                        price={calculation.holidayOvernights * overnightPrice * 1.5}
-                        highlight
-                      />
-                    )}
-                  </div>
-                )}
+                <AnimatePresence initial={false}>
+                  {/* Overnight breakdown */}
+                  {calculation.overnightNights > 0 && (
+                    <motion.div
+                      key="overnights"
+                      layout
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="space-y-2 overflow-hidden"
+                    >
+                      <p className="text-foreground/70 text-xs font-semibold tracking-wider uppercase">
+                        Übernachtungen
+                      </p>
+                      {calculation.normalOvernights > 0 && (
+                        <LineItem
+                          label={`${calculation.normalOvernights}× Übernachtung`}
+                          price={calculation.normalOvernights * overnightPrice}
+                        />
+                      )}
+                      {calculation.holidayOvernights > 0 && (
+                        <LineItem
+                          label={`${calculation.holidayOvernights}× Übernachtung (Feiertag)`}
+                          price={calculation.holidayOvernights * overnightPrice * 1.5}
+                          highlight
+                        />
+                      )}
+                    </motion.div>
+                  )}
 
-                {/* Daycare breakdown */}
-                {calculation.daycareDays > 0 && (
-                  <div className="space-y-2">
-                    <p className="text-foreground/70 text-xs font-semibold tracking-wider uppercase">
-                      Tagesbetreuung
-                    </p>
-                    {calculation.normalDaycare > 0 && (
-                      <LineItem
-                        label={`${calculation.normalDaycare}× Tagesbetreuung`}
-                        price={calculation.normalDaycare * daycarePrice}
-                      />
-                    )}
-                    {calculation.holidayDaycare > 0 && (
-                      <LineItem
-                        label={`${calculation.holidayDaycare}× Tagesbetreuung (Feiertag)`}
-                        price={calculation.holidayDaycare * daycarePrice * 1.5}
-                        highlight
-                      />
-                    )}
-                  </div>
-                )}
+                  {/* Daycare breakdown */}
+                  {calculation.daycareDays > 0 && (
+                    <motion.div
+                      key="daycare"
+                      layout
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="space-y-2 overflow-hidden"
+                    >
+                      <p className="text-foreground/70 text-xs font-semibold tracking-wider uppercase">
+                        Tagesbetreuung
+                      </p>
+                      {calculation.normalDaycare > 0 && (
+                        <LineItem
+                          label={`${calculation.normalDaycare}× Tagesbetreuung`}
+                          price={calculation.normalDaycare * daycarePrice}
+                        />
+                      )}
+                      {calculation.holidayDaycare > 0 && (
+                        <LineItem
+                          label={`${calculation.holidayDaycare}× Tagesbetreuung (Feiertag)`}
+                          price={calculation.holidayDaycare * daycarePrice * 1.5}
+                          highlight
+                        />
+                      )}
+                    </motion.div>
+                  )}
 
-                {/* Holiday names */}
-                {calculation.holidayNames.length > 0 && (
-                  <div className="bg-accent/5 border-accent/20 rounded-lg border px-3 py-2">
-                    <p className="text-foreground/60 text-xs">
-                      Feiertage im Zeitraum:{' '}
-                      <span className="text-foreground/80 font-medium">
-                        {calculation.holidayNames.join(', ')}
-                      </span>
-                    </p>
-                  </div>
-                )}
+                  {/* Holiday names */}
+                  {calculation.holidayNames.length > 0 && (
+                    <motion.div
+                      key="holidays"
+                      layout
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      exit={{ opacity: 0, height: 0 }}
+                      transition={{ duration: 0.3, ease: 'easeInOut' }}
+                      className="overflow-hidden"
+                    >
+                      <div className="bg-accent/5 border-accent/20 rounded-lg border px-3 py-2">
+                        <p className="text-foreground/60 text-xs">
+                          Feiertage im Zeitraum:{' '}
+                          <span className="text-foreground/80 font-medium">
+                            {calculation.holidayNames.join(', ')}
+                          </span>
+                        </p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Nie allein toggle */}
-                <button
+                <motion.button
+                  layout
                   onClick={() => setIncludeNieAllein(!includeNieAllein)}
                   className="border-accent/20 hover:border-accent/40 flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition-colors"
                 >
@@ -442,13 +444,13 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                       +{calculation.nieAlleinCost}€
                     </span>
                   )}
-                </button>
+                </motion.button>
 
                 {/* Divider */}
-                <div className="border-accent/10 border-t" />
+                <motion.div layout className="border-accent/10 border-t" />
 
                 {/* Total */}
-                <div className="flex items-baseline justify-between">
+                <motion.div layout className="flex items-baseline justify-between">
                   <p className="text-lg font-semibold">Gesamtpreis</p>
                   <div className="flex items-baseline gap-0.5">
                     <AnimateNumber className="text-accent text-3xl font-bold tabular-nums">
@@ -456,11 +458,11 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                     </AnimateNumber>
                     <span className="text-accent text-3xl font-bold">€</span>
                   </div>
-                </div>
+                </motion.div>
 
-                <p className="text-foreground/40 text-xs">
+                <motion.p layout className="text-foreground/40 text-xs">
                   * Gemäß §19 UStG wird keine Umsatzsteuer berechnet.
-                </p>
+                </motion.p>
               </motion.div>
             )}
           </AnimatePresence>

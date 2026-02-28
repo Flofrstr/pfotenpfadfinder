@@ -135,10 +135,10 @@ export function ServicesSection() {
             {activeTab === 'overview' ? (
               <motion.div
                 key="overview"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -20 }}
-                transition={{ duration: 0.25 }}
+                initial={{ opacity: 0, y: 8, scale: 0.99 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.99 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
                 <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 lg:grid-cols-3">
                   {/* Hundebetreuung */}
@@ -278,10 +278,10 @@ export function ServicesSection() {
             ) : (
               <motion.div
                 key="calculator"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{ duration: 0.25 }}
+                initial={{ opacity: 0, y: 8, scale: 0.99 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.99 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               >
                 <PriceCalculatorContent numberOfDogs={numberOfDogs} />
               </motion.div>
@@ -289,42 +289,56 @@ export function ServicesSection() {
           </AnimatePresence>
         </div>
 
-        {/* Additional Info */}
-        <div className="mx-auto mt-10 max-w-4xl space-y-6">
-          <div className="border-accent/20 from-accent/5 to-accent/10 relative overflow-hidden rounded-2xl border bg-linear-to-br p-6 shadow-sm">
-            <div className="bg-accent/10 absolute top-0 right-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full blur-2xl" />
-            <div className="relative flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-              <div className="flex flex-col items-center gap-4 sm:flex-row">
-                <div className="bg-accent/20 flex items-center rounded-xl p-3 sm:p-3">
-                  <MapPin className="text-accent h-8 w-8 sm:h-6 sm:w-6" />
-                </div>
-                <div className="text-center sm:text-left">
-                  <p className="text-foreground/60 text-xs font-semibold tracking-wider uppercase">
-                    Anfahrt
-                  </p>
-                  <p className="text-foreground/80 mt-0.5 text-sm">Innerhalb des Servicegebiets</p>
-                  <p className="text-foreground/60 mt-1.5 text-xs leading-relaxed">
-                    Gevelsberg, Schwelm, Ennepetal, Hasslinghausen
-                  </p>
-                  <div className="mt-3 sm:hidden">
-                    <p className="text-2xl font-bold tabular-nums">0,60€</p>
-                    <p className="text-foreground/60 text-xs">pro Kilometer</p>
+        {/* Additional Info (only in overview) */}
+        <AnimatePresence>
+          {activeTab === 'overview' && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="mx-auto mt-10 max-w-4xl space-y-6">
+                <div className="border-accent/20 from-accent/5 to-accent/10 relative overflow-hidden rounded-2xl border bg-linear-to-br p-6 shadow-sm">
+                  <div className="bg-accent/10 absolute top-0 right-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full blur-2xl" />
+                  <div className="relative flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+                    <div className="flex flex-col items-center gap-4 sm:flex-row">
+                      <div className="bg-accent/20 flex items-center rounded-xl p-3 sm:p-3">
+                        <MapPin className="text-accent h-8 w-8 sm:h-6 sm:w-6" />
+                      </div>
+                      <div className="text-center sm:text-left">
+                        <p className="text-foreground/60 text-xs font-semibold tracking-wider uppercase">
+                          Anfahrt
+                        </p>
+                        <p className="text-foreground/80 mt-0.5 text-sm">
+                          Innerhalb des Servicegebiets
+                        </p>
+                        <p className="text-foreground/60 mt-1.5 text-xs leading-relaxed">
+                          Gevelsberg, Schwelm, Ennepetal, Hasslinghausen
+                        </p>
+                        <div className="mt-3 sm:hidden">
+                          <p className="text-2xl font-bold tabular-nums">0,60€</p>
+                          <p className="text-foreground/60 text-xs">pro Kilometer</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="bg-background/80 hidden items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm sm:flex">
+                      <div className="text-right">
+                        <p className="text-3xl font-bold tabular-nums">0,60€</p>
+                        <p className="text-foreground/60 text-xs">pro Kilometer</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="bg-background/80 hidden items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm sm:flex">
-                <div className="text-right">
-                  <p className="text-3xl font-bold tabular-nums">0,60€</p>
-                  <p className="text-foreground/60 text-xs">pro Kilometer</p>
-                </div>
-              </div>
-            </div>
-          </div>
 
-          <p className="text-foreground/50 text-center text-xs">
-            * Gemäß §19 UStG wird keine Umsatzsteuer berechnet
-          </p>
-        </div>
+                <p className="text-foreground/50 text-center text-xs">
+                  * Gemäß §19 UStG wird keine Umsatzsteuer berechnet
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )
