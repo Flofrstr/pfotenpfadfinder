@@ -333,7 +333,7 @@ export function ServicesSection() {
                 </div>
 
                 <p className="text-foreground/50 text-center text-xs">
-                  * Gemäß §19 UStG wird keine Umsatzsteuer berechnet
+                  Gemäß §19 UStG wird keine Umsatzsteuer berechnet
                 </p>
               </div>
             </motion.div>

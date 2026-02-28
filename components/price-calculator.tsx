@@ -461,7 +461,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                 </motion.div>
 
                 <motion.p layout className="text-foreground/40 text-xs">
-                  * Gemäß §19 UStG wird keine Umsatzsteuer berechnet.
+                  Gemäß §19 UStG wird keine Umsatzsteuer berechnet.
                 </motion.p>
               </motion.div>
             )}
