@@ -1,7 +1,7 @@
 'use client'
 
 // Verschiedene Varianten für unterschiedliche Sektionen
-type Variant = 'a' | 'b' | 'c' | 'd' | 'e'
+type Variant = 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
 
 interface PawBackgroundProps {
   variant?: Variant
@@ -44,6 +44,13 @@ export function PawBackground({ variant = 'a' }: PawBackgroundProps) {
       { top: '50%', left: '6%', size: 'h-7 w-7 md:h-9 md:w-9', rotate: '40deg' },
       { top: '45%', right: '10%', size: 'h-8 w-8 md:h-10 md:w-10', rotate: '-35deg' },
       { bottom: '20%', right: '5%', size: 'h-9 w-9 md:h-11 md:w-11', rotate: '25deg' },
+    ],
+    f: [
+      { top: '7%', left: '4%', size: 'h-8 w-8 md:h-10 md:w-10', rotate: '25deg' },
+      { top: '22%', right: '7%', size: 'h-9 w-9 md:h-11 md:w-11', rotate: '-20deg' },
+      { top: '46%', right: '4%', size: 'h-7 w-7 md:h-9 md:w-9', rotate: '50deg' },
+      { top: '55%', left: '8%', size: 'h-8 w-8 md:h-10 md:w-10', rotate: '-30deg' },
+      { bottom: '8%', left: '14%', size: 'h-9 w-9 md:h-11 md:w-11', rotate: '15deg' },
     ],
   }
 
