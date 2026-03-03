@@ -684,9 +684,10 @@ export default function Datenschutz() {
             </h3>
             <p className="text-foreground/70 mb-4 leading-relaxed">
               Für unser Kontaktformular nutzen wir Netlify Forms. Bei Nutzung des Kontaktformulars
-              werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Nachricht) an Netlify
-              übermittelt und dort gespeichert. Diese Daten werden ausschließlich zur Bearbeitung
-              Ihrer Anfrage verwendet und nicht an Dritte weitergegeben.
+              werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Telefonnummer,
+              Nachricht) an Netlify übermittelt und dort gespeichert. Diese Daten werden
+              ausschließlich zur Bearbeitung Ihrer Anfrage verwendet und nicht an Dritte
+              weitergegeben.
             </p>
 
             <p className="text-foreground/70 mb-12 leading-relaxed">
