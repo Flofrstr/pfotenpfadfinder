@@ -123,6 +123,20 @@ export function ContactSection() {
                 </div>
 
                 <div className="space-y-2">
+                  <label htmlFor="phone" className="text-sm font-semibold">
+                    Handynummer <span className="text-foreground/40 font-normal">(optional)</span>
+                  </label>
+                  <Input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    placeholder="z.B. 0157 12345678"
+                    className="border-accent/20 focus:border-accent placeholder:text-foreground/40 h-12"
+                    suppressHydrationWarning
+                  />
+                </div>
+
+                <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-semibold">
                     Nachricht
                   </label>
