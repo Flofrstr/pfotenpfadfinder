@@ -50,6 +50,14 @@ export function TestimonialsSection() {
       src: '/Fiebi.jpeg',
       alt: 'Kleiner schwarz-weißer Hund liegt auf heller Decke mit Plüschtier',
     },
+    {
+      name: 'Frieda',
+      quote:
+        'Ganz herzlichen Dank für die liebevolle Betreuung von Frieda! ❤️ Die Friedi in so guten Händen zu wissen ist so schön, da konnte ich das Wochenende noch viel besser genießen!',
+      designation: 'Angelika',
+      src: '/Frieda.jpeg',
+      alt: 'Frieda, ein liebevoll betreuter Hund',
+    },
   ]
 
   return (
