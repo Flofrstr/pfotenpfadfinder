@@ -1,16 +1,28 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Contact Form</title>
-</head>
-<body>
-  <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
-    <input type="hidden" name="form-name" value="contact" />
-    <input type="hidden" name="bot-field" />
-    <input type="text" name="name" />
-    <input type="email" name="email" />
-    <input type="tel" name="phone" />
-    <textarea name="message"></textarea>
-  </form>
-</body>
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Kontaktformular – Pfotenpfadfinder</title>
+  </head>
+  <body>
+    <form
+      name="contact"
+      action="/"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      hidden
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <label style="position: absolute; width: 1px; height: 1px; overflow: hidden">
+        Dieses Feld nicht ausfüllen:
+        <input type="text" name="bot-field" tabindex="-1" autocomplete="off" />
+      </label>
+      <input type="text" name="name" autocomplete="name" maxlength="100" required />
+      <input type="email" name="email" autocomplete="email" maxlength="254" required />
+      <input type="tel" name="phone" autocomplete="tel" maxlength="30" />
+      <textarea name="message" autocomplete="off" maxlength="5000" required></textarea>
+    </form>
+  </body>
 </html>

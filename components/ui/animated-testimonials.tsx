@@ -1,206 +1,123 @@
 'use client'
 
-import { IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
-import { motion, AnimatePresence } from 'motion/react'
-import Image from 'next/image'
-import { useMeasure } from 'react-use'
+import { lazy, Suspense, useEffect, useRef, useState } from 'react'
+import { TestimonialCard, TestimonialNavigation } from './animated-testimonials-shared'
+import type { Testimonial } from './animated-testimonials-shared'
 
-import { useState } from 'react'
+const MotionTestimonials = lazy(() =>
+  import('./animated-testimonials-motion').then(module => ({
+    default: module.AnimatedTestimonialsMotion,
+  })),
+)
 
-type Testimonial = {
-  quote: string
-  name: string
-  designation: string
-  src: string
-  alt?: string
+interface AnimatedTestimonialsProps {
+  testimonials: Testimonial[]
 }
 
-const getRotation = (index: number) => {
-  const rotations = [-8, 5, -3, 7, -5, 4, -6, 3]
-  return rotations[index % rotations.length]
-}
+export function AnimatedTestimonials({ testimonials }: AnimatedTestimonialsProps) {
+  const [shouldLoadMotion, setShouldLoadMotion] = useState(false)
+  const [fallbackActive, setFallbackActive] = useState(0)
+  const rootRef = useRef<HTMLDivElement>(null)
 
-export const AnimatedTestimonials = ({ testimonials }: { testimonials: Testimonial[] }) => {
-  const [active, setActive] = useState(0)
-  const [ref, { height }] = useMeasure<HTMLDivElement>()
+  useEffect(() => {
+    const element = rootRef.current
+    if (!element || shouldLoadMotion) return
+
+    const observer = new IntersectionObserver(
+      entries => {
+        if (!entries[0]?.isIntersecting) return
+
+        setShouldLoadMotion(true)
+        observer.disconnect()
+      },
+      { rootMargin: '320px 0px', threshold: 0 },
+    )
+
+    observer.observe(element)
+    return () => observer.disconnect()
+  }, [shouldLoadMotion])
+
+  const handlePrevious = () => {
+    setFallbackActive(previous => (previous - 1 + testimonials.length) % testimonials.length)
+    setShouldLoadMotion(true)
+  }
 
   const handleNext = () => {
-    setActive(prev => (prev + 1) % testimonials.length)
+    setFallbackActive(previous => (previous + 1) % testimonials.length)
+    setShouldLoadMotion(true)
   }
 
-  const handlePrev = () => {
-    setActive(prev => (prev - 1 + testimonials.length) % testimonials.length)
-  }
-
-  const isActive = (index: number) => {
-    return index === active
-  }
+  const fallback = (
+    <StaticTestimonials
+      testimonials={testimonials}
+      active={fallbackActive}
+      onPrevious={handlePrevious}
+      onNext={handleNext}
+    />
+  )
 
   return (
-    <div className="mx-auto max-w-sm px-4 py-10 font-sans antialiased md:max-w-5xl md:px-8 lg:px-12">
-      <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
-        {/* Image Section */}
-        <div className="order-1">
-          <div className="relative mx-auto h-[400px] w-full max-w-[350px] md:h-[450px]">
-            <AnimatePresence>
-              {testimonials.map((testimonial, index) => (
-                <motion.div
-                  key={testimonial.src}
-                  initial={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: -100,
-                    rotate: getRotation(index),
-                  }}
-                  animate={{
-                    opacity: isActive(index) ? 1 : 0.7,
-                    scale: isActive(index) ? 1 : 0.95,
-                    z: isActive(index) ? 0 : -100,
-                    rotate: isActive(index) ? 0 : getRotation(index),
-                    zIndex: isActive(index) ? 40 : testimonials.length + 2 - index,
-                    y: isActive(index) ? [0, -80, 0] : 0,
-                  }}
-                  exit={{
-                    opacity: 0,
-                    scale: 0.9,
-                    z: 100,
-                    rotate: getRotation(index),
-                  }}
-                  transition={{
-                    duration: 0.4,
-                    ease: 'easeInOut',
-                  }}
-                  className="absolute inset-0 origin-bottom"
-                >
-                  {/* Polaroid frame */}
-                  <div className="h-full w-full bg-white p-4 pb-16 shadow-xl dark:bg-gray-100">
-                    <div className="relative h-full w-full overflow-hidden">
-                      <Image
-                        src={testimonial.src}
-                        alt={testimonial.alt || testimonial.name}
-                        width={500}
-                        height={500}
-                        draggable={false}
-                        className="h-full w-full object-cover object-center"
-                      />
-                    </div>
-                    {/* Dog name on polaroid white space */}
-                    <div className="absolute right-4 bottom-4 left-4 text-center">
-                      <p className="font-gluten text-lg font-bold text-amber-900">
-                        {testimonial.name}
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </div>
-          {/* Navigation arrows on desktop - below image */}
-          <div className="mt-6 hidden justify-center gap-4 md:flex">
-            <button
-              onClick={handlePrev}
-              className="group/button bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 flex h-12 w-12 items-center justify-center rounded-full shadow-md transition-all duration-300 hover:scale-110 hover:shadow-lg"
-              aria-label="Previous testimonial"
-            >
-              <IconArrowLeft className="text-primary h-6 w-6 transition-transform duration-300 group-hover/button:-translate-x-0.5" />
-            </button>
-            <button
-              onClick={handleNext}
-              className="group/button bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 flex h-12 w-12 items-center justify-center rounded-full shadow-md transition-all duration-300 hover:scale-110 hover:shadow-lg"
-              aria-label="Next testimonial"
-            >
-              <IconArrowRight className="text-primary h-6 w-6 transition-transform duration-300 group-hover/button:translate-x-0.5" />
-            </button>
+    <div
+      ref={rootRef}
+      className="mx-auto max-w-sm px-4 py-10 font-sans antialiased md:max-w-5xl md:px-8 lg:px-12"
+      onPointerEnter={() => setShouldLoadMotion(true)}
+      onFocusCapture={() => setShouldLoadMotion(true)}
+    >
+      {shouldLoadMotion ? (
+        <Suspense fallback={fallback}>
+          <MotionTestimonials testimonials={testimonials} initialActive={fallbackActive} />
+        </Suspense>
+      ) : (
+        fallback
+      )}
+    </div>
+  )
+}
+
+interface StaticTestimonialsProps extends AnimatedTestimonialsProps {
+  active: number
+  onPrevious: () => void
+  onNext: () => void
+}
+
+function StaticTestimonials({ testimonials, active, onPrevious, onNext }: StaticTestimonialsProps) {
+  const testimonial = testimonials[active]
+
+  return (
+    <div className="relative grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-16">
+      <div className="order-1">
+        <div className="relative mx-auto h-[400px] w-full max-w-[350px] md:h-[450px]">
+          <div className="absolute inset-0 origin-bottom">
+            <TestimonialCard testimonial={testimonial} />
           </div>
         </div>
+        <TestimonialNavigation
+          className="mt-6 hidden justify-center gap-4 md:flex"
+          onPrevious={onPrevious}
+          onNext={onNext}
+        />
+      </div>
 
-        {/* Navigation arrows on mobile - between image and text */}
-        <div className="order-2 flex justify-center gap-4 md:hidden">
-          <button
-            onClick={handlePrev}
-            className="group/button bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 flex h-12 w-12 items-center justify-center rounded-full shadow-md transition-all duration-300 hover:scale-110 hover:shadow-lg"
-            aria-label="Previous testimonial"
-          >
-            <IconArrowLeft className="text-primary h-6 w-6 transition-transform duration-300 group-hover/button:-translate-x-0.5" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="group/button bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 flex h-12 w-12 items-center justify-center rounded-full shadow-md transition-all duration-300 hover:scale-110 hover:shadow-lg"
-            aria-label="Next testimonial"
-          >
-            <IconArrowRight className="text-primary h-6 w-6 transition-transform duration-300 group-hover/button:translate-x-0.5" />
-          </button>
-        </div>
+      <TestimonialNavigation
+        className="order-2 flex justify-center gap-4 md:hidden"
+        onPrevious={onPrevious}
+        onNext={onNext}
+      />
 
-        {/* Text Section */}
-        <motion.div
-          animate={{ height }}
-          transition={{ duration: 0.4, ease: 'easeInOut' }}
-          className="order-3 flex flex-col py-4 md:order-2"
-        >
-          <div ref={ref}>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={active}
-                initial={{
-                  y: 20,
-                  opacity: 0,
-                }}
-                animate={{
-                  y: 0,
-                  opacity: 1,
-                }}
-                exit={{
-                  y: -20,
-                  opacity: 0,
-                }}
-                transition={{
-                  duration: 0.2,
-                  ease: 'easeInOut',
-                }}
-              >
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-black dark:text-white">
-                    {testimonials[active].designation}
-                  </h3>
-                </div>
-                <motion.p className="text-foreground text-base leading-relaxed md:text-lg">
-                  {(() => {
-                    const words = testimonials[active].quote.split(' ')
-                    const wordCount = words.length
-                    const baseDelay = Math.max(0.002, 0.015 - wordCount * 0.0001)
-                    const duration = 0.12
-
-                    return words.map((word, index) => (
-                      <motion.span
-                        key={index}
-                        initial={{
-                          filter: 'blur(10px)',
-                          opacity: 0,
-                          y: 5,
-                        }}
-                        animate={{
-                          filter: 'blur(0px)',
-                          opacity: 1,
-                          y: 0,
-                        }}
-                        transition={{
-                          duration,
-                          ease: 'easeInOut',
-                          delay: baseDelay * index,
-                        }}
-                        className="inline-block"
-                      >
-                        {word}&nbsp;
-                      </motion.span>
-                    ))
-                  })()}
-                </motion.p>
-              </motion.div>
-            </AnimatePresence>
+      <div className="order-3 flex flex-col py-4 md:order-2" aria-live="polite" aria-atomic="true">
+        <div>
+          <div className="mb-6">
+            <h3 className="text-2xl font-bold text-black dark:text-white">
+              {testimonial.designation}
+            </h3>
           </div>
-        </motion.div>
+          <p className="text-foreground text-base leading-relaxed md:text-lg">
+            {testimonial.quote}
+          </p>
+        </div>
       </div>
     </div>
   )
 }
+
+export type { Testimonial }

@@ -70,6 +70,70 @@
   }
 }
 
+@keyframes services-tab-panel-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.99);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes services-holiday-ribbon-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@layer components {
+  .services-tab-panel-enter {
+    animation: services-tab-panel-enter 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .services-overview-info-grid {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      grid-template-rows 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      opacity 300ms cubic-bezier(0.4, 0, 0.2, 1),
+      visibility 0s linear 300ms;
+  }
+
+  .services-overview-info-grid[data-expanded='true'] {
+    grid-template-rows: 1fr;
+    opacity: 1;
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
+  .services-holiday-ribbon {
+    transform-origin: top right;
+    animation: services-holiday-ribbon-enter 300ms ease-out;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .services-tab-panel-enter,
+  .services-holiday-ribbon {
+    animation: none;
+  }
+
+  .services-overview-info-grid {
+    transition: none;
+  }
+}
+
 @layer utilities {
   :root {
     --background: 24 33% 94%;

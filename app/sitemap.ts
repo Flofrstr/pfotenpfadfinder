@@ -1,26 +1,16 @@
 import type { MetadataRoute } from 'next'
+import { SITE_DATA } from '@/lib/site-data'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://pfotenpfadfinder-hundebetreuung.de'
-
   return [
     {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
+      url: SITE_DATA.url,
     },
     {
-      url: `${baseUrl}/impressum`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
+      url: `${SITE_DATA.url}/impressum`,
     },
     {
-      url: `${baseUrl}/datenschutz`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
+      url: `${SITE_DATA.url}/datenschutz`,
     },
   ]
 }

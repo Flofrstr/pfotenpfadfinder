@@ -1,39 +1,18 @@
-'use client'
-
-import { Button } from '@/components/ui/button'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+
+import { HeroViewportController } from '@/components/hero-viewport'
+import { Button } from '@/components/ui/button'
 
 export function HeroSection() {
-  const [viewportHeight, setViewportHeight] = useState('100svh')
-
-  useEffect(() => {
-    // Mobile browsers (Chrome, Firefox, Safari) have broken implementations of svh/lvh/dvh
-    // viewport units - they behave dynamically when they should stay static, causing the
-    // hero section to resize when the address bar shows/hides during scroll.
-    // Solution: Lock viewport height on initial load for mobile devices.
-    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-    const initialHeight = window.innerHeight
-
-    setViewportHeight(`${initialHeight}px`)
-
-    const handleResize = () => {
-      // Only update height on desktop - mobile stays locked to prevent jumps
-      if (!isMobile) {
-        setViewportHeight(`${window.innerHeight}px`)
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
-
   return (
     <section
+      id="hero"
+      aria-labelledby="hero-heading"
       className="relative flex w-full items-center justify-center overflow-hidden"
-      style={{ height: viewportHeight }}
+      style={{ height: '100svh' }}
     >
+      <HeroViewportController targetId="hero" />
       <div className="absolute inset-0 z-0">
         <Image
           src="/pfotenpfadfinder.jpg"
@@ -41,10 +20,12 @@ export function HeroSection() {
           fill
           className="object-cover"
           style={{ objectPosition: 'center 30%' }}
+          sizes="100vw"
+          quality={75}
           priority
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-white/70 dark:bg-black/40"></div>
+        <div className="absolute inset-0 bg-white/70 dark:bg-black/40" />
       </div>
 
       <div className="relative z-10 container px-6 py-16 md:px-6 md:py-24 lg:py-32">
@@ -57,7 +38,10 @@ export function HeroSection() {
           <p className="text-foreground font-gluten text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
             Mit Herz und Pfote an der Seite deines Lieblings
           </p>
-          <h1 className="text-foreground mx-auto max-w-2xl font-sans text-base sm:text-lg md:text-xl">
+          <h1
+            id="hero-heading"
+            className="text-foreground mx-auto max-w-2xl font-sans text-base sm:text-lg md:text-xl"
+          >
             Professionelle Hundebetreuung und Gassi-Service in Gevelsberg
           </h1>
           <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:justify-center">

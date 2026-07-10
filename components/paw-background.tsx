@@ -1,5 +1,3 @@
-'use client'
-
 // Verschiedene Varianten für unterschiedliche Sektionen
 type Variant = 'a' | 'b' | 'c' | 'd' | 'e' | 'f'
 

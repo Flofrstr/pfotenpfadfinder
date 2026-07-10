@@ -15,14 +15,14 @@ export function Footer() {
             </p>
           </div>
 
-          <nav className="flex gap-4 sm:gap-6">
+          <nav aria-label="Rechtliches und Kontakt" className="flex gap-4 sm:gap-6">
             <Link href="/impressum" className="hover:text-accent text-sm transition-colors">
               Impressum
             </Link>
             <Link href="/datenschutz" className="hover:text-accent text-sm transition-colors">
               Datenschutz
             </Link>
-            <Link href="#kontakt" className="hover:text-accent text-sm transition-colors">
+            <Link href="/#kontakt" className="hover:text-accent text-sm transition-colors">
               Kontakt
             </Link>
           </nav>

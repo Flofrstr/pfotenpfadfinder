@@ -2,26 +2,14 @@
 
 import { useState, useMemo, useCallback } from 'react'
 import { ChevronLeft, ChevronRight, Calculator } from 'lucide-react'
-import { AnimateNumber } from 'motion-plus/react'
 import { motion, AnimatePresence } from 'motion/react'
+import { AccessibleAnimatedNumber } from '@/components/ui/accessible-animated-number'
 import { cn } from '@/lib/utils'
-import { isNrwHoliday, getHolidayName } from '@/lib/nrw-holidays'
+import { isNrwHoliday } from '@/lib/nrw-holidays'
+import { calculatePrice, getTieredPrice, toLocalDateKey } from '@/lib/pricing'
+import { PRICING } from '@/lib/site-data'
 
 type DepartureTime = 'vor12' | 'ab12'
-
-interface CalculationResult {
-  overnightNights: number
-  normalOvernights: number
-  holidayOvernights: number
-  daycareDays: number
-  normalDaycare: number
-  holidayDaycare: number
-  overnightCost: number
-  daycareCost: number
-  nieAlleinCost: number
-  total: number
-  holidayNames: string[]
-}
 
 function isSameDay(a: Date, b: Date): boolean {
   return (
@@ -70,8 +58,8 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
     return new Date(d.getFullYear(), d.getMonth(), d.getDate())
   }, [])
 
-  const daycarePrice = 35 + (numberOfDogs - 1) * 25
-  const overnightPrice = 40 + (numberOfDogs - 1) * 30
+  const daycarePrice = getTieredPrice(PRICING.dayCare, numberOfDogs)
+  const overnightPrice = getTieredPrice(PRICING.overnight, numberOfDogs)
 
   const handleDayClick = useCallback(
     (date: Date) => {
@@ -91,97 +79,17 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
     [startDate, endDate, today],
   )
 
-  const calculation = useMemo((): CalculationResult | null => {
+  const calculation = useMemo(() => {
     if (!startDate) return null
-    const end = endDate ?? startDate
 
-    const dayCount = Math.round((end.getTime() - startDate.getTime()) / 86_400_000) + 1
-
-    const holidayNames: string[] = []
-
-    if (dayCount === 1) {
-      const holiday = isNrwHoliday(startDate)
-      if (holiday) {
-        const name = getHolidayName(startDate)
-        if (name) holidayNames.push(name)
-      }
-      const cost = holiday ? daycarePrice * 1.5 : daycarePrice
-      const nieAllein = includeNieAllein ? 5 : 0
-      return {
-        overnightNights: 0,
-        normalOvernights: 0,
-        holidayOvernights: 0,
-        daycareDays: 1,
-        normalDaycare: holiday ? 0 : 1,
-        holidayDaycare: holiday ? 1 : 0,
-        overnightCost: 0,
-        daycareCost: Math.round(cost * 100) / 100,
-        nieAlleinCost: nieAllein,
-        total: Math.round((cost + nieAllein) * 100) / 100,
-        holidayNames,
-      }
-    }
-
-    const nights = dayCount - 1
-    let normalOvernights = 0
-    let holidayOvernights = 0
-
-    for (let i = 0; i < nights; i++) {
-      const d = new Date(startDate)
-      d.setDate(d.getDate() + i)
-      if (isNrwHoliday(d)) {
-        holidayOvernights++
-        const name = getHolidayName(d)
-        if (name && !holidayNames.includes(name)) holidayNames.push(name)
-      } else {
-        normalOvernights++
-      }
-    }
-
-    let normalDaycare = 0
-    let holidayDaycare = 0
-
-    if (departureTime === 'ab12') {
-      const lastDay = new Date(end)
-      if (isNrwHoliday(lastDay)) {
-        holidayDaycare++
-        const name = getHolidayName(lastDay)
-        if (name && !holidayNames.includes(name)) holidayNames.push(name)
-      } else {
-        normalDaycare++
-      }
-    }
-
-    const totalDaycare = normalDaycare + holidayDaycare
-    const overnightCost =
-      normalOvernights * overnightPrice + holidayOvernights * overnightPrice * 1.5
-    const daycareCost = normalDaycare * daycarePrice + holidayDaycare * daycarePrice * 1.5
-    const totalBillableDays = nights + totalDaycare
-    const nieAlleinCost = includeNieAllein ? 5 * totalBillableDays : 0
-    const total = overnightCost + daycareCost + nieAlleinCost
-
-    return {
-      overnightNights: nights,
-      normalOvernights,
-      holidayOvernights,
-      daycareDays: totalDaycare,
-      normalDaycare,
-      holidayDaycare,
-      overnightCost: Math.round(overnightCost * 100) / 100,
-      daycareCost: Math.round(daycareCost * 100) / 100,
-      nieAlleinCost,
-      total: Math.round(total * 100) / 100,
-      holidayNames,
-    }
-  }, [
-    startDate,
-    endDate,
-    departureTime,
-    numberOfDogs,
-    includeNieAllein,
-    daycarePrice,
-    overnightPrice,
-  ])
+    return calculatePrice({
+      startDate: toLocalDateKey(startDate),
+      endDate: endDate ? toLocalDateKey(endDate) : undefined,
+      numberOfDogs,
+      departureTime: departureTime === 'ab12' ? 'fromNoon' : 'beforeNoon',
+      includeNeverAlone: includeNieAllein,
+    })
+  }, [startDate, endDate, departureTime, numberOfDogs, includeNieAllein])
 
   const prevMonth = () => {
     setViewMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))
@@ -209,6 +117,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
           {/* Month navigation */}
           <div className="border-accent/10 flex items-center justify-between border-b px-4 py-3">
             <button
+              type="button"
               onClick={prevMonth}
               disabled={!canGoPrev}
               className="text-foreground/70 hover:text-foreground disabled:text-foreground/20 rounded-lg p-1.5 transition-colors disabled:cursor-not-allowed"
@@ -223,6 +132,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
               })}
             </h3>
             <button
+              type="button"
               onClick={nextMonth}
               className="text-foreground/70 hover:text-foreground rounded-lg p-1.5 transition-colors"
               aria-label="Nächster Monat"
@@ -347,7 +257,11 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                       {calculation.holidayOvernights > 0 && (
                         <LineItem
                           label={`${calculation.holidayOvernights}× Übernachtung (Feiertag)`}
-                          price={calculation.holidayOvernights * overnightPrice * 1.5}
+                          price={
+                            calculation.holidayOvernights *
+                            overnightPrice *
+                            PRICING.holidayMultiplier
+                          }
                           highlight
                         />
                       )}
@@ -377,7 +291,9 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                       {calculation.holidayDaycare > 0 && (
                         <LineItem
                           label={`${calculation.holidayDaycare}× Tagesbetreuung (Feiertag)`}
-                          price={calculation.holidayDaycare * daycarePrice * 1.5}
+                          price={
+                            calculation.holidayDaycare * daycarePrice * PRICING.holidayMultiplier
+                          }
                           highlight
                         />
                       )}
@@ -409,8 +325,10 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
 
                 {/* Nie allein toggle */}
                 <motion.button
+                  type="button"
                   layout
                   onClick={() => setIncludeNieAllein(!includeNieAllein)}
+                  aria-pressed={includeNieAllein}
                   className="border-accent/20 hover:border-accent/40 flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition-colors"
                 >
                   <div
@@ -437,11 +355,13 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-medium">Nie allein Pauschale</p>
-                    <p className="text-foreground/50 text-xs">+5€ pro Tag/Nacht</p>
+                    <p className="text-foreground/50 text-xs">
+                      +{PRICING.neverAlonePerBillingUnit}€ pro Tag/Nacht
+                    </p>
                   </div>
-                  {includeNieAllein && calculation.nieAlleinCost > 0 && (
+                  {includeNieAllein && calculation.neverAloneCost > 0 && (
                     <span className="text-accent text-sm font-semibold">
-                      +{calculation.nieAlleinCost}€
+                      +{calculation.neverAloneCost}€
                     </span>
                   )}
                 </motion.button>
@@ -453,10 +373,14 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                 <motion.div layout className="flex items-baseline justify-between">
                   <p className="text-lg font-semibold">Gesamtpreis</p>
                   <div className="flex items-baseline gap-0.5">
-                    <AnimateNumber className="text-accent text-3xl font-bold tabular-nums">
-                      {calculation.total}
-                    </AnimateNumber>
-                    <span className="text-accent text-3xl font-bold">€</span>
+                    <AccessibleAnimatedNumber
+                      value={calculation.total}
+                      className="text-accent text-3xl font-bold tabular-nums"
+                    />
+                    <span className="text-accent text-3xl font-bold" aria-hidden="true">
+                      €
+                    </span>
+                    <span className="sr-only"> Euro</span>
                   </div>
                 </motion.div>
 
@@ -520,12 +444,14 @@ function CalendarGrid({
 
         return (
           <button
+            type="button"
             key={date.getTime()}
             onClick={() => onDayClick(date)}
             onMouseEnter={() => onDayHover(date)}
             disabled={isPast}
             aria-label={`${date.getDate()}. ${date.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}${holiday ? ' (Feiertag)' : ''}`}
-            aria-selected={isStart || isEnd || false}
+            aria-pressed={Boolean(isStart || isEnd)}
+            aria-current={isToday ? 'date' : undefined}
             className={cn(
               'relative flex h-10 w-full flex-col items-center justify-center rounded-md text-sm transition-colors',
               isPast && 'text-foreground/20 cursor-not-allowed',
@@ -561,7 +487,9 @@ interface TimeButtonProps {
 function TimeButton({ active, onClick, label, sublabel }: TimeButtonProps) {
   return (
     <button
+      type="button"
       onClick={onClick}
+      aria-pressed={active}
       className={cn(
         'flex flex-1 flex-col items-center rounded-lg border-2 px-4 py-3 transition-all',
         active
@@ -588,10 +516,14 @@ function LineItem({ label, price, highlight }: LineItemProps) {
         {label}
       </p>
       <div className="flex items-baseline gap-0.5">
-        <AnimateNumber className={cn('text-lg font-bold tabular-nums', highlight && 'text-accent')}>
-          {Math.round(price * 100) / 100}
-        </AnimateNumber>
-        <span className={cn('text-lg font-bold', highlight && 'text-accent')}>€</span>
+        <AccessibleAnimatedNumber
+          value={Math.round(price * 100) / 100}
+          className={cn('text-lg font-bold tabular-nums', highlight && 'text-accent')}
+        />
+        <span aria-hidden="true" className={cn('text-lg font-bold', highlight && 'text-accent')}>
+          €
+        </span>
+        <span className="sr-only"> Euro</span>
       </div>
     </div>
   )

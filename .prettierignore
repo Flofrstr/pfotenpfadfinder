@@ -1,0 +1,13 @@
+.agents/
+.codex/
+.git/
+.netlify/
+.next/
+node_modules/
+build/
+out/
+playwright-report/
+test-results/
+*.tsbuildinfo
+next-env.d.ts
+public/*.svg

@@ -1,5 +1,3 @@
-'use client'
-
 import { Sparkles, Heart, Home, ShieldCheck, Cross, Settings, Handshake, Bell } from 'lucide-react'
 import { PawBackground } from '@/components/paw-background'
 

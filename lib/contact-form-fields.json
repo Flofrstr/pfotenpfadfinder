@@ -1,0 +1,39 @@
+[
+  {
+    "name": "name",
+    "label": "Name",
+    "type": "text",
+    "placeholder": "Dein Name",
+    "autoComplete": "name",
+    "maxLength": 100,
+    "required": true
+  },
+  {
+    "name": "email",
+    "label": "E-Mail",
+    "type": "email",
+    "placeholder": "deine@email.de",
+    "autoComplete": "email",
+    "maxLength": 254,
+    "required": true
+  },
+  {
+    "name": "phone",
+    "label": "Handynummer",
+    "optionalLabel": "(optional)",
+    "type": "tel",
+    "placeholder": "z.B. 0157 12345678",
+    "autoComplete": "tel",
+    "maxLength": 30,
+    "required": false
+  },
+  {
+    "name": "message",
+    "label": "Nachricht",
+    "type": "textarea",
+    "placeholder": "Schreib mir deine Nachricht...",
+    "autoComplete": "off",
+    "maxLength": 5000,
+    "required": true
+  }
+]

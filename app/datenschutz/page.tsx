@@ -1,15 +1,42 @@
 import type { Metadata } from 'next'
+import { SITE_DATA } from '@/lib/site-data'
+
+const title = 'Datenschutzerklärung | Pfotenpfadfinder'
+const description =
+  'Datenschutzerklärung von Pfotenpfadfinder mit Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.'
+const socialImage = {
+  url: '/datenschutz/opengraph-image',
+  width: 1200,
+  height: 630,
+  alt: 'Datenschutzerklärung – Pfotenpfadfinder',
+}
 
 export const metadata: Metadata = {
-  title: 'Datenschutzerklärung - Pfotenpfadfinder',
-  description:
-    'Datenschutzerklärung von Pfotenpfadfinder. Informationen zum Umgang mit personenbezogenen Daten gemäß DSGVO.',
+  title: {
+    absolute: title,
+  },
+  description,
   alternates: {
-    canonical: 'https://pfotenpfadfinder-hundebetreuung.de/datenschutz',
+    canonical: `${SITE_DATA.url}/datenschutz`,
   },
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'de_DE',
+    url: `${SITE_DATA.url}/datenschutz`,
+    siteName: SITE_DATA.name,
+    title,
+    description,
+    images: [socialImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: [socialImage],
   },
 }
 
@@ -79,7 +106,7 @@ export default function Datenschutz() {
                 </h3>
                 <p className="text-foreground/70 leading-relaxed">
                   Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte
-                  oder identifizierbare natürliche Person (im Folgenden „betroffene Person")
+                  oder identifizierbare natürliche Person (im Folgenden „betroffene Person“)
                   beziehen. Als identifizierbar wird eine natürliche Person angesehen, die direkt
                   oder indirekt, insbesondere mittels Zuordnung zu einer Kennung wie einem Namen, zu
                   einer Kennnummer, zu Standortdaten, zu einer Online-Kennung oder zu einem oder
@@ -703,58 +730,48 @@ export default function Datenschutz() {
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              9. Datenschutzbestimmungen zu Einsatz und Verwendung von Instagram
+              9. Externer Instagram-Link und lokale Theme-Auswahl
             </h2>
             <p className="text-foreground/70 mb-6 leading-relaxed">
-              Der für die Verarbeitung Verantwortliche hat auf dieser Internetseite Komponenten des
-              Dienstes Instagram integriert. Instagram ist ein Dienst, der als audiovisuelle
-              Plattform zu qualifizieren ist und den Nutzern das Teilen von Fotos und Videos und
-              zudem eine Weiterverbreitung solcher Daten in anderen sozialen Netzwerken ermöglicht.
+              Auf dieser Website ist keine Instagram-Komponente eingebettet. Es gibt lediglich einen
+              externen Link zu unserem Instagram-Profil. Solange Sie diesen Link nicht aufrufen,
+              stellt unsere Website keine Verbindung zu Instagram her und übermittelt keine Daten an
+              Instagram.
             </p>
 
             <p className="text-foreground/70 mb-6 leading-relaxed">
-              Betreibergesellschaft der Dienste von Instagram ist die Meta Platforms Ireland
-              Limited, 4 Grand Canal Square, Grand Canal Harbour, Dublin 2 Ireland.
+              Wenn Sie den Link anklicken, verlassen Sie unsere Website. Ihr Browser verbindet sich
+              dann direkt mit Instagram; dabei kann Instagram insbesondere Ihre IP-Adresse und
+              weitere Verbindungsdaten verarbeiten. Für diese Verarbeitung ist der Anbieter von
+              Instagram verantwortlich: Meta Platforms Ireland Limited, 4 Grand Canal Square, Grand
+              Canal Harbour, Dublin 2, Irland.
             </p>
 
             <p className="text-foreground/70 mb-6 leading-relaxed">
-              Durch jeden Aufruf einer der Einzelseiten dieser Internetseite, die durch den für die
-              Verarbeitung Verantwortlichen betrieben wird und auf welcher eine Instagram-Komponente
-              (Insta-Button) integriert wurde, wird der Internetbrowser auf dem
-              informationstechnologischen System der betroffenen Person automatisch durch die
-              jeweilige Instagram-Komponente veranlasst, eine Darstellung der entsprechenden
-              Komponente von Instagram herunterzuladen. Im Rahmen dieses technischen Verfahrens
-              erhält Instagram Kenntnis darüber, welche konkrete Unterseite unserer Internetseite
-              durch die betroffene Person besucht wird.
+              Weitere Informationen zur Verarbeitung durch Instagram finden Sie in der
+              Datenschutzerklärung von Instagram unter{' '}
+              <a
+                href="https://privacycenter.instagram.com/policy/"
+                className="text-accent hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                https://privacycenter.instagram.com/policy/
+              </a>
+              .
             </p>
 
             <p className="text-foreground/70 mb-6 leading-relaxed">
-              Sofern die betroffene Person gleichzeitig bei Instagram eingeloggt ist, erkennt
-              Instagram mit jedem Aufruf unserer Internetseite durch die betroffene Person und
-              während der gesamten Dauer des jeweiligen Aufenthaltes auf unserer Internetseite,
-              welche konkrete Unterseite die betroffene Person besucht. Diese Informationen werden
-              durch die Instagram-Komponente gesammelt und durch Instagram dem jeweiligen
-              Instagram-Account der betroffenen Person zugeordnet. Betätigt die betroffene Person
-              einen der auf unserer Internetseite integrierten Instagram-Buttons, werden die damit
-              übertragenen Daten und Informationen dem persönlichen Instagram-Benutzerkonto der
-              betroffenen Person zugeordnet und von Instagram gespeichert und verarbeitet.
-            </p>
-
-            <p className="text-foreground/70 mb-6 leading-relaxed">
-              Instagram erhält über die Instagram-Komponente immer dann eine Information darüber,
-              dass die betroffene Person unsere Internetseite besucht hat, wenn die betroffene
-              Person zum Zeitpunkt des Aufrufs unserer Internetseite gleichzeitig bei Instagram
-              eingeloggt ist; dies findet unabhängig davon statt, ob die betroffene Person die
-              Instagram-Komponente anklickt oder nicht. Ist eine derartige Übermittlung dieser
-              Informationen an Instagram von der betroffenen Person nicht gewollt, kann diese die
-              Übermittlung dadurch verhindern, dass sie sich vor einem Aufruf unserer Internetseite
-              aus ihrem Instagram-Account ausloggt.
+              Für die Auswahl zwischen hellem, dunklem und dem vom Betriebssystem vorgegebenen
+              Farbschema speichert die Website ausschließlich die gewählte Theme-Einstellung im
+              lokalen Browserspeicher (Local Storage) Ihres Geräts. Dadurch bleibt Ihre Auswahl bei
+              einem späteren Besuch erhalten.
             </p>
 
             <p className="text-foreground/70 mb-12 leading-relaxed">
-              Weitere Informationen und die geltenden Datenschutzbestimmungen von Instagram können
-              unter https://help.instagram.com/155833707900388 und
-              https://www.instagram.com/about/legal/privacy/ abgerufen werden.
+              Diese lokale Einstellung wird nicht an uns oder an Dritte übertragen und nicht zur
+              Analyse Ihres Nutzungsverhaltens verwendet. Sie können sie jederzeit über die
+              Website-Auswahl ändern oder über die Einstellungen Ihres Browsers löschen.
             </p>
 
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">

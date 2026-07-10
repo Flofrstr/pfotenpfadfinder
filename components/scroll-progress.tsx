@@ -2,7 +2,9 @@
 
 import type React from 'react'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
+
+const PAW_COUNT = 20
 
 // Using the provided Font Awesome paw SVG
 function PawPrint({ className, style }: { className?: string; style?: React.CSSProperties }) {
@@ -22,7 +24,8 @@ function PawPrint({ className, style }: { className?: string; style?: React.CSSP
 }
 
 export function ScrollProgress() {
-  const [scrollProgress, setScrollProgress] = useState(0)
+  const [activePaws, setActivePaws] = useState(1)
+  const activePawsRef = useRef(1)
 
   useEffect(() => {
     let ticking = false
@@ -32,8 +35,16 @@ export function ScrollProgress() {
         window.requestAnimationFrame(() => {
           const totalHeight =
             document.documentElement.scrollHeight - document.documentElement.clientHeight
-          const progress = (window.scrollY / totalHeight) * 100
-          setScrollProgress(Math.min(progress, 100))
+          const progress = totalHeight > 0 ? Math.min(window.scrollY / totalHeight, 1) : 0
+          const nextActivePaws = Math.min(
+            PAW_COUNT,
+            Math.max(1, Math.floor(progress * PAW_COUNT) + 1),
+          )
+
+          if (nextActivePaws !== activePawsRef.current) {
+            activePawsRef.current = nextActivePaws
+            setActivePaws(nextActivePaws)
+          }
           ticking = false
         })
         ticking = true
@@ -41,24 +52,26 @@ export function ScrollProgress() {
     }
 
     window.addEventListener('scroll', handleScroll, { passive: true })
+    window.addEventListener('resize', handleScroll)
+    handleScroll()
     return () => {
       window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', handleScroll)
     }
   }, [])
 
   return (
     <div className="pointer-events-none fixed top-0 right-4 z-0 hidden h-full w-8 flex-col items-center justify-between py-8 md:flex">
       {/* Vertical paw prints distributed across full height */}
-      {Array.from({ length: 20 }).map((_, index) => {
+      {Array.from({ length: PAW_COUNT }).map((_, index) => {
         // Calculate which paws should be visible based on scroll progress
-        const pawProgress = (index / 20) * 100
-        const isVisible = pawProgress <= scrollProgress
+        const isVisible = index < activePaws
 
         // Alternate left and right paws
         const isLeft = index % 2 === 0
 
         // Calculate opacity - darker as you go down
-        const opacity = isVisible ? 0.4 + (index / 20) * 0.6 : 0.1
+        const opacity = isVisible ? 0.4 + (index / PAW_COUNT) * 0.6 : 0.1
 
         return (
           <PawPrint

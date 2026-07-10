@@ -20,7 +20,7 @@ export function AboutSection() {
               Über mich
             </h2>
             <p className="mb-3 inline-flex items-center gap-2 text-2xl font-medium md:text-3xl">
-              Hallo liebe Hundemami's und Hundepapi's
+              Hallo liebe Hundemami&apos;s und Hundepapi&apos;s
               <svg
                 className="fill-accent h-7 w-7 md:h-8 md:w-8"
                 viewBox="0 0 24 24"
@@ -47,8 +47,10 @@ export function AboutSection() {
                         src="/ueber_mich_michelle-plus-hunde.jpeg"
                         alt="Frau mit Brille sitzt auf Baumstamm im Wald mit drei Hunden"
                         fill
+                        loading="lazy"
+                        fetchPriority="low"
                         className="object-cover"
-                        priority
+                        sizes="(min-width: 1024px) 50vw, (min-width: 768px) 42vw, calc(100vw - 56px)"
                       />
                     </div>
                     <div className="absolute right-6 bottom-6 left-6 flex items-center justify-center">

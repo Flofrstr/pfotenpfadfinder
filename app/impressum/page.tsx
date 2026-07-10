@@ -1,15 +1,42 @@
 import type { Metadata } from 'next'
+import { SITE_DATA } from '@/lib/site-data'
+
+const title = 'Impressum | Pfotenpfadfinder'
+const description =
+  'Impressum und Anbieterinformationen von Pfotenpfadfinder, Hundebetreuung und Gassi-Service in Gevelsberg.'
+const socialImage = {
+  url: '/impressum/opengraph-image',
+  width: 1200,
+  height: 630,
+  alt: 'Impressum – Pfotenpfadfinder',
+}
 
 export const metadata: Metadata = {
-  title: 'Impressum - Pfotenpfadfinder',
-  description:
-    'Impressum und rechtliche Informationen von Pfotenpfadfinder, Ihrer professionellen Hundebetreuung in Gevelsberg.',
+  title: {
+    absolute: title,
+  },
+  description,
   alternates: {
-    canonical: 'https://pfotenpfadfinder-hundebetreuung.de/impressum',
+    canonical: `${SITE_DATA.url}/impressum`,
   },
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    type: 'website',
+    locale: 'de_DE',
+    url: `${SITE_DATA.url}/impressum`,
+    siteName: SITE_DATA.name,
+    title,
+    description,
+    images: [socialImage],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title,
+    description,
+    images: [socialImage],
   },
 }
 
@@ -22,7 +49,7 @@ export default function Impressum() {
 
           <div className="prose prose-lg max-w-none">
             <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
-              Informationspflicht nach § 5 TMG
+              Informationspflicht nach § 5 DDG
             </h2>
 
             <div className="bg-accent/5 mb-12 rounded-lg p-6">
