@@ -274,10 +274,10 @@ export const SITE_DATA = {
   pricing: PRICING,
   faqCategories: FAQ_CATEGORIES,
   availability: {
-    headline: 'Bis September ausgebucht',
-    detail: 'Termine ab Oktober können bereits angefragt werden.',
-    bookedThrough: '2026-09-30',
-    reviewAfter: '2026-10-01',
+    headline: 'Bis einschließlich Dezember ausgebucht',
+    detail: 'Termine ab Januar können bereits angefragt werden.',
+    bookedThrough: '2026-12-31',
+    reviewAfter: '2027-01-01',
   },
   requirements: [
     'Gültige Impfungen (Tollwut, SHPPI und Zwingerhusten)',
