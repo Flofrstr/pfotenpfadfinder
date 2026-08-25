@@ -1,11 +1,13 @@
 'use client'
 
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, m as motion } from 'motion/react'
 import { Monitor, Moon, Sun, X } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { useEffect, useRef } from 'react'
+
+import { MotionProvider } from '@/components/ui/motion-provider'
 
 interface MobileMenuDrawerProps {
   isOpen: boolean
@@ -23,13 +25,21 @@ const NAVIGATION = [
 const FOCUSABLE_SELECTOR =
   'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
 
-export default function MobileMenuDrawer({ isOpen, onClose }: MobileMenuDrawerProps) {
+export default function MobileMenuDrawer(props: MobileMenuDrawerProps) {
+  return (
+    <MotionProvider>
+      <MobileMenuDrawerContent {...props} />
+    </MotionProvider>
+  )
+}
+
+function MobileMenuDrawerContent({ isOpen, onClose }: MobileMenuDrawerProps) {
   const { setTheme, theme } = useTheme()
   const dialogRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) return undefined
 
     const previousOverflow = document.body.style.overflow
     document.body.style.overflow = 'hidden'
@@ -91,7 +101,7 @@ export default function MobileMenuDrawer({ isOpen, onClose }: MobileMenuDrawerPr
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 30, stiffness: 300 }}
-            className="bg-background fixed top-0 right-0 z-50 h-full w-full shadow-xl lg:hidden"
+            className="fixed top-0 right-0 z-50 h-full w-full bg-background shadow-xl lg:hidden"
           >
             <div className="flex h-full flex-col">
               <div className="flex h-16 items-center border-b px-4">
@@ -111,7 +121,7 @@ export default function MobileMenuDrawer({ isOpen, onClose }: MobileMenuDrawerPr
                   ref={closeButtonRef}
                   type="button"
                   onClick={() => onClose()}
-                  className="hover:bg-accent/10 rounded-md p-2 transition-colors"
+                  className="rounded-md p-2 transition-colors hover:bg-accent/10"
                   aria-label="Mobiles Menü schließen"
                 >
                   <X className="h-6 w-6" aria-hidden="true" />
@@ -120,7 +130,7 @@ export default function MobileMenuDrawer({ isOpen, onClose }: MobileMenuDrawerPr
 
               <div className="flex flex-1 flex-col px-6 py-8">
                 <div className="flex flex-col gap-3">
-                  <span className="text-muted-foreground text-sm">Design</span>
+                  <span className="text-sm text-muted-foreground">Design</span>
                   <div className="flex gap-3" role="group" aria-label="Farbschema auswählen">
                     <ThemeButton
                       label="Hell"
@@ -150,7 +160,7 @@ export default function MobileMenuDrawer({ isOpen, onClose }: MobileMenuDrawerPr
                     <Link
                       key={item.href}
                       href={item.href}
-                      className="hover:text-primary w-full py-4 text-center text-2xl font-medium transition-colors"
+                      className="w-full py-4 text-center text-2xl font-medium transition-colors hover:text-primary"
                       onClick={() => onClose(false)}
                     >
                       {item.label}

@@ -59,7 +59,7 @@ export function PawBackground({ variant = 'a' }: PawBackgroundProps) {
       {paws.map((paw, index) => (
         <svg
           key={index}
-          className={`text-foreground/[0.035] dark:text-foreground/[0.055] absolute ${paw.size}`}
+          className={`absolute text-foreground/[0.035] dark:text-foreground/[0.055] ${paw.size}`}
           style={{
             top: paw.top,
             left: paw.left,

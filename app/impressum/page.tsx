@@ -42,26 +42,30 @@ export const metadata: Metadata = {
 
 export default function Impressum() {
   return (
-    <div className="bg-background min-h-screen">
-      <main className="container mx-auto max-w-4xl px-4 py-16 md:px-8">
+    <div className="min-h-screen bg-background">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="container mx-auto max-w-4xl px-4 py-16 md:px-8"
+      >
         <div>
-          <h1 className="text-foreground mb-8 text-4xl font-bold md:text-5xl">Impressum</h1>
+          <h1 className="mb-8 text-4xl font-bold text-foreground md:text-5xl">Impressum</h1>
 
           <div className="prose prose-lg max-w-none">
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               Informationspflicht nach § 5 DDG
             </h2>
 
-            <div className="bg-accent/5 mb-12 rounded-lg p-6">
-              <p className="text-foreground mb-2 font-semibold">Pfotenpfadfinder</p>
+            <div className="mb-12 rounded-lg bg-accent/5 p-6">
+              <p className="mb-2 font-semibold text-foreground">Pfotenpfadfinder</p>
               <p className="text-foreground/70">Michelle Wattenberg</p>
               <p className="text-foreground/70">Geerstraße 34</p>
-              <p className="text-foreground/70 mb-4">58285 Gevelsberg</p>
+              <p className="mb-4 text-foreground/70">58285 Gevelsberg</p>
             </div>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">Kontakt</h2>
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">Kontakt</h2>
 
-            <div className="bg-accent/5 mb-12 rounded-lg p-6">
+            <div className="mb-12 rounded-lg bg-accent/5 p-6">
               <p className="text-foreground/70">
                 Mobil:{' '}
                 <a href="tel:+4915772199639" className="text-accent hover:underline">
@@ -76,12 +80,12 @@ export default function Impressum() {
               </p>
             </div>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               Haftungsausschluss
             </h2>
 
-            <h3 className="text-foreground mb-3 text-xl font-bold">Haftung für Inhalte</h3>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <h3 className="mb-3 text-xl font-bold text-foreground">Haftung für Inhalte</h3>
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Die Inhalte unserer Seiten wurden mit größter Sorgfalt erstellt. Für die Richtigkeit,
               Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.
               Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten
@@ -95,8 +99,8 @@ export default function Impressum() {
               Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
             </p>
 
-            <h3 className="text-foreground mb-3 text-xl font-bold">Haftung für Links</h3>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <h3 className="mb-3 text-xl font-bold text-foreground">Haftung für Links</h3>
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Unser Angebot enthält Links zu externen Webseiten Dritter, auf deren Inhalte wir
               keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr
               übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter
@@ -108,8 +112,8 @@ export default function Impressum() {
               entfernen.
             </p>
 
-            <h3 className="text-foreground mb-3 text-xl font-bold">Urheberrecht</h3>
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <h3 className="mb-3 text-xl font-bold text-foreground">Urheberrecht</h3>
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
               unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung
               und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der

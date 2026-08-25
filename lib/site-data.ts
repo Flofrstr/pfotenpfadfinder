@@ -21,7 +21,7 @@ export interface PricingConfig {
 
 export type FAQIcon = 'shield' | 'euro' | 'graduation-cap' | 'clock' | 'check-circle'
 
-export interface FAQItem {
+interface FAQItem {
   question: string
   answer: string
 }
@@ -33,7 +33,7 @@ export interface FAQCategory {
   items: readonly FAQItem[]
 }
 
-export interface SiteService {
+interface SiteService {
   id: string
   name: string
   description: string

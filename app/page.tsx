@@ -62,7 +62,7 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main id="main-content" tabIndex={-1} className="relative">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

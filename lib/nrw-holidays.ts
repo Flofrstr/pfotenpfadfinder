@@ -41,7 +41,7 @@ interface NrwHoliday {
 }
 
 /** Returns all NRW public holidays for a given year with their names. */
-export function getNrwHolidaysList(year: number): NrwHoliday[] {
+function getNrwHolidaysList(year: number): NrwHoliday[] {
   const easter = getEasterSunday(year)
 
   return [

@@ -1,0 +1,46 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '07:00'
+      timezone: Europe/Berlin
+    versioning-strategy: increase
+    open-pull-requests-limit: 10
+    cooldown:
+      semver-major-days: 30
+      semver-minor-days: 7
+      semver-patch-days: 3
+    ignore:
+      # Node type definitions must follow the Node 24 runtime declared by this project.
+      - dependency-name: '@types/node'
+        update-types:
+          - version-update:semver-major
+    groups:
+      security-updates:
+        applies-to: security-updates
+        patterns:
+          - '*'
+      minor-and-patch-updates:
+        applies-to: version-updates
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+      time: '07:30'
+      timezone: Europe/Berlin
+    open-pull-requests-limit: 5
+    groups:
+      github-actions:
+        patterns:
+          - '*'

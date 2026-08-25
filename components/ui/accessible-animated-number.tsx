@@ -25,7 +25,7 @@ export function AccessibleAnimatedNumber({ value, className }: AccessibleAnimate
     const activationTarget = activationTargetRef.current
 
     if (!activationTarget || typeof IntersectionObserver === 'undefined') {
-      return
+      return undefined
     }
 
     const observer = new IntersectionObserver(

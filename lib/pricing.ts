@@ -2,7 +2,7 @@ import { getHolidayName, isNrwHoliday } from '@/lib/nrw-holidays'
 import { PRICING, type PricingConfig, type TieredPrice } from '@/lib/site-data'
 
 export type LocalDateKey = `${number}-${number}-${number}`
-export type DepartureTime = 'beforeNoon' | 'fromNoon'
+type DepartureTime = 'beforeNoon' | 'fromNoon'
 
 export interface PricingInput {
   startDate: LocalDateKey
@@ -27,6 +27,10 @@ export interface PricingBreakdown {
 }
 
 const DATE_KEY_PATTERN = /^(\d{4})-(\d{2})-(\d{2})$/
+
+function isLocalDateKey(value: string): value is LocalDateKey {
+  return DATE_KEY_PATTERN.test(value)
+}
 
 function parseLocalDateKey(dateKey: string): Date {
   const match = DATE_KEY_PATTERN.exec(dateKey)
@@ -85,7 +89,13 @@ export function toLocalDateKey(date: Date): LocalDateKey {
   const year = date.getFullYear()
   const month = String(date.getMonth() + 1).padStart(2, '0')
   const day = String(date.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}` as LocalDateKey
+  const dateKey = `${year}-${month}-${day}`
+
+  if (!isLocalDateKey(dateKey)) {
+    throw new RangeError(`Datum konnte nicht serialisiert werden: ${date.toISOString()}`)
+  }
+
+  return dateKey
 }
 
 export function calculatePrice(
@@ -140,7 +150,10 @@ export function calculatePrice(
   const normalOvernights = overnightDates.length - holidayOvernights
 
   const hasDepartureDaycare = input.departureTime === 'fromNoon'
-  const departureDate = dates.at(-1)!
+  const departureDate = dates.at(-1)
+  if (!departureDate) {
+    throw new RangeError('Der berechnete Betreuungszeitraum enthält keinen Abreisetag.')
+  }
   const departureIsHoliday = hasDepartureDaycare && isNrwHoliday(departureDate)
   if (departureIsHoliday) registerHoliday(departureDate)
 

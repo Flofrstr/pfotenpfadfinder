@@ -1,49 +1,49 @@
 [build]
-  command = "npm run build"
+command = "npm run build"
 
 [build.environment]
-  NODE_VERSION = "24"
+NODE_VERSION = "24"
 
 [[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Security-Policy = "base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    X-Content-Type-Options = "nosniff"
-    X-Frame-Options = "DENY"
+for = "/*"
+[headers.values]
+Content-Security-Policy = "base-uri 'none'; object-src 'none'; frame-ancestors 'none'; form-action 'self'"
+Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=()"
+Referrer-Policy = "strict-origin-when-cross-origin"
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "DENY"
 
 [[headers]]
-  for = "/contact-form.html"
-  [headers.values]
-    X-Robots-Tag = "noindex, nofollow"
+for = "/contact-form.html"
+[headers.values]
+X-Robots-Tag = "noindex, nofollow"
 
 [[headers]]
-  for = "/_next/static/*"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
+for = "/_next/static/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
 
 [[headers]]
-  for = "/*.jpeg"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+for = "/*.jpeg"
+[headers.values]
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
-  for = "/*.jpg"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+for = "/*.jpg"
+[headers.values]
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
-  for = "/*.png"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+for = "/*.png"
+[headers.values]
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
-  for = "/*.svg"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+for = "/*.svg"
+[headers.values]
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
 
 [[headers]]
-  for = "/fonts/*"
-  [headers.values]
-    Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"
+for = "/fonts/*"
+[headers.values]
+Cache-Control = "public, max-age=86400, stale-while-revalidate=604800"

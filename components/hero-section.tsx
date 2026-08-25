@@ -31,16 +31,16 @@ export function HeroSection() {
       <div className="relative z-10 container px-6 py-16 md:px-6 md:py-24 lg:py-32">
         <div className="mx-auto max-w-3xl space-y-6 text-center">
           <div className="inline-block">
-            <span className="bg-accent text-background inline-block rounded-full px-4 py-2 text-xs font-semibold tracking-wider uppercase shadow-lg sm:text-sm">
+            <span className="inline-block rounded-full bg-accent px-4 py-2 text-xs font-semibold tracking-wider text-background uppercase shadow-lg sm:text-sm">
               Glückliche Pfoten, sorglose Stunden
             </span>
           </div>
-          <p className="text-foreground font-gluten text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-6xl">
+          <p className="font-gluten text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl lg:text-6xl">
             Mit Herz und Pfote an der Seite deines Lieblings
           </p>
           <h1
             id="hero-heading"
-            className="text-foreground mx-auto max-w-2xl font-sans text-base sm:text-lg md:text-xl"
+            className="mx-auto max-w-2xl font-sans text-base text-foreground sm:text-lg md:text-xl"
           >
             Professionelle Hundebetreuung und Gassi-Service in Gevelsberg
           </h1>
@@ -48,7 +48,7 @@ export function HeroSection() {
             <Button
               asChild
               size="lg"
-              className="bg-accent text-background hover:bg-accent/90 w-full sm:w-auto"
+              className="w-full bg-accent text-background hover:bg-accent/90 sm:w-auto"
             >
               <Link href="#kontakt">Jetzt Kontakt aufnehmen</Link>
             </Button>

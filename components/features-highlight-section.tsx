@@ -56,14 +56,14 @@ export function FeaturesHighlightSection() {
   return (
     <section
       id="warum-ich"
-      className="bg-accent/5 relative w-full overflow-hidden py-12 md:py-24 lg:py-32"
+      className="relative w-full overflow-hidden bg-accent/5 py-12 md:py-24 lg:py-32"
     >
       <PawBackground variant="b" />
 
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="bg-accent/10 absolute top-40 left-1/4 h-[500px] w-[500px] -translate-x-1/2 rounded-full blur-3xl" />
-        <div className="bg-accent/10 absolute right-1/4 bottom-20 h-[400px] w-[400px] translate-x-1/2 rounded-full blur-3xl" />
+        <div className="absolute top-40 left-1/4 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
+        <div className="absolute right-1/4 bottom-20 h-[400px] w-[400px] translate-x-1/2 rounded-full bg-accent/10 blur-3xl" />
       </div>
 
       <div className="relative container px-4 md:px-6">
@@ -73,7 +73,7 @@ export function FeaturesHighlightSection() {
             <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
               Was meinen Service ausmacht
             </h2>
-            <p className="text-foreground/70 mx-auto max-w-[700px] md:text-lg">
+            <p className="mx-auto max-w-[700px] text-foreground/70 md:text-lg">
               Darauf lege ich bei der Hundebetreuung besonders viel Wert
             </p>
           </div>
@@ -109,21 +109,21 @@ export function FeaturesHighlightSection() {
                   className={`group relative transition-transform duration-300 hover:-translate-y-1 md:hover:rotate-0 ${offsets[index]} ${rotations[index]}`}
                 >
                   {/* Card */}
-                  <div className="bg-card border-accent/20 hover:border-accent/40 relative h-full overflow-hidden rounded-2xl border p-6 shadow-sm transition-all duration-300 hover:shadow-md">
+                  <div className="relative h-full overflow-hidden rounded-2xl border border-accent/20 bg-card p-6 shadow-sm transition-all duration-300 hover:border-accent/40 hover:shadow-md">
                     {/* Gradient overlay on hover */}
-                    <div className="from-accent/5 to-accent/0 absolute inset-0 bg-linear-to-br opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <div className="absolute inset-0 bg-linear-to-br from-accent/5 to-accent/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
 
                     {/* Content */}
                     <div className="relative space-y-4">
                       {/* Icon */}
-                      <div className="bg-accent/10 group-hover:bg-accent/20 inline-flex items-center justify-center rounded-xl p-3 transition-colors duration-300">
-                        <Icon className="text-accent h-6 w-6" strokeWidth={2} />
+                      <div className="inline-flex items-center justify-center rounded-xl bg-accent/10 p-3 transition-colors duration-300 group-hover:bg-accent/20">
+                        <Icon className="h-6 w-6 text-accent" strokeWidth={2} />
                       </div>
 
                       {/* Text */}
                       <div className="space-y-2">
                         <h3 className="text-lg leading-tight font-bold">{feature.title}</h3>
-                        <p className="text-foreground/70 text-sm leading-relaxed">
+                        <p className="text-sm leading-relaxed text-foreground/70">
                           {feature.description}
                         </p>
                       </div>

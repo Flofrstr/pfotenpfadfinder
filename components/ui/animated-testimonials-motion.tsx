@@ -1,7 +1,8 @@
 'use client'
 
-import { AnimatePresence, motion } from 'motion/react'
+import { AnimatePresence, m as motion } from 'motion/react'
 import { useEffect, useRef, useState } from 'react'
+import { MotionProvider } from './motion-provider'
 import { TestimonialCard, TestimonialNavigation } from './animated-testimonials-shared'
 import type { Testimonial } from './animated-testimonials-shared'
 
@@ -19,6 +20,20 @@ export function AnimatedTestimonialsMotion({
   testimonials,
   initialActive,
 }: AnimatedTestimonialsMotionProps) {
+  return (
+    <MotionProvider>
+      <AnimatedTestimonialsMotionContent
+        testimonials={testimonials}
+        initialActive={initialActive}
+      />
+    </MotionProvider>
+  )
+}
+
+function AnimatedTestimonialsMotionContent({
+  testimonials,
+  initialActive,
+}: AnimatedTestimonialsMotionProps) {
   const [active, setActive] = useState(initialActive)
   const [contentHeight, setContentHeight] = useState<number | 'auto'>('auto')
   const [isInView, setIsInView] = useState(false)
@@ -27,7 +42,7 @@ export function AnimatedTestimonialsMotion({
 
   useEffect(() => {
     const element = rootRef.current
-    if (!element) return
+    if (!element) return undefined
 
     const observer = new IntersectionObserver(
       entries => {
@@ -45,7 +60,7 @@ export function AnimatedTestimonialsMotion({
 
   useEffect(() => {
     const element = contentRef.current
-    if (!element) return
+    if (!element) return undefined
 
     const updateHeight = () => setContentHeight(element.getBoundingClientRect().height)
     const observer = new ResizeObserver(updateHeight)
@@ -132,7 +147,7 @@ export function AnimatedTestimonialsMotion({
                   {testimonials[active].designation}
                 </h3>
               </div>
-              <motion.p className="text-foreground text-base leading-relaxed md:text-lg">
+              <motion.p className="text-base leading-relaxed text-foreground md:text-lg">
                 {isInView
                   ? testimonials[active].quote.split(' ').map((word, index, words) => {
                       const baseDelay = Math.max(0.002, 0.015 - words.length * 0.0001)

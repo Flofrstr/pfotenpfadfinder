@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "ignorePatterns": [
+    ".agents/**",
+    ".codex/**",
+    ".git/**",
+    ".netlify/**",
+    ".next/**",
+    "node_modules/**",
+    "build/**",
+    "out/**",
+    "playwright-report/**",
+    "test-results/**",
+    "*.tsbuildinfo",
+    "next-env.d.ts",
+    "public/*.svg"
+  ],
+  "printWidth": 100,
+  "semi": false,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "arrowParens": "avoid",
+  "sortTailwindcss": {
+    "functions": ["cn", "clsx", "cva"],
+    "stylesheet": "./app/globals.css"
+  },
+  "sortPackageJson": true
+}

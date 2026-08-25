@@ -76,7 +76,7 @@ export function ScrollProgress() {
         return (
           <PawPrint
             key={index}
-            className="text-accent h-5 w-5 transition-all duration-300"
+            className="h-5 w-5 text-accent transition-all duration-300"
             style={{
               opacity: opacity,
               transform: `rotate(${isLeft ? -15 : 15}deg) rotate(180deg)`,

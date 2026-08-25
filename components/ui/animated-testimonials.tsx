@@ -21,7 +21,7 @@ export function AnimatedTestimonials({ testimonials }: AnimatedTestimonialsProps
 
   useEffect(() => {
     const element = rootRef.current
-    if (!element || shouldLoadMotion) return
+    if (!element || shouldLoadMotion) return undefined
 
     const observer = new IntersectionObserver(
       entries => {
@@ -111,7 +111,7 @@ function StaticTestimonials({ testimonials, active, onPrevious, onNext }: Static
               {testimonial.designation}
             </h3>
           </div>
-          <p className="text-foreground text-base leading-relaxed md:text-lg">
+          <p className="text-base leading-relaxed text-foreground md:text-lg">
             {testimonial.quote}
           </p>
         </div>
@@ -119,5 +119,3 @@ function StaticTestimonials({ testimonials, active, onPrevious, onNext }: Static
     </div>
   )
 }
-
-export type { Testimonial }

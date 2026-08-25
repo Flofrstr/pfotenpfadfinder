@@ -32,24 +32,24 @@ Open [http://localhost:3000](http://localhost:3000) to view the application.
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run start` - Start production server
-- `npm run lint` - Run ESLint with the Next.js rules
+- `npm run lint` - Run Oxlint with type-aware Next.js, React, and accessibility rules
 - `npm run typecheck` - Run the stable TypeScript compiler
 - `npm test` - Run unit tests once with Vitest
 - `npm run test:watch` - Run unit tests in watch mode
 - `npm run test:e2e` - Run Playwright smoke tests
 - `npm run generate:form` - Regenerate the Netlify form blueprint from the shared field data
 - `npm run perf:js` - Check the production pages against their initial JavaScript budgets
-- `npm run format` - Format code with Prettier
+- `npm run format` - Format code with Oxfmt and sort Tailwind classes
 - `npm run format:check` - Check formatting without writing files
-- `npm run check` - Run formatting, lint, typecheck, and unit tests
-- `npm run upgrade` - Report minor/patch dependency updates without writing files
+- `npm run knip` - Find unused files, exports, and dependencies
+- `npm run check` - Run formatting, lint, typecheck, unit tests, and Knip
 
 ## Development
 
 This project uses:
 
-- **ESLint** with Next.js Core Web Vitals and TypeScript rules
-- **Prettier** for code formatting
+- **Oxlint** with type-aware Next.js, React, TypeScript, and accessibility rules
+- **Oxfmt** for formatting and Tailwind class sorting
 - **Vitest** and **Playwright** for automated tests
 - **simple-git-hooks** for pre-commit and pre-push hooks
 

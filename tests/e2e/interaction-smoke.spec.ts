@@ -13,6 +13,21 @@ function monitorBrowserErrors(page: Page) {
   return () => expect(errors, 'Die Interaktion erzeugt Browser- oder Hydration-Fehler').toEqual([])
 }
 
+test('der Sprunglink führt Tastaturnutzer direkt zum Hauptinhalt', async ({ page }) => {
+  const assertNoBrowserErrors = monitorBrowserErrors(page)
+  await page.goto('/', { waitUntil: 'load' })
+
+  const skipLink = page.getByRole('link', { name: 'Zum Hauptinhalt springen' })
+  await page.keyboard.press('Tab')
+  await expect(skipLink).toBeFocused()
+  await expect(skipLink).toBeVisible()
+
+  await page.keyboard.press('Enter')
+  await expect(page.locator('main#main-content')).toBeFocused()
+  await expect(page).toHaveURL(/#main-content$/)
+  assertNoBrowserErrors()
+})
+
 test('das mobile Menü ist per Tastatur ein vollständiger Dialog', async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   const assertNoBrowserErrors = monitorBrowserErrors(page)
@@ -48,6 +63,7 @@ test('das mobile Menü ist per Tastatur ein vollständiger Dialog', async ({ pag
 
 test('Preissteuerung und Carousel geben ihren Zustand verständlich aus', async ({ page }) => {
   const assertNoBrowserErrors = monitorBrowserErrors(page)
+  await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.goto('/', { waitUntil: 'load' })
 
   const priceTabs = page.getByRole('tablist', { name: /preise/i })
@@ -67,10 +83,36 @@ test('Preissteuerung und Carousel geben ihren Zustand verständlich aus', async 
   await expect(oneDog).toHaveAttribute('aria-pressed', 'false')
 
   await overviewTab.click()
+  const firstAnimatedPrice = page.locator('[data-animated-number="true"]').first()
+  await expect(firstAnimatedPrice).toHaveAttribute('data-value', '60')
+
   const holidayToggle = page.getByRole('button', { name: 'Feiertagspreise anzeigen' })
   await expect(holidayToggle).toHaveAttribute('aria-pressed', 'false')
   await holidayToggle.click()
   await expect(holidayToggle).toHaveAttribute('aria-pressed', 'true')
+
+  await page.waitForTimeout(150)
+  await expect(firstAnimatedPrice).toHaveAttribute('data-value', '90')
+  await expect
+    .poll(() =>
+      firstAnimatedPrice.evaluate(element =>
+        Array.from(element.querySelectorAll('*')).some(
+          child => getComputedStyle(child).transform !== 'none',
+        ),
+      ),
+    )
+    .toBe(true)
+  await expect
+    .poll(
+      () =>
+        firstAnimatedPrice.evaluate(element =>
+          Array.from(element.querySelectorAll('*')).some(
+            child => getComputedStyle(child).transform !== 'none',
+          ),
+        ),
+      { timeout: 2_000 },
+    )
+    .toBe(false)
 
   await expect(page.getByRole('button', { name: 'Vorheriges Testimonial' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Nächstes Testimonial' })).toBeVisible()

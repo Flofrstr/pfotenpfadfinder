@@ -106,7 +106,7 @@ export function ContactForm() {
             <label htmlFor={field.name} className="text-sm font-semibold">
               {field.label}{' '}
               {'optionalLabel' in field && (
-                <span className="text-foreground/40 font-normal">{field.optionalLabel}</span>
+                <span className="font-normal text-foreground/40">{field.optionalLabel}</span>
               )}
             </label>
             {field.type === 'textarea' ? (
@@ -117,7 +117,7 @@ export function ContactForm() {
                 autoComplete={field.autoComplete}
                 maxLength={field.maxLength}
                 required={field.required}
-                className="border-accent/20 focus:border-accent placeholder:text-foreground/40 min-h-[150px] resize-none"
+                className="min-h-[150px] resize-none border-accent/20 placeholder:text-foreground/40 focus:border-accent"
               />
             ) : (
               <Input
@@ -128,7 +128,7 @@ export function ContactForm() {
                 autoComplete={field.autoComplete}
                 maxLength={field.maxLength}
                 required={field.required}
-                className="border-accent/20 focus:border-accent placeholder:text-foreground/40 h-12"
+                className="h-12 border-accent/20 placeholder:text-foreground/40 focus:border-accent"
               />
             )}
           </div>
@@ -137,7 +137,7 @@ export function ContactForm() {
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="bg-accent text-background hover:bg-accent/90 h-12 w-full font-semibold transition-all disabled:opacity-50"
+          className="h-12 w-full bg-accent font-semibold text-background transition-all hover:bg-accent/90 disabled:opacity-50"
         >
           <Send className="mr-2 h-4 w-4" aria-hidden="true" />
           {isSubmitting ? 'Wird gesendet...' : 'Nachricht senden'}

@@ -42,15 +42,19 @@ export const metadata: Metadata = {
 
 export default function Datenschutz() {
   return (
-    <div className="bg-background min-h-screen">
-      <main className="container mx-auto max-w-4xl px-4 py-16 md:px-8">
+    <div className="min-h-screen bg-background">
+      <main
+        id="main-content"
+        tabIndex={-1}
+        className="container mx-auto max-w-4xl px-4 py-16 md:px-8"
+      >
         <div>
-          <h1 className="text-foreground mb-8 text-2xl font-bold wrap-break-word sm:text-3xl md:text-4xl lg:text-5xl">
+          <h1 className="mb-8 text-2xl font-bold wrap-break-word text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
             Datenschutzerklärung
           </h1>
 
           <div className="prose prose-lg max-w-none">
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Wir freuen uns sehr über Ihr Interesse an unserem Unternehmen. Datenschutz hat einen
               besonders hohen Stellenwert für die Geschäftsleitung der Pfotenpfadfinder. Eine
               Nutzung der Internetseiten der Pfotenpfadfinder ist grundsätzlich ohne jede Angabe
@@ -62,7 +66,7 @@ export default function Datenschutz() {
               betroffenen Person ein.
             </p>
 
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Die Verarbeitung personenbezogener Daten, beispielsweise des Namens, der Anschrift,
               E-Mail-Adresse oder Telefonnummer einer betroffenen Person, erfolgt stets im Einklang
               mit der Datenschutz-Grundverordnung und in Übereinstimmung mit den für die
@@ -73,7 +77,7 @@ export default function Datenschutz() {
               über die ihnen zustehenden Rechte aufgeklärt.
             </p>
 
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Die Pfotenpfadfinder hat als für die Verarbeitung Verantwortlicher zahlreiche
               technische und organisatorische Maßnahmen umgesetzt, um einen möglichst lückenlosen
               Schutz der über diese Internetseite verarbeiteten personenbezogenen Daten
@@ -83,10 +87,10 @@ export default function Datenschutz() {
               auch auf alternativen Wegen, beispielsweise telefonisch, an uns zu übermitteln.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               1. Begriffsbestimmungen
             </h2>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Die Datenschutzerklärung der Pfotenpfadfinder beruht auf den Begrifflichkeiten, die
               durch den Europäischen Richtlinien- und Verordnungsgeber beim Erlass der
               Datenschutz-Grundverordnung (DS-GVO) verwendet wurden. Unsere Datenschutzerklärung
@@ -95,16 +99,16 @@ export default function Datenschutz() {
               verwendeten Begrifflichkeiten erläutern.
             </p>
 
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Wir verwenden in dieser Datenschutzerklärung unter anderem die folgenden Begriffe:
             </p>
 
             <div className="mb-12 space-y-8">
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   a) personenbezogene Daten
                 </h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Personenbezogene Daten sind alle Informationen, die sich auf eine identifizierte
                   oder identifizierbare natürliche Person (im Folgenden „betroffene Person“)
                   beziehen. Als identifizierbar wird eine natürliche Person angesehen, die direkt
@@ -117,8 +121,8 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">b) betroffene Person</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">b) betroffene Person</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Betroffene Person ist jede identifizierte oder identifizierbare natürliche Person,
                   deren personenbezogene Daten von dem für die Verarbeitung Verantwortlichen
                   verarbeitet werden.
@@ -126,8 +130,8 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">c) Verarbeitung</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">c) Verarbeitung</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Verarbeitung ist jeder mit oder ohne Hilfe automatisierter Verfahren ausgeführte
                   Vorgang oder jede solche Vorgangsreihe im Zusammenhang mit personenbezogenen Daten
                   wie das Erheben, das Erfassen, die Organisation, das Ordnen, die Speicherung, die
@@ -139,18 +143,18 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   d) Einschränkung der Verarbeitung
                 </h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Einschränkung der Verarbeitung ist die Markierung gespeicherter personenbezogener
                   Daten mit dem Ziel, ihre künftige Verarbeitung einzuschränken.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">e) Profiling</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">e) Profiling</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Profiling ist jede Art der automatisierten Verarbeitung personenbezogener Daten,
                   die darin besteht, dass diese personenbezogenen Daten verwendet werden, um
                   bestimmte persönliche Aspekte, die sich auf eine natürliche Person beziehen, zu
@@ -162,8 +166,8 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">f) Pseudonymisierung</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">f) Pseudonymisierung</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Pseudonymisierung ist die Verarbeitung personenbezogener Daten in einer Weise, auf
                   welche die personenbezogenen Daten ohne Hinzuziehung zusätzlicher Informationen
                   nicht mehr einer spezifischen betroffenen Person zugeordnet werden können, sofern
@@ -175,10 +179,10 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   g) Verantwortlicher oder für die Verarbeitung Verantwortlicher
                 </h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Verantwortlicher oder für die Verarbeitung Verantwortlicher ist die natürliche
                   oder juristische Person, Behörde, Einrichtung oder andere Stelle, die allein oder
                   gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von
@@ -191,8 +195,8 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">h) Auftragsverarbeiter</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">h) Auftragsverarbeiter</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Auftragsverarbeiter ist eine natürliche oder juristische Person, Behörde,
                   Einrichtung oder andere Stelle, die personenbezogene Daten im Auftrag des
                   Verantwortlichen verarbeitet.
@@ -200,8 +204,8 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">i) Empfänger</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">i) Empfänger</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Empfänger ist eine natürliche oder juristische Person, Behörde, Einrichtung oder
                   andere Stelle, der personenbezogene Daten offengelegt werden, unabhängig davon, ob
                   es sich bei ihr um einen Dritten handelt oder nicht. Behörden, die im Rahmen eines
@@ -212,8 +216,8 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">j) Dritter</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">j) Dritter</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Dritter ist eine natürliche oder juristische Person, Behörde, Einrichtung oder
                   andere Stelle außer der betroffenen Person, dem Verantwortlichen, dem
                   Auftragsverarbeiter und den Personen, die unter der unmittelbaren Verantwortung
@@ -223,8 +227,8 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">k) Einwilligung</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">k) Einwilligung</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Einwilligung ist jede von der betroffenen Person freiwillig für den bestimmten
                   Fall in informierter Weise und unmissverständlich abgegebene Willensbekundung in
                   Form einer Erklärung oder einer sonstigen eindeutigen bestätigenden Handlung, mit
@@ -234,20 +238,20 @@ export default function Datenschutz() {
               </div>
             </div>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               2. Name und Anschrift des für die Verarbeitung Verantwortlichen
             </h2>
-            <p className="text-foreground/70 mb-4 leading-relaxed">
+            <p className="mb-4 leading-relaxed text-foreground/70">
               Verantwortlicher im Sinne der Datenschutz-Grundverordnung, sonstiger in den
               Mitgliedstaaten der Europäischen Union geltenden Datenschutzgesetze und anderer
               Bestimmungen mit datenschutzrechtlichem Charakter ist die:
             </p>
 
-            <div className="bg-accent/5 mb-12 rounded-lg p-6">
-              <p className="text-foreground mb-2 font-semibold">Pfotenpfadfinder</p>
+            <div className="mb-12 rounded-lg bg-accent/5 p-6">
+              <p className="mb-2 font-semibold text-foreground">Pfotenpfadfinder</p>
               <p className="text-foreground/70">Michelle Wattenberg</p>
               <p className="text-foreground/70">Geerstraße 34</p>
-              <p className="text-foreground/70 mb-3">58285 Gevelsberg</p>
+              <p className="mb-3 text-foreground/70">58285 Gevelsberg</p>
               <p className="text-foreground/70">Tel.: 0157 72199639</p>
               <p className="text-foreground/70">
                 E-Mail:{' '}
@@ -260,10 +264,10 @@ export default function Datenschutz() {
               </p>
             </div>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               3. Cookies
             </h2>
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Die Internetseiten der Pfotenpfadfinder verwenden keine Cookies. Cookies sind
               Textdateien, welche über einen Internetbrowser auf einem Computersystem abgelegt und
               gespeichert werden. Unsere Website funktioniert vollständig ohne den Einsatz von
@@ -273,10 +277,10 @@ export default function Datenschutz() {
               komplett cookie-frei möglich.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               4. Erfassung von allgemeinen Daten und Informationen
             </h2>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Die Internetseite der Pfotenpfadfinder erfasst mit jedem Aufruf der Internetseite
               durch eine betroffene Person oder ein automatisiertes System eine Reihe von
               allgemeinen Daten und Informationen. Diese allgemeinen Daten und Informationen werden
@@ -291,7 +295,7 @@ export default function Datenschutz() {
               Angriffen auf unsere informationstechnologischen Systeme dienen.
             </p>
 
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Bei der Nutzung dieser allgemeinen Daten und Informationen zieht die Pfotenpfadfinder
               keine Rückschlüsse auf die betroffene Person. Diese Informationen werden vielmehr
               benötigt, um (1) die Inhalte unserer Internetseite korrekt auszuliefern, (2) die
@@ -307,10 +311,10 @@ export default function Datenschutz() {
               durch eine betroffene Person angegebenen personenbezogenen Daten gespeichert.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               5. Kontaktmöglichkeit über die Internetseite
             </h2>
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Die Internetseite der Pfotenpfadfinder enthält aufgrund von gesetzlichen Vorschriften
               Angaben, die eine schnelle elektronische Kontaktaufnahme zu unserem Unternehmen sowie
               eine unmittelbare Kommunikation mit uns ermöglichen, was ebenfalls eine allgemeine
@@ -324,10 +328,10 @@ export default function Datenschutz() {
               personenbezogenen Daten an Dritte.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               6. Routinemäßige Löschung und Sperrung von personenbezogenen Daten
             </h2>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Der für die Verarbeitung Verantwortliche verarbeitet und speichert personenbezogene
               Daten der betroffenen Person nur für den Zeitraum, der zur Erreichung des
               Speicherungszwecks erforderlich ist oder sofern dies durch den Europäischen
@@ -336,21 +340,21 @@ export default function Datenschutz() {
               wurde.
             </p>
 
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Entfällt der Speicherungszweck oder läuft eine vom Europäischen Richtlinien- und
               Verordnungsgeber oder einem anderen zuständigen Gesetzgeber vorgeschriebene
               Speicherfrist ab, werden die personenbezogenen Daten routinemäßig und entsprechend den
               gesetzlichen Vorschriften gesperrt oder gelöscht.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               7. Rechte der betroffenen Person
             </h2>
 
             <div className="mb-12 space-y-8">
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">a) Recht auf Bestätigung</h3>
-                <p className="text-foreground/70 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">a) Recht auf Bestätigung</h3>
+                <p className="leading-relaxed text-foreground/70">
                   Jede betroffene Person hat das vom Europäischen Richtlinien- und Verordnungsgeber
                   eingeräumte Recht, von dem für die Verarbeitung Verantwortlichen eine Bestätigung
                   darüber zu verlangen, ob sie betreffende personenbezogene Daten verarbeitet
@@ -361,8 +365,8 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">b) Recht auf Auskunft</h3>
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">b) Recht auf Auskunft</h3>
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Jede von der Verarbeitung personenbezogener Daten betroffene Person hat das vom
                   Europäischen Richtlinien- und Verordnungsgeber gewährte Recht, jederzeit von dem
                   für die Verarbeitung Verantwortlichen unentgeltliche Auskunft über die zu seiner
@@ -371,7 +375,7 @@ export default function Datenschutz() {
                   betroffenen Person Auskunft über folgende Informationen zugestanden:
                 </p>
 
-                <ul className="text-foreground/70 mb-4 list-disc space-y-2 pl-6">
+                <ul className="mb-4 list-disc space-y-2 pl-6 text-foreground/70">
                   <li>die Verarbeitungszwecke</li>
                   <li>die Kategorien personenbezogener Daten, die verarbeitet werden</li>
                   <li>
@@ -404,7 +408,7 @@ export default function Datenschutz() {
                   </li>
                 </ul>
 
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Ferner steht der betroffenen Person ein Auskunftsrecht darüber zu, ob
                   personenbezogene Daten an ein Drittland oder an eine internationale Organisation
                   übermittelt wurden. Sofern dies der Fall ist, so steht der betroffenen Person im
@@ -412,7 +416,7 @@ export default function Datenschutz() {
                   der Übermittlung zu erhalten.
                 </p>
 
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Möchte eine betroffene Person dieses Auskunftsrecht in Anspruch nehmen, kann sie
                   sich hierzu jederzeit an einen Mitarbeiter des für die Verarbeitung
                   Verantwortlichen wenden.
@@ -420,10 +424,10 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   c) Recht auf Berichtigung
                 </h3>
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Jede von der Verarbeitung personenbezogener Daten betroffene Person hat das vom
                   Europäischen Richtlinien- und Verordnungsgeber gewährte Recht, die unverzügliche
                   Berichtigung sie betreffender unrichtiger personenbezogener Daten zu verlangen.
@@ -432,7 +436,7 @@ export default function Datenschutz() {
                   Daten — auch mittels einer ergänzenden Erklärung — zu verlangen.
                 </p>
 
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Möchte eine betroffene Person dieses Berichtigungsrecht in Anspruch nehmen, kann
                   sie sich hierzu jederzeit an einen Mitarbeiter des für die Verarbeitung
                   Verantwortlichen wenden.
@@ -440,10 +444,10 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   d) Recht auf Löschung (Recht auf Vergessen werden)
                 </h3>
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Jede von der Verarbeitung personenbezogener Daten betroffene Person hat das vom
                   Europäischen Richtlinien- und Verordnungsgeber gewährte Recht, von dem
                   Verantwortlichen zu verlangen, dass die sie betreffenden personenbezogenen Daten
@@ -451,7 +455,7 @@ export default function Datenschutz() {
                   soweit die Verarbeitung nicht erforderlich ist:
                 </p>
 
-                <ul className="text-foreground/70 mb-4 list-disc space-y-2 pl-6">
+                <ul className="mb-4 list-disc space-y-2 pl-6 text-foreground/70">
                   <li>
                     Die personenbezogenen Daten wurden für solche Zwecke erhoben oder auf sonstige
                     Weise verarbeitet, für welche sie nicht mehr notwendig sind.
@@ -480,7 +484,7 @@ export default function Datenschutz() {
                   </li>
                 </ul>
 
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Sofern einer der oben genannten Gründe zutrifft und eine betroffene Person die
                   Löschung von personenbezogenen Daten, die bei der Pfotenpfadfinder gespeichert
                   sind, veranlassen möchte, kann sie sich hierzu jederzeit an einen Mitarbeiter des
@@ -488,7 +492,7 @@ export default function Datenschutz() {
                   wird veranlassen, dass dem Löschverlangen unverzüglich nachgekommen wird.
                 </p>
 
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Wurden die personenbezogenen Daten von der Pfotenpfadfinder öffentlich gemacht und
                   ist unser Unternehmen als Verantwortlicher gemäß Art. 17 Abs. 1 DS-GVO zur
                   Löschung der personenbezogenen Daten verpflichtet, so trifft die Pfotenpfadfinder
@@ -505,17 +509,17 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   e) Recht auf Einschränkung der Verarbeitung
                 </h3>
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Jede von der Verarbeitung personenbezogener Daten betroffene Person hat das vom
                   Europäischen Richtlinien- und Verordnungsgeber gewährte Recht, von dem
                   Verantwortlichen die Einschränkung der Verarbeitung zu verlangen, wenn eine der
                   folgenden Voraussetzungen gegeben ist:
                 </p>
 
-                <ul className="text-foreground/70 mb-4 list-disc space-y-2 pl-6">
+                <ul className="mb-4 list-disc space-y-2 pl-6 text-foreground/70">
                   <li>
                     Die Richtigkeit der personenbezogenen Daten wird von der betroffenen Person
                     bestritten, und zwar für eine Dauer, die es dem Verantwortlichen ermöglicht, die
@@ -538,7 +542,7 @@ export default function Datenschutz() {
                   </li>
                 </ul>
 
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Sofern eine der oben genannten Voraussetzungen gegeben ist und eine betroffene
                   Person die Einschränkung von personenbezogenen Daten, die bei der Pfotenpfadfinder
                   gespeichert sind, verlangen möchte, kann sie sich hierzu jederzeit an einen
@@ -548,10 +552,10 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   f) Recht auf Datenübertragbarkeit
                 </h3>
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Jede von der Verarbeitung personenbezogener Daten betroffene Person hat das vom
                   Europäischen Richtlinien- und Verordnungsgeber gewährte Recht, die sie
                   betreffenden personenbezogenen Daten, welche durch die betroffene Person einem
@@ -567,7 +571,7 @@ export default function Datenschutz() {
                   welche dem Verantwortlichen übertragen wurde.
                 </p>
 
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Ferner hat die betroffene Person bei der Ausübung ihres Rechts auf
                   Datenübertragbarkeit gemäß Art. 20 Abs. 1 DS-GVO das Recht, zu erwirken, dass die
                   personenbezogenen Daten direkt von einem Verantwortlichen an einen anderen
@@ -575,15 +579,15 @@ export default function Datenschutz() {
                   hiervon nicht die Rechte und Freiheiten anderer Personen beeinträchtigt werden.
                 </p>
 
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Zur Geltendmachung des Rechts auf Datenübertragbarkeit kann sich die betroffene
                   Person jederzeit an einen Mitarbeiter der Pfotenpfadfinder wenden.
                 </p>
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">g) Recht auf Widerspruch</h3>
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <h3 className="mb-3 text-xl font-bold text-foreground">g) Recht auf Widerspruch</h3>
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Jede von der Verarbeitung personenbezogener Daten betroffene Person hat das vom
                   Europäischen Richtlinien- und Verordnungsgeber gewährte Recht, aus Gründen, die
                   sich aus ihrer besonderen Situation ergeben, jederzeit gegen die Verarbeitung sie
@@ -592,7 +596,7 @@ export default function Datenschutz() {
                   Bestimmungen gestütztes Profiling.
                 </p>
 
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Die Pfotenpfadfinder verarbeitet die personenbezogenen Daten im Falle des
                   Widerspruchs nicht mehr, es sei denn, wir können zwingende schutzwürdige Gründe
                   für die Verarbeitung nachweisen, die den Interessen, Rechten und Freiheiten der
@@ -600,7 +604,7 @@ export default function Datenschutz() {
                   Ausübung oder Verteidigung von Rechtsansprüchen.
                 </p>
 
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Verarbeitet die Pfotenpfadfinder personenbezogene Daten, um Direktwerbung zu
                   betreiben, so hat die betroffene Person das Recht, jederzeit Widerspruch gegen die
                   Verarbeitung der personenbezogenen Daten zum Zwecke derartiger Werbung einzulegen.
@@ -611,7 +615,7 @@ export default function Datenschutz() {
                   verarbeiten.
                 </p>
 
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Zudem hat die betroffene Person das Recht, aus Gründen, die sich aus ihrer
                   besonderen Situation ergeben, gegen die sie betreffende Verarbeitung
                   personenbezogener Daten, die bei der Pfotenpfadfinder zu wissenschaftlichen oder
@@ -620,7 +624,7 @@ export default function Datenschutz() {
                   zur Erfüllung einer im öffentlichen Interesse liegenden Aufgabe erforderlich.
                 </p>
 
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Zur Ausübung des Rechts auf Widerspruch kann sich die betroffene Person direkt an
                   jeden Mitarbeiter der Pfotenpfadfinder oder einen anderen Mitarbeiter wenden. Der
                   betroffenen Person steht es ferner frei, im Zusammenhang mit der Nutzung von
@@ -631,10 +635,10 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   h) Automatisierte Entscheidungen im Einzelfall einschließlich Profiling
                 </h3>
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Jede von der Verarbeitung personenbezogener Daten betroffene Person hat das vom
                   Europäischen Richtlinien- und Verordnungsgeber gewährte Recht, nicht einer
                   ausschließlich auf einer automatisierten Verarbeitung — einschließlich Profiling —
@@ -649,7 +653,7 @@ export default function Datenschutz() {
                   betroffenen Person erfolgt.
                 </p>
 
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Ist die Entscheidung (1) für den Abschluss oder die Erfüllung eines Vertrags
                   zwischen der betroffenen Person und dem Verantwortlichen erforderlich oder (2)
                   erfolgt sie mit ausdrücklicher Einwilligung der betroffenen Person, trifft die
@@ -659,7 +663,7 @@ export default function Datenschutz() {
                   Darlegung des eigenen Standpunkts und auf Anfechtung der Entscheidung gehört.
                 </p>
 
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Möchte die betroffene Person Rechte mit Bezug auf automatisierte Entscheidungen
                   geltend machen, kann sie sich hierzu jederzeit an einen Mitarbeiter des für die
                   Verarbeitung Verantwortlichen wenden.
@@ -667,16 +671,16 @@ export default function Datenschutz() {
               </div>
 
               <div>
-                <h3 className="text-foreground mb-3 text-xl font-bold">
+                <h3 className="mb-3 text-xl font-bold text-foreground">
                   i) Recht auf Widerruf einer datenschutzrechtlichen Einwilligung
                 </h3>
-                <p className="text-foreground/70 mb-4 leading-relaxed">
+                <p className="mb-4 leading-relaxed text-foreground/70">
                   Jede von der Verarbeitung personenbezogener Daten betroffene Person hat das vom
                   Europäischen Richtlinien- und Verordnungsgeber gewährte Recht, eine Einwilligung
                   zur Verarbeitung personenbezogener Daten jederzeit zu widerrufen.
                 </p>
 
-                <p className="text-foreground/70 leading-relaxed">
+                <p className="leading-relaxed text-foreground/70">
                   Möchte die betroffene Person ihr Recht auf Widerruf einer Einwilligung geltend
                   machen, kann sie sich hierzu jederzeit an einen Mitarbeiter des für die
                   Verarbeitung Verantwortlichen wenden.
@@ -684,15 +688,15 @@ export default function Datenschutz() {
               </div>
             </div>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               8. Website-Hosting und Kontaktformular (Netlify)
             </h2>
-            <p className="text-foreground/70 mb-4 leading-relaxed">
+            <p className="mb-4 leading-relaxed text-foreground/70">
               Unsere Website wird bei Netlify gehostet. Anbieter: Netlify, Inc., 44 Montgomery
               Street, Suite 300, San Francisco, CA 94104, USA.
             </p>
 
-            <p className="text-foreground/70 mb-4 leading-relaxed">
+            <p className="mb-4 leading-relaxed text-foreground/70">
               Netlify verarbeitet im Rahmen des Hostings u.a. IP-Adressen, Meta- und
               Kommunikationsdaten sowie Websitezugriffe in den Server-Logfiles. Die Daten werden auf
               Servern in den USA gespeichert. Diese Datenverarbeitung erfolgt serverseitig und ohne
@@ -700,16 +704,16 @@ export default function Datenschutz() {
               Interesse an sicherer und zuverlässiger Bereitstellung unserer Website).
             </p>
 
-            <p className="text-foreground/70 mb-4 leading-relaxed">
+            <p className="mb-4 leading-relaxed text-foreground/70">
               Für statistische Auswertungen nutzen wir Netlify Analytics, welches ausschließlich
               serverseitig arbeitet und keine Cookies oder clientseitiges Tracking verwendet. Die
               Analyse erfolgt anonym auf Basis der Server-Logfiles.
             </p>
 
-            <h3 className="text-foreground mb-3 text-xl font-bold">
+            <h3 className="mb-3 text-xl font-bold text-foreground">
               Kontaktformular über Netlify Forms
             </h3>
-            <p className="text-foreground/70 mb-4 leading-relaxed">
+            <p className="mb-4 leading-relaxed text-foreground/70">
               Für unser Kontaktformular nutzen wir Netlify Forms. Bei Nutzung des Kontaktformulars
               werden die von Ihnen eingegebenen Daten (Name, E-Mail-Adresse, Telefonnummer,
               Nachricht) an Netlify übermittelt und dort gespeichert. Diese Daten werden
@@ -717,7 +721,7 @@ export default function Datenschutz() {
               weitergegeben.
             </p>
 
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Weitere Informationen zum Datenschutz bei Netlify finden Sie unter:{' '}
               <a
                 href="https://www.netlify.com/privacy/"
@@ -729,17 +733,17 @@ export default function Datenschutz() {
               </a>
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               9. Externer Instagram-Link und lokale Theme-Auswahl
             </h2>
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Auf dieser Website ist keine Instagram-Komponente eingebettet. Es gibt lediglich einen
               externen Link zu unserem Instagram-Profil. Solange Sie diesen Link nicht aufrufen,
               stellt unsere Website keine Verbindung zu Instagram her und übermittelt keine Daten an
               Instagram.
             </p>
 
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Wenn Sie den Link anklicken, verlassen Sie unsere Website. Ihr Browser verbindet sich
               dann direkt mit Instagram; dabei kann Instagram insbesondere Ihre IP-Adresse und
               weitere Verbindungsdaten verarbeiten. Für diese Verarbeitung ist der Anbieter von
@@ -747,7 +751,7 @@ export default function Datenschutz() {
               Canal Harbour, Dublin 2, Irland.
             </p>
 
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Weitere Informationen zur Verarbeitung durch Instagram finden Sie in der
               Datenschutzerklärung von Instagram unter{' '}
               <a
@@ -761,23 +765,23 @@ export default function Datenschutz() {
               .
             </p>
 
-            <p className="text-foreground/70 mb-6 leading-relaxed">
+            <p className="mb-6 leading-relaxed text-foreground/70">
               Für die Auswahl zwischen hellem, dunklem und dem vom Betriebssystem vorgegebenen
               Farbschema speichert die Website ausschließlich die gewählte Theme-Einstellung im
               lokalen Browserspeicher (Local Storage) Ihres Geräts. Dadurch bleibt Ihre Auswahl bei
               einem späteren Besuch erhalten.
             </p>
 
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Diese lokale Einstellung wird nicht an uns oder an Dritte übertragen und nicht zur
               Analyse Ihres Nutzungsverhaltens verwendet. Sie können sie jederzeit über die
               Website-Auswahl ändern oder über die Einstellungen Ihres Browsers löschen.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               10. Rechtsgrundlage der Verarbeitung
             </h2>
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Art. 6 I lit. a DS-GVO dient unserem Unternehmen als Rechtsgrundlage für
               Verarbeitungsvorgänge, bei denen wir eine Einwilligung für einen bestimmten
               Verarbeitungszweck einholen. Ist die Verarbeitung personenbezogener Daten zur
@@ -808,33 +812,33 @@ export default function Datenschutz() {
               Kunde des Verantwortlichen ist (Erwägungsgrund 47 Satz 2 DS-GVO).
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               11. Berechtigte Interessen an der Verarbeitung, die von dem Verantwortlichen oder
               einem Dritten verfolgt werden
             </h2>
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Basiert die Verarbeitung personenbezogener Daten auf Artikel 6 I lit. f DS-GVO ist
               unser berechtigtes Interesse die Durchführung unserer Geschäftstätigkeit zugunsten des
               Wohlergehens all unserer Mitarbeiter und unserer Anteilseigner.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               12. Dauer, für die die personenbezogenen Daten gespeichert werden
             </h2>
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Das Kriterium für die Dauer der Speicherung von personenbezogenen Daten ist die
               jeweilige gesetzliche Aufbewahrungsfrist. Nach Ablauf der Frist werden die
               entsprechenden Daten routinemäßig gelöscht, sofern sie nicht mehr zur
               Vertragserfüllung oder Vertragsanbahnung erforderlich sind.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               13. Gesetzliche oder vertragliche Vorschriften zur Bereitstellung der
               personenbezogenen Daten; Erforderlichkeit für den Vertragsabschluss; Verpflichtung der
               betroffenen Person, die personenbezogenen Daten bereitzustellen; mögliche Folgen der
               Nichtbereitstellung
             </h2>
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Wir klären Sie darüber auf, dass die Bereitstellung personenbezogener Daten zum Teil
               gesetzlich vorgeschrieben ist (z.B. Steuervorschriften) oder sich auch aus
               vertraglichen Regelungen (z.B. Angaben zum Vertragspartner) ergeben kann. Mitunter
@@ -852,10 +856,10 @@ export default function Datenschutz() {
               welche Folgen die Nichtbereitstellung der personenbezogenen Daten hätte.
             </p>
 
-            <h2 className="text-foreground mt-12 mb-6 text-2xl font-bold md:text-3xl">
+            <h2 className="mt-12 mb-6 text-2xl font-bold text-foreground md:text-3xl">
               14. Bestehen einer automatisierten Entscheidungsfindung
             </h2>
-            <p className="text-foreground/70 mb-12 leading-relaxed">
+            <p className="mb-12 leading-relaxed text-foreground/70">
               Als verantwortungsbewusstes Unternehmen verzichten wir auf eine automatische
               Entscheidungsfindung oder ein Profiling.
             </p>

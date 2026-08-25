@@ -8,8 +8,8 @@ export function AboutSection() {
 
       {/* Decorative background elements */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="bg-accent/5 absolute top-20 right-0 h-[600px] w-[600px] translate-x-1/3 rounded-full blur-3xl" />
-        <div className="bg-accent/5 absolute bottom-40 left-0 h-[400px] w-[400px] -translate-x-1/3 rounded-full blur-3xl" />
+        <div className="absolute top-20 right-0 h-[600px] w-[600px] translate-x-1/3 rounded-full bg-accent/5 blur-3xl" />
+        <div className="absolute bottom-40 left-0 h-[400px] w-[400px] -translate-x-1/3 rounded-full bg-accent/5 blur-3xl" />
       </div>
 
       <div className="relative container px-4 md:px-6">
@@ -22,14 +22,14 @@ export function AboutSection() {
             <p className="mb-3 inline-flex items-center gap-2 text-2xl font-medium md:text-3xl">
               Hallo liebe Hundemami&apos;s und Hundepapi&apos;s
               <svg
-                className="fill-accent h-7 w-7 md:h-8 md:w-8"
+                className="h-7 w-7 fill-accent md:h-8 md:w-8"
                 viewBox="0 0 24 24"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
               </svg>
             </p>
-            <p className="text-foreground/70 text-xl md:text-2xl">
+            <p className="text-xl text-foreground/70 md:text-2xl">
               Ich bin Michelle, 25 Jahre alt und Gründerin von Pfotenpfadfinder.
             </p>
           </div>
@@ -40,7 +40,7 @@ export function AboutSection() {
             <div className="md:col-span-5 lg:col-span-6">
               <div className="md:sticky md:top-8">
                 <div className="group relative">
-                  <div className="from-accent/20 to-accent/5 absolute -inset-4 rounded-3xl bg-gradient-to-br opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-accent/20 to-accent/5 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative rotate-2 transform bg-white p-6 pb-20 shadow-2xl transition-transform duration-500 group-hover:rotate-0">
                     <div className="relative aspect-[3/4] overflow-hidden rounded-sm">
                       <Image
@@ -64,20 +64,20 @@ export function AboutSection() {
                 {/* Stats integrated with image */}
                 <div className="mt-8 grid grid-cols-3 gap-4">
                   <div className="text-center">
-                    <div className="text-accent mb-1 text-3xl font-bold">2025</div>
-                    <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
+                    <div className="mb-1 text-3xl font-bold text-accent">2025</div>
+                    <div className="text-xs font-medium tracking-wide text-foreground/60 uppercase">
                       Gegründet
                     </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-accent mb-1 text-3xl font-bold">25</div>
-                    <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
+                    <div className="mb-1 text-3xl font-bold text-accent">25</div>
+                    <div className="text-xs font-medium tracking-wide text-foreground/60 uppercase">
                       Jahre alt
                     </div>
                   </div>
                   <div className="text-center">
-                    <div className="text-accent mb-1 text-3xl font-bold">2026</div>
-                    <div className="text-foreground/60 text-xs font-medium tracking-wide uppercase">
+                    <div className="mb-1 text-3xl font-bold text-accent">2026</div>
+                    <div className="text-xs font-medium tracking-wide text-foreground/60 uppercase">
                       In Weiterbildung
                     </div>
                   </div>
@@ -90,7 +90,7 @@ export function AboutSection() {
               {/* Geschichte */}
               <div>
                 <h3 className="mb-4 text-3xl font-bold">Meine Geschichte mit Hunden</h3>
-                <div className="text-foreground/80 space-y-4 text-lg leading-relaxed">
+                <div className="space-y-4 text-lg leading-relaxed text-foreground/80">
                   <p>
                     Schon seit meiner Kindheit begleiten mich Hunde durchs Leben. In meiner Kindheit
                     war es ein Border Collie/Australian Shepherd-Mix, der mich geprägt hat. Später
@@ -113,7 +113,7 @@ export function AboutSection() {
               {/* Selbstständigkeit */}
               <div>
                 <h3 className="mb-4 text-3xl font-bold">Der Weg zur Selbstständigkeit</h3>
-                <div className="text-foreground/80 space-y-4 text-lg leading-relaxed">
+                <div className="space-y-4 text-lg leading-relaxed text-foreground/80">
                   <p>
                     Beruflich arbeite ich als Medizinisch-Technische Laboratoriumsassistentin. Seit
                     Januar 2025 bin ich in Teilzeit, um mehr Raum für mein Herzensprojekt zu
@@ -129,7 +129,7 @@ export function AboutSection() {
               {/* Vision */}
               <div>
                 <h3 className="mb-4 text-3xl font-bold">Meine Vision</h3>
-                <div className="text-foreground/80 space-y-4 text-lg leading-relaxed">
+                <div className="space-y-4 text-lg leading-relaxed text-foreground/80">
                   <p>
                     Mein großer Traum ist es, eines Tages eine eigene Hundetagesstätte zu eröffnen –
                     einen Ort, an dem jeder Hund sicher betreut wird und sich rundum wohlfühlen
@@ -139,7 +139,7 @@ export function AboutSection() {
               </div>
 
               {/* Closing statement */}
-              <div className="from-accent/10 to-accent/5 mt-12 rounded-2xl bg-gradient-to-br p-8">
+              <div className="mt-12 rounded-2xl bg-gradient-to-br from-accent/10 to-accent/5 p-8">
                 <div className="mb-6 flex justify-center">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

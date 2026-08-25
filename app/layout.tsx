@@ -44,8 +44,14 @@ export default function RootLayout({
   return (
     <html lang="de" suppressHydrationWarning>
       <body
-        className={`${montserrat.variable} ${gluten.variable} bg-background text-foreground font-sans`}
+        className={`${montserrat.variable} ${gluten.variable} bg-background font-sans text-foreground`}
       >
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground focus:shadow-lg focus:ring-2 focus:ring-ring focus:ring-offset-2 focus:outline-none"
+        >
+          Zum Hauptinhalt springen
+        </a>
         <Header />
         {children}
         <Footer />

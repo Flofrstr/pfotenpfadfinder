@@ -46,22 +46,22 @@ export function TestimonialNavigation({
       <button
         type="button"
         onClick={onPrevious}
-        className="group/button bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 flex h-12 w-12 items-center justify-center rounded-full shadow-md transition-[background-color,box-shadow,transform] duration-300 hover:scale-110 hover:shadow-lg"
+        className="group/button flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 shadow-md transition-[background-color,box-shadow,transform] duration-300 hover:scale-110 hover:bg-primary/20 hover:shadow-lg dark:bg-primary/20 dark:hover:bg-primary/30"
         aria-label="Vorheriges Testimonial"
       >
         <ArrowLeft
-          className="text-primary h-6 w-6 transition-transform duration-300 group-hover/button:-translate-x-0.5"
+          className="h-6 w-6 text-primary transition-transform duration-300 group-hover/button:-translate-x-0.5"
           aria-hidden="true"
         />
       </button>
       <button
         type="button"
         onClick={onNext}
-        className="group/button bg-primary/10 hover:bg-primary/20 dark:bg-primary/20 dark:hover:bg-primary/30 flex h-12 w-12 items-center justify-center rounded-full shadow-md transition-[background-color,box-shadow,transform] duration-300 hover:scale-110 hover:shadow-lg"
+        className="group/button flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 shadow-md transition-[background-color,box-shadow,transform] duration-300 hover:scale-110 hover:bg-primary/20 hover:shadow-lg dark:bg-primary/20 dark:hover:bg-primary/30"
         aria-label="Nächstes Testimonial"
       >
         <ArrowRight
-          className="text-primary h-6 w-6 transition-transform duration-300 group-hover/button:translate-x-0.5"
+          className="h-6 w-6 text-primary transition-transform duration-300 group-hover/button:translate-x-0.5"
           aria-hidden="true"
         />
       </button>

@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 export function HeroViewportController({ targetId }: { targetId: string }) {
   useEffect(() => {
     const hero = document.getElementById(targetId)
-    if (!hero) return
+    if (!hero) return undefined
 
     const isTouchDevice =
       window.matchMedia('(pointer: coarse)').matches || navigator.maxTouchPoints > 0

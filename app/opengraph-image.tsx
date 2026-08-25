@@ -27,7 +27,7 @@ export default async function Image() {
         overflow: 'hidden',
       }}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
+      {/* oxlint-disable-next-line nextjs/no-img-element */}
       <img
         src={photoDataUrl}
         alt=""

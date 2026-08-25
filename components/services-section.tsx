@@ -36,7 +36,7 @@ export function ServicesSection() {
             <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
               Preise & Services
             </h2>
-            <p className="text-foreground/70 max-w-[700px] md:text-lg">
+            <p className="max-w-[700px] text-foreground/70 md:text-lg">
               Transparente Preise für professionelle Hundebetreuung
             </p>
           </div>
@@ -45,7 +45,7 @@ export function ServicesSection() {
           <div
             role="tablist"
             aria-label="Preise und Preisrechner"
-            className="border-accent/20 bg-background inline-flex items-center gap-1 rounded-full border p-1"
+            className="inline-flex items-center gap-1 rounded-full border border-accent/20 bg-background p-1"
           >
             <button
               id="prices-overview-tab"
@@ -92,7 +92,7 @@ export function ServicesSection() {
               onClick={() => setShowHolidayPricing(!showHolidayPricing)}
               aria-pressed={showHolidayPricing}
               aria-label="Feiertagspreise anzeigen"
-              className="border-accent/20 bg-background hover:border-accent/40 hover:bg-accent/5 hidden items-center gap-2 rounded-full border-2 px-6 py-2.5 text-sm font-semibold transition-all md:flex"
+              className="hidden items-center gap-2 rounded-full border-2 border-accent/20 bg-background px-6 py-2.5 text-sm font-semibold transition-all hover:border-accent/40 hover:bg-accent/5 md:flex"
             >
               <div
                 className={`relative h-5 w-9 rounded-full transition-colors ${showHolidayPricing ? 'bg-accent' : 'bg-foreground/20'}`}
@@ -107,7 +107,7 @@ export function ServicesSection() {
 
           {/* Hunde-Anzahl Auswahl (shared between tabs) */}
           <div className="flex flex-col items-center gap-3">
-            <p className="text-foreground/70 text-sm font-medium">
+            <p className="text-sm font-medium text-foreground/70">
               Anzahl Hunde aus einem Haushalt
             </p>
             <div className="flex items-center gap-3">
@@ -118,7 +118,7 @@ export function ServicesSection() {
                   onClick={() => setNumberOfDogs(count)}
                   className={`group relative flex h-16 w-24 items-center justify-center rounded-xl border-2 transition-all ${
                     numberOfDogs === count
-                      ? 'border-accent bg-accent/10 scale-110'
+                      ? 'scale-110 border-accent bg-accent/10'
                       : 'border-accent/20 bg-background hover:border-accent/40 hover:bg-accent/5'
                   }`}
                   aria-label={`${count} ${count === 1 ? 'Hund' : 'Hunde'} auswählen`}
@@ -148,12 +148,12 @@ export function ServicesSection() {
                 </button>
               ))}
             </div>
-            <p className="text-foreground/50 text-xs">
+            <p className="text-xs text-foreground/50">
               {numberOfDogs === 1 ? 'Preis für 1 Hund' : `Gesamtpreis für ${numberOfDogs} Hunde`}
             </p>
-            <div className="border-accent/30 bg-accent/5 mt-4 flex items-center gap-3 rounded-full border px-5 py-3">
-              <Dog className="text-accent h-5 w-5 shrink-0" />
-              <p className="text-foreground/70 text-sm">
+            <div className="mt-4 flex items-center gap-3 rounded-full border border-accent/30 bg-accent/5 px-5 py-3">
+              <Dog className="h-5 w-5 shrink-0 text-accent" />
+              <p className="text-sm text-foreground/70">
                 Einzelbetreuung (auf Wunsch oder bei Unverträglichkeit) = Preis für 2 Hunde
               </p>
             </div>
@@ -172,11 +172,11 @@ export function ServicesSection() {
               <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 lg:grid-cols-3">
                 {/* Hundebetreuung */}
                 <PricingCard isHoliday={showHolidayPricing}>
-                  <CardHeader className="border-accent/10 border-b pb-4">
+                  <CardHeader className="border-b border-accent/10 pb-4">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="bg-accent/10 rounded-lg p-2">
-                          <Home className="text-accent h-5 w-5" />
+                        <div className="rounded-lg bg-accent/10 p-2">
+                          <Home className="h-5 w-5 text-accent" />
                         </div>
                         <h3 className="text-xl leading-none font-semibold tracking-tight">
                           Hundebetreuung
@@ -207,12 +207,12 @@ export function ServicesSection() {
                       />
                     </div>
                   </CardContent>
-                  <CardFooter className="border-accent/5 bg-accent/5 border-t pt-4">
+                  <CardFooter className="border-t border-accent/5 bg-accent/5 pt-4">
                     <div className="flex w-full items-center justify-between">
-                      <span className="text-foreground/70 text-sm font-medium">
+                      <span className="text-sm font-medium text-foreground/70">
                         Nie allein Pauschale
                       </span>
-                      <span className="text-accent text-lg font-bold">
+                      <span className="text-lg font-bold text-accent">
                         +{PRICING.neverAlonePerBillingUnit}€
                       </span>
                     </div>
@@ -221,11 +221,11 @@ export function ServicesSection() {
 
                 {/* Gassi gehen */}
                 <PricingCard isHoliday={showHolidayPricing}>
-                  <CardHeader className="border-accent/10 border-b pb-4">
+                  <CardHeader className="border-b border-accent/10 pb-4">
                     <div className="flex items-center justify-between gap-3">
                       <div className="flex items-center gap-3">
-                        <div className="bg-accent/10 rounded-lg p-2">
-                          <Paw className="text-accent h-5 w-5" />
+                        <div className="rounded-lg bg-accent/10 p-2">
+                          <Paw className="h-5 w-5 text-accent" />
                         </div>
                         <h3 className="text-xl leading-none font-semibold tracking-tight">
                           Gassi gehen
@@ -262,10 +262,10 @@ export function ServicesSection() {
 
                 {/* Kennenlernen & Probetage */}
                 <PricingCard isHoliday={false}>
-                  <CardHeader className="border-accent/10 border-b pb-4">
+                  <CardHeader className="border-b border-accent/10 pb-4">
                     <div className="flex items-center gap-3">
-                      <div className="bg-accent/10 rounded-lg p-2">
-                        <Heart className="text-accent h-5 w-5" />
+                      <div className="rounded-lg bg-accent/10 p-2">
+                        <Heart className="h-5 w-5 text-accent" />
                       </div>
                       <h3 className="text-xl leading-none font-semibold tracking-tight">
                         Kennenlernen
@@ -320,21 +320,21 @@ export function ServicesSection() {
         >
           <div className="min-h-0 overflow-hidden">
             <div className="mx-auto mt-10 max-w-4xl space-y-6">
-              <div className="border-accent/20 from-accent/5 to-accent/10 relative overflow-hidden rounded-2xl border bg-linear-to-br p-6 shadow-sm">
-                <div className="bg-accent/10 absolute top-0 right-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full blur-2xl" />
+              <div className="relative overflow-hidden rounded-2xl border border-accent/20 bg-linear-to-br from-accent/5 to-accent/10 p-6 shadow-sm">
+                <div className="absolute top-0 right-0 h-32 w-32 translate-x-8 -translate-y-8 rounded-full bg-accent/10 blur-2xl" />
                 <div className="relative flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
                   <div className="flex flex-col items-center gap-4 sm:flex-row">
-                    <div className="bg-accent/20 flex items-center rounded-xl p-3 sm:p-3">
-                      <MapPin className="text-accent h-8 w-8 sm:h-6 sm:w-6" />
+                    <div className="flex items-center rounded-xl bg-accent/20 p-3 sm:p-3">
+                      <MapPin className="h-8 w-8 text-accent sm:h-6 sm:w-6" />
                     </div>
                     <div className="text-center sm:text-left">
-                      <p className="text-foreground/60 text-xs font-semibold tracking-wider uppercase">
+                      <p className="text-xs font-semibold tracking-wider text-foreground/60 uppercase">
                         Anfahrt
                       </p>
-                      <p className="text-foreground/80 mt-0.5 text-sm">
+                      <p className="mt-0.5 text-sm text-foreground/80">
                         Innerhalb des Servicegebiets
                       </p>
-                      <p className="text-foreground/60 mt-1.5 text-xs leading-relaxed">
+                      <p className="mt-1.5 text-xs leading-relaxed text-foreground/60">
                         {SERVICE_AREAS.join(', ')}
                       </p>
                       <div className="mt-3 sm:hidden">
@@ -344,11 +344,11 @@ export function ServicesSection() {
                           })}
                           €
                         </p>
-                        <p className="text-foreground/60 text-xs">pro Kilometer</p>
+                        <p className="text-xs text-foreground/60">pro Kilometer</p>
                       </div>
                     </div>
                   </div>
-                  <div className="bg-background/80 hidden items-center gap-3 rounded-xl px-6 py-3 shadow-sm backdrop-blur-sm sm:flex">
+                  <div className="hidden items-center gap-3 rounded-xl bg-background/80 px-6 py-3 shadow-sm backdrop-blur-sm sm:flex">
                     <div className="text-right">
                       <p className="text-3xl font-bold tabular-nums">
                         {PRICING.travelPerKilometer.toLocaleString('de-DE', {
@@ -356,13 +356,13 @@ export function ServicesSection() {
                         })}
                         €
                       </p>
-                      <p className="text-foreground/60 text-xs">pro Kilometer</p>
+                      <p className="text-xs text-foreground/60">pro Kilometer</p>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <p className="text-foreground/50 text-center text-xs">
+              <p className="text-center text-xs text-foreground/50">
                 Gemäß §19 UStG wird keine Umsatzsteuer berechnet
               </p>
             </div>
@@ -384,7 +384,7 @@ function MobileToggle({ isActive, onToggle, label = 'Feiertag' }: MobileTogglePr
     <button
       type="button"
       onClick={onToggle}
-      className="border-accent/20 bg-background hover:border-accent/40 flex items-center gap-1.5 rounded-full border px-2.5 py-1.5 text-xs font-medium transition-all md:hidden"
+      className="flex items-center gap-1.5 rounded-full border border-accent/20 bg-background px-2.5 py-1.5 text-xs font-medium transition-all hover:border-accent/40 md:hidden"
       aria-label={`${label} ${isActive ? 'deaktivieren' : 'aktivieren'}`}
       aria-pressed={isActive}
     >
@@ -395,7 +395,7 @@ function MobileToggle({ isActive, onToggle, label = 'Feiertag' }: MobileTogglePr
           className={`absolute top-0.5 h-2.5 w-2.5 rounded-full bg-white shadow-sm transition-transform ${isActive ? 'translate-x-2.5' : 'translate-x-0.5'}`}
         />
       </div>
-      <span className="text-foreground/70 text-[10px] tracking-wide uppercase">{label}</span>
+      <span className="text-[10px] tracking-wide text-foreground/70 uppercase">{label}</span>
     </button>
   )
 }
@@ -415,7 +415,7 @@ function PricingCard({ isHoliday, children, className = '' }: PricingCardProps) 
     >
       {isHoliday && (
         <div className="services-holiday-ribbon absolute top-0 right-0 z-10">
-          <div className="bg-accent text-accent-foreground origin-top-right translate-x-px -translate-y-px rotate-45 px-8 py-1 text-[10px] font-bold tracking-wider uppercase shadow-md">
+          <div className="origin-top-right translate-x-px -translate-y-px rotate-45 bg-accent px-8 py-1 text-[10px] font-bold tracking-wider text-accent-foreground uppercase shadow-md">
             Feiertag
           </div>
         </div>
@@ -448,7 +448,7 @@ function PriceItem({
     <div className="flex items-start justify-between gap-4">
       <div className="flex-1 space-y-1">
         <p className="leading-tight font-semibold">{title}</p>
-        {subtitle && <p className="text-foreground/60 text-xs leading-tight">{subtitle}</p>}
+        {subtitle && <p className="text-xs leading-tight text-foreground/60">{subtitle}</p>}
       </div>
       <div className="flex min-w-[90px] shrink-0 flex-col items-end">
         <div className="flex items-baseline gap-0.5">
@@ -461,7 +461,7 @@ function PriceItem({
           </span>
           <span className="sr-only"> Euro</span>
         </div>
-        <p className="text-foreground/50 text-xs">{perUnit}</p>
+        <p className="text-xs text-foreground/50">{perUnit}</p>
       </div>
     </div>
   )

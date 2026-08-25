@@ -2,8 +2,9 @@
 
 import { useState, useMemo, useCallback } from 'react'
 import { ChevronLeft, ChevronRight, Calculator } from 'lucide-react'
-import { motion, AnimatePresence } from 'motion/react'
+import { AnimatePresence, m as motion } from 'motion/react'
 import { AccessibleAnimatedNumber } from '@/components/ui/accessible-animated-number'
+import { MotionProvider } from '@/components/ui/motion-provider'
 import { cn } from '@/lib/utils'
 import { isNrwHoliday } from '@/lib/nrw-holidays'
 import { calculatePrice, getTieredPrice, toLocalDateKey } from '@/lib/pricing'
@@ -43,6 +44,14 @@ interface PriceCalculatorContentProps {
 }
 
 export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentProps) {
+  return (
+    <MotionProvider>
+      <PriceCalculatorMotionContent numberOfDogs={numberOfDogs} />
+    </MotionProvider>
+  )
+}
+
+function PriceCalculatorMotionContent({ numberOfDogs }: PriceCalculatorContentProps) {
   const [startDate, setStartDate] = useState<Date | null>(null)
   const [endDate, setEndDate] = useState<Date | null>(null)
   const [hoverDate, setHoverDate] = useState<Date | null>(null)
@@ -113,14 +122,14 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
       {/* Left: Calendar + Options */}
       <div className="space-y-4">
         {/* Calendar */}
-        <div className="border-accent/20 bg-card overflow-hidden rounded-2xl border shadow-sm transition-all duration-300 hover:shadow-md">
+        <div className="overflow-hidden rounded-2xl border border-accent/20 bg-card shadow-sm transition-all duration-300 hover:shadow-md">
           {/* Month navigation */}
-          <div className="border-accent/10 flex items-center justify-between border-b px-4 py-3">
+          <div className="flex items-center justify-between border-b border-accent/10 px-4 py-3">
             <button
               type="button"
               onClick={prevMonth}
               disabled={!canGoPrev}
-              className="text-foreground/70 hover:text-foreground disabled:text-foreground/20 rounded-lg p-1.5 transition-colors disabled:cursor-not-allowed"
+              className="rounded-lg p-1.5 text-foreground/70 transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:text-foreground/20"
               aria-label="Vorheriger Monat"
             >
               <ChevronLeft className="h-5 w-5" />
@@ -134,7 +143,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
             <button
               type="button"
               onClick={nextMonth}
-              className="text-foreground/70 hover:text-foreground rounded-lg p-1.5 transition-colors"
+              className="rounded-lg p-1.5 text-foreground/70 transition-colors hover:text-foreground"
               aria-label="Nächster Monat"
             >
               <ChevronRight className="h-5 w-5" />
@@ -144,7 +153,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
           {/* Weekday headers */}
           <div className="grid grid-cols-7 px-2 pt-2">
             {WEEKDAYS.map(day => (
-              <div key={day} className="text-foreground/50 py-2 text-center text-xs font-medium">
+              <div key={day} className="py-2 text-center text-xs font-medium text-foreground/50">
                 {day}
               </div>
             ))}
@@ -161,14 +170,14 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
           />
 
           {/* Holiday legend */}
-          <div className="border-accent/10 flex items-center gap-2 border-t px-4 py-2.5">
-            <span className="bg-destructive/70 inline-block h-1.5 w-1.5 rounded-full" />
-            <span className="text-foreground/50 text-xs">Feiertag (NRW)</span>
+          <div className="flex items-center gap-2 border-t border-accent/10 px-4 py-2.5">
+            <span className="inline-block h-1.5 w-1.5 rounded-full bg-destructive/70" />
+            <span className="text-xs text-foreground/50">Feiertag (NRW)</span>
           </div>
         </div>
 
         {/* Time options */}
-        <div className="border-accent/20 bg-card space-y-3 rounded-2xl border p-4 shadow-sm transition-all duration-300 hover:shadow-md">
+        <div className="space-y-3 rounded-2xl border border-accent/20 bg-card p-4 shadow-sm transition-all duration-300 hover:shadow-md">
           <p className="text-sm font-semibold">Abreise am letzten Tag</p>
           <div className="flex gap-2">
             <TimeButton
@@ -188,10 +197,10 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
       </div>
 
       {/* Right: Result breakdown */}
-      <div className="border-accent/20 bg-card flex flex-col rounded-2xl border shadow-sm transition-all duration-300 hover:shadow-md">
-        <div className="border-accent/10 flex items-center gap-3 border-b px-6 py-4">
-          <div className="bg-accent/10 rounded-lg p-2">
-            <Calculator className="text-accent h-5 w-5" />
+      <div className="flex flex-col rounded-2xl border border-accent/20 bg-card shadow-sm transition-all duration-300 hover:shadow-md">
+        <div className="flex items-center gap-3 border-b border-accent/10 px-6 py-4">
+          <div className="rounded-lg bg-accent/10 p-2">
+            <Calculator className="h-5 w-5 text-accent" />
           </div>
           <h3 className="text-lg font-semibold">Deine Berechnung</h3>
         </div>
@@ -206,8 +215,8 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                 exit={{ opacity: 0 }}
                 className="flex flex-1 flex-col items-center justify-center gap-3 py-12"
               >
-                <Calculator className="text-foreground/20 h-12 w-12" />
-                <p className="text-foreground/40 text-sm">
+                <Calculator className="h-12 w-12 text-foreground/20" />
+                <p className="text-sm text-foreground/40">
                   Bitte wähle einen Zeitraum im Kalender aus
                 </p>
               </motion.div>
@@ -222,13 +231,13 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                 {/* Date range display */}
                 <motion.div
                   layout
-                  className="bg-accent/5 border-accent/20 rounded-lg border px-4 py-3 text-center"
+                  className="rounded-lg border border-accent/20 bg-accent/5 px-4 py-3 text-center"
                 >
                   <p className="text-sm font-semibold">
                     {startDate && formatDate(startDate)}
                     {endDate && !isSameDay(startDate!, endDate) && <> – {formatDate(endDate)}</>}
                   </p>
-                  <p className="text-foreground/60 mt-0.5 text-xs">
+                  <p className="mt-0.5 text-xs text-foreground/60">
                     {numberOfDogs === 1 ? '1 Hund' : `${numberOfDogs} Hunde`}
                   </p>
                 </motion.div>
@@ -245,7 +254,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                       className="space-y-2 overflow-hidden"
                     >
-                      <p className="text-foreground/70 text-xs font-semibold tracking-wider uppercase">
+                      <p className="text-xs font-semibold tracking-wider text-foreground/70 uppercase">
                         Übernachtungen
                       </p>
                       {calculation.normalOvernights > 0 && (
@@ -279,7 +288,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                       className="space-y-2 overflow-hidden"
                     >
-                      <p className="text-foreground/70 text-xs font-semibold tracking-wider uppercase">
+                      <p className="text-xs font-semibold tracking-wider text-foreground/70 uppercase">
                         Tagesbetreuung
                       </p>
                       {calculation.normalDaycare > 0 && (
@@ -311,10 +320,10 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                       transition={{ duration: 0.3, ease: 'easeInOut' }}
                       className="overflow-hidden"
                     >
-                      <div className="bg-accent/5 border-accent/20 rounded-lg border px-3 py-2">
-                        <p className="text-foreground/60 text-xs">
+                      <div className="rounded-lg border border-accent/20 bg-accent/5 px-3 py-2">
+                        <p className="text-xs text-foreground/60">
                           Feiertage im Zeitraum:{' '}
-                          <span className="text-foreground/80 font-medium">
+                          <span className="font-medium text-foreground/80">
                             {calculation.holidayNames.join(', ')}
                           </span>
                         </p>
@@ -329,7 +338,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                   layout
                   onClick={() => setIncludeNieAllein(!includeNieAllein)}
                   aria-pressed={includeNieAllein}
-                  className="border-accent/20 hover:border-accent/40 flex w-full items-center gap-3 rounded-lg border px-4 py-3 text-left transition-colors"
+                  className="flex w-full items-center gap-3 rounded-lg border border-accent/20 px-4 py-3 text-left transition-colors hover:border-accent/40"
                 >
                   <div
                     className={cn(
@@ -339,7 +348,7 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                   >
                     {includeNieAllein && (
                       <svg
-                        className="text-accent-foreground h-3 w-3"
+                        className="h-3 w-3 text-accent-foreground"
                         viewBox="0 0 12 12"
                         fill="none"
                       >
@@ -355,19 +364,19 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                   </div>
                   <div className="flex-1">
                     <p className="text-sm font-medium">Nie allein Pauschale</p>
-                    <p className="text-foreground/50 text-xs">
+                    <p className="text-xs text-foreground/50">
                       +{PRICING.neverAlonePerBillingUnit}€ pro Tag/Nacht
                     </p>
                   </div>
                   {includeNieAllein && calculation.neverAloneCost > 0 && (
-                    <span className="text-accent text-sm font-semibold">
+                    <span className="text-sm font-semibold text-accent">
                       +{calculation.neverAloneCost}€
                     </span>
                   )}
                 </motion.button>
 
                 {/* Divider */}
-                <motion.div layout className="border-accent/10 border-t" />
+                <motion.div layout className="border-t border-accent/10" />
 
                 {/* Total */}
                 <motion.div layout className="flex items-baseline justify-between">
@@ -375,16 +384,16 @@ export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentP
                   <div className="flex items-baseline gap-0.5">
                     <AccessibleAnimatedNumber
                       value={calculation.total}
-                      className="text-accent text-3xl font-bold tabular-nums"
+                      className="text-3xl font-bold text-accent tabular-nums"
                     />
-                    <span className="text-accent text-3xl font-bold" aria-hidden="true">
+                    <span className="text-3xl font-bold text-accent" aria-hidden="true">
                       €
                     </span>
                     <span className="sr-only"> Euro</span>
                   </div>
                 </motion.div>
 
-                <motion.p layout className="text-foreground/40 text-xs">
+                <motion.p layout className="text-xs text-foreground/40">
                   Gemäß §19 UStG wird keine Umsatzsteuer berechnet.
                 </motion.p>
               </motion.div>
@@ -454,11 +463,11 @@ function CalendarGrid({
             aria-current={isToday ? 'date' : undefined}
             className={cn(
               'relative flex h-10 w-full flex-col items-center justify-center rounded-md text-sm transition-colors',
-              isPast && 'text-foreground/20 cursor-not-allowed',
-              !isPast && 'hover:bg-accent/10 cursor-pointer',
-              isToday && 'ring-accent/50 ring-1 ring-inset',
+              isPast && 'cursor-not-allowed text-foreground/20',
+              !isPast && 'cursor-pointer hover:bg-accent/10',
+              isToday && 'ring-1 ring-accent/50 ring-inset',
               inRange && !isStart && !isEnd && 'bg-accent/10',
-              (isStart || isEnd) && 'bg-accent text-accent-foreground font-semibold',
+              (isStart || isEnd) && 'bg-accent font-semibold text-accent-foreground',
             )}
           >
             <span>{date.getDate()}</span>
@@ -498,7 +507,7 @@ function TimeButton({ active, onClick, label, sublabel }: TimeButtonProps) {
       )}
     >
       <span className={cn('text-sm font-semibold', active && 'text-accent')}>{label}</span>
-      <span className="text-foreground/50 text-xs">{sublabel}</span>
+      <span className="text-xs text-foreground/50">{sublabel}</span>
     </button>
   )
 }
@@ -512,7 +521,7 @@ interface LineItemProps {
 function LineItem({ label, price, highlight }: LineItemProps) {
   return (
     <div className="flex items-center justify-between gap-4">
-      <p className={cn('text-sm', highlight ? 'text-accent font-medium' : 'text-foreground/70')}>
+      <p className={cn('text-sm', highlight ? 'font-medium text-accent' : 'text-foreground/70')}>
         {label}
       </p>
       <div className="flex items-baseline gap-0.5">

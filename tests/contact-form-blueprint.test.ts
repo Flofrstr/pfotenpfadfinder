@@ -32,7 +32,9 @@ function hasBooleanAttribute(source: string, attribute: string): boolean {
 function getFields(html: string): HtmlField[] {
   return [...html.matchAll(/<(input|textarea)\b[^>]*>/gi)]
     .map(match => {
-      const tagName = match[1].toLowerCase() as HtmlField['tagName']
+      const tagName = match[1]?.toLowerCase()
+      if (tagName !== 'input' && tagName !== 'textarea') return undefined
+
       const source = match[0]
       const name = readAttribute(source, 'name')
       return name ? { tagName, source, name } : undefined
@@ -56,12 +58,12 @@ describe('statischer Netlify-Formular-Blueprint', () => {
     const blueprintField = fields.find(candidate => candidate.name === field.name)
 
     expect(blueprintField, `Feld ${field.name} fehlt in ${blueprintPath}`).toBeDefined()
-    if (!blueprintField) return
+    if (!blueprintField) throw new Error(`Feld ${field.name} fehlt in ${blueprintPath}`)
 
     expect(blueprintField.tagName).toBe(field.type === 'textarea' ? 'textarea' : 'input')
-    if (field.type !== 'textarea') {
-      expect(readAttribute(blueprintField.source, 'type')).toBe(field.type)
-    }
+    expect(readAttribute(blueprintField.source, 'type')).toBe(
+      field.type === 'textarea' ? undefined : field.type,
+    )
     expect(readAttribute(blueprintField.source, 'autocomplete')).toBe(field.autoComplete)
     expect(readAttribute(blueprintField.source, 'maxlength')).toBe(String(field.maxLength))
     expect(hasBooleanAttribute(blueprintField.source, 'required')).toBe(field.required)
@@ -71,7 +73,7 @@ describe('statischer Netlify-Formular-Blueprint', () => {
     const form = /<form\b[^>]*>/i.exec(blueprint)?.[0]
 
     expect(form).toBeDefined()
-    if (!form) return
+    if (!form) throw new Error(`Formular fehlt in ${blueprintPath}`)
 
     expect(readAttribute(form, 'name')).toBe('contact')
     expect(readAttribute(form, 'action')).toBe('/')

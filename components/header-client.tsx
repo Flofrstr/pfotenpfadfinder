@@ -48,7 +48,7 @@ export function HeaderClient({ availability }: HeaderClientProps) {
 
   return (
     <>
-      <header className="bg-background/95 supports-backdrop-filter:bg-background/60 sticky top-0 z-50 w-full border-b backdrop-blur-sm">
+      <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
         {isBannerVisible && (
           <div className="border-b border-rose-800/40 bg-rose-950/50 text-rose-100 dark:bg-rose-950/50 dark:text-rose-100">
             <div className="container flex items-center justify-between gap-3 py-3">
@@ -98,7 +98,7 @@ export function HeaderClient({ availability }: HeaderClientProps) {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="hover:text-primary text-sm font-medium transition-colors"
+                  className="text-sm font-medium transition-colors hover:text-primary"
                 >
                   {item.label}
                 </Link>
@@ -113,7 +113,7 @@ export function HeaderClient({ availability }: HeaderClientProps) {
             <button
               ref={menuButtonRef}
               type="button"
-              className="hover:bg-accent/10 rounded-md p-2 transition-colors lg:hidden"
+              className="rounded-md p-2 transition-colors hover:bg-accent/10 lg:hidden"
               onClick={isMenuOpen ? () => closeMenu() : openMenu}
               onPointerEnter={preloadMobileMenu}
               onFocus={preloadMobileMenu}
