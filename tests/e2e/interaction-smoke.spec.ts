@@ -93,26 +93,25 @@ test('Preissteuerung und Carousel geben ihren Zustand verständlich aus', async 
 
   await page.waitForTimeout(150)
   await expect(firstAnimatedPrice).toHaveAttribute('data-value', '90')
-  await expect
-    .poll(() =>
-      firstAnimatedPrice.evaluate(element =>
-        Array.from(element.querySelectorAll('*')).some(
-          child => getComputedStyle(child).transform !== 'none',
-        ),
-      ),
-    )
-    .toBe(true)
-  await expect
-    .poll(
-      () =>
-        firstAnimatedPrice.evaluate(element =>
-          Array.from(element.querySelectorAll('*')).some(
-            child => getComputedStyle(child).transform !== 'none',
-          ),
-        ),
-      { timeout: 2_000 },
-    )
-    .toBe(false)
+  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'true')
+  await expect(firstAnimatedPrice).not.toHaveText('90')
+  await page.waitForTimeout(650)
+  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'true')
+  await expect(firstAnimatedPrice).not.toHaveText('90')
+  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'false', {
+    timeout: 2_500,
+  })
+  await expect(firstAnimatedPrice).toHaveText('90')
+
+  await oneDog.click()
+  await expect(firstAnimatedPrice).toHaveAttribute('data-value', '52.5')
+  await page.waitForTimeout(150)
+  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'true')
+  await expect(firstAnimatedPrice).toHaveText(/^\d{2}(,\d)?$/)
+  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'false', {
+    timeout: 2_500,
+  })
+  await expect(firstAnimatedPrice).toHaveText('52,5')
 
   await expect(page.getByRole('button', { name: 'Vorheriges Testimonial' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Nächstes Testimonial' })).toBeVisible()

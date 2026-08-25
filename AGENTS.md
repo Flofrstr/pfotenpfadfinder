@@ -8,7 +8,7 @@
 - **TypeScript**: 7.0 (Type-Checking mit `tsc`)
 - **UI-Bibliothek**: shadcn/ui + Radix UI Primitives
 - **Theming**: next-themes (Dark/Light/System)
-- **Animationen**: motion + motion-plus + tw-animate-css
+- **Animationen**: motion + tw-animate-css
 - **Icons**: Lucide React + lokale Marken-SVGs
 - **Linting**: Oxlint mit type-aware TypeScript-, React-, Next.js- und Accessibility-Regeln
 - **Formatter**: Oxfmt mit Tailwind-Klassensortierung
