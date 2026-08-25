@@ -1,12 +1,13 @@
 import { FAQ_CATEGORIES, SITE_DATA } from '@/lib/site-data'
 
 const organizationId = `${SITE_DATA.url}/#organization`
+const websiteId = `${SITE_DATA.url}/#website`
 
 export const LOCAL_BUSINESS_STRUCTURED_DATA = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': organizationId,
-  name: SITE_DATA.legalName,
+  name: SITE_DATA.name,
   description: SITE_DATA.description,
   image: `${SITE_DATA.url}/pfotenpfadfinder.jpg`,
   logo: `${SITE_DATA.url}/pfotenpfadfinder-vorschau.png`,
@@ -22,6 +23,7 @@ export const LOCAL_BUSINESS_STRUCTURED_DATA = {
     '@type': 'PostalAddress',
     streetAddress: SITE_DATA.address.street,
     addressLocality: SITE_DATA.address.locality,
+    addressRegion: SITE_DATA.address.region,
     postalCode: SITE_DATA.address.postalCode,
     addressCountry: SITE_DATA.address.countryCode,
   },
@@ -50,6 +52,19 @@ export const LOCAL_BUSINESS_STRUCTURED_DATA = {
     })),
   },
   sameAs: [SITE_DATA.social.instagram],
+} as const
+
+export const WEBSITE_STRUCTURED_DATA = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': websiteId,
+  url: SITE_DATA.url,
+  name: SITE_DATA.name,
+  alternateName: 'Pfotenpfadfinder Hundebetreuung',
+  inLanguage: 'de-DE',
+  publisher: {
+    '@id': organizationId,
+  },
 } as const
 
 export const FAQ_STRUCTURED_DATA = {

@@ -56,6 +56,7 @@ export interface SiteData {
     street: string
     postalCode: string
     locality: string
+    region: 'Nordrhein-Westfalen'
     countryCode: 'DE'
     country: string
   }
@@ -237,6 +238,7 @@ export const SITE_DATA = {
     street: 'Geerstraße 34',
     postalCode: '58285',
     locality: 'Gevelsberg',
+    region: 'Nordrhein-Westfalen',
     countryCode: 'DE',
     country: 'Deutschland',
   },

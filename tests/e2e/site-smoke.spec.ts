@@ -224,14 +224,37 @@ test.describe('Crawler- und Agenten-Routen', () => {
     expect(response.status()).toBe(200)
     expect(response.headers()['content-type']).toContain('xml')
     const body = await response.text()
-    const urls = [...body.matchAll(/<loc>(.*?)<\/loc>/g)].map(match => decodeHtmlEntities(match[1]))
+    const urlEntries = [...body.matchAll(/<url>([\s\S]*?)<\/url>/g)].map(match => match[1])
+    const urls = urlEntries.map(entry => {
+      const location = entry.match(/<loc>(.*?)<\/loc>/)?.[1]
+      expect(location).toBeDefined()
+      return decodeHtmlEntities(location ?? '')
+    })
 
     expect(urls).toEqual([
       SITE_DATA.url,
       `${SITE_DATA.url}/impressum`,
       `${SITE_DATA.url}/datenschutz`,
     ])
-    expect(body).not.toMatch(/<(?:lastmod|changefreq|priority)>/i)
+    expect(body.match(/<lastmod>2026-08-25<\/lastmod>/g)).toHaveLength(3)
+    expect(body).not.toMatch(/<(?:changefreq|priority)>/i)
+
+    const homepageImages = [...urlEntries[0].matchAll(/<image:loc>(.*?)<\/image:loc>/g)].map(
+      match => decodeHtmlEntities(match[1]),
+    )
+
+    expect(homepageImages).toEqual([
+      `${SITE_DATA.url}/pfotenpfadfinder.jpg`,
+      `${SITE_DATA.url}/ueber_mich_michelle-plus-hunde.jpeg`,
+      `${SITE_DATA.url}/Wilma.jpeg`,
+      `${SITE_DATA.url}/Pino.jpeg`,
+      `${SITE_DATA.url}/Filou.jpeg`,
+      `${SITE_DATA.url}/Bea_u._G%C3%BCnni.jpeg`,
+      `${SITE_DATA.url}/Orca.jpeg`,
+      `${SITE_DATA.url}/Fiebi.jpeg`,
+      `${SITE_DATA.url}/Frieda.jpeg`,
+    ])
+    expect(urlEntries.slice(1).join('')).not.toContain('<image:image>')
   })
 
   test('llms.txt beschreibt Fakten, Preise, Voraussetzungen und direkte Links', async ({

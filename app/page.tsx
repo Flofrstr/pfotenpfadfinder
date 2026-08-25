@@ -12,6 +12,7 @@ import {
   FAQ_STRUCTURED_DATA,
   LOCAL_BUSINESS_STRUCTURED_DATA,
   serializeStructuredData,
+  WEBSITE_STRUCTURED_DATA,
 } from '@/lib/structured-data'
 
 const title = 'Pfotenpfadfinder | Hundebetreuung Gevelsberg & Gassi-Service'
@@ -67,6 +68,12 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: serializeStructuredData(LOCAL_BUSINESS_STRUCTURED_DATA),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeStructuredData(WEBSITE_STRUCTURED_DATA),
         }}
       />
       <script
