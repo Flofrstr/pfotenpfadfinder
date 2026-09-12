@@ -278,7 +278,7 @@ export const SITE_DATA = {
   availability: {
     headline: 'Bis einschließlich 25. September im Urlaub',
     detail:
-      'Anfragen beantworten wir wieder ab dem 26. September. Vielen Dank für Ihr Verständnis.',
+      'Anfragen und Nachrichten beantworten wir wieder ab dem 26. September. Vielen Dank für dein Verständnis.',
     bookedThrough: '2026-12-31',
     reviewAfter: '2027-01-01',
   },
