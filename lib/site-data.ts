@@ -276,8 +276,9 @@ export const SITE_DATA = {
   pricing: PRICING,
   faqCategories: FAQ_CATEGORIES,
   availability: {
-    headline: 'Bis einschließlich Dezember ausgebucht',
-    detail: 'Termine ab Januar können bereits angefragt werden.',
+    headline: 'Bis einschließlich 25. September im Urlaub',
+    detail:
+      'Anfragen beantworten wir wieder ab dem 26. September. Vielen Dank für Ihr Verständnis.',
     bookedThrough: '2026-12-31',
     reviewAfter: '2027-01-01',
   },
