@@ -18,6 +18,7 @@ const NAVIGATION = [
   { href: '/#about', label: 'Über mich' },
   { href: '/#warum-ich', label: 'Mein Service' },
   { href: '/#preise', label: 'Preise' },
+  { href: '/einblicke', label: 'Einblicke' },
   { href: '/#faq', label: 'FAQ' },
   { href: '/#kontakt', label: 'Kontakt' },
 ] as const
@@ -128,7 +129,7 @@ function MobileMenuDrawerContent({ isOpen, onClose }: MobileMenuDrawerProps) {
                 </button>
               </div>
 
-              <div className="flex flex-1 flex-col px-6 py-8">
+              <div className="flex min-h-0 flex-1 flex-col overflow-y-auto px-6 py-6">
                 <div className="flex flex-col gap-3">
                   <span className="text-sm text-muted-foreground">Design</span>
                   <div className="flex gap-3" role="group" aria-label="Farbschema auswählen">
@@ -155,7 +156,7 @@ function MobileMenuDrawerContent({ isOpen, onClose }: MobileMenuDrawerProps) {
 
                 <div className="flex-1" />
 
-                <nav aria-label="Mobile Hauptnavigation" className="mb-16 flex flex-col gap-6">
+                <nav aria-label="Mobile Hauptnavigation" className="my-6 flex flex-col gap-1">
                   {NAVIGATION.map(item => (
                     <Link
                       key={item.href}

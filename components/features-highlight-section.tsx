@@ -69,9 +69,9 @@ export function FeaturesHighlightSection() {
       <div className="relative container px-4 md:px-6">
         <div className="mx-auto max-w-7xl">
           {/* Header */}
-          <div className="mb-16 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Was meinen Service ausmacht
+          <div className="mx-auto mb-16 max-w-6xl text-center">
+            <h2 className="mb-6 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Was meinen <span className="text-accent">Service ausmacht</span>
             </h2>
             <p className="mx-auto max-w-[700px] text-foreground/70 md:text-lg">
               Darauf lege ich bei der Hundebetreuung besonders viel Wert

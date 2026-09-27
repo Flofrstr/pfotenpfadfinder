@@ -22,6 +22,7 @@ const NAVIGATION = [
   { href: '/#about', label: 'Über mich' },
   { href: '/#warum-ich', label: 'Mein Service' },
   { href: '/#preise', label: 'Preise' },
+  { href: '/einblicke', label: 'Einblicke' },
   { href: '/#faq', label: 'FAQ' },
   { href: '/#kontakt', label: 'Kontakt' },
 ] as const
@@ -93,7 +94,7 @@ export function HeaderClient({ availability }: HeaderClientProps) {
             aria-label="Hauptnavigation"
             className="hidden flex-1 items-center justify-center lg:flex"
           >
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-5 whitespace-nowrap">
               {NAVIGATION.map(item => (
                 <Link
                   key={item.href}

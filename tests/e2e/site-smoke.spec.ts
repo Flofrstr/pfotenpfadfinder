@@ -18,6 +18,11 @@ const canonicalPages = [
     canonical: `${SITE_DATA.url}/datenschutz`,
     title: 'Datenschutzerklärung | Pfotenpfadfinder',
   },
+  {
+    path: '/einblicke',
+    canonical: `${SITE_DATA.url}/einblicke`,
+    title: 'Schnüffeln. Spielen. Einfach Hund sein. | Pfotenpfadfinder',
+  },
 ] as const
 
 function monitorBrowserErrors(page: Page) {
@@ -219,7 +224,7 @@ test.describe('Crawler- und Agenten-Routen', () => {
     expect(body).toContain(`Sitemap: ${SITE_DATA.url}/sitemap.xml`)
   })
 
-  test('sitemap.xml enthält ausschließlich die drei kanonischen Seiten', async ({ request }) => {
+  test('sitemap.xml enthält die kanonischen Seiten und Galeriebilder', async ({ request }) => {
     const response = await request.get('/sitemap.xml')
     expect(response.status()).toBe(200)
     expect(response.headers()['content-type']).toContain('xml')
@@ -235,8 +240,10 @@ test.describe('Crawler- und Agenten-Routen', () => {
       SITE_DATA.url,
       `${SITE_DATA.url}/impressum`,
       `${SITE_DATA.url}/datenschutz`,
+      `${SITE_DATA.url}/einblicke`,
     ])
-    expect(body.match(/<lastmod>2026-08-25<\/lastmod>/g)).toHaveLength(3)
+    expect(body.match(/<lastmod>2026-08-25<\/lastmod>/g)).toHaveLength(2)
+    expect(body.match(/<lastmod>2026-09-12<\/lastmod>/g)).toHaveLength(2)
     expect(body).not.toMatch(/<(?:changefreq|priority)>/i)
 
     const homepageImages = [...urlEntries[0].matchAll(/<image:loc>(.*?)<\/image:loc>/g)].map(
@@ -254,7 +261,9 @@ test.describe('Crawler- und Agenten-Routen', () => {
       `${SITE_DATA.url}/Fiebi.jpeg`,
       `${SITE_DATA.url}/Frieda.jpeg`,
     ])
-    expect(urlEntries.slice(1).join('')).not.toContain('<image:image>')
+    expect(urlEntries.slice(1, 3).join('')).not.toContain('<image:image>')
+    expect(urlEntries[3].match(/<image:image>/g)).toHaveLength(120)
+    expect(urlEntries[3]).toContain('/einblicke/hundemoment-27.webp')
   })
 
   test('llms.txt beschreibt Fakten, Preise, Voraussetzungen und direkte Links', async ({

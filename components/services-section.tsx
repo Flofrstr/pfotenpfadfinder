@@ -32,11 +32,11 @@ export function ServicesSection() {
 
       <div className="container px-4 md:px-6">
         <div className="flex flex-col items-center justify-center space-y-6 text-center">
-          <div className="space-y-2">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Preise & Services
+          <div className="w-full max-w-5xl space-y-2 text-center">
+            <h2 className="mb-6 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Preise & <span className="text-accent">Services</span>
             </h2>
-            <p className="max-w-[700px] text-foreground/70 md:text-lg">
+            <p className="mx-auto max-w-[700px] text-foreground/70 md:text-lg">
               Transparente Preise für professionelle Hundebetreuung
             </p>
           </div>

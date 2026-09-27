@@ -21,7 +21,10 @@ const FAQ_ICONS: Record<FAQIcon, LucideIcon> = {
 
 export function FAQSection() {
   return (
-    <section id="faq" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
+    <section
+      id="faq"
+      className="relative w-full overflow-hidden bg-accent/5 py-12 md:py-24 lg:py-32"
+    >
       <PawBackground variant="d" />
 
       <div className="pointer-events-none absolute inset-0">
@@ -32,8 +35,8 @@ export function FAQSection() {
       <div className="relative container px-4 md:px-6">
         <div className="mx-auto max-w-4xl">
           <div className="mb-12 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Häufig gestellte Fragen
+            <h2 className="mb-6 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Häufig gestellte <span className="text-accent">Fragen</span>
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-foreground/70 md:text-xl">
               Hier findest du Antworten auf die wichtigsten Fragen rund um meine Hundebetreuung.

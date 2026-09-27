@@ -16,8 +16,8 @@ export function AboutSection() {
         <div className="mx-auto max-w-7xl">
           {/* Intro */}
           <div className="mb-20 text-center">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Über mich
+            <h2 className="mb-6 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Über <span className="text-accent">mich</span>
             </h2>
             <p className="mb-3 inline-flex items-center gap-2 text-2xl font-medium md:text-3xl">
               Hallo liebe Hundemami&apos;s und Hundepapi&apos;s

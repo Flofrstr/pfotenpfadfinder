@@ -61,16 +61,16 @@ export function TestimonialsSection() {
   ]
 
   return (
-    <section className="relative w-full overflow-hidden bg-accent/5 py-12 md:py-24 lg:py-32">
+    <section className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
       <PawBackground variant="c" />
 
       <div className="container px-4 md:px-6">
-        <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="mx-auto mb-12 max-w-sm px-4 text-center md:max-w-5xl md:px-8 lg:px-12">
           <div className="space-y-2">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Das sagen meine Kunden
+            <h2 className="mb-6 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Das sagen <span className="text-accent">meine Kunden</span>
             </h2>
-            <p className="max-w-[700px] text-foreground/70 md:text-lg">
+            <p className="mx-auto max-w-[700px] text-foreground/70 md:text-lg">
               Erfahre, was Hundebesitzer über meinen Service denken
             </p>
           </div>

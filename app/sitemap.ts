@@ -1,5 +1,6 @@
 import type { MetadataRoute } from 'next'
 import { SITE_DATA } from '@/lib/site-data'
+import { GALLERY_PHOTOS } from '@/lib/gallery-data'
 
 const LAST_SIGNIFICANT_UPDATE = '2026-08-25'
 
@@ -19,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
       url: SITE_DATA.url,
-      lastModified: LAST_SIGNIFICANT_UPDATE,
+      lastModified: '2026-09-12',
       images: HOME_IMAGE_PATHS.map(path => new URL(path, SITE_DATA.url).href),
     },
     {
@@ -29,6 +30,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     {
       url: `${SITE_DATA.url}/datenschutz`,
       lastModified: LAST_SIGNIFICANT_UPDATE,
+    },
+    {
+      url: `${SITE_DATA.url}/einblicke`,
+      lastModified: '2026-09-12',
+      images: GALLERY_PHOTOS.map(photo => new URL(photo.src, SITE_DATA.url).href),
     },
   ]
 }

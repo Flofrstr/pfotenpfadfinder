@@ -27,19 +27,16 @@ function InstagramIcon({ className }: { className?: string }) {
 
 export function ContactSection() {
   return (
-    <section
-      id="kontakt"
-      className="relative w-full overflow-hidden bg-accent/5 py-12 md:py-24 lg:py-32"
-    >
+    <section id="kontakt" className="relative w-full overflow-hidden py-12 md:py-24 lg:py-32">
       <PawBackground variant="e" />
 
       <div className="container px-4 md:px-6">
-        <div className="mb-12 flex flex-col items-center justify-center space-y-4 text-center">
+        <div className="mx-auto mb-12 max-w-5xl text-center">
           <div className="space-y-2">
-            <h2 className="mb-6 text-4xl font-bold tracking-tight md:text-5xl lg:text-6xl">
-              Lass uns quatschen
+            <h2 className="mb-6 text-4xl leading-tight font-bold tracking-tight md:text-5xl lg:text-6xl">
+              Lass uns <span className="text-accent">quatschen</span>
             </h2>
-            <p className="max-w-[700px] text-foreground/70 md:text-lg">
+            <p className="mx-auto max-w-[700px] text-foreground/70 md:text-lg">
               Hast du Fragen oder möchtest du einen Termin vereinbaren? Ich freue mich auf deine
               Nachricht!
             </p>

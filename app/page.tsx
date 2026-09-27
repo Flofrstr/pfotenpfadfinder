@@ -4,6 +4,7 @@ import { ContactSection } from '@/components/contact-section'
 import { FAQSection } from '@/components/faq-section'
 import { FeaturesHighlightSection } from '@/components/features-highlight-section'
 import { HeroSection } from '@/components/hero-section'
+import { GallerySection } from '@/components/gallery-section'
 import { ScrollProgress } from '@/components/scroll-progress'
 import { ServicesSection } from '@/components/services-section'
 import { TestimonialsSection } from '@/components/testimonials-section'
@@ -85,6 +86,7 @@ export default function Home() {
       <AboutSection />
       <FeaturesHighlightSection />
       <ServicesSection />
+      <GallerySection />
       <TestimonialsSection />
       <FAQSection />
       <ContactSection />
