@@ -69,14 +69,14 @@ describe('statischer Netlify-Formular-Blueprint', () => {
     expect(hasBooleanAttribute(blueprintField.source, 'required')).toBe(field.required)
   })
 
-  it('ist als POST auf die Homepage für Netlify Forms erkennbar', () => {
+  it('sendet an den statischen Netlify-Pfad statt an den Next.js-Handler', () => {
     const form = /<form\b[^>]*>/i.exec(blueprint)?.[0]
 
     expect(form).toBeDefined()
     if (!form) throw new Error(`Formular fehlt in ${blueprintPath}`)
 
     expect(readAttribute(form, 'name')).toBe('contact')
-    expect(readAttribute(form, 'action')).toBe('/')
+    expect(readAttribute(form, 'action')).toBe('/contact-form.html')
     expect(readAttribute(form, 'method')?.toUpperCase()).toBe('POST')
     expect(readAttribute(form, 'data-netlify')).toBe('true')
     expect(readAttribute(form, 'netlify-honeypot')).toBe('bot-field')

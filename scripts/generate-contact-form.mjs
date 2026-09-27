@@ -31,7 +31,7 @@ const blueprint = `<!doctype html>
   <body>
     <form
       name="contact"
-      action="/"
+      action="/contact-form.html"
       method="POST"
       data-netlify="true"
       netlify-honeypot="bot-field"

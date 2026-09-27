@@ -34,7 +34,8 @@ export function ContactForm() {
     }
 
     try {
-      const response = await fetch('/', {
+      // Netlify Forms must receive the POST on a static asset, outside the Next.js handler.
+      const response = await fetch(form.action, {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: body.toString(),
@@ -82,7 +83,7 @@ export function ContactForm() {
 
       <form
         name="contact"
-        action="/"
+        action="/contact-form.html"
         method="POST"
         data-netlify="true"
         netlify-honeypot="bot-field"

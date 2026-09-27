@@ -2,6 +2,57 @@ import { expect, test, type Page } from '@playwright/test'
 
 import { CONTACT_FORM_FIELDS } from '../../components/contact-form-fields'
 
+for (const responseStatus of [200, 500]) {
+  test(`Kontaktformular sendet an Netlify und behandelt HTTP ${responseStatus}`, async ({
+    page,
+  }) => {
+    await page.goto('/', { waitUntil: 'load' })
+    // Intercept every POST so a regression to the homepage cannot silently pass.
+    const submissions: { url: string; body: string; contentType: string }[] = []
+    await page.route('**/*', async route => {
+      const request = route.request()
+      if (request.method() !== 'POST') return route.continue()
+      submissions.push({
+        url: new URL(request.url()).pathname,
+        body: request.postData() ?? '',
+        contentType: request.headers()['content-type'],
+      })
+      await route.fulfill({ status: responseStatus, body: '' })
+    })
+
+    const form = page.locator('section#kontakt form[name="contact"]')
+    await form.locator('[name="name"]').fill('Jörg & Mila')
+    await form.locator('[name="email"]').fill('joerg@example.com')
+    await form.locator('[name="message"]').fill('Betreuung für Mila & ihre Freundin?')
+    await form.getByRole('button', { name: 'Nachricht senden' }).click()
+
+    if (responseStatus === 200) {
+      await expect(page.getByRole('status')).toContainText('erfolgreich gesendet')
+      await expect(form.locator('[name="message"]')).toHaveValue('')
+    } else {
+      await expect(page.locator('section#kontakt').getByRole('alert')).toContainText(
+        'konnte nicht gesendet werden',
+      )
+      await expect(form.locator('[name="message"]')).toHaveValue(
+        'Betreuung für Mila & ihre Freundin?',
+      )
+      await expect(form.getByRole('button', { name: 'Nachricht senden' })).toBeEnabled()
+    }
+
+    expect(submissions).toHaveLength(1)
+    expect(submissions[0].url).toBe('/contact-form.html')
+    expect(submissions[0].contentType).toBe('application/x-www-form-urlencoded')
+    expect(Object.fromEntries(new URLSearchParams(submissions[0].body))).toEqual({
+      'form-name': 'contact',
+      'bot-field': '',
+      name: 'Jörg & Mila',
+      email: 'joerg@example.com',
+      phone: '',
+      message: 'Betreuung für Mila & ihre Freundin?',
+    })
+  })
+}
+
 function monitorBrowserErrors(page: Page) {
   const errors: string[] = []
 
@@ -126,7 +177,7 @@ test('das sichtbare Kontaktformular hält den Netlify-Vertrag ein, ohne zu sende
 
   const form = page.locator('section#kontakt form[name="contact"]')
   await expect(form).toHaveCount(1)
-  await expect(form).toHaveAttribute('action', '/')
+  await expect(form).toHaveAttribute('action', '/contact-form.html')
   await expect(form).toHaveAttribute('method', /post/i)
   await expect(form).toHaveAttribute('data-netlify', 'true')
   await expect(form).toHaveAttribute('netlify-honeypot', 'bot-field')
