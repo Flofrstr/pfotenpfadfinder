@@ -285,7 +285,7 @@ test.describe('Crawler- und Agenten-Routen', () => {
     const body = await response.text()
 
     expect(body).toMatch(/<meta\b[^>]*name=["']robots["'][^>]*content=["']noindex, nofollow["']/i)
-    expect(body).toMatch(/<form\b[^>]*action=["']\/["'][^>]*method=["']POST["']/i)
+    expect(body).toMatch(/<form\b[^>]*action=["']\/contact-form\.html["'][^>]*method=["']POST["']/i)
     for (const field of ['form-name', 'bot-field', 'name', 'email', 'phone', 'message']) {
       expect(body).toMatch(new RegExp(`\\bname=["']${field}["']`))
     }
