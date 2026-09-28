@@ -5,7 +5,7 @@ const title = 'Impressum | Pfotenpfadfinder'
 const description =
   'Impressum und Anbieterinformationen von Pfotenpfadfinder, Hundebetreuung und Gassi-Service in Gevelsberg.'
 const socialImage = {
-  url: '/impressum/opengraph-image',
+  url: '/impressum/opengraph-image?v=20260928',
   width: 1200,
   height: 630,
   alt: 'Impressum – Pfotenpfadfinder',

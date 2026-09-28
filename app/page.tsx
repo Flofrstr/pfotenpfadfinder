@@ -19,7 +19,7 @@ const title = 'Pfotenpfadfinder | Hundebetreuung Gevelsberg & Gassi-Service'
 const description =
   'Hundebetreuung in Gevelsberg, Schwelm, Ennepetal und Hasslinghausen: Gassi-Service, Tagesbetreuung und Urlaubsbetreuung – liebevoll und zuverlässig.'
 const socialImage = {
-  url: '/opengraph-image',
+  url: '/opengraph-image?v=20260928',
   width: 1200,
   height: 630,
   alt: 'Pfotenpfadfinder – liebevolle Hundebetreuung und Gassi-Service in Gevelsberg',

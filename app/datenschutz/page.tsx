@@ -5,7 +5,7 @@ const title = 'Datenschutzerklärung | Pfotenpfadfinder'
 const description =
   'Datenschutzerklärung von Pfotenpfadfinder mit Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.'
 const socialImage = {
-  url: '/datenschutz/opengraph-image',
+  url: '/datenschutz/opengraph-image?v=20260928',
   width: 1200,
   height: 630,
   alt: 'Datenschutzerklärung – Pfotenpfadfinder',
