@@ -1,10 +1,8 @@
 'use client'
 
-import { useState, useMemo, useCallback } from 'react'
-import { ChevronLeft, ChevronRight, Calculator } from 'lucide-react'
-import { AnimatePresence, m as motion } from 'motion/react'
-import { AccessibleAnimatedNumber } from '@/components/ui/accessible-animated-number'
-import { MotionProvider } from '@/components/ui/motion-provider'
+import { useState, useMemo, useCallback, type ReactNode } from 'react'
+import { CalendarDays, ChevronLeft, ChevronRight, Calculator, Heart } from 'lucide-react'
+import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { isNrwHoliday } from '@/lib/nrw-holidays'
 import { calculatePrice, getTieredPrice, toLocalDateKey } from '@/lib/pricing'
@@ -21,396 +19,449 @@ function isSameDay(a: Date, b: Date): boolean {
 }
 
 function isBeforeDay(a: Date, b: Date): boolean {
-  const aKey = a.getFullYear() * 10000 + a.getMonth() * 100 + a.getDate()
-  const bKey = b.getFullYear() * 10000 + b.getMonth() * 100 + b.getDate()
-  return aKey < bKey
+  return toLocalDateKey(a) < toLocalDateKey(b)
 }
 
 function isBetween(date: Date, start: Date, end: Date): boolean {
-  const d = date.getFullYear() * 10000 + date.getMonth() * 100 + date.getDate()
-  const s = start.getFullYear() * 10000 + start.getMonth() * 100 + start.getDate()
-  const e = end.getFullYear() * 10000 + end.getMonth() * 100 + end.getDate()
-  return d >= s && d <= e
+  return !isBeforeDay(date, start) && !isBeforeDay(end, date)
 }
 
-function formatDate(d: Date): string {
-  return `${String(d.getDate()).padStart(2, '0')}.${String(d.getMonth() + 1).padStart(2, '0')}.${d.getFullYear()}`
+function formatDate(date: Date): string {
+  return date.toLocaleDateString('de-DE', { weekday: 'short', day: 'numeric', month: 'short' })
 }
 
+const currencyFormatter = new Intl.NumberFormat('de-DE', {
+  style: 'currency',
+  currency: 'EUR',
+  maximumFractionDigits: 2,
+  minimumFractionDigits: 0,
+})
 const WEEKDAYS = ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So']
 
 interface PriceCalculatorContentProps {
   numberOfDogs: number
+  onNumberOfDogsChange: (count: number) => void
 }
 
-export function PriceCalculatorContent({ numberOfDogs }: PriceCalculatorContentProps) {
-  return (
-    <MotionProvider>
-      <PriceCalculatorMotionContent numberOfDogs={numberOfDogs} />
-    </MotionProvider>
-  )
-}
-
-function PriceCalculatorMotionContent({ numberOfDogs }: PriceCalculatorContentProps) {
+export function PriceCalculatorContent({
+  numberOfDogs,
+  onNumberOfDogsChange,
+}: PriceCalculatorContentProps) {
   const [startDate, setStartDate] = useState<Date | null>(null)
   const [endDate, setEndDate] = useState<Date | null>(null)
   const [hoverDate, setHoverDate] = useState<Date | null>(null)
   const [departureTime, setDepartureTime] = useState<DepartureTime>('vor12')
   const [includeNieAllein, setIncludeNieAllein] = useState(false)
+  const [singleCare, setSingleCare] = useState(false)
   const [viewMonth, setViewMonth] = useState<Date>(() => {
     const today = new Date()
     return new Date(today.getFullYear(), today.getMonth(), 1)
   })
 
   const today = useMemo(() => {
-    const d = new Date()
-    return new Date(d.getFullYear(), d.getMonth(), d.getDate())
+    const date = new Date()
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate())
   }, [])
 
-  const daycarePrice = getTieredPrice(PRICING.dayCare, numberOfDogs)
-  const overnightPrice = getTieredPrice(PRICING.overnight, numberOfDogs)
+  const billingDogs = singleCare && numberOfDogs === 1 ? 2 : numberOfDogs
+  const overnightPrice = getTieredPrice(PRICING.overnight, billingDogs)
+  const holidaySurcharge = Math.round((PRICING.holidayMultiplier - 1) * 100)
+  const isDaycare = Boolean(startDate && endDate && isSameDay(startDate, endDate))
 
   const handleDayClick = useCallback(
     (date: Date) => {
       if (isBeforeDay(date, today)) return
-
-      if (!startDate || (startDate && endDate)) {
+      setHoverDate(null)
+      if (!startDate || endDate || isBeforeDay(date, startDate)) {
         setStartDate(date)
         setEndDate(null)
       } else {
-        if (isBeforeDay(date, startDate)) {
-          setStartDate(date)
-        } else {
-          setEndDate(date)
-        }
+        setEndDate(date)
       }
     },
     [startDate, endDate, today],
   )
 
   const calculation = useMemo(() => {
-    if (!startDate) return null
-
+    if (!startDate || !endDate) return null
     return calculatePrice({
       startDate: toLocalDateKey(startDate),
-      endDate: endDate ? toLocalDateKey(endDate) : undefined,
-      numberOfDogs,
+      endDate: toLocalDateKey(endDate),
+      numberOfDogs: billingDogs,
       departureTime: departureTime === 'ab12' ? 'fromNoon' : 'beforeNoon',
       includeNeverAlone: includeNieAllein,
     })
-  }, [startDate, endDate, departureTime, numberOfDogs, includeNieAllein])
+  }, [startDate, endDate, departureTime, billingDogs, includeNieAllein])
 
-  const prevMonth = () => {
-    setViewMonth(prev => new Date(prev.getFullYear(), prev.getMonth() - 1, 1))
-  }
+  const overnightItems = useMemo(() => {
+    if (!startDate || !endDate) return []
+    const items = []
+    const date = new Date(startDate)
+    while (isBeforeDay(date, endDate)) {
+      const next = new Date(date)
+      next.setDate(next.getDate() + 1)
+      const holiday = isNrwHoliday(date)
+      items.push({
+        key: toLocalDateKey(date),
+        label: `Übernachtung ${formatDate(date)} → ${formatDate(next)}`,
+        holiday,
+        price: overnightPrice * (holiday ? PRICING.holidayMultiplier : 1),
+      })
+      date.setDate(date.getDate() + 1)
+    }
+    return items
+  }, [startDate, endDate, overnightPrice])
 
-  const nextMonth = () => {
-    setViewMonth(prev => new Date(prev.getFullYear(), prev.getMonth() + 1, 1))
-  }
-
-  const canGoPrev = useMemo(() => {
-    const prev = new Date(viewMonth.getFullYear(), viewMonth.getMonth() - 1, 1)
-    const todayMonth = new Date(today.getFullYear(), today.getMonth(), 1)
-    return prev >= todayMonth
-  }, [viewMonth, today])
-
+  const canGoPrev = viewMonth > new Date(today.getFullYear(), today.getMonth(), 1)
   const visualEnd =
     endDate ?? (startDate && hoverDate && !isBeforeDay(hoverDate, startDate) ? hoverDate : null)
 
   return (
-    <div className="mx-auto grid max-w-5xl grid-cols-1 gap-6 lg:grid-cols-2">
-      {/* Left: Calendar + Options */}
-      <div className="space-y-4">
-        {/* Calendar */}
-        <div className="overflow-hidden rounded-2xl border border-accent/20 bg-card shadow-sm transition-all duration-300 hover:shadow-md">
-          {/* Month navigation */}
-          <div className="flex items-center justify-between border-b border-accent/10 px-4 py-3">
-            <button
-              type="button"
-              onClick={prevMonth}
-              disabled={!canGoPrev}
-              className="rounded-lg p-1.5 text-foreground/70 transition-colors hover:text-foreground disabled:cursor-not-allowed disabled:text-foreground/20"
-              aria-label="Vorheriger Monat"
-            >
-              <ChevronLeft className="h-5 w-5" />
-            </button>
-            <h3 className="text-sm font-semibold">
-              {viewMonth.toLocaleDateString('de-DE', {
-                month: 'long',
-                year: 'numeric',
-              })}
-            </h3>
-            <button
-              type="button"
-              onClick={nextMonth}
-              className="rounded-lg p-1.5 text-foreground/70 transition-colors hover:text-foreground"
-              aria-label="Nächster Monat"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Weekday headers */}
-          <div className="grid grid-cols-7 px-2 pt-2">
-            {WEEKDAYS.map(day => (
-              <div key={day} className="py-2 text-center text-xs font-medium text-foreground/50">
-                {day}
-              </div>
-            ))}
-          </div>
-
-          {/* Day grid */}
-          <CalendarGrid
-            viewMonth={viewMonth}
-            startDate={startDate}
-            endDate={visualEnd}
-            today={today}
-            onDayClick={handleDayClick}
-            onDayHover={setHoverDate}
-          />
-
-          {/* Holiday legend */}
-          <div className="flex items-center gap-2 border-t border-accent/10 px-4 py-2.5">
-            <span className="inline-block h-1.5 w-1.5 rounded-full bg-destructive/70" />
-            <span className="text-xs text-foreground/50">Feiertag (NRW)</span>
-          </div>
-        </div>
-
-        {/* Time options */}
-        <div className="space-y-3 rounded-2xl border border-accent/20 bg-card p-4 shadow-sm transition-all duration-300 hover:shadow-md">
-          <p className="text-sm font-semibold">Abreise am letzten Tag</p>
-          <div className="flex gap-2">
-            <TimeButton
-              active={departureTime === 'vor12'}
-              onClick={() => setDepartureTime('vor12')}
-              label="Vor 12 Uhr"
-              sublabel="Keine Berechnung"
-            />
-            <TimeButton
-              active={departureTime === 'ab12'}
-              onClick={() => setDepartureTime('ab12')}
-              label="Ab 12 Uhr"
-              sublabel="+Tagesbetreuung"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* Right: Result breakdown */}
-      <div className="flex flex-col rounded-2xl border border-accent/20 bg-card shadow-sm transition-all duration-300 hover:shadow-md">
-        <div className="flex items-center gap-3 border-b border-accent/10 px-6 py-4">
-          <div className="rounded-lg bg-accent/10 p-2">
-            <Calculator className="h-5 w-5 text-accent" />
-          </div>
-          <h3 className="text-lg font-semibold">Deine Berechnung</h3>
-        </div>
-
-        <div className="flex flex-1 flex-col p-6">
-          <AnimatePresence mode="wait">
-            {!calculation ? (
-              <motion.div
-                key="empty"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="flex flex-1 flex-col items-center justify-center gap-3 py-12"
-              >
-                <Calculator className="h-12 w-12 text-foreground/20" />
-                <p className="text-sm text-foreground/40">
-                  Bitte wähle einen Zeitraum im Kalender aus
-                </p>
-              </motion.div>
-            ) : (
-              <motion.div
-                key="result"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                className="flex flex-col gap-5"
-              >
-                {/* Date range display */}
-                <motion.div
-                  layout
-                  className="rounded-lg border border-accent/20 bg-accent/5 px-4 py-3 text-center"
-                >
-                  <p className="text-sm font-semibold">
-                    {startDate && formatDate(startDate)}
-                    {endDate && !isSameDay(startDate!, endDate) && <> – {formatDate(endDate)}</>}
-                  </p>
-                  <p className="mt-0.5 text-xs text-foreground/60">
-                    {numberOfDogs === 1 ? '1 Hund' : `${numberOfDogs} Hunde`}
-                  </p>
-                </motion.div>
-
-                <AnimatePresence initial={false}>
-                  {/* Overnight breakdown */}
-                  {calculation.overnightNights > 0 && (
-                    <motion.div
-                      key="overnights"
-                      layout
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      className="space-y-2 overflow-hidden"
-                    >
-                      <p className="text-xs font-semibold tracking-wider text-foreground/70 uppercase">
-                        Übernachtungen
-                      </p>
-                      {calculation.normalOvernights > 0 && (
-                        <LineItem
-                          label={`${calculation.normalOvernights}× Übernachtung`}
-                          price={calculation.normalOvernights * overnightPrice}
-                        />
-                      )}
-                      {calculation.holidayOvernights > 0 && (
-                        <LineItem
-                          label={`${calculation.holidayOvernights}× Übernachtung (Feiertag)`}
-                          price={
-                            calculation.holidayOvernights *
-                            overnightPrice *
-                            PRICING.holidayMultiplier
-                          }
-                          highlight
-                        />
-                      )}
-                    </motion.div>
-                  )}
-
-                  {/* Daycare breakdown */}
-                  {calculation.daycareDays > 0 && (
-                    <motion.div
-                      key="daycare"
-                      layout
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      className="space-y-2 overflow-hidden"
-                    >
-                      <p className="text-xs font-semibold tracking-wider text-foreground/70 uppercase">
-                        Tagesbetreuung
-                      </p>
-                      {calculation.normalDaycare > 0 && (
-                        <LineItem
-                          label={`${calculation.normalDaycare}× Tagesbetreuung`}
-                          price={calculation.normalDaycare * daycarePrice}
-                        />
-                      )}
-                      {calculation.holidayDaycare > 0 && (
-                        <LineItem
-                          label={`${calculation.holidayDaycare}× Tagesbetreuung (Feiertag)`}
-                          price={
-                            calculation.holidayDaycare * daycarePrice * PRICING.holidayMultiplier
-                          }
-                          highlight
-                        />
-                      )}
-                    </motion.div>
-                  )}
-
-                  {/* Holiday names */}
-                  {calculation.holidayNames.length > 0 && (
-                    <motion.div
-                      key="holidays"
-                      layout
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3, ease: 'easeInOut' }}
-                      className="overflow-hidden"
-                    >
-                      <div className="rounded-lg border border-accent/20 bg-accent/5 px-3 py-2">
-                        <p className="text-xs text-foreground/60">
-                          Feiertage im Zeitraum:{' '}
-                          <span className="font-medium text-foreground/80">
-                            {calculation.holidayNames.join(', ')}
-                          </span>
-                        </p>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-
-                {/* Nie allein toggle */}
-                <motion.button
+    <div>
+      <div className="grid items-start gap-6 lg:grid-cols-[1.35fr_1fr] lg:gap-8">
+        <div className="min-w-0 space-y-5">
+          <CalculatorStep number={1} title="Wie viele Hunde?">
+            <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3">
+              {[1, 2, 3].map(count => (
+                <button
+                  key={count}
                   type="button"
-                  layout
-                  onClick={() => setIncludeNieAllein(!includeNieAllein)}
-                  aria-pressed={includeNieAllein}
-                  className="flex w-full items-center gap-3 rounded-lg border border-accent/20 px-4 py-3 text-left transition-colors hover:border-accent/40"
-                >
-                  <div
-                    className={cn(
-                      'flex h-5 w-5 shrink-0 items-center justify-center rounded border-2 transition-colors',
-                      includeNieAllein ? 'border-accent bg-accent' : 'border-foreground/30',
-                    )}
-                  >
-                    {includeNieAllein && (
-                      <svg
-                        className="h-3 w-3 text-accent-foreground"
-                        viewBox="0 0 12 12"
-                        fill="none"
-                      >
-                        <path
-                          d="M2 6L5 9L10 3"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    )}
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-sm font-medium">Nie allein Pauschale</p>
-                    <p className="text-xs text-foreground/50">
-                      +{PRICING.neverAlonePerBillingUnit}€ pro Tag/Nacht
-                    </p>
-                  </div>
-                  {includeNieAllein && calculation.neverAloneCost > 0 && (
-                    <span className="text-sm font-semibold text-accent">
-                      +{calculation.neverAloneCost}€
-                    </span>
+                  aria-label={`${count} ${count === 1 ? 'Hund' : 'Hunde'} auswählen`}
+                  aria-pressed={numberOfDogs === count}
+                  onClick={() => {
+                    onNumberOfDogsChange(count)
+                    setSingleCare(false)
+                  }}
+                  className={cn(
+                    'flex min-h-13 items-center justify-center gap-2 rounded-xl border-2 px-2 text-sm font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:active:scale-[0.98]',
+                    numberOfDogs === count
+                      ? 'border-service-accent bg-accent/5'
+                      : 'border-foreground/15 bg-transparent hover:border-service-accent/60',
                   )}
-                </motion.button>
-
-                {/* Divider */}
-                <motion.div layout className="border-t border-accent/10" />
-
-                {/* Total */}
-                <motion.div layout className="flex items-baseline justify-between">
-                  <p className="text-lg font-semibold">Gesamtpreis</p>
-                  <div className="flex items-baseline gap-0.5">
-                    <AccessibleAnimatedNumber
-                      value={calculation.total}
-                      className="text-3xl font-bold text-accent tabular-nums"
-                    />
-                    <span className="text-3xl font-bold text-accent" aria-hidden="true">
-                      €
-                    </span>
-                    <span className="sr-only"> Euro</span>
-                  </div>
-                </motion.div>
-
-                <motion.p layout className="text-xs text-foreground/40">
-                  Gemäß §19 UStG wird keine Umsatzsteuer berechnet.
-                </motion.p>
-              </motion.div>
+                >
+                  {count} {count === 1 ? 'Hund' : 'Hunde'}
+                </button>
+              ))}
+            </div>
+            <p className="mt-3 text-xs text-foreground/60">
+              Staffelpreise gelten für Hunde aus einem Haushalt.
+            </p>
+            {numberOfDogs === 1 && (
+              <label className="mt-4 flex cursor-pointer items-start gap-3 border-t border-border pt-4 text-sm">
+                <input
+                  type="checkbox"
+                  checked={singleCare}
+                  onChange={event => setSingleCare(event.target.checked)}
+                  className="mt-0.5 size-4 shrink-0 accent-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                />
+                <span>
+                  Einzelbetreuung gewünscht
+                  <span className="mt-1 block text-xs text-foreground/60">
+                    Wird zum Preis für 2 Hunde berechnet.
+                  </span>
+                </span>
+              </label>
             )}
-          </AnimatePresence>
+          </CalculatorStep>
+
+          <CalculatorStep
+            number={2}
+            title="Wann bist du weg?"
+            action={
+              startDate && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setStartDate(null)
+                    setEndDate(null)
+                    setHoverDate(null)
+                  }}
+                  className="min-h-11 rounded-md text-xs font-medium text-foreground/70 underline underline-offset-4 hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+                >
+                  Zurücksetzen
+                </button>
+              )
+            }
+          >
+            <div
+              aria-live="polite"
+              aria-atomic="true"
+              className="mt-5 rounded-xl bg-accent/10 px-4 py-3 text-sm font-medium"
+            >
+              {!startDate ? (
+                'Wähle zuerst den Anreisetag.'
+              ) : !endDate ? (
+                `${formatDate(startDate)} → Abreisetag wählen`
+              ) : (
+                <>
+                  {formatDate(startDate)}
+                  {!isDaycare && ` → ${formatDate(endDate)}`}
+                  <span className="mt-1 block text-xs font-normal text-foreground/65">
+                    {isDaycare
+                      ? '1 Tag Tagesbetreuung'
+                      : `${calculation?.overnightNights} ${calculation?.overnightNights === 1 ? 'Nacht' : 'Nächte'}`}
+                  </span>
+                </>
+              )}
+            </div>
+            <div className="mt-4 flex items-center justify-between">
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                disabled={!canGoPrev}
+                onClick={() =>
+                  setViewMonth(
+                    previous => new Date(previous.getFullYear(), previous.getMonth() - 1, 1),
+                  )
+                }
+                aria-label="Vorheriger Monat"
+                className="size-11 rounded-xl"
+              >
+                <ChevronLeft aria-hidden="true" />
+              </Button>
+              <p aria-live="polite" className="text-sm font-semibold">
+                {viewMonth.toLocaleDateString('de-DE', { month: 'long', year: 'numeric' })}
+              </p>
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                onClick={() =>
+                  setViewMonth(
+                    previous => new Date(previous.getFullYear(), previous.getMonth() + 1, 1),
+                  )
+                }
+                aria-label="Nächster Monat"
+                className="size-11 rounded-xl"
+              >
+                <ChevronRight aria-hidden="true" />
+              </Button>
+            </div>
+            <div className="mt-2 grid grid-cols-7">
+              {WEEKDAYS.map(day => (
+                <div key={day} className="py-2 text-center text-xs font-medium text-foreground/60">
+                  {day}
+                </div>
+              ))}
+            </div>
+            <CalendarGrid
+              viewMonth={viewMonth}
+              startDate={startDate}
+              endDate={endDate}
+              visualEnd={visualEnd}
+              today={today}
+              onDayClick={handleDayClick}
+              onDayHover={setHoverDate}
+            />
+            <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-4 text-xs text-foreground/65">
+              <span className="flex items-center gap-2">
+                <span aria-hidden="true" className="size-2 rounded-full bg-service-holiday" />
+                Feiertag (NRW) · +{holidaySurcharge} %
+              </span>
+              <span className="flex items-center gap-2">
+                <span aria-hidden="true" className="size-3 rounded-sm bg-service-accent" />
+                Ankunft / Abreise
+              </span>
+            </div>
+            <p className="mt-3 text-xs leading-relaxed text-foreground/60">
+              Nur Tagesbetreuung? Wähle denselben Tag zweimal.
+            </p>
+          </CalculatorStep>
+
+          <CalculatorStep number={3} title="Wann holst du deinen Hund ab?">
+            {isDaycare ? (
+              <p className="mt-4 text-sm leading-relaxed text-foreground/70">
+                Für die Tagesbetreuung gilt der Tagespreis für bis zu 12 Stunden.
+              </p>
+            ) : (
+              <div className="mt-5 grid grid-cols-2 gap-3">
+                <TimeButton
+                  active={departureTime === 'vor12'}
+                  onClick={() => setDepartureTime('vor12')}
+                  label="Vor 12 Uhr"
+                  sublabel="Kein Aufpreis"
+                />
+                <TimeButton
+                  active={departureTime === 'ab12'}
+                  onClick={() => setDepartureTime('ab12')}
+                  label="Ab 12 Uhr"
+                  sublabel="+ Tagesbetreuung"
+                />
+              </div>
+            )}
+            <label
+              aria-label="Nie allein Pauschale"
+              className="mt-5 flex cursor-pointer items-start gap-3 border-t border-border pt-5"
+            >
+              <input
+                type="checkbox"
+                checked={includeNieAllein}
+                onChange={event => setIncludeNieAllein(event.target.checked)}
+                className="mt-0.5 size-4 shrink-0 accent-accent focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+              />
+              <span className="flex-1 text-sm">
+                <span className="flex items-center gap-2 font-medium">
+                  <Heart aria-hidden="true" className="size-4 text-accent" />
+                  Nie allein Pauschale
+                </span>
+                <span className="mt-1 block text-xs text-foreground/60">
+                  Optional · +{currencyFormatter.format(PRICING.neverAlonePerBillingUnit)} pro
+                  Tag/Nacht
+                </span>
+              </span>
+            </label>
+          </CalculatorStep>
         </div>
+
+        <aside
+          aria-labelledby="calculation-heading"
+          className="overflow-hidden rounded-2xl border border-accent/40 bg-secondary/35 lg:sticky lg:top-36"
+        >
+          <div className="flex items-center gap-3 border-b border-foreground/10 px-5 py-5 sm:px-6">
+            <span className="rounded-xl bg-accent/15 p-2.5">
+              <Calculator
+                aria-hidden="true"
+                className="size-5 text-accent dark:text-service-accent"
+              />
+            </span>
+            <h3 id="calculation-heading" className="text-lg font-bold">
+              Deine Berechnung
+            </h3>
+          </div>
+          <div className="p-5 sm:p-6">
+            {!calculation ? (
+              <div className="flex flex-col items-center gap-4 py-10 text-center">
+                <span className="rounded-full bg-accent/10 p-5">
+                  <CalendarDays aria-hidden="true" className="size-9 text-foreground/60" />
+                </span>
+                <p className="font-semibold">Dein Urlaub beginnt mit einem Datum.</p>
+                <p className="max-w-64 text-sm leading-relaxed text-foreground/65">
+                  Wähle Ankunft und Abreise im Kalender. Hier siehst du dann alle Kosten auf einen
+                  Blick.
+                </p>
+              </div>
+            ) : (
+              <div className="max-h-[30rem] space-y-5 overflow-y-auto">
+                {overnightItems.map(item => (
+                  <LineItem
+                    key={item.key}
+                    label={item.label}
+                    detail={
+                      item.holiday ? `Feiertag (NRW) · +${holidaySurcharge} %` : 'Urlaubsbetreuung'
+                    }
+                    price={item.price}
+                    highlight={item.holiday}
+                  />
+                ))}
+                {calculation.daycareDays > 0 && endDate && (
+                  <LineItem
+                    label={
+                      isDaycare
+                        ? `Tagesbetreuung ${formatDate(endDate)}`
+                        : `Abholung ${formatDate(endDate)} ab 12 Uhr`
+                    }
+                    detail={
+                      calculation.holidayDaycare
+                        ? `Feiertag (NRW) · +${holidaySurcharge} %`
+                        : 'Tagesbetreuung'
+                    }
+                    price={calculation.daycareCost}
+                    highlight={calculation.holidayDaycare > 0}
+                  />
+                )}
+                {includeNieAllein && (
+                  <LineItem
+                    label="Nie allein Pauschale"
+                    detail={`${calculation.overnightNights + calculation.daycareDays}× ${currencyFormatter.format(PRICING.neverAlonePerBillingUnit)} pro Tag/Nacht`}
+                    price={calculation.neverAloneCost}
+                  />
+                )}
+                {calculation.holidayNames.length > 0 && (
+                  <p className="sr-only">
+                    Feiertage im Zeitraum: {calculation.holidayNames.join(', ')}
+                  </p>
+                )}
+              </div>
+            )}
+            <div className="mt-6 border-t border-accent/20 pt-6">
+              <div className="flex flex-wrap items-baseline justify-between gap-2">
+                <p className="font-semibold">Gesamtpreis</p>
+                <output
+                  aria-live="polite"
+                  aria-atomic="true"
+                  aria-label="Gesamtpreis"
+                  className="text-4xl font-bold tracking-tight tabular-nums dark:text-service-accent"
+                >
+                  {calculation ? currencyFormatter.format(calculation.total) : '– €'}
+                </output>
+              </div>
+              <p className="mt-4 text-xs leading-relaxed text-foreground/65">
+                Preis für {numberOfDogs} {numberOfDogs === 1 ? 'Hund' : 'Hunde'}
+                {singleCare && numberOfDogs === 1 && ' · Einzelbetreuung zum Preis für 2 Hunde'}
+                {' · '}
+                {calculation
+                  ? 'Feiertagszuschläge sind enthalten.'
+                  : 'Feiertagszuschläge werden automatisch berücksichtigt.'}
+              </p>
+              {calculation && (
+                <Button
+                  asChild
+                  size="lg"
+                  className="mt-6 h-12 w-full rounded-full bg-service-accent font-semibold text-service-accent-foreground hover:bg-service-accent/85 motion-safe:active:scale-[0.98]"
+                >
+                  <a href="#kontakt">Unverbindlich anfragen</a>
+                </Button>
+              )}
+              <p className="mt-4 text-xs leading-relaxed text-foreground/55">
+                Gemäß §19 UStG wird keine Umsatzsteuer berechnet.
+              </p>
+            </div>
+          </div>
+        </aside>
       </div>
     </div>
   )
 }
 
-// --- Sub-components ---
+interface CalculatorStepProps {
+  number: number
+  title: string
+  action?: ReactNode
+  children: ReactNode
+}
+
+function CalculatorStep({ number, title, action, children }: CalculatorStepProps) {
+  return (
+    <section
+      aria-labelledby={`calculator-step-${number}`}
+      className="rounded-2xl border border-foreground/10 bg-secondary/35 p-4 sm:p-6"
+    >
+      <div className="flex items-center justify-between gap-3">
+        <h3
+          id={`calculator-step-${number}`}
+          className="flex items-center gap-3 text-base font-semibold sm:text-lg"
+        >
+          <span
+            aria-hidden="true"
+            className="flex size-7 shrink-0 items-center justify-center rounded-full bg-service-accent text-sm text-service-accent-foreground"
+          >
+            {number}
+          </span>
+          {title}
+        </h3>
+        {action}
+      </div>
+      {children}
+    </section>
+  )
+}
 
 interface CalendarGridProps {
   viewMonth: Date
   startDate: Date | null
   endDate: Date | null
+  visualEnd: Date | null
   today: Date
   onDayClick: (date: Date) => void
   onDayHover: (date: Date | null) => void
@@ -420,6 +471,7 @@ function CalendarGrid({
   viewMonth,
   startDate,
   endDate,
+  visualEnd,
   today,
   onDayClick,
   onDayHover,
@@ -428,29 +480,20 @@ function CalendarGrid({
   const month = viewMonth.getMonth()
   const daysInMonth = new Date(year, month + 1, 0).getDate()
   const firstDayOfWeek = (new Date(year, month, 1).getDay() + 6) % 7
-
-  const cells: (Date | null)[] = []
-  for (let i = 0; i < firstDayOfWeek; i++) {
-    cells.push(null)
-  }
-  for (let d = 1; d <= daysInMonth; d++) {
-    cells.push(new Date(year, month, d))
-  }
+  const cells: (Date | null)[] = Array.from({ length: firstDayOfWeek }, () => null)
+  for (let day = 1; day <= daysInMonth; day++) cells.push(new Date(year, month, day))
 
   return (
-    <div className="grid grid-cols-7 gap-0.5 px-2 pb-2" onMouseLeave={() => onDayHover(null)}>
-      {cells.map((date, idx) => {
-        if (!date) {
-          return <div key={`empty-${idx}`} className="h-10" />
-        }
-
+    <div className="grid grid-cols-7 gap-y-1" onMouseLeave={() => onDayHover(null)}>
+      {cells.map((date, index) => {
+        if (!date) return <div key={`empty-${index}`} className="h-11" />
         const isPast = isBeforeDay(date, today)
         const isToday = isSameDay(date, today)
         const holiday = isNrwHoliday(date)
         const isStart = startDate && isSameDay(date, startDate)
         const isEnd = endDate && isSameDay(date, endDate)
-        const inRange = startDate && endDate && isBetween(date, startDate, endDate)
-
+        const isVisualEnd = visualEnd && isSameDay(date, visualEnd)
+        const inRange = startDate && visualEnd && isBetween(date, startDate, visualEnd)
         return (
           <button
             type="button"
@@ -462,20 +505,24 @@ function CalendarGrid({
             aria-pressed={Boolean(isStart || isEnd)}
             aria-current={isToday ? 'date' : undefined}
             className={cn(
-              'relative flex h-10 w-full flex-col items-center justify-center rounded-md text-sm transition-colors',
-              isPast && 'cursor-not-allowed text-foreground/20',
-              !isPast && 'cursor-pointer hover:bg-accent/10',
+              'relative flex h-11 w-full items-center justify-center rounded-lg text-sm transition-colors focus-visible:z-10 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring',
+              isPast && 'cursor-not-allowed text-foreground/25',
+              !isPast && !isStart && !isEnd && 'hover:bg-accent/20',
               isToday && 'ring-1 ring-accent/50 ring-inset',
-              inRange && !isStart && !isEnd && 'bg-accent/10',
-              (isStart || isEnd) && 'bg-accent font-semibold text-accent-foreground',
+              holiday && !isPast && 'ring-1 ring-service-holiday ring-inset',
+              inRange && !isStart && !isEnd && 'rounded-none bg-accent/15',
+              isVisualEnd && !isEnd && 'rounded-r-lg',
+              (isStart || isEnd) &&
+                'bg-service-accent font-semibold text-service-accent-foreground',
             )}
           >
             <span>{date.getDate()}</span>
             {holiday && (
               <span
+                aria-hidden="true"
                 className={cn(
-                  'absolute bottom-1 h-1 w-1 rounded-full',
-                  isStart || isEnd ? 'bg-accent-foreground/70' : 'bg-destructive/70',
+                  'absolute bottom-1 size-1 rounded-full',
+                  isStart || isEnd ? 'bg-service-accent-foreground' : 'bg-service-holiday',
                 )}
               />
             )}
@@ -500,40 +547,40 @@ function TimeButton({ active, onClick, label, sublabel }: TimeButtonProps) {
       onClick={onClick}
       aria-pressed={active}
       className={cn(
-        'flex flex-1 flex-col items-center rounded-lg border-2 px-4 py-3 transition-all',
+        'flex flex-col items-center gap-1 rounded-xl border-2 px-2 py-4 transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none motion-safe:active:scale-[0.98]',
         active
-          ? 'border-accent bg-accent/10'
-          : 'border-accent/20 bg-background hover:border-accent/40 hover:bg-accent/5',
+          ? 'border-accent bg-accent/15'
+          : 'border-foreground/15 bg-transparent hover:border-service-accent/60',
       )}
     >
-      <span className={cn('text-sm font-semibold', active && 'text-accent')}>{label}</span>
-      <span className="text-xs text-foreground/50">{sublabel}</span>
+      <span className="text-sm font-semibold">{label}</span>
+      <span className="text-xs text-foreground/65">{sublabel}</span>
     </button>
   )
 }
 
 interface LineItemProps {
   label: string
+  detail: string
   price: number
   highlight?: boolean
 }
 
-function LineItem({ label, price, highlight }: LineItemProps) {
+function LineItem({ label, detail, price, highlight }: LineItemProps) {
   return (
-    <div className="flex items-center justify-between gap-4">
-      <p className={cn('text-sm', highlight ? 'font-medium text-accent' : 'text-foreground/70')}>
-        {label}
-      </p>
-      <div className="flex items-baseline gap-0.5">
-        <AccessibleAnimatedNumber
-          value={Math.round(price * 100) / 100}
-          className={cn('text-lg font-bold tabular-nums', highlight && 'text-accent')}
-        />
-        <span aria-hidden="true" className={cn('text-lg font-bold', highlight && 'text-accent')}>
-          €
-        </span>
-        <span className="sr-only"> Euro</span>
+    <div className="flex items-start justify-between gap-4 border-b border-border/70 pb-4">
+      <div>
+        <p className="text-sm font-medium">{label}</p>
+        <p
+          className={cn(
+            'mt-1 text-xs leading-relaxed text-foreground/60',
+            highlight && 'font-medium text-service-holiday',
+          )}
+        >
+          {detail}
+        </p>
       </div>
+      <p className="shrink-0 text-base font-bold tabular-nums">{currencyFormatter.format(price)}</p>
     </div>
   )
 }

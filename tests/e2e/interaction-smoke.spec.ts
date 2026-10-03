@@ -61,61 +61,88 @@ test('das mobile Menü ist per Tastatur ein vollständiger Dialog', async ({ pag
   assertNoBrowserErrors()
 })
 
-test('Preissteuerung und Carousel geben ihren Zustand verständlich aus', async ({ page }) => {
+test('Preisübersicht, Rechner und Carousel sind verständlich bedienbar', async ({ page }) => {
   const assertNoBrowserErrors = monitorBrowserErrors(page)
-  await page.emulateMedia({ reducedMotion: 'no-preference' })
   await page.goto('/', { waitUntil: 'load' })
 
-  const priceTabs = page.getByRole('tablist', { name: /preise/i })
-  const overviewTab = priceTabs.getByRole('tab', { name: 'Preisübersicht' })
-  const calculatorTab = priceTabs.getByRole('tab', { name: 'Preisrechner' })
-  await expect(overviewTab).toHaveAttribute('aria-selected', 'true')
-  await expect(calculatorTab).toHaveAttribute('aria-selected', 'false')
-  await calculatorTab.click()
-  await expect(calculatorTab).toHaveAttribute('aria-selected', 'true')
-  await expect(overviewTab).toHaveAttribute('aria-selected', 'false')
-
-  const oneDog = page.getByRole('button', { name: '1 Hund auswählen' })
-  const twoDogs = page.getByRole('button', { name: '2 Hunde auswählen' })
+  const prices = page.locator('section#preise')
+  await expect(prices.getByRole('tablist')).toHaveCount(0)
+  const holidaySwitch = prices.getByRole('switch', { name: 'Feiertagspreise anzeigen' })
+  await expect(holidaySwitch).not.toBeChecked()
+  const careCard = prices.getByRole('region', { name: 'Hundebetreuung', exact: true })
+  const walkCard = prices.getByRole('region', { name: 'Gassi gehen', exact: true })
+  const trialCard = prices.getByRole('region', { name: 'Kennenlernen', exact: true })
+  await expect(careCard.locator('data')).toHaveText(['35', '40'])
+  const oneDog = prices.getByRole('button', { name: '1 Hund auswählen' })
+  const twoDogs = prices.getByRole('button', { name: '2 Hunde auswählen' })
   await expect(oneDog).toHaveAttribute('aria-pressed', 'true')
-  await twoDogs.click()
+  await holidaySwitch.focus()
+  await holidaySwitch.press('Space')
+  await expect(holidaySwitch).toBeChecked()
+  await expect(careCard.locator('data')).toHaveText(['52,5', '60'])
+  await expect(walkCard.locator('data')).toHaveText(['22,5', '37,5'])
+  await expect(trialCard.locator('data')).toHaveText(['15', '20', '25'])
+  await expect(careCard.getByText('+5€', { exact: true })).toBeVisible()
+  await expect(prices.getByText('0,60 €', { exact: true })).toBeVisible()
+  await twoDogs.focus()
+  await twoDogs.press('Enter')
   await expect(twoDogs).toHaveAttribute('aria-pressed', 'true')
   await expect(oneDog).toHaveAttribute('aria-pressed', 'false')
+  await expect(careCard.locator('data')).toHaveText(['90', '105'])
+  await expect(walkCard.locator('data')).toHaveText(['30', '45'])
+  await expect(trialCard.locator('data')).toHaveText(['15', '30', '40'])
+  await holidaySwitch.press('Enter')
+  await expect(holidaySwitch).not.toBeChecked()
+  await expect(careCard.locator('data')).toHaveText(['60', '70'])
+  await expect(walkCard.locator('data')).toHaveText(['20', '30'])
+  await expect(trialCard.locator('data')).toHaveText(['15', '30', '40'])
 
-  await overviewTab.click()
-  const firstAnimatedPrice = page.locator('[data-animated-number="true"]').first()
-  await expect(firstAnimatedPrice).toHaveAttribute('data-value', '60')
-
-  const holidayToggle = page.getByRole('button', { name: 'Feiertagspreise anzeigen' })
-  await expect(holidayToggle).toHaveAttribute('aria-pressed', 'false')
-  await holidayToggle.click()
-  await expect(holidayToggle).toHaveAttribute('aria-pressed', 'true')
-
-  await page.waitForTimeout(150)
-  await expect(firstAnimatedPrice).toHaveAttribute('data-value', '90')
-  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'true')
-  await expect(firstAnimatedPrice).not.toHaveText('90')
-  await page.waitForTimeout(650)
-  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'true')
-  await expect(firstAnimatedPrice).not.toHaveText('90')
-  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'false', {
-    timeout: 2_500,
-  })
-  await expect(firstAnimatedPrice).toHaveText('90')
-
-  await oneDog.click()
-  await expect(firstAnimatedPrice).toHaveAttribute('data-value', '52.5')
-  await page.waitForTimeout(150)
-  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'true')
-  await expect(firstAnimatedPrice).toHaveText(/^\d{2}(,\d)?$/)
-  await expect(firstAnimatedPrice).toHaveAttribute('data-animating', 'false', {
-    timeout: 2_500,
-  })
-  await expect(firstAnimatedPrice).toHaveText('52,5')
+  await prices.getByRole('button', { name: 'Gesamtpreis berechnen' }).click()
+  await expect(prices.getByRole('heading', { name: 'Preisrechner', exact: true })).toBeFocused()
+  await expect(twoDogs).toHaveAttribute('aria-pressed', 'true')
+  await prices.getByRole('button', { name: '3 Hunde auswählen' }).click()
+  await prices.getByRole('link', { name: 'Zur Preisübersicht' }).click()
+  await expect(
+    prices.getByRole('heading', { name: 'Preise & Services', exact: true }),
+  ).toBeFocused()
+  await expect(prices.getByRole('button', { name: '3 Hunde auswählen' })).toHaveAttribute(
+    'aria-pressed',
+    'true',
+  )
+  await expect(careCard.locator('data')).toHaveText(['85', '100'])
+  await expect(walkCard.locator('data')).toHaveText(['25', '35'])
+  await expect(trialCard.locator('data')).toHaveText(['15', '40', '50'])
 
   await expect(page.getByRole('button', { name: 'Vorheriges Testimonial' })).toBeVisible()
   await expect(page.getByRole('button', { name: 'Nächstes Testimonial' })).toBeVisible()
   assertNoBrowserErrors()
+})
+
+test('auf Mobilgeräten sind alle Preiskarten sichtbar und die Hundeauswahl bedienbar', async ({
+  page,
+}) => {
+  await page.setViewportSize({ width: 390, height: 844 })
+  await page.emulateMedia({ reducedMotion: 'reduce' })
+  await page.goto('/')
+  const prices = page.locator('section#preise')
+  for (const name of ['Hundebetreuung', 'Gassi gehen', 'Kennenlernen']) {
+    await expect(prices.getByRole('region', { name, exact: true })).toBeVisible()
+  }
+  await prices.getByRole('button', { name: '3 Hunde auswählen' }).click()
+  await expect(prices.getByRole('region', { name: 'Hundebetreuung' }).locator('data')).toHaveText([
+    '85',
+    '100',
+  ])
+  await prices.getByRole('switch', { name: 'Feiertagspreise anzeigen' }).click()
+  await expect(prices.getByRole('region', { name: 'Hundebetreuung' }).locator('data')).toHaveText([
+    '127,5',
+    '150',
+  ])
+  await expect(prices.getByRole('region', { name: 'Gassi gehen' }).locator('data')).toHaveText([
+    '37,5',
+    '52,5',
+  ])
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
 })
 
 test('das sichtbare Kontaktformular hält den Netlify-Vertrag ein, ohne zu senden', async ({
