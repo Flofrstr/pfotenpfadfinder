@@ -18,14 +18,14 @@ export function HeroSection() {
           src="/pfotenpfadfinder.jpg"
           alt="Frau mit Brille kniet auf Waldweg zwischen zwei Hunden"
           fill
-          className="object-cover"
-          style={{ objectPosition: 'center 30%' }}
-          sizes="100vw"
-          quality={75}
-          priority
+          className="object-cover object-[center_30%]"
+          // Account for the 4:3 photo being enlarged to cover a portrait viewport.
+          sizes="(max-aspect-ratio: 4/3) 133.34lvh, 100vw"
+          quality={90}
+          loading="eager"
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-white/70 dark:bg-black/40" />
+        <div className="absolute inset-0 bg-background/60 dark:bg-background/45" />
       </div>
 
       <div className="relative z-10 container px-6 py-16 md:px-6 md:py-24 lg:py-32">

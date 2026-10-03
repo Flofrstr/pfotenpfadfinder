@@ -55,5 +55,8 @@ This project uses:
 
 ## Checks before production
 
+- Google reviews are a manually verified snapshot in `lib/google-reviews.ts`, with short excerpts, individual source links and a visible verification date. Update the rating, count, excerpts and date together after checking the Google profile; there is no automatic sync or third-party widget.
+- The hero photo is currently 1600 × 1200 pixels. Its responsive image sizes account for the portrait crop, and it uses quality 90. For more detail on large or high-density displays, replace `public/pfotenpfadfinder.jpg` with a higher-resolution original in the same 4:3 aspect ratio.
+
 - Verify in the Netlify dashboard whether Netlify Analytics is actually enabled. Its privacy text is intentionally unchanged until the operator confirms the dashboard state.
 - Use a Deploy Preview to check routes, image delivery, headers, caching and Netlify form detection. Only send a clearly marked form test with explicit operator approval.

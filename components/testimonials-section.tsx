@@ -1,5 +1,6 @@
 import { AnimatedTestimonials } from '@/components/ui/animated-testimonials'
 import { PawBackground } from '@/components/paw-background'
+import { GoogleReviews } from '@/components/google-reviews'
 
 export function TestimonialsSection() {
   const testimonials = [
@@ -77,6 +78,7 @@ export function TestimonialsSection() {
         </div>
 
         <AnimatedTestimonials testimonials={testimonials} />
+        <GoogleReviews />
       </div>
     </section>
   )
