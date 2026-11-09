@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { PawPrintIcon as Paw } from 'lucide-react'
 
-export function Footer() {
-  const currentYear = new Date().getFullYear()
+// These static routes keep the copyright year from the production build.
+const currentYear = new Date().getFullYear()
 
+export function Footer() {
   return (
     <footer className="relative z-10 w-full border-t border-foreground/10 bg-background py-6">
       <div className="container px-4 md:px-6">

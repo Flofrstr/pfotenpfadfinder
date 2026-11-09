@@ -1,5 +1,6 @@
 {
   "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "jsPlugins": ["@shadcn/lint"],
   "plugins": [
     "eslint",
     "typescript",
@@ -29,7 +30,7 @@
   },
   "settings": {
     "react": {
-      "version": "19.2"
+      "version": "19.3"
     }
   },
   "ignorePatterns": [

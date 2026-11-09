@@ -4,7 +4,7 @@ Technische Basis der Pfotenpfadfinder-Website auf Next.js 16, React 19 und Tailw
 
 ## Tech Stack
 
-- **Runtime:** Node.js 24
+- **Runtime:** Node.js 24 (at least 24.15.0) with npm 12.2.2
 - **Framework:** Next.js 16 mit React 19
 - **Styling:** Tailwind CSS
 - **UI Components:** Radix UI
@@ -13,10 +13,10 @@ Technische Basis der Pfotenpfadfinder-Website auf Next.js 16, React 19 und Tailw
 
 ## Getting Started
 
-Install dependencies:
+Use the Node.js 24 release selected by `.nvmrc` and npm 12.2.2, matching CI and Netlify. Install dependencies with compatibility checks enabled:
 
 ```bash
-npm ci
+npm ci --strict-peer-deps --engine-strict
 ```
 
 Run the development server:
@@ -52,6 +52,12 @@ This project uses:
 - **Oxfmt** for formatting and Tailwind class sorting
 - **Vitest** and **Playwright** for automated tests
 - **simple-git-hooks** for pre-commit and pre-push hooks
+
+### shadcn lint
+
+`@shadcn/lint` is registered as an Oxlint plugin in `.oxlintrc.json` and runs through the existing `npm run lint`, `npm run check`, and pre-push workflow. Following the [official setup](https://github.com/shadcn-ui/lint/blob/main/SETUP.md), no additional shadcn rules are enabled yet; the existing lint policies are preserved.
+
+Enable selected `shadcn/*` rules in the `rules` object of `.oxlintrc.json`. See the [available rules](https://github.com/shadcn-ui/lint#rules) and [design-system configuration examples](https://github.com/shadcn-ui/lint/blob/main/docs/design-systems.md). Component imports (`@/components/ui`) and the Tailwind theme (`app/globals.css`) are discovered through `components.json`.
 
 ## Checks before production
 

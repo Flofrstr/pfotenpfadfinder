@@ -53,15 +53,13 @@ export function PriceCalculatorContent({
   const [departureTime, setDepartureTime] = useState<DepartureTime>('vor12')
   const [includeNieAllein, setIncludeNieAllein] = useState(false)
   const [singleCare, setSingleCare] = useState(false)
-  const [viewMonth, setViewMonth] = useState<Date>(() => {
-    const today = new Date()
-    return new Date(today.getFullYear(), today.getMonth(), 1)
-  })
-
-  const today = useMemo(() => {
+  const [today] = useState(() => {
     const date = new Date()
     return new Date(date.getFullYear(), date.getMonth(), date.getDate())
-  }, [])
+  })
+  const [viewMonth, setViewMonth] = useState<Date>(
+    () => new Date(today.getFullYear(), today.getMonth(), 1),
+  )
 
   const billingDogs = singleCare && numberOfDogs === 1 ? 2 : numberOfDogs
   const overnightPrice = getTieredPrice(PRICING.overnight, billingDogs)

@@ -11,6 +11,10 @@ import { ModeToggle } from '@/components/mode-toggle'
 const loadMobileMenuDrawer = () => import('@/components/mobile-menu-drawer')
 const MobileMenuDrawer = dynamic(loadMobileMenuDrawer, { ssr: false })
 
+const preloadMobileMenu = () => {
+  void loadMobileMenuDrawer()
+}
+
 interface HeaderClientProps {
   availability: {
     headline: string
@@ -31,10 +35,6 @@ export function HeaderClient({ availability }: HeaderClientProps) {
   const [hasOpenedMenu, setHasOpenedMenu] = useState(false)
   const [isBannerVisible, setIsBannerVisible] = useState(true)
   const menuButtonRef = useRef<HTMLButtonElement>(null)
-
-  const preloadMobileMenu = () => {
-    void loadMobileMenuDrawer()
-  }
 
   const openMenu = () => {
     setHasOpenedMenu(true)

@@ -11,6 +11,7 @@
 - **Animationen**: motion + tw-animate-css
 - **Icons**: Lucide React + lokale Marken-SVGs
 - **Linting**: Oxlint mit type-aware TypeScript-, React-, Next.js- und Accessibility-Regeln
+- **Design-System-Linting**: `@shadcn/lint` als Oxlint-Plugin registriert; zusätzliche `shadcn/*`-Regeln werden in `.oxlintrc.json` konfiguriert und sind zunächst nicht aktiviert
 - **Formatter**: Oxfmt mit Tailwind-Klassensortierung
 - **Git Hooks**: simple-git-hooks + lint-staged (pre-commit: Oxfmt, pre-push: vollständiger Check)
 - **Hosting**: Netlify
@@ -74,6 +75,8 @@ public/           → Statische Assets (Bilder, SVGs)
 - `PawBackground` platziert dekorative SVG-Pfoten, was bei Layout-Änderungen berücksichtigt werden muss
 
 ## Qualitätsprüfung
+
+Nach Änderungen `npm run lint` ausführen und alle Fehler beheben.
 
 ```bash
 npm run dev          # Entwicklungsserver starten
