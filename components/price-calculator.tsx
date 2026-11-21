@@ -1,7 +1,15 @@
 'use client'
 
 import { useState, useMemo, useCallback, type ReactNode } from 'react'
-import { CalendarDays, ChevronLeft, ChevronRight, Calculator, Heart } from 'lucide-react'
+import {
+  ArrowRight,
+  CalendarDays,
+  ChevronLeft,
+  ChevronRight,
+  Calculator,
+  Heart,
+  Info,
+} from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { isNrwHoliday } from '@/lib/nrw-holidays'
@@ -164,7 +172,7 @@ export function PriceCalculatorContent({
 
           <CalculatorStep
             number={2}
-            title="Wann bist du weg?"
+            title="Zeitraum für die Preisberechnung"
             action={
               startDate && (
                 <button
@@ -181,6 +189,26 @@ export function PriceCalculatorContent({
               )
             }
           >
+            <div className="mt-4 rounded-xl bg-primary p-4 text-primary-foreground sm:p-5">
+              <div className="flex items-center gap-3">
+                <span className="grid size-9 shrink-0 place-items-center rounded-full bg-service-accent text-service-accent-foreground">
+                  <Info aria-hidden="true" className="size-5" />
+                </span>
+                <h4 className="text-lg leading-tight font-bold text-balance sm:text-xl">
+                  Freie Termine nur auf Anfrage
+                </h4>
+              </div>
+              <p className="mt-3 text-base leading-relaxed">
+                Der Kalender dient nur zur Preisberechnung. Auch belegte Tage sind auswählbar.
+              </p>
+              <a
+                href="#kontakt"
+                className="mt-2 inline-flex min-h-8 items-center gap-2 rounded-sm text-sm font-semibold underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-current"
+              >
+                Wunschtermin anfragen
+                <ArrowRight aria-hidden="true" className="size-4" />
+              </a>
+            </div>
             <div
               aria-live="polite"
               aria-atomic="true"
@@ -333,10 +361,8 @@ export function PriceCalculatorContent({
                 <span className="rounded-full bg-accent/10 p-5">
                   <CalendarDays aria-hidden="true" className="size-9 text-foreground/60" />
                 </span>
-                <p className="font-semibold">Dein Urlaub beginnt mit einem Datum.</p>
                 <p className="max-w-64 text-sm leading-relaxed text-foreground/65">
-                  Wähle Ankunft und Abreise im Kalender. Hier siehst du dann alle Kosten auf einen
-                  Blick.
+                  Wähle Ankunft und Abreise, um den Preis für deinen Wunschzeitraum zu sehen.
                 </p>
               </div>
             ) : (
@@ -408,7 +434,7 @@ export function PriceCalculatorContent({
                   size="lg"
                   className="mt-6 h-12 w-full rounded-full bg-service-accent font-semibold text-service-accent-foreground hover:bg-service-accent/85 motion-safe:active:scale-[0.98]"
                 >
-                  <a href="#kontakt">Unverbindlich anfragen</a>
+                  <a href="#kontakt">Verfügbarkeit anfragen</a>
                 </Button>
               )}
               <p className="mt-4 text-xs leading-relaxed text-foreground/55">

@@ -12,7 +12,17 @@ for (const width of [390, 1280]) {
     await start.press('Enter')
     await expect(page.getByRole('heading', { name: 'Preisrechner', exact: true })).toBeFocused()
     const calculator = page.getByRole('region', { name: 'Preisrechner', exact: true })
+    const calendar = calculator.getByRole('region', { name: 'Zeitraum für die Preisberechnung' })
+    const availabilityNotice = calendar.getByRole('heading', {
+      name: 'Freie Termine nur auf Anfrage',
+    })
     const total = calculator.getByRole('status', { name: 'Gesamtpreis', exact: true })
+    await expect(availabilityNotice).toBeVisible()
+    await expect(calendar.getByText(/Auch belegte Tage sind auswählbar/)).toBeVisible()
+    await expect(calendar.getByRole('link', { name: 'Wunschtermin anfragen' })).toHaveAttribute(
+      'href',
+      '#kontakt',
+    )
     await expect(total).toHaveText('– €')
     await expect(
       calculator.getByRole('button', { name: '1. Oktober 2026', exact: true }),
@@ -22,6 +32,7 @@ for (const width of [390, 1280]) {
     await expect(total).toHaveText('– €')
     await calculator.getByRole('button', { name: '5. Oktober 2026', exact: true }).click()
     await expect(total).toHaveText('140 €')
+    await expect(availabilityNotice).toBeVisible()
     await expect(calculator.getByText(/^Übernachtung /)).toHaveCount(3)
     await expect(
       calculator.getByText('Feiertage im Zeitraum: Tag der Deutschen Einheit'),
@@ -40,7 +51,7 @@ for (const width of [390, 1280]) {
     await expect(
       calculator.getByRole('checkbox', { name: /Einzelbetreuung gewünscht/ }),
     ).not.toBeChecked()
-    await expect(calculator.getByRole('link', { name: 'Unverbindlich anfragen' })).toHaveAttribute(
+    await expect(calculator.getByRole('link', { name: 'Verfügbarkeit anfragen' })).toHaveAttribute(
       'href',
       '#kontakt',
     )
